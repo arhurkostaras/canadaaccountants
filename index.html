@@ -1,4 +1,152 @@
-<script>
+<p>Connecting Canadian CPAs with SMEs through innovative technology and rigorous screening processes.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <button onclick="openModal('business')">Join as Business</button>
+                    <button onclick="openModal('cpa')">Join as CPA</button>
+                    <button onclick="openModal('contact')">Contact Us</button>
+                    <button onclick="showAnalytics()">Platform Analytics</button>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact CEO</h3>
+                    <button onclick="callCEO()">📞 647.956.7290</button>
+                    <button onclick="sendEmail()">✉️ arthur@negotiateandwin.com</button>
+                    <button onclick="scheduleCall()">📅 Schedule Call</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CanadaAccountants. CEO: Arthur Kostaras, CPA, CMA, CF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>Sign In to Your Account</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('signupModal')">&times;</button>
+            <h2>Join CanadaAccountants</h2>
+            <form onsubmit="handleSignup(event)" novalidate>
+                <div class="form-group">
+                    <label for="userType">I am a: <span aria-label="required" style="color: red;">*</span></label>
+                    <select id="userType" required aria-describedby="userType-error">
+                        <option value="">Select...</option>
+                        <option value="business">Business Owner</option>
+                        <option value="cpa">CPA Professional</option>
+                    </select>
+                    <div id="userType-error" class="error-message" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Full Name <span aria-label="required" style="color: red;">*</span></label>
+                    <input type="text" id="fullName" required aria-describedby="fullName-error" 
+                           placeholder="Enter your full name">
+                    <div id="fullName-error" class="error-message" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address <span aria-label="required" style="color: red;">*</span></label>
+                    <input type="email" id="signupEmail" required aria-describedby="signupEmail-error" 
+                           placeholder="you@company.com">
+                    <div id="signupEmail-error" class="error-message" role="alert"></div>
+                    <div id="signupEmail-success" class="success-message" role="status"></div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span aria-label="required" style="color: red;">*</span></label>
+                    <input type="tel" id="phone" required aria-describedby="phone-error" 
+                           placeholder="(416) 555-0123" pattern="^(\+1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$">
+                    <div id="phone-error" class="error-message" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company/Firm Name <span aria-label="required" style="color: red;">*</span></label>
+                    <input type="text" id="company" required aria-describedby="company-error" 
+                           placeholder="Your business or CPA firm name">
+                    <div id="company-error" class="error-message" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" id="postalCode" class="postal-code" aria-describedby="postalCode-error" 
+                           placeholder="K1A 0A6" pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$" 
+                           maxlength="7">
+                    <div id="postalCode-error" class="error-message" role="alert"></div>
+                    <div id="postalCode-success" class="success-message" role="status"></div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%" id="signup-btn">
+                    <span class="btn-text">Join Free Today</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('contactModal')">&times;</button>
+            <h2>Contact Arthur Kostaras, CEO</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 15px;">
+                    <h3>Arthur Kostaras, CPA, CMA, CF</h3>
+                    <p>Chief Executive Officer</p>
+                    <div style="margin-top: 1rem;">
+                        <button onclick="callCEO()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">📞 647.956.7290</button>
+                        <button onclick="sendEmail()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">✉️ Email</button>
+                    </div>
+                </div>
+            </div>
+            <form onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Your Email</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" required>
+                        <option value="">Select...</option>
+                        <option value="partnership">Partnership Inquiry</option>
+                        <option value="demo">Request Demo</option>
+                        <option value="investment">Investment Opportunity</option>
+                        <option value="media">Media Inquiry</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required placeholder="Tell Arthur about your inquiry..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Send Message to CEO</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <script>
         console.log("Starting CanadaAccountants Platform - Phase 1 Enhanced...");
 
         // Mobile Navigation Toggle
@@ -339,12 +487,34 @@
                     '• Avg Connection: 18 hours\n\n' +
                     'PERFORMANCE:\n' +
                     '• Match Success: 94%\n' +
-                    '• Client Satisfaction: 4.7/5\<!DOCTYPE html>
+                    '• Client Satisfaction: 4.7/5\n' +
+                    '• Platform Uptime: 99.9%\n\n' +
+                    'PROJECTIONS Q4 2025:\n' +
+                    '• Revenue Target: $4.2M ARR\n' +
+                    '• User Growth: 50,000+ active\n' +
+                    '• Market Expansion: All provinces\n\n' +
+                    'Direct CEO Line: 647.956.7290';
+                
+                alert(message);
+                showNotification("Live analytics displayed!");
+            } catch (error) {
+                showNotification("Analytics error: " + error.message, "error");
+            }
+        }
+
+        function updateStats() {
+            try {
+                // Generate random updates for demo
+                const elements = {
+                    'active-users': (12547 + Math.floor(Math.random() * 200 - 100)).toLocaleString(),
+                    'monthly-revenue': '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CanadaAccountants - Arthur Kostaras, CEO</title>
+    <meta name="description" content="CanadaAccountants - Connecting Canadian CPAs with SMEs">
+    <meta name="author" content="Arthur Kostaras, CEO CPA, CMA, CF">
+    <title>CanadaAccountants - Interactive Platform</title>
     <style>
         * {
             margin: 0;
@@ -518,6 +688,7 @@
         .auth-buttons {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         /* FIXED BUTTON STYLES */
@@ -560,6 +731,120 @@
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Loading States */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            color: white;
+        }
+
+        .btn-secondary.loading::after {
+            color: #667eea;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Form Validation */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #f44336;
+            background-color: #fff5f5;
+        }
+
+        .form-group input.success,
+        .form-group select.success,
+        .form-group textarea.success {
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Canadian postal code specific styling */
+        .postal-code {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for better accessibility */
+        button:focus,
+        .btn:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #667eea;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 9999;
+        }
+
+        .skip-link:focus {
+            top: 6px;
         }
 
         /* Main Content */
@@ -968,124 +1253,8 @@
             color: #95a5a6;
         }
 
-        /* Loading States */
-        .btn.loading {
-            position: relative;
-            color: transparent;
-            pointer-events: none;
-        }
-
-        .btn.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid transparent;
-            border-top: 2px solid currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            color: white;
-        }
-
-        .btn-secondary.loading::after {
-            color: #667eea;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Enhanced Form Validation */
-        .form-group input.error,
-        .form-group select.error,
-        .form-group textarea.error {
-            border-color: #f44336;
-            background-color: #fff5f5;
-        }
-
-        .form-group input.success,
-        .form-group select.success,
-        .form-group textarea.success {
-            border-color: #4CAF50;
-            background-color: #f8fff8;
-        }
-
-        .error-message {
-            color: #f44336;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .success-message {
-            color: #4CAF50;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        /* Canadian postal code specific styling */
-        .postal-code {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Enhanced Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus styles for better accessibility */
-        button:focus,
-        .btn:focus,
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: 3px solid #667eea;
-            outline-offset: 2px;
-        }
-
-        /* Skip link for screen readers */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #667eea;
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 9999;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
             .hero {
                 padding: 2rem 0;
             }
@@ -1102,6 +1271,21 @@
             
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .process-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
@@ -1276,532 +1460,1305 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>CanadaAccountants</h3>
-                    <p>Connecting Canadian CPAs with SMEs through innovative technology and rigorous screening processes.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <button onclick="openModal('business')">Join as Business</button>
-                    <button onclick="openModal('cpa')">Join as CPA</button>
-                    <button onclick="openModal('contact')">Contact Us</button>
-                    <button onclick="showAnalytics()">Platform Analytics</button>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact CEO</h3>
-                    <button onclick="callCEO()">📞 647.956.7290</button>
-                    <button onclick="sendEmail()">✉️ arthur@negotiateandwin.com</button>
-                    <button onclick="scheduleCall()">📅 Schedule Call</button>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 CanadaAccountants. CEO: Arthur Kostaras, CPA, CMA, CF. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+                    <p> + Math.floor((247000 + Math.random() * 20000 - 10000) / 1000) + 'K',
+                    'growth-rate': Math.floor(Math.random() * 50 + 200) + '%',
+                    'new-signups': Math.floor(Math.random() * 50 + 25),
+                    'avg-connection': Math.floor(Math.random() * 10 + 15) + 'hrs'
+                };
 
-    <!-- Modals -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('loginModal')">&times;</button>
-            <h2>Sign In to Your Account</h2>
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('signupModal')">&times;</button>
-            <h2>Join CanadaAccountants</h2>
-            <form onsubmit="handleSignup(event)" novalidate>
-                <div class="form-group">
-                    <label for="userType">I am a: <span aria-label="required" style="color: red;">*</span></label>
-                    <select id="userType" required aria-describedby="userType-error">
-                        <option value="">Select...</option>
-                        <option value="business">Business Owner</option>
-                        <option value="cpa">CPA Professional</option>
-                    </select>
-                    <div id="userType-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="fullName">Full Name <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="text" id="fullName" required aria-describedby="fullName-error" 
-                           placeholder="Enter your full name">
-                    <div id="fullName-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email Address <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="email" id="signupEmail" required aria-describedby="signupEmail-error" 
-                           placeholder="you@company.com">
-                    <div id="signupEmail-error" class="error-message" role="alert"></div>
-                    <div id="signupEmail-success" class="success-message" role="status"></div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="tel" id="phone" required aria-describedby="phone-error" 
-                           placeholder="(416) 555-0123" pattern="^(\+1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$">
-                    <div id="phone-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company/Firm Name <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="text" id="company" required aria-describedby="company-error" 
-                           placeholder="Your business or CPA firm name">
-                    <div id="company-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" id="postalCode" class="postal-code" aria-describedby="postalCode-error" 
-                           placeholder="K1A 0A6" pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$" 
-                           maxlength="7">
-                    <div id="postalCode-error" class="error-message" role="alert"></div>
-                    <div id="postalCode-success" class="success-message" role="status"></div>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%" id="signup-btn">
-                    <span class="btn-text">Join Free Today</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('contactModal')">&times;</button>
-            <h2>Contact Arthur Kostaras, CEO</h2>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 15px;">
-                    <h3>Arthur Kostaras, CPA, CMA, CF</h3>
-                    <p>Chief Executive Officer</p>
-                    <div style="margin-top: 1rem;">
-                        <button onclick="callCEO()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">📞 647.956.7290</button>
-                        <button onclick="sendEmail()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">✉️ Email</button>
-                    </div>
-                </div>
-            </div>
-            <form onsubmit="handleContact(event)">
-                <div class="form-group">
-                    <label for="contactName">Your Name</label>
-                    <input type="text" id="contactName" required>
-                </div>
-                <div class="form-group">
-                    <label for="contactEmail">Your Email</label>
-                    <input type="email" id="contactEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <select id="subject" required>
-                        <option value="">Select...</option>
-                        <option value="partnership">Partnership Inquiry</option>
-                        <option value="demo">Request Demo</option>
-                        <option value="investment">Investment Opportunity</option>
-                        <option value="media">Media Inquiry</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" required placeholder="Tell Arthur about your inquiry..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Send Message to CEO</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        <span id="notificationText"></span>
-    </div>
-
-    <script>
-        console.log("🚀 CanadaAccountants Platform - Clean Version Loading...");
-
-        // TEST FUNCTION - Let's see what's happening
-        function testTabSystem() {
-            console.log("=== TESTING TAB SYSTEM ===");
-            
-            // Check if elements exist
-            var businessTab = document.querySelector('button[onclick*="business"]');
-            var cpaTab = document.querySelector('button[onclick*="cpa"]');
-            var businessContent = document.getElementById('business-process');
-            var cpaContent = document.getElementById('cpa-process');
-            
-            console.log("Business tab button:", businessTab);
-            console.log("CPA tab button:", cpaTab);
-            console.log("Business content:", businessContent);
-            console.log("CPA content:", cpaContent);
-            
-            // List all elements with process in ID
-            var allElements = document.querySelectorAll('[id*="process"]');
-            console.log("All elements with 'process' in ID:");
-            for (var i = 0; i < allElements.length; i++) {
-                console.log("- Element:", allElements[i].tagName, "ID:", allElements[i].id);
-            }
-            
-            console.log("=== TEST COMPLETE ===");
-        }
-
-        // ULTRA SIMPLE TAB SWITCHING - Enhanced debugging
-        function showTab(tabName, button) {
-            console.log("=== TAB SWITCH START ===");
-            console.log("Tab requested:", tabName);
-            console.log("Button clicked:", button);
-            
-            // First, let's test what we have
-            testTabSystem();
-            
-            // Step 1: Remove active from all tab buttons
-            var tabs = document.getElementsByClassName('tab-btn');
-            console.log("Found tabs:", tabs.length);
-            for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove('active');
-                console.log("Removed active from tab", i, "Text:", tabs[i].textContent);
-            }
-            
-            // Step 2: Hide all content sections
-            var contents = document.getElementsByClassName('process-content');
-            console.log("Found content sections:", contents.length);
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
-                contents[i].style.display = 'none';
-                console.log("Hidden content section", i, "ID:", contents[i].id);
-            }
-            
-            // Step 3: Activate the clicked button
-            if (button) {
-                button.classList.add('active');
-                console.log("✅ Activated clicked button, text:", button.textContent);
-            } else {
-                console.log("❌ No button provided");
-            }
-            
-            // Step 4: Show the target content
-            var targetId = tabName + '-process';
-            console.log("Looking for content ID:", targetId);
-            
-            var targetContent = document.getElementById(targetId);
-            if (targetContent) {
-                targetContent.classList.add('active');
-                targetContent.style.display = 'block';
-                console.log("✅ SUCCESS: Showed", tabName, "content");
-                console.log("Content element:", targetContent);
-                showNotification("Now viewing " + (tabName === 'cpa' ? 'CPA' : 'Business') + " process");
-            } else {
-                console.log("❌ ERROR: Could not find content for", targetId);
-                
-                // Let's see what IDs actually exist
-                var allDivs = document.querySelectorAll('div[id*="process"]');
-                console.log("Available process divs:");
-                for (var i = 0; i < allDivs.length; i++) {
-                    console.log("- ID:", allDivs[i].id);
+                for (const id in elements) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = elements[id];
+                    }
                 }
-                
-                alert("Error: Could not find content section: " + targetId);
-            }
-            
-            console.log("=== TAB SWITCH END ===");
-        }
 
-        // ULTRA SIMPLE MODAL OPENING
-        function openModal(type) {
-            console.log("=== MODAL OPEN START ===");
-            console.log("Modal type:", type);
-            
-            var modalId = '';
-            if (type === 'login') modalId = 'loginModal';
-            else if (type === 'signup' || type === 'business' || type === 'cpa') modalId = 'signupModal';
-            else if (type === 'contact') modalId = 'contactModal';
-            
-            console.log("Modal ID:", modalId);
-            
-            var modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'block';
-                console.log("✅ SUCCESS: Modal opened");
-                
-                // Pre-select user type for business/cpa
-                if (type === 'business' || type === 'cpa') {
-                    setTimeout(function() {
-                        var userSelect = document.getElementById('userType');
-                        if (userSelect) {
-                            userSelect.value = type;
-                            if (type === 'cpa') {
-                                userSelect.style.backgroundColor = '#e3f2fd';
-                                userSelect.style.border = '3px solid #2196F3';
-                                showNotification("🎯 CPA Application - Only 15% accepted!");
-                            } else {
-                                userSelect.style.backgroundColor = '#f3e5f5';
-                                userSelect.style.border = '3px solid #9C27B0';
-                                showNotification("🏢 Business Signup - Free forever!");
-                            }
-                            console.log("✅ Pre-selected user type:", type);
-                        }
-                    }, 200);
-                }
-            } else {
-                console.log("❌ ERROR: Modal not found:", modalId);
-                alert("Error: Modal not found: " + modalId);
-            }
-            
-            console.log("=== MODAL OPEN END ===");
-        }
-
-        function closeModal(modalId) {
-            var modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                console.log("✅ Modal closed:", modalId);
+                showNotification("Stats updated with live data!");
+            } catch (error) {
+                showNotification("Stats error: " + error.message, "error");
             }
         }
 
-        function showNotification(message) {
-            var notification = document.getElementById('notification');
-            var text = document.getElementById('notificationText');
-            
-            if (notification && text) {
-                text.textContent = message;
-                notification.classList.add('show');
-                
-                setTimeout(function() {
-                    notification.classList.remove('show');
-                }, 4000);
-                
-                console.log("📢 Notification:", message);
-            }
-        }
-
-        function scrollToSection(sectionId) {
-            var element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-                console.log("✅ Scrolled to:", sectionId);
-            }
-        }
-
-        // Contact functions
-        function sendEmail() {
-            var subject = 'CanadaAccountants Partnership Inquiry';
-            var body = 'Dear Arthur,\n\nI am interested in learning more about CanadaAccountants.\n\nBest regards,';
-            var mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-            window.open(mailtoLink);
-            showNotification("📧 Email client opened!");
-            console.log("✅ Email opened");
-        }
-
-        function callCEO() {
-            window.open('tel:+16479567290');
-            showNotification("📞 Calling Arthur at 647.956.7290");
-            console.log("✅ Phone call initiated");
-        }
-
-        function scheduleCall() {
-            var subject = 'Schedule Call with Arthur Kostaras';
-            var body = 'Dear Arthur,\n\nI would like to schedule a call to discuss CanadaAccountants.\n\nBest regards,';
-            var mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-            window.open(mailtoLink);
-            showNotification("📅 Calendar request sent!");
-            console.log("✅ Schedule call email opened");
-        }
-
-        function showAnalytics() {
-            var message = 'CANADAACCOUNTANTS LIVE DASHBOARD\n\n' +
-                'CEO: Arthur Kostaras, CPA, CMA, CF\n\n' +
-                'FINANCIAL METRICS:\n' +
-                '• Monthly Revenue: $247,000\n' +
-                '• Growth Rate: 247% MoM\n' +
-                '• Annual Projection: $4.2M\n\n' +
-                'USER METRICS:\n' +
-                '• Active Users: 12,547\n' +
-                '• Total CPAs: 210,000+\n' +
-                '• New Signups (24h): 156\n' +
-                '• Avg Connection: 18 hours\n\n' +
-                'PERFORMANCE:\n' +
-                '• Match Success: 94%\n' +
-                '• Client Satisfaction: 4.7/5\n' +
-                '• Platform Uptime: 99.9%\n\n' +
-                'Direct CEO Line: 647.956.7290';
-            
-            alert(message);
-            showNotification("📊 Live analytics displayed!");
-            console.log("✅ Analytics shown");
-        }
-
-        function updateStats() {
-            // Generate random updates for demo
-            var elements = {
-                'active-users': (12547 + Math.floor(Math.random() * 200 - 100)).toLocaleString(),
-                'monthly-revenue': ' + Math.floor((247000 + Math.random() * 20000 - 10000) / 1000) + 'K',
-                'growth-rate': Math.floor(Math.random() * 50 + 200) + '%',
-                'new-signups': Math.floor(Math.random() * 50 + 25),
-                'avg-connection': Math.floor(Math.random() * 10 + 15) + 'hrs'
-            };
-
-            for (var id in elements) {
-                var element = document.getElementById(id);
-                if (element) {
-                    element.textContent = elements[id];
-                }
-            }
-
-            showNotification("📈 Stats updated with live data!");
-            console.log("✅ Stats updated");
-        }
-
-        // Form handlers
+        // Enhanced Form Handlers with Validation
         function handleLogin(event) {
-            event.preventDefault();
-            var email = document.getElementById('email').value;
-            
-            showNotification("🔐 Signing you in...");
-            
-            setTimeout(function() {
-                showNotification("✅ Welcome back! Loading dashboard...");
-                closeModal('loginModal');
+            try {
+                event.preventDefault();
+                const email = document.getElementById('email').value;
+                
+                // Basic validation
+                if (!validateEmail(email)) {
+                    showFieldError('email', 'Please enter a valid email address');
+                    return;
+                }
+                
+                clearFieldValidation('email');
+                showFieldSuccess('email');
+                
+                setButtonLoading('login-btn', 'Signing In...');
+                showNotification("Signing you in...");
                 
                 setTimeout(function() {
-                    showAnalytics();
-                }, 1000);
-            }, 1500);
-            
-            console.log("✅ Login handled for:", email);
+                    setButtonNormal('login-btn', 'Sign In');
+                    showNotification("Welcome back! Loading dashboard...");
+                    closeModal('loginModal');
+                    
+                    setTimeout(function() {
+                        showAnalytics();
+                    }, 1000);
+                }, 1500);
+                
+                console.log("Login attempted for:", email);
+            } catch (error) {
+                setButtonNormal('login-btn', 'Sign In');
+                showNotification("Login error: " + error.message, "error");
+            }
         }
 
         function handleSignup(event) {
-            event.preventDefault();
-            var userType = document.getElementById('userType').value;
-            var name = document.getElementById('fullName').value;
-            var company = document.getElementById('company').value;
-            
-            if (!userType) {
-                showNotification("❌ Please select Business or CPA");
-                return;
-            }
-            
-            showNotification("⚡ Creating your account...");
-            
-            setTimeout(function() {
-                if (userType === 'business') {
-                    showNotification("🎉 Welcome " + name + "! Business account created.");
-                    
-                    setTimeout(function() {
-                        alert('BUSINESS ACCOUNT CREATED\n\n' +
-                              'Welcome ' + name + ' from ' + company + '!\n\n' +
-                              'NEXT STEPS:\n' +
-                              '1. Check email for verification\n' +
-                              '2. Complete business profile\n' +
-                              '3. Get matched with CPAs in 24hrs\n\n' +
-                              'Arthur\'s Guarantee: 100% satisfaction\n' +
-                              'Call CEO: 647.956.7290');
-                    }, 2000);
-                    
-                } else {
-                    showNotification("🎯 Welcome " + name + "! CPA application submitted.");
-                    
-                    setTimeout(function() {
-                        alert('CPA APPLICATION SUBMITTED\n\n' +
-                              'Welcome ' + name + ' from ' + company + '!\n\n' +
-                              'REVIEW PROCESS: 24-48 hours\n' +
-                              '• Credential verification\n' +
-                              '• Reference checks\n' +
-                              '• Background screening\n\n' +
-                              'EARNING POTENTIAL:\n' +
-                              '• Average: $47,000+ first year\n' +
-                              '• Top 10%: $150,000+ annually\n' +
-                              '• Only 15% acceptance rate\n\n' +
-                              'Call Arthur: 647.956.7290');
-                    }, 2000);
+            try {
+                event.preventDefault();
+                
+                // Get form values
+                const userType = document.getElementById('userType').value;
+                const name = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const company = document.getElementById('company').value.trim();
+                const postalCode = document.getElementById('postalCode').value.trim();
+                
+                let hasErrors = false;
+                
+                // Clear previous validation
+                ['userType', 'fullName', 'signupEmail', 'phone', 'company', 'postalCode'].forEach(clearFieldValidation);
+                
+                // Validate required fields
+                if (!userType) {
+                    showFieldError('userType', 'Please select whether you are a Business Owner or CPA');
+                    hasErrors = true;
                 }
                 
-                closeModal('signupModal');
-            }, 2000);
-            
-            console.log("✅ Signup handled for:", name, "as", userType);
+                if (!name || name.length < 2) {
+                    showFieldError('fullName', 'Please enter your full name (at least 2 characters)');
+                    hasErrors = true;
+                } else {
+                    showFieldSuccess('fullName');
+                }
+                
+                if (!validateEmail(email)) {
+                    showFieldError('signupEmail', 'Please enter a valid email address');
+                    hasErrors = true;
+                } else {
+                    showFieldSuccess('signupEmail', 'Valid email format');
+                }
+                
+                if (!validateCanadianPhone(phone)) {
+                    showFieldError('phone', 'Please enter a valid Canadian phone number (e.g., (416) 555-0123)');
+                    hasErrors = true;
+                } else {
+                    showFieldSuccess('phone');
+                }
+                
+                if (!company || company.length < 2) {
+                    showFieldError('company', 'Please enter your company or firm name');
+                    hasErrors = true;
+                } else {
+                    showFieldSuccess('company');
+                }
+                
+                // Validate postal code if provided
+                if (postalCode && !validateCanadianPostalCode(postalCode)) {
+                    showFieldError('postalCode', 'Please enter a valid Canadian postal code (e.g., K1A 0A6)');
+                    hasErrors = true;
+                } else if (postalCode) {
+                    showFieldSuccess('postalCode', 'Valid Canadian postal code');
+                }
+                
+                if (hasErrors) {
+                    showNotification("Please correct the errors below", "error");
+                    return;
+                }
+                
+                setButtonLoading('signup-btn', 'Creating Account...');
+                showNotification("Creating your account...");
+                
+                setTimeout(function() {
+                    setButtonNormal('signup-btn', 'Join Free Today');
+                    
+                    if (userType === 'business') {
+                        showNotification("Welcome " + name + "! Business account created successfully.");
+                        
+                        setTimeout(function() {
+                            alert('🏢 BUSINESS ACCOUNT CREATED\n\n' +
+                                  'Welcome ' + name + ' from ' + company + '!\n\n' +
+                                  '📋 NEXT STEPS:\n' +
+                                  '1. Check email for verification link\n' +
+                                  '2. Complete business profile (5 minutes)\n' +
+                                  '3. Answer 3 questions about your needs\n' +
+                                  '4. Review matched CPA recommendations (24hrs)\n' +
+                                  '5. Schedule consultations with top matches\n\n' +
+                                  '🎯 WHAT TO EXPECT:\n' +
+                                  '• 3-5 pre-screened CPA matches\n' +
+                                  '• Industry-specialized professionals\n' +
+                                  '• Transparent pricing comparisons\n' +
+                                  '• Arthur\'s personal satisfaction guarantee\n\n' +
+                                  '📞 Questions? Call Arthur: 647.956.7290');
+                        }, 2000);
+                        
+                    } else {
+                        showNotification("Welcome " + name + "! CPA application submitted for review.");
+                        
+                        setTimeout(function() {
+                            alert('🎯 CPA APPLICATION SUBMITTED\n\n' +
+                                  'Welcome ' + name + ' from ' + company + '!\n\n' +
+                                  '📋 REVIEW PROCESS (24-48 hours):\n' +
+                                  '1. Credential verification & license check\n' +
+                                  '2. Reference calls with past clients\n' +
+                                  '3. Background screening\n' +
+                                  '4. Profile optimization consultation\n' +
+                                  '5. Platform training & onboarding\n\n' +
+                                  '💰 EARNING POTENTIAL:\n' +
+                                  '• Average: $47,000+ additional revenue/year\n' +
+                                  '• Top 10%: $150,000+ annually\n' +
+                                  '• Premium rates: $175-$300/hour\n' +
+                                  '• 94% client retention rate\n\n' +
+                                  '📈 EXCLUSIVE BENEFITS:\n' +
+                                  '• Pre-qualified leads only\n' +
+                                  '• Marketing handled for you\n' +
+                                  '• Territory protection\n' +
+                                  '• Continuing education resources\n\n' +
+                                  '📞 Questions? Call Arthur: 647.956.7290\n\n' +
+                                  '⭐ Only 15% of applicants are accepted!');
+                        }, 2000);
+                    }
+                    
+                    closeModal('signupModal');
+                }, 2500);
+                
+                console.log("Signup completed for:", name, "as", userType);
+            } catch (error) {
+                setButtonNormal('signup-btn', 'Join Free Today');
+                showNotification("Signup error: " + error.message, "error");
+            }
         }
 
         function handleContact(event) {
-            event.preventDefault();
-            var name = document.getElementById('contactName').value;
-            var email = document.getElementById('contactEmail').value;
-            var subject = document.getElementById('subject').value;
-            var message = document.getElementById('message').value;
-            
-            showNotification("📤 Sending message to Arthur...");
-            
-            setTimeout(function() {
-                showNotification("✅ Message sent! Arthur will respond within 24 hours");
-                closeModal('contactModal');
+            try {
+                event.preventDefault();
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value.trim();
                 
-                var emailSubject = 'CanadaAccountants Inquiry: ' + subject;
-                var emailBody = 'PRIORITY INQUIRY\n\n' +
-                               'Name: ' + name + '\n' +
-                               'Email: ' + email + '\n' +
-                               'Subject: ' + subject + '\n\n' +
-                               'Message:\n' + message + '\n\n' +
-                               '---\nSent from CanadaAccountants Platform';
-                var mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
-                window.open(mailtoLink);
+                // Basic validation
+                if (!name || !email || !subject || !message) {
+                    showNotification("Please fill in all required fields", "error");
+                    return;
+                }
                 
-            }, 1500);
+                if (!validateEmail(email)) {
+                    showNotification("Please enter a valid email address", "error");
+                    return;
+                }
+                
+                setButtonLoading('contact-btn', 'Sending...');
+                showNotification("Sending message to Arthur...");
+                
+                setTimeout(function() {
+                    let responseTime = '24 hours';
+                    let priority = 'Standard';
+                    
+                    if (subject === 'investment' || subject === 'partnership') {
+                        responseTime = '4 hours';
+                        priority = 'High Priority';
+                    } else if (subject === 'demo') {
+                        responseTime = '2 hours';
+                        priority = 'Sales Priority';
+                    }
+                    
+                    showNotification("Message sent! Arthur will respond within " + responseTime + " (" + priority + ")");
+                    closeModal('contactModal');
+                    
+                    const emailSubject = '🚨 CanadaAccountants Inquiry (' + priority + '): ' + subject;
+                    const emailBody = 'PRIORITY: ' + priority + '\n' +
+                                       'INQUIRY TYPE: ' + subject.toUpperCase() + '\n\n' +
+                                       'CONTACT DETAILS:\n' +
+                                       'Name: ' + name + '\n' +
+                                       'Email: ' + email + '\n' +
+                                       'Timestamp: ' + new Date().toLocaleString() + '\n\n' +
+                                       'MESSAGE:\n' + message + '\n\n' +
+                                       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+                                       'Sent from CanadaAccountants Platform\n' +
+                                       'Expected Response Time: ' + responseTime;
+                    const mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
+                    window.open(mailtoLink);
+                    
+                }, 1800);
+                
+                console.log("Contact form submitted by:", name);
+            } catch (error) {
+                setButtonNormal('contact-btn', 'Send Message to CEO');
+                showNotification("Contact error: " + error.message, "error");
+            }
+        }
+
+        // Event Listeners for better accessibility
+        function setupEventListeners() {
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    const openModals = document.querySelectorAll('.modal[style*="block"]');
+                    openModals.forEach(modal => {
+                        modal.style.display = 'none';
+                        modal.setAttribute('aria-hidden', 'true');
+                    });
+                }
+                
+                // Contact modal shortcut
+                if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                    event.preventDefault();
+                    openModal('contact');
+                }
+            });
             
-            console.log("✅ Contact handled for:", name);
+            // Real-time postal code formatting
+            const postalCodeInput = document.getElementById('postalCode');
+            if (postalCodeInput) {
+                postalCodeInput.addEventListener('input', function(event) {
+                    let value = event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                    if (value.length >= 3) {
+                        value = value.substring(0, 3) + ' ' + value.substring(3, 6);
+                    }
+                    event.target.value = value;
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const navLinks = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                
+                if (navLinks && navLinks.classList.contains('nav-open')) {
+                    if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+                        navLinks.classList.remove('nav-open');
+                        hamburger.classList.remove('active');
+                    }
+                }
+            });
         }
 
         // Close modals when clicking outside
         window.onclick = function(event) {
-            var modals = document.querySelectorAll('.modal');
-            for (var i = 0; i < modals.length; i++) {
-                if (event.target === modals[i]) {
-                    modals[i].style.display = 'none';
+            try {
+                const modals = document.querySelectorAll('.modal');
+                for (let i = 0; i < modals.length; i++) {
+                    if (event.target === modals[i]) {
+                        modals[i].style.display = 'none';
+                        modals[i].setAttribute('aria-hidden', 'true');
+                    }
                 }
+            } catch (error) {
+                console.error("Modal close error:", error.message);
             }
         };
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(event) {
-            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
-                event.preventDefault();
-                openModal('contact');
-            }
-            
-            if (event.key === 'Escape') {
-                var modals = document.querySelectorAll('.modal');
-                for (var i = 0; i < modals.length; i++) {
-                    modals[i].style.display = 'none';
-                }
-            }
-        });
-
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("🚀 CanadaAccountants Platform Initialized");
-            console.log("👨‍💼 CEO: Arthur Kostaras, CPA, CMA, CF");
-            console.log("📞 Contact: 647.956.7290");
-            console.log("✉️ Email: arthur@negotiateandwin.com");
-            
-            setTimeout(function() {
-                showNotification("🚀 Welcome to CanadaAccountants! Platform is live.");
-            }, 1000);
-            
-            setTimeout(function() {
-                var userCount = Math.floor(Math.random() * 50) + 150;
-                showNotification("📈 " + userCount + " users online now!");
-            }, 8000);
-            
-            console.log("✅ Platform fully initialized and ready!");
+            try {
+                console.log("🚀 CanadaAccountants Platform Initialized - Phase 1 Enhanced");
+                console.log("👨‍💼 CEO: Arthur Kostaras, CPA, CMA, CF");
+                console.log("📞 Contact: 647.956.7290");
+                console.log("✉️ Email: arthur@negotiateandwin.com");
+                
+                setupEventListeners();
+                
+                // Initialize ARIA attributes
+                document.querySelector('.nav-links').setAttribute('aria-hidden', 'true');
+                document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
+                
+                // Add login and contact button IDs for loading states
+                const loginBtn = document.querySelector('#loginModal button[type="submit"]');
+                const contactBtn = document.querySelector('#contactModal button[type="submit"]');
+                
+                if (loginBtn) {
+                    loginBtn.id = 'login-btn';
+                    loginBtn.innerHTML = '<span class="btn-text">Sign In</span>';
+                }
+                
+                if (contactBtn) {
+                    contactBtn.id = 'contact-btn';
+                    contactBtn.innerHTML = '<span class="btn-text">Send Message to CEO</span>';
+                }
+                
+                setTimeout(function() {
+                    showNotification("🚀 Welcome to CanadaAccountants! Enhanced platform ready.");
+                }, 1000);
+                
+                setTimeout(function() {
+                    const userCount = Math.floor(Math.random() * 50) + 150;
+                    showNotification("📈 " + userCount + " users online now - Growing fast!");
+                }, 8000);
+                
+                console.log("✅ Platform fully initialized with Phase 1 enhancements!");
+            } catch (error) {
+                console.error("Initialization error:", error.message);
+                showNotification("Platform initialization error", "error");
+            }
         });
 
-        console.log("🎯 All functions loaded successfully!");
+        console.log("🎯 All Phase 1 enhanced functions loaded successfully!");
     </script>
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CanadaAccountants - Connecting Canadian CPAs with SMEs">
+    <meta name="author" content="Arthur Kostaras, CEO CPA, CMA, CF">
+    <title>CanadaAccountants - Interactive Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-icon::before {
+            content: '🍁';
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links button:hover {
+            color: #667eea;
+        }
+
+        /* Mobile Navigation */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-links.nav-open {
+                display: flex;
+            }
+
+            .nav-links button {
+                padding: 1rem 0;
+                font-size: 1.1rem;
+                border-bottom: 1px solid #eee;
+                text-align: left;
+                width: 100%;
+            }
+
+            .nav-links button:last-child {
+                border-bottom: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* FIXED BUTTON STYLES */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: 3px solid #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: 3px solid #667eea;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+            border-color: #5a6fd8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 3px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Loading States */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            color: white;
+        }
+
+        .btn-secondary.loading::after {
+            color: #667eea;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Form Validation */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #f44336;
+            background-color: #fff5f5;
+        }
+
+        .form-group input.success,
+        .form-group select.success,
+        .form-group textarea.success {
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Canadian postal code specific styling */
+        .postal-code {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for better accessibility */
+        button:focus,
+        .btn:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        /* Skip link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #667eea;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 9999;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            min-width: 180px;
+            font-weight: bold;
+        }
+
+        .ceo-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .ceo-highlight h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .contact-links button {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-links button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .process-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* FIXED TAB STYLES */
+        .tab-btn {
+            padding: 1.2rem 2.5rem;
+            border: 3px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .tab-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* FIXED CONTENT DISPLAY */
+        .process-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .process-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .guarantee-box,
+        .earnings-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .earnings-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .earnings-stats span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 3000;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        .notification.info {
+            background: #2196F3;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section button {
+            color: #bdc3c7;
+            background: none;
+            border: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+        }
+
+        .footer-section button:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+            margin-top: 2rem;
+            color: #95a5a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                CanadaAccountants
+            </a>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><button onclick="scrollToSection('how-it-works')" aria-label="Learn how our platform works">How It Works</button></li>
+                <li><button onclick="scrollToSection('stats')" aria-label="View platform statistics">Stats</button></li>
+                <li><button onclick="openModal('contact')" aria-label="Contact Arthur Kostaras">Contact</button></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-secondary" onclick="openModal('login')" aria-label="Sign in to your account">Sign In</button>
+                <button class="btn btn-primary" onclick="openModal('signup')" aria-label="Create free account">Join Free</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Connecting Canadian CPAs with SMEs</h1>
+                <p>Helping CPAs grow their bottom line while SMEs find the perfect accounting professionals through our cutting-edge platform</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="openModal('business')">I'm a Business</button>
+                    <button class="btn btn-secondary" onclick="openModal('cpa')">I'm a CPA</button>
+                    <button class="btn btn-primary" onclick="showAnalytics()">📊 Live Analytics</button>
+                </div>
+                
+                <div class="ceo-highlight">
+                    <h3>Arthur Kostaras, CEO CPA, CMA, CF</h3>
+                    <p>Leading the transformation of how Canadian businesses connect with accounting professionals</p>
+                    <div class="contact-links">
+                        <button onclick="callCEO()">📞 647.956.7290</button>
+                        <button onclick="sendEmail()">✉️ arthur@negotiateandwin.com</button>
+                        <button onclick="scheduleCall()">📅 Schedule Call</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How CanadaAccountants Works</h2>
+                <div class="process-tabs">
+                    <button class="tab-btn active" onclick="switchToTab('business', this)" 
+                            aria-selected="true" role="tab" aria-controls="business-process">For Businesses</button>
+                    <button class="tab-btn" onclick="switchToTab('cpa', this)" 
+                            aria-selected="false" role="tab" aria-controls="cpa-process">For CPAs</button>
+                </div>
+                
+                <div id="business-process" class="process-content active" role="tabpanel" aria-labelledby="business-tab">
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>Tell Us Your Needs</h3>
+                            <p>Complete our 3-minute questionnaire about your business size, industry, and accounting requirements.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>Get Matched</h3>
+                            <p>Our AI matches you with 3-5 pre-screened CPAs who specialize in your industry and business size.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>Connect & Choose</h3>
+                            <p>Interview your matches, review their profiles, and select the CPA that's the perfect fit.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h3>Start Saving</h3>
+                            <p>Begin working with your new CPA and track your savings through our platform dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="guarantee-box">
+                        <h4>💯 Arthur's Guarantee</h4>
+                        <p>"If you're not completely satisfied with your CPA match within 30 days, I'll personally find you a new one at no charge." - Arthur Kostaras, CEO</p>
+                    </div>
+                </div>
+                
+                <div id="cpa-process" class="process-content" role="tabpanel" aria-labelledby="cpa-tab">
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h3>Apply & Get Verified</h3>
+                            <p>Submit your credentials for our rigorous screening process. Only 15% of applicants are accepted.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h3>Build Your Profile</h3>
+                            <p>Showcase your expertise, specializations, and set your preferred client criteria and rates.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h3>Receive Quality Leads</h3>
+                            <p>Get matched with pre-qualified businesses that fit your expertise and availability.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h3>Grow Your Practice</h3>
+                            <p>Focus on client service while we handle marketing, screening, and administrative tasks.</p>
+                        </div>
+                    </div>
+                    <div class="earnings-box">
+                        <h4>💰 Earning Potential</h4>
+                        <p><strong>Average CPA earns $47,000 additional revenue</strong> in their first year through our platform.</p>
+                        <div class="earnings-stats">
+                            <span>Top 10% earn: $150K+/year</span>
+                            <span>Average hourly rate: $175/hour</span>
+                            <span>Client retention: 94%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="stats">
+            <div class="container">
+                <h2>Platform Statistics</h2>
+                <p>Real-time data from across our network</p>
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="total-cpas">210,000+</span>
+                        <div class="stat-label">Canadian CPAs</div>
+                    </div>
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="active-users">12,547</span>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="monthly-revenue">$247K</span>
+                        <div class="stat-label">Monthly Revenue</div>
+                    </div>
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="growth-rate">247%</span>
+                        <div class="stat-label">Growth Rate</div>
+                    </div>
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="new-signups">156</span>
+                        <div class="stat-label">New Signups (24h)</div>
+                    </div>
+                    <div class="stat-card" onclick="updateStats()">
+                        <span class="stat-number" id="avg-connection">18hrs</span>
+                        <div class="stat-label">Avg Connection Time</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CanadaAccountants</h3>
+                    <p>
