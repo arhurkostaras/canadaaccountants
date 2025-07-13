@@ -182,7 +182,7 @@
             flex-wrap: wrap;
         }
 
-        /* FIXED BUTTON STYLES */
+        /* BUTTON STYLES */
         .btn {
             padding: 0.75rem 1.5rem;
             border: 3px solid #667eea;
@@ -439,7 +439,7 @@
             margin-bottom: 3rem;
         }
 
-        /* FIXED TAB STYLES */
+        /* TAB STYLES */
         .tab-btn {
             padding: 1.2rem 2.5rem;
             border: 3px solid #667eea;
@@ -466,7 +466,7 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
-        /* FIXED CONTENT DISPLAY */
+        /* CONTENT DISPLAY */
         .process-content {
             display: none;
             opacity: 0;
@@ -1654,159 +1654,3 @@
                 if (!name || !email || !subject || !message) {
                     showNotification("Please fill in all required fields", "error");
                     return;
-                }
-                
-                if (!validateEmail(email)) {
-                    showNotification("Please enter a valid email address", "error");
-                    return;
-                }
-                
-                setButtonLoading('contact-btn', 'Sending...');
-                showNotification("Sending message to Arthur...");
-                
-                setTimeout(function() {
-                    let responseTime = '24 hours';
-                    let priority = 'Standard';
-                    
-                    if (subject === 'investment' || subject === 'partnership') {
-                        responseTime = '4 hours';
-                        priority = 'High Priority';
-                    } else if (subject === 'demo') {
-                        responseTime = '2 hours';
-                        priority = 'Sales Priority';
-                    }
-                    
-                    showNotification("Message sent! Arthur will respond within " + responseTime + " (" + priority + ")");
-                    closeModal('contactModal');
-                    
-                    const emailSubject = '🚨 CanadaAccountants Inquiry (' + priority + '): ' + subject;
-                    const emailBody = 'PRIORITY: ' + priority + '\n' +
-                                       'INQUIRY TYPE: ' + subject.toUpperCase() + '\n\n' +
-                                       'CONTACT DETAILS:\n' +
-                                       'Name: ' + name + '\n' +
-                                       'Email: ' + email + '\n' +
-                                       'Timestamp: ' + new Date().toLocaleString() + '\n\n' +
-                                       'MESSAGE:\n' + message + '\n\n' +
-                                       '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
-                                       'Sent from CanadaAccountants Platform\n' +
-                                       'Expected Response Time: ' + responseTime;
-                    const mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(emailBody);
-                    window.open(mailtoLink);
-                    
-                }, 1800);
-                
-                console.log("Contact form submitted by:", name);
-            } catch (error) {
-                setButtonNormal('contact-btn', 'Send Message to CEO');
-                showNotification("Contact error: " + error.message, "error");
-            }
-        }
-
-        // Event Listeners for better accessibility
-        function setupEventListeners() {
-            // Close modal on Escape key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    const openModals = document.querySelectorAll('.modal[style*="block"]');
-                    openModals.forEach(modal => {
-                        modal.style.display = 'none';
-                        modal.setAttribute('aria-hidden', 'true');
-                    });
-                }
-                
-                // Contact modal shortcut
-                if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
-                    event.preventDefault();
-                    openModal('contact');
-                }
-            });
-            
-            // Real-time postal code formatting
-            const postalCodeInput = document.getElementById('postalCode');
-            if (postalCodeInput) {
-                postalCodeInput.addEventListener('input', function(event) {
-                    let value = event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-                    if (value.length >= 3) {
-                        value = value.substring(0, 3) + ' ' + value.substring(3, 6);
-                    }
-                    event.target.value = value;
-                });
-            }
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const navLinks = document.querySelector('.nav-links');
-                const hamburger = document.querySelector('.hamburger');
-                
-                if (navLinks && navLinks.classList.contains('nav-open')) {
-                    if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
-                        navLinks.classList.remove('nav-open');
-                        hamburger.classList.remove('active');
-                    }
-                }
-            });
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            try {
-                const modals = document.querySelectorAll('.modal');
-                for (let i = 0; i < modals.length; i++) {
-                    if (event.target === modals[i]) {
-                        modals[i].style.display = 'none';
-                        modals[i].setAttribute('aria-hidden', 'true');
-                    }
-                }
-            } catch (error) {
-                console.error("Modal close error:", error.message);
-            }
-        };
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            try {
-                console.log("🚀 CanadaAccountants Platform Initialized - Phase 1 Enhanced");
-                console.log("👨‍💼 CEO: Arthur Kostaras, CPA, CMA, CF");
-                console.log("📞 Contact: 647.956.7290");
-                console.log("✉️ Email: arthur@negotiateandwin.com");
-                
-                setupEventListeners();
-                
-                // Initialize ARIA attributes
-                document.querySelector('.nav-links').setAttribute('aria-hidden', 'true');
-                document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
-                
-                // Add login and contact button IDs for loading states
-                const loginBtn = document.querySelector('#loginModal button[type="submit"]');
-                const contactBtn = document.querySelector('#contactModal button[type="submit"]');
-                
-                if (loginBtn) {
-                    loginBtn.id = 'login-btn';
-                    loginBtn.innerHTML = '<span class="btn-text">Sign In</span>';
-                }
-                
-                if (contactBtn) {
-                    contactBtn.id = 'contact-btn';
-                    contactBtn.innerHTML = '<span class="btn-text">Send Message to CEO</span>';
-                }
-                
-                setTimeout(function() {
-                    showNotification("🚀 Welcome to CanadaAccountants! Enhanced platform ready.");
-                }, 1000);
-                
-                setTimeout(function() {
-                    const userCount = Math.floor(Math.random() * 50) + 150;
-                    showNotification("📈 " + userCount + " users online now - Growing fast!");
-                }, 8000);
-                
-                console.log("✅ Platform fully initialized with Phase 1 enhancements!");
-            } catch (error) {
-                console.error("Initialization error:", error.message);
-                showNotification("Platform initialization error", "error");
-            }
-        });
-
-        console.log("🎯 All Phase 1 enhanced functions loaded successfully!");
-    </script>
-</body>
-</html>
