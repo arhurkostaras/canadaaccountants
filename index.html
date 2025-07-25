@@ -1,11 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CanadaAccountants - Connecting Canadian CPAs with SMEs">
-    <meta name="author" content="Arthur Kostaras, CEO CPA, CMA, CF">
-    <title>CanadaAccountants - Interactive Platform</title>
+    <title>CanadaAccountants - Premium CPA Matching Platform</title>
+    <meta name="description" content="Connect with verified CPAs across Canada. Premium matching platform for small and medium enterprises seeking professional accounting services.">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="js/api-config.js" as="script">
+    <link rel="preload" href="js/matching-engine.js" as="script">
+    
     <style>
         * {
             margin: 0;
@@ -14,9 +24,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1f2937;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
@@ -27,7 +37,7 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header & Navigation */
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -36,7 +46,6 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 0;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -44,7 +53,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 1rem 0;
         }
 
         .logo {
@@ -52,319 +61,116 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: #4F46E5;
             text-decoration: none;
-            gap: 10px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .logo-icon::before {
-            content: '🍁';
-            font-size: 20px;
+        .logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
-        .nav-links button {
-            background: none;
-            border: none;
-            color: #333;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links button:hover {
-            color: #667eea;
-        }
-
-        /* Mobile Navigation */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-                animation: slideDown 0.3s ease;
-            }
-
-            .nav-links.nav-open {
-                display: flex;
-            }
-
-            .nav-links button {
-                padding: 1rem 0;
-                font-size: 1.1rem;
-                border-bottom: 1px solid #eee;
-                text-align: left;
-                width: 100%;
-            }
-
-            .nav-links button:last-child {
-                border-bottom: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .auth-buttons {
-                margin-top: 1rem;
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* BUTTON STYLES */
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: 3px solid #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+        .nav-links a {
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            background: white;
-            color: #667eea;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-            border: 3px solid #667eea;
-        }
-
-        .btn-primary:hover {
-            background: #5a6fd8;
-            border-color: #5a6fd8;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 3px solid #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Loading States */
-        .btn.loading {
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
             position: relative;
-            color: transparent;
-            pointer-events: none;
         }
 
-        .btn.loading::after {
+        .nav-links a:hover {
+            color: #4F46E5;
+        }
+
+        .nav-links a::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid transparent;
-            border-top: 2px solid currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4F46E5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
             color: white;
-        }
-
-        .btn-secondary.loading::after {
-            color: #667eea;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Enhanced Form Validation */
-        .form-group input.error,
-        .form-group select.error,
-        .form-group textarea.error {
-            border-color: #f44336;
-            background-color: #fff5f5;
-        }
-
-        .form-group input.success,
-        .form-group select.success,
-        .form-group textarea.success {
-            border-color: #4CAF50;
-            background-color: #f8fff8;
-        }
-
-        .error-message {
-            color: #f44336;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .success-message {
-            color: #4CAF50;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        /* Canadian postal code specific styling */
-        .postal-code {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Enhanced Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus styles for better accessibility */
-        button:focus,
-        .btn:focus,
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: 3px solid #667eea;
-            outline-offset: 2px;
-        }
-
-        /* Skip link for screen readers */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #667eea;
-            color: white;
-            padding: 8px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            border-radius: 4px;
-            z-index: 9999;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .skip-link:focus {
-            top: 6px;
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
 
-        /* Main Content */
-        main {
-            margin-top: 80px;
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
+        /* Hero Section */
         .hero {
+            padding: 120px 0 80px;
             text-align: center;
-            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-size: 1.25rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            max-width: 800px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-buttons {
@@ -372,341 +178,257 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
         }
 
-        .hero-buttons .btn {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.2rem;
-            min-width: 180px;
-            font-weight: bold;
-        }
-
-        .ceo-highlight {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-        }
-
-        .ceo-highlight h3 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .contact-links button {
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            display: inline-block;
         }
 
-        .contact-links button:hover {
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
-        /* How It Works Section */
-        .how-it-works {
-            background: #f8f9fa;
-            padding: 4rem 0;
+        .btn-secondary {
+            background: #10B981;
+            color: white;
         }
 
-        .how-it-works h2 {
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        /* Vision Section */
+        .vision-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .vision-section h2 {
+            color: white;
+            font-weight: bold;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 2rem;
-            font-size: 2.5rem;
-            color: #333;
         }
 
-        .process-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        /* TAB STYLES */
-        .tab-btn {
-            padding: 1.2rem 2.5rem;
-            border: 3px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .tab-btn.active {
-            background: #667eea;
+        .vision-content p {
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .tab-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* CONTENT DISPLAY */
-        .process-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .process-content.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .step {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .step:hover {
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
             font-weight: bold;
-            margin: 0 auto 1rem;
-        }
-
-        .guarantee-box,
-        .earnings-box {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
+            font-size: 1.2rem;
+            line-height: 1.6;
             text-align: center;
-            margin-top: 2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
         }
 
-        .earnings-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
         }
 
-        .earnings-stats span {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            color: white;
-            padding: 4rem 0;
+        .section-title {
             text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .stats-grid {
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
+        .feature-card {
             background: white;
-            margin: 5% auto;
             padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
         }
 
-        @keyframes modalSlideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-            width: 30px;
-            height: 30px;
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            background: none;
-            border: none;
-        }
-
-        .close:hover {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .form-group {
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
-            display: block;
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Matching Demo Section */
+        .matching-demo {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .demo-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
             margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #333;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
+        .demo-title p {
+            color: #6b7280;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
+        .demo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
+        .demo-section {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
         }
 
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: #4CAF50;
+        .demo-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
             color: white;
             padding: 1rem 2rem;
+            border: none;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            z-index: 3000;
-            max-width: 350px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
         }
 
-        .notification.error {
-            background: #f44336;
+        .results-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            display: none;
         }
 
-        .notification.info {
-            background: #2196F3;
+        .results-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Security Badges */
+        .security-badges {
+            background: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .badges-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .security-badge::before {
+            content: "🔒";
         }
 
         /* Footer */
         footer {
-            background: #2c3e50;
+            background: #1f2937;
             color: white;
-            padding: 3rem 0 1rem;
-            text-align: center;
+            padding: 3rem 0 2rem;
         }
 
         .footer-content {
@@ -717,940 +439,383 @@
         }
 
         .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            color: #667eea;
         }
 
-        .footer-section button {
-            color: #bdc3c7;
-            background: none;
-            border: none;
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
             transition: color 0.3s ease;
-            cursor: pointer;
-            text-align: left;
-            width: 100%;
         }
 
-        .footer-section button:hover {
-            color: #667eea;
+        .footer-section a:hover {
+            color: white;
         }
 
         .footer-bottom {
-            border-top: 1px solid #34495e;
-            padding-top: 1rem;
-            margin-top: 2rem;
-            color: #95a5a6;
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero {
-                padding: 2rem 0;
+            .mobile-menu-btn {
+                display: block;
             }
-            
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stats-grid {
+
+            .demo-content {
                 grid-template-columns: 1fr;
             }
 
-            .process-tabs {
-                flex-direction: column;
-                gap: 0.5rem;
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
+        }
 
-            .tab-btn {
-                width: 100%;
-                padding: 1rem;
-            }
+        /* Success Animations */
+        .success-checkmark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #10B981;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
 
-            .hero-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-            }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #4F46E5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Skip link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Header -->
     <header>
         <nav class="container">
-            <a href="#" class="logo">
-                <div class="logo-icon"></div>
-                CanadaAccountants
-            </a>
-            <ul class="nav-links" role="navigation" aria-label="Main navigation">
-                <li><button onclick="scrollToSection('how-it-works')" aria-label="Learn how our platform works">How It Works</button></li>
-                <li><button onclick="scrollToSection('stats')" aria-label="View platform statistics">Stats</button></li>
-                <li><button onclick="openModal('contact')" aria-label="Contact Arthur Kostaras">Contact</button></li>
+            <a href="#home" class="logo">CanadaAccountants</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#features" onclick="closeMobileMenu()">Features</a></li>
+                <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
+                <li><a href="#guarantee" onclick="closeMobileMenu()">Guarantee</a></li>
+                <li><a href="register.html" onclick="closeMobileMenu()">Register</a></li>
+                <li><a href="#metrics" onclick="closeMobileMenu()">Metrics</a></li>
+                <li><a href="/comparison.html" onclick="closeMobileMenu()">Why We Win</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMobileNav()" aria-label="Toggle mobile menu" role="button" tabindex="0">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="auth-buttons">
-                <button class="btn btn-secondary" onclick="openModal('login')" aria-label="Sign in to your account">Sign In</button>
-                <button class="btn btn-primary" onclick="openModal('signup')" aria-label="Create free account">Join Free</button>
-            </div>
+            <a href="register.html" class="cta-button">Get Started</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
+    <main>
+        <section class="hero" id="home">
             <div class="container">
-                <h1>Connecting Canadian CPAs with SMEs</h1>
-                <p>Helping CPAs grow their bottom line while SMEs find the perfect accounting professionals through our cutting-edge platform</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="openModal('business')">I'm a Business</button>
-                    <button class="btn btn-secondary" onclick="openModal('cpa')">I'm a CPA</button>
-                    <button class="btn btn-primary" onclick="showAnalytics()">📊 Live Analytics</button>
-                </div>
-                
-                <div class="ceo-highlight">
-                    <h3>Arthur Kostaras, CEO CPA, CMA, CF</h3>
-                    <p>Leading the transformation of how Canadian businesses connect with accounting professionals</p>
-                    <div class="contact-links">
-                        <button onclick="callCEO()">📞 647.956.7290</button>
-                        <button onclick="sendEmail()">✉️ arthur@negotiateandwin.com</button>
-                        <button onclick="scheduleCall()">📅 Schedule Call</button>
+                <div class="hero-content">
+                    <h1>Connecting Canadian CPAs with SMEs</h1>
+                    <p>Premium matching platform connecting pre-screened, verified CPAs with small and medium enterprises across Canada through cutting-edge technology</p>
+                    <div class="hero-buttons">
+                        <a href="#matching" class="btn btn-primary">Find Your CPA</a>
+                        <a href="register.html" class="btn btn-secondary">Join as Professional</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How It Works Section -->
-        <section id="how-it-works" class="how-it-works">
+        <!-- Vision Section -->
+        <section id="vision" class="vision-section">
             <div class="container">
-                <h2>How CanadaAccountants Works</h2>
-                <div class="process-tabs">
-                    <button class="tab-btn active" onclick="switchToTab('business', this)" 
-                            aria-selected="true" role="tab" aria-controls="business-process">For Businesses</button>
-                    <button class="tab-btn" onclick="switchToTab('cpa', this)" 
-                            aria-selected="false" role="tab" aria-controls="cpa-process">For CPAs</button>
+                <h2>Our Vision</h2>
+                <div class="vision-content">
+                    <p>To revolutionize how Canadian businesses connect with qualified CPAs through innovative matching technology, creating seamless partnerships that drive growth and success across the nation.</p>
+                    <p>We envision a future where every SME has access to the perfect CPA match, fostering stronger business relationships and contributing to Canada's economic prosperity.</p>
                 </div>
-                
-                <div id="business-process" class="process-content active" role="tabpanel" aria-labelledby="business-tab">
-                    <div class="process-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h3>Tell Us Your Needs</h3>
-                            <p>Complete our 3-minute questionnaire about your business size, industry, and accounting requirements.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h3>Get Matched</h3>
-                            <p>Our AI matches you with 3-5 pre-screened CPAs who specialize in your industry and business size.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h3>Connect & Choose</h3>
-                            <p>Interview your matches, review their profiles, and select the CPA that's the perfect fit.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h3>Start Saving</h3>
-                            <p>Begin working with your new CPA and track your savings through our platform dashboard.</p>
-                        </div>
+            </div>
+        </section>
+
+        <section class="matching-demo" id="matching">
+            <div class="container">
+                <div class="demo-container">
+                    <div class="demo-title">
+                        <h2>🎯 Enhanced Matching Algorithm Demo</h2>
+                        <p>Experience our 6-factor CPA-SME compatibility scoring system</p>
                     </div>
-                    <div class="guarantee-box">
-                        <h4>💯 Arthur's Guarantee</h4>
-                        <p>"If you're not completely satisfied with your CPA match within 30 days, I'll personally find you a new one at no charge." - Arthur Kostaras, CEO</p>
-                    </div>
-                </div>
-                
-                <div id="cpa-process" class="process-content" role="tabpanel" aria-labelledby="cpa-tab">
-                    <div class="process-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h3>Apply & Get Verified</h3>
-                            <p>Submit your credentials for our rigorous screening process. Only 15% of applicants are accepted.</p>
+                    
+                    <div class="demo-content">
+                        <div class="demo-section">
+                            <h3>SME Requirements</h3>
+                            <p>Industry: Technology startup in Toronto</p>
+                            <p>Business Size: 15 employees, $2M revenue</p>
+                            <p>Services Needed: Tax planning, financial auditing</p>
+                            <p>Complexity: High-growth, venture-backed</p>
+                            <button class="demo-button" onclick="runMatchingDemo()">Test Intelligent Matching</button>
                         </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h3>Build Your Profile</h3>
-                            <p>Showcase your expertise, specializations, and set your preferred client criteria and rates.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h3>Receive Quality Leads</h3>
-                            <p>Get matched with pre-qualified businesses that fit your expertise and availability.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h3>Grow Your Practice</h3>
-                            <p>Focus on client service while we handle marketing, screening, and administrative tasks.</p>
-                        </div>
-                    </div>
-                    <div class="earnings-box">
-                        <h4>💰 Earning Potential</h4>
-                        <p><strong>Average CPA earns $47,000 additional revenue</strong> in their first year through our platform.</p>
-                        <div class="earnings-stats">
-                            <span>Top 10% earn: $150K+/year</span>
-                            <span>Average hourly rate: $175/hour</span>
-                            <span>Client retention: 94%</span>
+                        
+                        <div class="demo-section">
+                            <h3>CPA Pool Analysis</h3>
+                            <p>Available CPAs: 247 across Canada</p>
+                            <p>Specializations: 23 different sectors</p>
+                            <p>Experience Range: 3-25+ years</p>
+                            <p>Availability: Real-time calendar integration</p>
+                            <div id="matching-results" class="results-container">
+                                <div id="demo-output"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section -->
-        <section id="stats" class="stats">
+        <section class="features" id="features">
             <div class="container">
-                <h2>Platform Statistics</h2>
-                <p>Real-time data from across our network</p>
-                <div class="stats-grid">
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="total-cpas">210,000+</span>
-                        <div class="stat-label">Canadian CPAs</div>
+                <div class="section-title">
+                    <h2>Why Choose CanadaAccountants?</h2>
+                    <p>Our platform combines advanced technology with human expertise to deliver unmatched CPA-SME matching</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>AI-Powered Matching</h3>
+                        <p>Our proprietary 6-factor algorithm analyzes industry expertise, business size, service complexity, location preferences, availability, and success rates to find perfect matches.</p>
                     </div>
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="active-users">12,547</span>
-                        <div class="stat-label">Active Users</div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>Verified Professionals</h3>
+                        <p>Every CPA undergoes rigorous verification including license validation, background checks, and performance assessments across all Canadian provinces.</p>
                     </div>
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="monthly-revenue">$247K</span>
-                        <div class="stat-label">Monthly Revenue</div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Real-Time Analytics</h3>
+                        <p>Monitor engagement metrics, success rates, and business outcomes with our comprehensive dashboard and automated reporting system.</p>
                     </div>
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="growth-rate">247%</span>
-                        <div class="stat-label">Growth Rate</div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Guarantee Protection</h3>
+                        <p>100% satisfaction guarantee with full refund protection. If you're not completely satisfied within 30 days, we'll refund your entire subscription.</p>
                     </div>
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="new-signups">156</span>
-                        <div class="stat-label">New Signups (24h)</div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Instant Notifications</h3>
+                        <p>Multi-channel notification system with email, SMS, and Slack integration for immediate updates on matches, messages, and opportunities.</p>
                     </div>
-                    <div class="stat-card" onclick="updateStats()">
-                        <span class="stat-number" id="avg-connection">18hrs</span>
-                        <div class="stat-label">Avg Connection Time</div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🍁</div>
+                        <h3>Canada-Wide Coverage</h3>
+                        <p>Complete coverage across all Canadian provinces and territories with local expertise and compliance knowledge for every region.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-badges">
+            <div class="container">
+                <div class="badges-container">
+                    <div class="security-badge">SOC 2 Type II Compliant</div>
+                    <div class="security-badge">256-bit SSL Encryption</div>
+                    <div class="security-badge">PIPEDA Compliant</div>
+                    <div class="security-badge">99.9% Uptime SLA</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>CanadaAccountants</h3>
-                    <p>Connecting Canadian CPAs with SMEs through innovative technology and rigorous screening processes.</p>
+                    <p>Connecting verified CPAs with Canadian businesses through intelligent matching technology.</p>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <button onclick="openModal('business')">Join as Business</button>
-                    <button onclick="openModal('cpa')">Join as CPA</button>
-                    <button onclick="openModal('contact')">Contact Us</button>
-                    <button onclick="showAnalytics()">Platform Analytics</button>
+                    <h3>Platform</h3>
+                    <a href="register.html">Register</a>
+                    <a href="#features">Features</a>
+                    <a href="#guarantee">Guarantee</a>
+                    <a href="/comparison.html">Why We Win</a>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Contact CEO</h3>
-                    <button onclick="callCEO()">📞 647.956.7290</button>
-                    <button onclick="sendEmail()">✉️ arthur@negotiateandwin.com</button>
-                    <button onclick="scheduleCall()">📅 Schedule Call</button>
+                    <h3>Support</h3>
+                    <a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a>
+                    <a href="tel:+1-800-CPA-MATCH">1-800-CPA-MATCH</a>
+                    <a href="#help">Help Center</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#compliance">Compliance</a>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 CanadaAccountants. CEO: Arthur Kostaras, CPA, CMA, CF. All rights reserved.</p>
+                <p>&copy; 2025 CanadaAccountants. All rights reserved. | Built with ❤️ in Canada</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('loginModal')">&times;</button>
-            <h2>Sign In to Your Account</h2>
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('signupModal')">&times;</button>
-            <h2>Join CanadaAccountants</h2>
-            <form onsubmit="handleSignup(event)" novalidate>
-                <div class="form-group">
-                    <label for="userType">I am a: <span aria-label="required" style="color: red;">*</span></label>
-                    <select id="userType" required aria-describedby="userType-error">
-                        <option value="">Select...</option>
-                        <option value="business">Business Owner</option>
-                        <option value="cpa">CPA Professional</option>
-                    </select>
-                    <div id="userType-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="fullName">Full Name <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="text" id="fullName" required aria-describedby="fullName-error" 
-                           placeholder="Enter your full name">
-                    <div id="fullName-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email Address <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="email" id="signupEmail" required aria-describedby="signupEmail-error" 
-                           placeholder="you@company.com">
-                    <div id="signupEmail-error" class="error-message" role="alert"></div>
-                    <div id="signupEmail-success" class="success-message" role="status"></div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="tel" id="phone" required aria-describedby="phone-error" 
-                           placeholder="(416) 555-0123" pattern="^(\+1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$">
-                    <div id="phone-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company/Firm Name <span aria-label="required" style="color: red;">*</span></label>
-                    <input type="text" id="company" required aria-describedby="company-error" 
-                           placeholder="Your business or CPA firm name">
-                    <div id="company-error" class="error-message" role="alert"></div>
-                </div>
-                <div class="form-group">
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" id="postalCode" class="postal-code" aria-describedby="postalCode-error" 
-                           placeholder="K1A 0A6" pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$" 
-                           maxlength="7">
-                    <div id="postalCode-error" class="error-message" role="alert"></div>
-                    <div id="postalCode-success" class="success-message" role="status"></div>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%" id="signup-btn">
-                    <span class="btn-text">Join Free Today</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <button class="close" onclick="closeModal('contactModal')">&times;</button>
-            <h2>Contact Arthur Kostaras, CEO</h2>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 15px;">
-                    <h3>Arthur Kostaras, CPA, CMA, CF</h3>
-                    <p>Chief Executive Officer</p>
-                    <div style="margin-top: 1rem;">
-                        <button onclick="callCEO()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">📞 647.956.7290</button>
-                        <button onclick="sendEmail()" style="color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 20px; margin: 0.5rem; cursor: pointer;">✉️ Email</button>
-                    </div>
-                </div>
-            </div>
-            <form onsubmit="handleContact(event)">
-                <div class="form-group">
-                    <label for="contactName">Your Name</label>
-                    <input type="text" id="contactName" required>
-                </div>
-                <div class="form-group">
-                    <label for="contactEmail">Your Email</label>
-                    <input type="email" id="contactEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <select id="subject" required>
-                        <option value="">Select...</option>
-                        <option value="partnership">Partnership Inquiry</option>
-                        <option value="demo">Request Demo</option>
-                        <option value="investment">Investment Opportunity</option>
-                        <option value="media">Media Inquiry</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" required placeholder="Tell Arthur about your inquiry..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Send Message to CEO</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        <span id="notificationText"></span>
-    </div>
+    <!-- Scripts -->
+    <script src="js/api-config.js"></script>
+    <script src="js/matching-engine.js"></script>
+    <script src="js/business-metrics.js"></script>
+    <script src="js/notification-hub.js"></script>
+    <script src="js/cpa-verification-service.js"></script>
+    <script src="js/email-notifications.js"></script>
 
     <script>
-        console.log("Starting CanadaAccountants Platform - Phase 1 Enhanced...");
-
-        // Mobile Navigation Toggle
-        function toggleMobileNav() {
-            try {
-                const navLinks = document.querySelector('.nav-links');
-                const hamburger = document.querySelector('.hamburger');
-                
-                navLinks.classList.toggle('nav-open');
-                hamburger.classList.toggle('active');
-                
-                // Update ARIA attributes for accessibility
-                const isOpen = navLinks.classList.contains('nav-open');
-                hamburger.setAttribute('aria-expanded', isOpen);
-                navLinks.setAttribute('aria-hidden', !isOpen);
-                
-                console.log("Mobile navigation toggled:", isOpen ? 'opened' : 'closed');
-            } catch (error) {
-                console.error("Mobile nav error:", error.message);
-            }
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
         }
 
-        // Enhanced Form Validation
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('show');
         }
 
-        function validateCanadianPhone(phone) {
-            const phoneRegex = /^(\+1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
-            return phoneRegex.test(phone);
-        }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-        function validateCanadianPostalCode(postalCode) {
-            const postalRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
-            return postalRegex.test(postalCode);
-        }
-
-        function showFieldError(fieldId, message) {
-            const field = document.getElementById(fieldId);
-            const errorDiv = document.getElementById(fieldId + '-error');
-            const successDiv = document.getElementById(fieldId + '-success');
+        // Enhanced matching demo
+        async function runMatchingDemo() {
+            const button = document.querySelector('.demo-button');
+            const resultsContainer = document.getElementById('matching-results');
+            const output = document.getElementById('demo-output');
             
-            if (field && errorDiv) {
-                field.classList.add('error');
-                field.classList.remove('success');
-                errorDiv.textContent = message;
-                errorDiv.classList.add('show');
-                
-                if (successDiv) {
-                    successDiv.classList.remove('show');
-                }
-            }
-        }
-
-        function showFieldSuccess(fieldId, message) {
-            const field = document.getElementById(fieldId);
-            const errorDiv = document.getElementById(fieldId + '-error');
-            const successDiv = document.getElementById(fieldId + '-success');
+            // Show loading state
+            button.innerHTML = '<span class="loading-spinner"></span>Running AI Analysis...';
+            button.disabled = true;
             
-            if (field) {
-                field.classList.remove('error');
-                field.classList.add('success');
-                
-                if (errorDiv) {
-                    errorDiv.classList.remove('show');
-                }
-                
-                if (successDiv && message) {
-                    successDiv.textContent = message;
-                    successDiv.classList.add('show');
-                }
-            }
-        }
-
-        function clearFieldValidation(fieldId) {
-            const field = document.getElementById(fieldId);
-            const errorDiv = document.getElementById(fieldId + '-error');
-            const successDiv = document.getElementById(fieldId + '-success');
+            resultsContainer.classList.add('show');
+            output.innerHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <strong>🔍 Analyzing CPA Database...</strong><br>
+                    <div style="margin: 0.5rem 0; font-size: 0.9rem; color: #666;">
+                        • Scanning 247 verified CPAs<br>
+                        • Applying 6-factor compatibility algorithm<br>
+                        • Calculating match scores and availability
+                    </div>
+                </div>
+            `;
             
-            if (field) {
-                field.classList.remove('error', 'success');
-            }
-            if (errorDiv) {
-                errorDiv.classList.remove('show');
-            }
-            if (successDiv) {
-                successDiv.classList.remove('show');
-            }
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Show results
+            output.innerHTML = `
+                <div style="border-left: 4px solid #10B981; padding-left: 1rem; margin-bottom: 1rem;">
+                    <strong style="color: #10B981;">✅ Perfect Match Found!</strong><br>
+                    <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                        <strong>Sarah Chen, CPA</strong> - Toronto<br>
+                        Match Score: <strong style="color: #10B981;">98%</strong><br>
+                        Specialization: Tech startups & venture-backed companies<br>
+                        Experience: 12 years | Rating: ⭐⭐⭐⭐⭐ 4.9/5<br>
+                        Availability: <span style="color: #10B981;">●</span> Available this week
+                    </div>
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; font-size: 0.85rem;">
+                    <strong>Algorithm Breakdown:</strong><br>
+                    Industry Expertise: 100% | Business Size: 95% | Service Match: 100%<br>
+                    Location: 98% | Availability: 90% | Success Rate: 96%
+                </div>
+            `;
+            
+            // Reset button
+            button.innerHTML = '<span class="success-checkmark">✓</span>Analysis Complete - Try Again';
+            button.disabled = false;
         }
 
-        // Loading Button States
-        function setButtonLoading(buttonId, loadingText) {
-            const button = document.getElementById(buttonId);
-            if (button) {
-                button.classList.add('loading');
-                button.disabled = true;
-                const textSpan = button.querySelector('.btn-text');
-                if (textSpan) {
-                    textSpan.textContent = loadingText;
-                }
+        // Initialize platform status
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🍁 CanadaAccountants Platform - Complete Version Loaded');
+            console.log('✅ Enhanced Matching Algorithm Active');
+            console.log('🔒 Security Badges Displayed');
+            console.log('📱 Mobile Menu Functional');
+            console.log('🎯 All Sections Loaded Successfully');
+            
+            // Initialize real-time features if API is available
+            if (typeof RealMatchingEngine !== 'undefined') {
+                console.log('🚀 Real Matching Engine ready');
             }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ SW registered: ', registration);
+                    }, function(error) {
+                        console.log('❌ SW registration failed: ', error);
+                    });
+            });
         }
-
-        function setButtonNormal(buttonId, normalText) {
-            const button = document.getElementById(buttonId);
-            if (button) {
-                button.classList.remove('loading');
-                button.disabled = false;
-                const textSpan = button.querySelector('.btn-text');
-                if (textSpan) {
-                    textSpan.textContent = normalText;
-                }
-            }
-        }
-
-        // Enhanced Tab Switching with ARIA support
-        function switchToTab(tabName, buttonElement) {
-            try {
-                console.log("Switching to tab:", tabName);
-                
-                // Remove active from all tabs and update ARIA
-                const allTabs = document.querySelectorAll('.tab-btn');
-                for (let i = 0; i < allTabs.length; i++) {
-                    allTabs[i].classList.remove('active');
-                    allTabs[i].setAttribute('aria-selected', 'false');
-                }
-                
-                // Hide all content
-                const allContent = document.querySelectorAll('.process-content');
-                for (let i = 0; i < allContent.length; i++) {
-                    allContent[i].classList.remove('active');
-                    allContent[i].style.display = 'none';
-                }
-                
-                // Activate clicked button
-                if (buttonElement) {
-                    buttonElement.classList.add('active');
-                    buttonElement.setAttribute('aria-selected', 'true');
-                    console.log("Activated button:", buttonElement.textContent);
-                }
-                
-                // Show target content
-                const targetContent = document.getElementById(tabName + '-process');
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    targetContent.style.display = 'block';
-                    console.log("SUCCESS: Switched to", tabName, "content");
-                    showNotification("Now viewing " + (tabName === 'cpa' ? 'CPA' : 'Business') + " process");
-                } else {
-                    console.error("Could not find content for:", tabName + '-process');
-                    showNotification("Error switching tabs", "error");
-                }
-                
-            } catch (error) {
-                console.error("Tab switching error:", error.message);
-                showNotification("Tab switching error: " + error.message, "error");
-            }
-        }
-
-        // Enhanced Modal with ARIA support
-        function openModal(type) {
-            try {
-                const modalId = getModalId(type);
-                const modal = document.getElementById(modalId);
-                
-                if (modal) {
-                    modal.style.display = 'block';
-                    modal.setAttribute('aria-hidden', 'false');
-                    
-                    // Focus management for accessibility
-                    const firstInput = modal.querySelector('input, select, textarea, button');
-                    if (firstInput) {
-                        setTimeout(() => firstInput.focus(), 100);
-                    }
-                    
-                    // Pre-select user type and add visual feedback
-                    if (type === 'business' || type === 'cpa') {
-                        setTimeout(function() {
-                            const userSelect = document.getElementById('userType');
-                            if (userSelect) {
-                                userSelect.value = type;
-                                
-                                if (type === 'cpa') {
-                                    userSelect.style.backgroundColor = '#e3f2fd';
-                                    userSelect.style.border = '3px solid #2196F3';
-                                    showNotification("CPA Application - Only 15% accepted!");
-                                } else {
-                                    userSelect.style.backgroundColor = '#f3e5f5';
-                                    userSelect.style.border = '3px solid #9C27B0';
-                                    showNotification("Business Signup - Free forever!");
-                                }
-                            }
-                        }, 200);
-                    }
-                    
-                    console.log("Modal opened:", modalId);
-                } else {
-                    showNotification("Modal not found: " + modalId, "error");
-                }
-            } catch (error) {
-                showNotification("Modal error: " + error.message, "error");
-            }
-        }
-
-        function getModalId(type) {
-            const modalMap = {
-                'login': 'loginModal',
-                'signup': 'signupModal',
-                'business': 'signupModal',
-                'cpa': 'signupModal',
-                'contact': 'contactModal'
-            };
-            return modalMap[type] || '';
-        }
-
-        function closeModal(modalId) {
-            try {
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.style.display = 'none';
-                    modal.setAttribute('aria-hidden', 'true');
-                    
-                    // Clear any form validation states
-                    const form = modal.querySelector('form');
-                    if (form) {
-                        const fields = form.querySelectorAll('input, select, textarea');
-                        fields.forEach(field => {
-                            clearFieldValidation(field.id);
-                        });
-                    }
-                    
-                    console.log("Modal closed:", modalId);
-                }
-            } catch (error) {
-                console.error("Error closing modal:", error.message);
-            }
-        }
-
-        // Enhanced Notification System
-        function showNotification(message, type) {
-            try {
-                type = type || 'info';
-                const notification = document.getElementById('notification');
-                const text = document.getElementById('notificationText');
-                
-                if (notification && text) {
-                    text.textContent = message;
-                    notification.className = 'notification ' + type + ' show';
-                    notification.setAttribute('role', 'alert');
-                    notification.setAttribute('aria-live', 'polite');
-                    
-                    setTimeout(function() {
-                        notification.classList.remove('show');
-                    }, 4000);
-                    
-                    console.log("Notification (" + type + "):", message);
-                } else {
-                    // Fallback for critical errors
-                    if (type === 'error') {
-                        alert("Error: " + message);
-                    }
-                }
-            } catch (error) {
-                console.error("Notification error:", error.message);
-            }
-        }
-
-        function scrollToSection(sectionId) {
-            try {
-                const element = document.getElementById(sectionId);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Close mobile nav if open
-                    const navLinks = document.querySelector('.nav-links');
-                    const hamburger = document.querySelector('.hamburger');
-                    if (navLinks && navLinks.classList.contains('nav-open')) {
-                        navLinks.classList.remove('nav-open');
-                        hamburger.classList.remove('active');
-                    }
-                    
-                    console.log("Scrolled to section:", sectionId);
-                } else {
-                    showNotification("Section not found: " + sectionId, "error");
-                }
-            } catch (error) {
-                showNotification("Scroll error: " + error.message, "error");
-            }
-        }
-
-        // Contact functions
-        function sendEmail() {
-            try {
-                const subject = 'CanadaAccountants Partnership Inquiry';
-                const body = 'Dear Arthur,\n\nI am interested in learning more about CanadaAccountants.\n\nBest regards,';
-                const mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-                window.open(mailtoLink);
-                showNotification("Email client opened - Message Arthur directly!");
-            } catch (error) {
-                showNotification("Email error: " + error.message, "error");
-            }
-        }
-
-        function callCEO() {
-            try {
-                window.open('tel:+16479567290');
-                showNotification("Calling Arthur at 647.956.7290");
-            } catch (error) {
-                showNotification("Call error: " + error.message, "error");
-            }
-        }
-
-        function scheduleCall() {
-            try {
-                const subject = 'Schedule Call with Arthur Kostaras - CanadaAccountants';
-                const body = 'Dear Arthur,\n\nI would like to schedule a call to discuss CanadaAccountants.\n\nPlease let me know your availability.\n\nBest regards,';
-                const mailtoLink = 'mailto:arthur@negotiateandwin.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-                window.open(mailtoLink);
-                showNotification("Calendar request sent to Arthur!");
-            } catch (error) {
-                showNotification("Schedule error: " + error.message, "error");
-            }
-        }
-
-        function showAnalytics() {
-            try {
-                const message = 'CANADAACCOUNTANTS LIVE DASHBOARD\n\n' +
-                    'CEO: Arthur Kostaras, CPA, CMA, CF\n\n' +
-                    'FINANCIAL METRICS:\n' +
-                    '• Monthly Revenue: $247,000\n' +
-                    '• Growth Rate: 247% MoM\n' +
-                    '• Annual Projection: $4.2M\n\n' +
-                    'USER METRICS:\n' +
-                    '• Active Users: 12,547\n' +
-                    '• Total CPAs: 210,000+\n' +
-                    '• New Signups (24h): 156\n' +
-                    '• Avg Connection: 18 hours\n\n' +
-                    'PERFORMANCE:\n' +
-                    '• Match Success: 94%\n' +
-                    '• Client Satisfaction: 4.7/5\n' +
-                    '• Platform Uptime: 99.9%\n\n' +
-                    'PROJECTIONS Q4 2025:\n' +
-                    '• Revenue Target: $4.2M ARR\n' +
-                    '• User Growth: 50,000+ active\n' +
-                    '• Market Expansion: All provinces\n\n' +
-                    'Direct CEO Line: 647.956.7290';
-                
-                alert(message);
-                showNotification("Live analytics displayed!");
-            } catch (error) {
-                showNotification("Analytics error: " + error.message, "error");
-            }
-        }
-
-        // FIXED updateStats function
-        function updateStats() {
-            try {
-                // Generate random updates for demo
-                const elements = {
-                    'active-users': (12547 + Math.floor(Math.random() * 200 - 100)).toLocaleString(),
-                    'monthly-revenue': ' + Math.floor((247000 + Math.random() * 20000 - 10000) / 1000) + 'K',
-                    'growth-rate': Math.floor(Math.random() * 50 + 200) + '%',
-                    'new-signups': Math.floor(Math.random() * 50 + 25),
-                    'avg-connection': Math.floor(Math.random() * 10 + 15) + 'hrs'
-                };
-
-                for (const id in elements) {
-                    const element = document.getElementById(id);
-                    if (element) {
-                        element.textContent = elements[id];
-                    }
-                }
-
-                showNotification("Stats updated with live data!");
-            } catch (error) {
-                showNotification("Stats error: " + error.message, "error");
-            }
-        }
-
-        // Enhanced Form Handlers with Validation
-        function handleLogin(event) {
-            try {
-                event.preventDefault();
-                const email = document.getElementById('email').value;
-                
-                // Basic validation
-                if (!validateEmail(email)) {
-                    showFieldError('email', 'Please enter a valid email address');
-                    return;
-                }
-                
-                clearFieldValidation('email');
-                showFieldSuccess('email');
-                
-                setButtonLoading('login-btn', 'Signing In...');
-                showNotification("Signing you in...");
-                
-                setTimeout(function() {
-                    setButtonNormal('login-btn', 'Sign In');
-                    showNotification("Welcome back! Loading dashboard...");
-                    closeModal('loginModal');
-                    
-                    setTimeout(function() {
-                        showAnalytics();
-                    }, 1000);
-                }, 1500);
-                
-                console.log("Login attempted for:", email);
-            } catch (error) {
-                setButtonNormal('login-btn', 'Sign In');
-                showNotification("Login error: " + error.message, "error");
-            }
-        }
-
-        function handleSignup(event) {
-            try {
-                event.preventDefault();
-                
-                // Get form values
-                const userType = document.getElementById('userType').value;
-                const name = document.getElementById('fullName').value.trim();
-                const email = document.getElementById('signupEmail').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const company = document.getElementById('company').value.trim();
-                const postalCode = document.getElementById('postalCode').value.trim();
-                
-                let hasErrors = false;
-                
-                // Clear previous validation
-                ['userType', 'fullName', 'signupEmail', 'phone', 'company', 'postalCode'].forEach(clearFieldValidation);
-                
-                // Validate required fields
-                if (!userType) {
-                    showFieldError('userType', 'Please select whether you are a Business Owner or CPA');
-                    hasErrors = true;
-                }
-                
-                if (!name || name.length < 2) {
-                    showFieldError('fullName', 'Please enter your full name (at least 2 characters)');
-                    hasErrors = true;
-                } else {
-                    showFieldSuccess('fullName');
-                }
-                
-                if (!validateEmail(email)) {
-                    showFieldError('signupEmail', 'Please enter a valid email address');
-                    hasErrors = true;
-                } else {
-                    showFieldSuccess('signupEmail', 'Valid email format');
-                }
-                
-                if (!validateCanadianPhone(phone)) {
-                    showFieldError('phone', 'Please enter a valid Canadian phone number (e.g., (416) 555-0123)');
-                    hasErrors = true;
-                } else {
-                    showFieldSuccess('phone');
-                }
-                
-                if (!company || company.length < 2) {
-                    showFieldError('company', 'Please enter your company or firm name');
-                    hasErrors = true;
-                } else {
-                    showFieldSuccess('company');
-                }
-                
-                // Validate postal code if provided
-                if (postalCode && !validateCanadianPostalCode(postalCode)) {
-                    showFieldError('postalCode', 'Please enter a valid Canadian postal code (e.g., K1A 0A6)');
-                    hasErrors = true;
-                } else if (postalCode) {
-                    showFieldSuccess('postalCode', 'Valid Canadian postal code');
-                }
-                
-                if (hasErrors) {
-                    showNotification("Please correct the errors below", "error");
-                    return;
-                }
-                
-                setButtonLoading('signup-btn', 'Creating Account...');
-                showNotification("Creating your account...");
-                
-                setTimeout(function() {
-                    setButtonNormal('signup-btn', 'Join Free Today');
-                    
-                    if (userType === 'business') {
-                        showNotification("Welcome " + name + "! Business account created successfully.");
-                        
-                        setTimeout(function() {
-                            alert('🏢 BUSINESS ACCOUNT CREATED\n\n' +
-                                  'Welcome ' + name + ' from ' + company + '!\n\n' +
-                                  '📋 NEXT STEPS:\n' +
-                                  '1. Check email for verification link\n' +
-                                  '2. Complete business profile (5 minutes)\n' +
-                                  '3. Answer 3 questions about your needs\n' +
-                                  '4. Review matched CPA recommendations (24hrs)\n' +
-                                  '5. Schedule consultations with top matches\n\n' +
-                                  '🎯 WHAT TO EXPECT:\n' +
-                                  '• 3-5 pre-screened CPA matches\n' +
-                                  '• Industry-specialized professionals\n' +
-                                  '• Transparent pricing comparisons\n' +
-                                  '• Arthur\'s personal satisfaction guarantee\n\n' +
-                                  '📞 Questions? Call Arthur: 647.956.7290');
-                        }, 2000);
-                        
-                    } else {
-                        showNotification("Welcome " + name + "! CPA application submitted for review.");
-                        
-                        setTimeout(function() {
-                            alert('🎯 CPA APPLICATION SUBMITTED\n\n' +
-                                  'Welcome ' + name + ' from ' + company + '!\n\n' +
-                                  '📋 REVIEW PROCESS (24-48 hours):\n' +
-                                  '1. Credential verification & license check\n' +
-                                  '2. Reference calls with past clients\n' +
-                                  '3. Background screening\n' +
-                                  '4. Profile optimization consultation\n' +
-                                  '5. Platform training & onboarding\n\n' +
-                                  '💰 EARNING POTENTIAL:\n' +
-                                  '• Average: $47,000+ additional revenue/year\n' +
-                                  '• Top 10%: $150,000+ annually\n' +
-                                  '• Premium rates: $175-$300/hour\n' +
-                                  '• 94% client retention rate\n\n' +
-                                  '📈 EXCLUSIVE BENEFITS:\n' +
-                                  '• Pre-qualified leads only\n' +
-                                  '• Marketing handled for you\n' +
-                                  '• Territory protection\n' +
-                                  '• Continuing education resources\n\n' +
-                                  '📞 Questions? Call Arthur: 647.956.7290\n\n' +
-                                  '⭐ Only 15% of applicants are accepted!');
-                        }, 2000);
-                    }
-                    
-                    closeModal('signupModal');
-                }, 2500);
-                
-                console.log("Signup completed for:", name, "as", userType);
-            } catch (error) {
-                setButtonNormal('signup-btn', 'Join Free Today');
-                showNotification("Signup error: " + error.message, "error");
-            }
-        }
-
-        function handleContact(event) {
-            try {
-                event.preventDefault();
-                const name = document.getElementById('contactName').value.trim();
-                const email = document.getElementById('contactEmail').value.trim();
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value.trim();
-                
-                // Basic validation
-                if (!name || !email || !subject || !message) {
-                    showNotification("Please fill in all required fields", "error");
-                    return;
+    </script>
+</body>
+</html>
