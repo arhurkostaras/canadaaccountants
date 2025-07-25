@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Offline - CanadaAccountants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .offline-container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .offline-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .offline-message {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .retry-button {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .retry-button:hover {
+            background: linear-gradient(45deg, #b91c1c, #dc2626);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        .offline-features {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .offline-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .offline-features ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .offline-features li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .offline-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .network-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        .network-status.online {
+            background: rgba(16, 185, 129, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .offline-title {
+                font-size: 2rem;
+            }
+            
+            .offline-message {
+                font-size: 1.1rem;
+            }
+
+            .offline-features {
+                padding: 1.5rem;
+            }
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="network-status" id="networkStatus">
+        📡 Offline
+    </div>
+
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        
+        <h1 class="offline-title">You're Offline</h1>
+        
+        <p class="offline-message">
+            Don't worry! CanadaAccountants works offline too. 
+            You can still browse cached pages and fill out forms - 
+            they'll be submitted automatically when you're back online.
+        </p>
+
+        <button class="retry-button" onclick="retryConnection()">
+            🔄 Try Again
+        </button>
+        
+        <button class="retry-button" onclick="goHome()">
+            🏠 Go Home
+        </button>
+
+        <div class="loading-spinner" id="loadingSpinner"></div>
+
+        <div class="offline-features">
+            <h3>🚀 What You Can Still Do:</h3>
+            <ul>
+                <li>Browse previously visited pages</li>
+                <li>View cached CPA pricing information</li>
+                <li>Fill out registration forms (auto-submit when online)</li>
+                <li>Read our competitive advantages</li>
+                <li>View security and compliance information</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateNetworkStatus() {
+            const status = document.getElementById('networkStatus');
+            if (navigator.onLine) {
+                status.textContent = '🌐 Online';
+                status.classList.add('online');
+                setTimeout(() => {
+                    retryConnection();
+                }, 1000);
+            } else {
+                status.textContent = '📡 Offline';
+                status.classList.remove('online');
+            }
+        }
+
+        function retryConnection() {
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.style.display = 'block';
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        updateNetworkStatus();
+
+        setInterval(() => {
+            fetch('/favicon.ico', { 
+                method: 'HEAD',
+                cache: 'no-cache' 
+            })
+            .then(() => {
+                if (!navigator.onLine) {
+                    window.dispatchEvent(new Event('online'));
+                }
+            })
+            .catch(() => {
+                if (navigator.onLine) {
+                    window.dispatchEvent(new Event('offline'));
+                }
+            });
+        }, 5000);
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'CACHE_UPDATED') {
+                    console.log('Cache updated, new content available');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

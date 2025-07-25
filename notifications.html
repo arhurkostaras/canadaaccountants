@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔔 CanadaAccountants Notification Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        /* Notification Toast Container */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            width: 380px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* Individual Notification Toast */
+        .notification-toast {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification-toast.hide {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+
+        /* Notification Types */
+        .notification-toast.success::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #10b981;
+        }
+
+        .notification-toast.warning::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #f59e0b;
+        }
+
+        .notification-toast.error::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #ef4444;
+        }
+
+        .notification-toast.info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #3b82f6;
+        }
+
+        /* Notification Header */
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            color: #f1f5f9;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-close:hover {
+            color: #94a3b8;
+        }
+
+        .notification-content {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+            padding-left: 2.25rem;
+        }
+
+        .notification-time {
+            color: #64748b;
+            font-size: 0.75rem;
+            padding-left: 2.25rem;
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding-left: 2.25rem;
+        }
+
+        .notification-btn {
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .notification-btn.primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .notification-btn.secondary {
+            background: #374151;
+            color: #d1d5db;
+        }
+
+        .notification-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Notification Center Panel */
+        .notification-center {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: #1e293b;
+            border-left: 1px solid #334155;
+            transition: right 0.3s ease;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .notification-center.open {
+            right: 0;
+        }
+
+        .notification-center-header {
+            background: #374151;
+            padding: 1rem;
+            border-bottom: 1px solid #4b5563;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .notification-center-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+
+        .notification-center-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-btn {
+            padding: 0.25rem 0.5rem;
+            background: #4b5563;
+            border: none;
+            border-radius: 4px;
+            color: #d1d5db;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .control-btn:hover {
+            background: #6b7280;
+        }
+
+        .notification-list {
+            padding: 1rem;
+        }
+
+        .notification-item {
+            background: #374151;
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid #6b7280;
+        }
+
+        .notification-item.unread {
+            background: #1f2937;
+            border-left-color: #3b82f6;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            background: #374151;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        .settings-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f9fafb;
+            margin-bottom: 0.75rem;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-label {
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #4b5563;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #3b82f6;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+
+        /* Floating Action Button */
+        .notification-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            z-index: 9998;
+        }
+
+        .notification-fab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Demo Controls */
+        .demo-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1rem;
+            z-index: 9998;
+        }
+
+        .demo-title {
+            color: #f1f5f9;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .demo-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .demo-btn:hover {
+            background: #2563eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .notification-container {
+                width: calc(100vw - 40px);
+                right: 20px;
+            }
+            
+            .notification-center {
+                width: 100vw;
+                right: -100vw;
+            }
+            
+            .demo-controls {
+                left: 20px;
+                right: 20px;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Toast Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Notification Center Panel -->
+    <div class="notification-center" id="notificationCenter">
+        <div class="notification-center-header">
+            <div class="notification-center-title">🔔 Notification Center</div>
+            <div class="notification-center-controls">
+                <button class="control-btn" onclick="markAllRead()">Mark All Read</button>
+                <button class="control-btn" onclick="clearAll()">Clear All</button>
+                <button class="control-btn" onclick="closeNotificationCenter()">Close</button>
+            </div>
+        </div>
+        
+        <div class="notification-list" id="notificationList">
+            <!-- Notifications will be populated here -->
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel">
+            <div class="settings-title">🔧 Notification Settings</div>
+            
+            <div class="setting-item">
+                <span class="setting-label">New CPA Applications</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">SME Registrations</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">Successful Matches</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">Payment Alerts</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">Guarantee Claims</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">Email Notifications</span>
+                <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">SMS Alerts</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">Slack Integration</span>
+                <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="notification-fab" onclick="openNotificationCenter()">
+        🔔
+        <span class="notification-badge" id="notificationBadge">3</span>
+    </button>
+
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+        <div class="demo-title">🚀 Demo Notifications</div>
+        <button class="demo-btn" onclick="simulateNotification('cpa')">New CPA</button>
+        <button class="demo-btn" onclick="simulateNotification('sme')">New SME</button>
+        <button class="demo-btn" onclick="simulateNotification('match')">Match</button>
+        <button class="demo-btn" onclick="simulateNotification('payment')">Payment</button>
+        <button class="demo-btn" onclick="simulateNotification('alert')">Alert</button>
+    </div>
+
+    <script>
+        // Notification System Class
+        class NotificationSystem {
+            constructor() {
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.settings = {
+                    newCPA: true,
+                    newSME: true,
+                    matches: true,
+                    payments: true,
+                    guarantees: true,
+                    email: true,
+                    sms: false,
+                    slack: false
+                };
+                this.init();
+            }
+
+            init() {
+                // Request notification permission
+                if ('Notification' in window && Notification.permission === 'default') {
+                    Notification.requestPermission();
+                }
+
+                // Load initial notifications
+                this.loadInitialNotifications();
+                this.updateBadge();
+            }
+
+            loadInitialNotifications() {
+                const initialNotifications = [
+                    {
+                        id: Date.now() - 300000,
+                        type: 'success',
+                        icon: '👤',
+                        title: 'New CPA Application',
+                        content: 'Sarah Chen has submitted a CPA application from Toronto, ON. Specializes in Technology and Startups.',
+                        time: '5 minutes ago',
+                        unread: true,
+                        actions: [
+                            { text: 'Review Application', type: 'primary' },
+                            { text: 'View Profile', type: 'secondary' }
+                        ]
+                    },
+                    {
+                        id: Date.now() - 600000,
+                        type: 'info',
+                        icon: '🎯',
+                        title: 'Successful Match',
+                        content: 'TechStart Solutions (SME) matched with Michael Thompson, CPA. Match score: 94%',
+                        time: '10 minutes ago',
+                        unread: true,
+                        actions: [
+                            { text: 'View Match Details', type: 'primary' }
+                        ]
+                    },
+                    {
+                        id: Date.now() - 900000,
+                        type: 'success',
+                        icon: '💳',
+                        title: 'Payment Received',
+                        content: 'CPA Premium subscription payment received: $299 from Emily Rodriguez',
+                        time: '15 minutes ago',
+                        unread: false
+                    }
+                ];
+
+                this.notifications = initialNotifications;
+                this.unreadCount = initialNotifications.filter(n => n.unread).length;
+                this.renderNotificationList();
+            }
+
+            createNotification(type, icon, title, content, actions = []) {
+                const notification = {
+                    id: Date.now(),
+                    type,
+                    icon,
+                    title,
+                    content,
+                    time: 'Just now',
+                    unread: true,
+                    actions
+                };
+
+                this.notifications.unshift(notification);
+                this.unreadCount++;
+                this.updateBadge();
+                this.showToast(notification);
+                this.renderNotificationList();
+
+                // Browser notification
+                if (Notification.permission === 'granted') {
+                    new Notification(`CanadaAccountants - ${title}`, {
+                        body: content,
+                        icon: '🍁',
+                        badge: '🔔'
+                    });
+                }
+
+                // Play notification sound
+                this.playNotificationSound();
+
+                return notification;
+            }
+
+            showToast(notification) {
+                const container = document.getElementById('notificationContainer');
+                const toast = document.createElement('div');
+                toast.className = `notification-toast ${notification.type}`;
+                toast.innerHTML = `
+                    <div class="notification-header">
+                        <span class="notification-icon">${notification.icon}</span>
+                        <span class="notification-title">${notification.title}</span>
+                        <button class="notification-close" onclick="hideToast(this)">×</button>
+                    </div>
+                    <div class="notification-content">${notification.content}</div>
+                    <div class="notification-time">${notification.time}</div>
+                    ${notification.actions.length > 0 ? `
+                        <div class="notification-actions">
+                            ${notification.actions.map(action => 
+                                `<button class="notification-btn ${action.type}">${action.text}</button>`
+                            ).join('')}
+                        </div>
+                    ` : ''}
+                `;
+
+                container.appendChild(toast);
+
+                // Show animation
+                setTimeout(() => toast.classList.add('show'), 100);
+
+                // Auto-hide after 8 seconds
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        this.hideToast(toast.querySelector('.notification-close'));
+                    }
+                }, 8000);
+            }
+
+            hideToast(closeBtn) {
+                const toast = closeBtn.closest('.notification-toast');
+                toast.classList.add('hide');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }
+
+            renderNotificationList() {
+                const list = document.getElementById('notificationList');
+                list.innerHTML = this.notifications.map(notification => `
+                    <div class="notification-item ${notification.unread ? 'unread' : ''}" data-id="${notification.id}">
+                        <div class="notification-header">
+                            <span class="notification-icon">${notification.icon}</span>
+                            <span class="notification-title">${notification.title}</span>
+                        </div>
+                        <div class="notification-content">${notification.content}</div>
+                        <div class="notification-time">${notification.time}</div>
+                    </div>
+                `).join('');
+            }
+
+            updateBadge() {
+                const badge = document.getElementById('notificationBadge');
+                if (this.unreadCount > 0) {
+                    badge.textContent = this.unreadCount > 99 ? '99+' : this.unreadCount;
+                    badge.style.display = 'flex';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+
+            markAllRead() {
+                this.notifications.forEach(n => n.unread = false);
+                this.unreadCount = 0;
+                this.updateBadge();
+                this.renderNotificationList();
+            }
+
+            clearAll() {
+                this.notifications = [];
+                this.unreadCount = 0;
+                this.updateBadge();
+                this.renderNotificationList();
+            }
+
+            playNotificationSound() {
+                // Create audio context for notification sound
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+                    
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                } catch (e) {
+                    console.log('Audio notification not supported');
+                }
+            }
+        }
+
+        // Initialize notification system
+        const notificationSystem = new NotificationSystem();
+
+        // UI Functions
+        function openNotificationCenter() {
+            document.getElementById('notificationCenter').classList.add('open');
+        }
+
+        function closeNotificationCenter() {
+            document.getElementById('notificationCenter').classList.remove('open');
+        }
+
+        function markAllRead() {
+            notificationSystem.markAllRead();
+        }
+
+        function clearAll() {
+            notificationSystem.clearAll();
+        }
+
+        function toggleSetting(toggle) {
+            toggle.classList.toggle('active');
+        }
+
+        function hideToast(closeBtn) {
+            notificationSystem.hideToast(closeBtn);
+        }
+
+        // Demo Functions
+        function simulateNotification(type) {
+            const notifications = {
+                cpa: {
+                    type: 'success',
+                    icon: '👨‍💼',
+                    title: 'New CPA Application',
+                    content: `${generateCPAName()} has submitted an application from ${generateCity()}. Specializes in ${generateSpecialty()}.`,
+                    actions: [
+                        { text: 'Review Application', type: 'primary' },
+                        { text: 'View Profile', type: 'secondary' }
+                    ]
+                },
+                sme: {
+                    type: 'info',
+                    icon: '🏢',
+                    title: 'New SME Registration',
+                    content: `${generateCompanyName()} registered seeking ${generateService()} services. Industry: ${generateIndustry()}.`,
+                    actions: [
+                        { text: 'Find Matches', type: 'primary' }
+                    ]
+                },
+                match: {
+                    type: 'success',
+                    icon: '🎯',
+                    title: 'Successful Match',
+                    content: `${generateCompanyName()} matched with ${generateCPAName()}. Match score: ${generateScore()}%`,
+                    actions: [
+                        { text: 'View Details', type: 'primary' }
+                    ]
+                },
+                payment: {
+                    type: 'success',
+                    icon: '💳',
+                    title: 'Payment Received',
+                    content: `CPA subscription payment received: $${generateAmount()} from ${generateCPAName()}`,
+                    actions: []
+                },
+                alert: {
+                    type: 'warning',
+                    icon: '⚠️',
+                    title: 'Platform Alert',
+                    content: `Guarantee claim submitted by ${generateCompanyName()}. Requires immediate review.`,
+                    actions: [
+                        { text: 'Review Claim', type: 'primary' },
+                        { text: 'Contact Client', type: 'secondary' }
+                    ]
+                }
+            };
+
+            const notification = notifications[type];
+            notificationSystem.createNotification(
+                notification.type,
+                notification.icon,
+                notification.title,
+                notification.content,
+                notification.actions
+            );
+        }
+
+        // Helper functions for demo data
+        function generateCPAName() {
+            const names = ['Sarah Chen', 'Michael Thompson', 'Emily Rodriguez', 'David Kim', 'Jessica Brown', 'Robert Wilson'];
+            return names[Math.floor(Math.random() * names.length)] + ', CPA';
+        }
+
+        function generateCompanyName() {
+            const adjectives = ['Tech', 'Digital', 'Smart', 'Global', 'Prime', 'Elite', 'Maple', 'Northern'];
+            const nouns = ['Solutions', 'Corp', 'Industries', 'Systems', 'Group', 'Enterprises'];
+            return adjectives[Math.floor(Math.random() * adjectives.length)] + ' ' + 
+                   nouns[Math.floor(Math.random() * nouns.length)];
+        }
+
+        function generateCity() {
+            const cities = ['Toronto, ON', 'Vancouver, BC', 'Calgary, AB', 'Montreal, QC', 'Ottawa, ON', 'Edmonton, AB'];
+            return cities[Math.floor(Math.random() * cities.length)];
+        }
+
+        function generateSpecialty() {
+            const specialties = ['Technology', 'Manufacturing', 'Healthcare', 'Retail', 'Real Estate', 'Professional Services'];
+            return specialties[Math.floor(Math.random() * specialties.length)];
+        }
+
+        function generateService() {
+            const services = ['Tax Preparation', 'Bookkeeping', 'Financial Advisory', 'Audit Services', 'Business Consulting'];
+            return services[Math.floor(Math.random() * services.length)];
+        }
+
+        function generateIndustry() {
+            const industries = ['Technology', 'Manufacturing', 'Retail', 'Healthcare', 'Finance', 'Construction'];
+            return industries[Math.floor(Math.random() * industries.length)];
+        }
+
+        function generateScore() {
+            return Math.floor(Math.random() * 20) + 80; // 80-99%
+        }
+
+        function generateAmount() {
+            const amounts = [149, 299, 499];
+            return amounts[Math.floor(Math.random() * amounts.length)];
+        }
+
+        // Auto-generate demo notifications
+        setInterval(() => {
+            const types = ['cpa', 'sme', 'match', 'payment'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            if (Math.random() > 0.7) { // 30% chance every 15 seconds
+                simulateNotification(type);
+            }
+        }, 15000);
+
+        // Initialize
+        console.log('🔔 CanadaAccountants Notification System loaded');
+        console.log('📱 Real-time notifications active');
+    </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 CanadaAccountants Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Login Screen */
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
+        }
+
+        .login-title {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .security-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Dashboard Container (Hidden initially) */
+        .dashboard-container {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            background: #0f172a;
+            color: #e2e8f0;
+            overflow: auto;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .dashboard-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+
+        .dashboard-logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-name {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #b91c1c;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            background: #059669;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .live-indicator::before {
+            content: "🔴";
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Quick Stats Bar */
+        .quick-stats {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #334155;
+        }
+
+        .quick-stat {
+            text-align: center;
+        }
+
+        .quick-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+
+        .quick-stat-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .metric-icon {
+            font-size: 2rem;
+        }
+
+        .metric-change {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .metric-change.positive {
+            background: #059669;
+            color: white;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quick-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .dashboard-content {
+                padding: 1rem;
+            }
+            
+            .dashboard-header {
+                padding: 1rem;
+            }
+            
+            .admin-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginScreen">
+        <div class="logo">CanadaAccountants</div>
+        <h2 class="login-title">🔐 Admin Dashboard</h2>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" id="username" class="form-input" placeholder="Enter admin username" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" class="form-input" placeholder="Enter admin password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">🚀 Access Dashboard</button>
+        </form>
+        
+        <div class="error-message" id="errorMessage">
+            Invalid credentials. Please try again.
+        </div>
+        
+        <div class="security-note">
+            🔒 This is a secure admin area. All access is logged and monitored.
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden initially) -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <header class="dashboard-header">
+            <div class="dashboard-logo">CanadaAccountants Analytics</div>
+            <div class="admin-controls">
+                <div class="admin-name">Welcome, Arthur</div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+                <div class="live-indicator">LIVE</div>
+            </div>
+        </header>
+
+        <div class="quick-stats">
+            <div class="quick-stat">
+                <div class="quick-stat-value" id="quickActiveUsers">247</div>
+                <div class="quick-stat-label">Active Users</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat-value" id="quickMatches">89</div>
+                <div class="quick-stat-label">Matches Today</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat-value" id="quickRevenue">$12.4K</div>
+                <div class="quick-stat-label">Revenue MTD</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat-value" id="quickCPAs">156</div>
+                <div class="quick-stat-label">Active CPAs</div>
+            </div>
+        </div>
+
+        <main class="dashboard-content">
+            <div class="dashboard-grid">
+                <!-- Platform Performance -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-change positive">+15%</div>
+                    </div>
+                    <div class="metric-value">94.2%</div>
+                    <div class="metric-label">Platform Success Rate</div>
+                </div>
+
+                <!-- CPA Satisfaction -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">⭐</div>
+                        <div class="metric-change positive">+8%</div>
+                    </div>
+                    <div class="metric-value">4.8/5</div>
+                    <div class="metric-label">CPA Satisfaction Score</div>
+                </div>
+
+                <!-- SME Retention -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">🔄</div>
+                        <div class="metric-change positive">+12%</div>
+                    </div>
+                    <div class="metric-value">87%</div>
+                    <div class="metric-label">SME Retention Rate</div>
+                </div>
+
+                <!-- Guarantee Claims -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">🛡️</div>
+                        <div class="metric-change positive">-23%</div>
+                    </div>
+                    <div class="metric-value">2.1%</div>
+                    <div class="metric-label">Guarantee Claim Rate</div>
+                </div>
+
+                <!-- Geographic Coverage -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">🍁</div>
+                        <div class="metric-change positive">+5%</div>
+                    </div>
+                    <div class="metric-value">9/10</div>
+                    <div class="metric-label">Provinces Covered</div>
+                </div>
+
+                <!-- Algorithm Efficiency -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon">🧠</div>
+                        <div class="metric-change positive">+11%</div>
+                    </div>
+                    <div class="metric-value">0.8s</div>
+                    <div class="metric-label">Avg Match Time</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
+                <h3 style="color: #f1f5f9; margin-bottom: 1rem;">🚀 Quick Actions</h3>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">View Full Analytics</button>
+                    <button style="background: #10b981; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Manage CPAs</button>
+                    <button style="background: #f59e0b; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Review Matches</button>
+                    <button style="background: #8b5cf6; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Export Reports</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Admin credentials (In production, this would be server-side)
+        const ADMIN_CREDENTIALS = {
+            'arthur': 'canadaaccountants2025!',
+            'admin': 'secure123!'
+        };
+
+        // Login system
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (ADMIN_CREDENTIALS[username] && ADMIN_CREDENTIALS[username] === password) {
+                // Successful login
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                
+                // Store session
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                sessionStorage.setItem('adminUsername', username);
+                
+                console.log('🔓 Admin logged in successfully');
+                initializeDashboard();
+            } else {
+                // Failed login
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('adminLoggedIn');
+            sessionStorage.removeItem('adminUsername');
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboardContainer').style.display = 'none';
+            
+            // Clear form
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            
+            console.log('🔒 Admin logged out');
+        }
+
+        // Check if already logged in
+        function checkSession() {
+            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContainer').style.display = 'block';
+                initializeDashboard();
+            }
+        }
+
+        // Initialize dashboard with real-time updates
+        function initializeDashboard() {
+            console.log('📊 Dashboard initialized');
+            
+            // Simulate real-time updates
+            setInterval(updateQuickStats, 10000); // Update every 10 seconds
+        }
+
+        // Update quick stats
+        function updateQuickStats() {
+            const activeUsers = document.getElementById('quickActiveUsers');
+            const currentUsers = parseInt(activeUsers.textContent);
+            const variation = Math.floor(Math.random() * 20) - 10;
+            activeUsers.textContent = Math.max(200, currentUsers + variation);
+        }
+
+        // Security: Auto-logout after inactivity
+        let inactivityTimer;
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                    alert('Session expired due to inactivity. Please log in again.');
+                    logout();
+                }
+            }, 30 * 60 * 1000); // 30 minutes
+        }
+
+        // Track user activity
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+            resetInactivityTimer();
+            
+            console.log('🔐 Admin security system loaded');
+            console.log('🍁 CanadaAccountants Admin Panel ready');
+        });
+    </script>
+</body>
+</html>

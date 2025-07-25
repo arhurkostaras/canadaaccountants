@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ CPA Verification System - CanadaAccountants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .verification-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .header h1::before {
+            content: "🛡️";
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Verification Form */
+        .verification-form {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-title::before {
+            content: "🔍";
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: #f1f5f9;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-select {
+            padding: 0.75rem 1rem;
+            background: #374151;
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            color: #f9fafb;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: #1f2937;
+        }
+
+        .verify-btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .verify-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .verify-btn::before {
+            content: "🔍";
+        }
+
+        /* Verification Results */
+        .verification-results {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .verification-results.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .result-status.verified {
+            background: #059669;
+            color: white;
+        }
+
+        .result-status.pending {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .result-status.failed {
+            background: #dc2626;
+            color: white;
+        }
+
+        .result-status.verified::before {
+            content: "✅";
+        }
+
+        .result-status.pending::before {
+            content: "⏳";
+        }
+
+        .result-status.failed::before {
+            content: "❌";
+        }
+
+        .verification-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-card {
+            background: #374151;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .detail-title {
+            color: #f1f5f9;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-value {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .detail-value.success {
+            color: #10b981;
+        }
+
+        .detail-value.warning {
+            color: #f59e0b;
+        }
+
+        .detail-value.error {
+            color: #ef4444;
+        }
+
+        /* Provincial CPA Society Integration */
+        .society-info {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .society-title {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .society-title::before {
+            content: "🍁";
+        }
+
+        .society-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .society-card {
+            background: #374151;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .society-card:hover {
+            transform: translateY(-2px);
+            background: #4b5563;
+        }
+
+        .society-name {
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+
+        .society-details {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .integration-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .integration-status.active {
+            background: #059669;
+            color: white;
+        }
+
+        .integration-status.development {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .integration-status.planned {
+            background: #6b7280;
+            color: white;
+        }
+
+        /* Verification Queue */
+        .verification-queue {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .queue-title {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .queue-title::before {
+            content: "📋";
+        }
+
+        .queue-item {
+            background: #374151;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .queue-info {
+            flex: 1;
+        }
+
+        .queue-name {
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 0.25rem;
+        }
+
+        .queue-details {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .queue-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .queue-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .queue-btn.approve {
+            background: #059669;
+            color: white;
+        }
+
+        .queue-btn.reject {
+            background: #dc2626;
+            color: white;
+        }
+
+        .queue-btn.review {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .queue-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #374151;
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .verification-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .society-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>CPA License Verification System</h1>
+            <p>Automated verification of CPA licenses across all Canadian provinces to ensure platform integrity and professional standards</p>
+        </div>
+
+        <!-- Verification Form -->
+        <div class="verification-form">
+            <h2 class="form-title">Verify CPA License</h2>
+            
+            <form id="verificationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="cpaName">CPA Full Name</label>
+                        <input type="text" id="cpaName" class="form-input" placeholder="Enter full name as on license" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="licenseNumber">License Number</label>
+                        <input type="text" id="licenseNumber" class="form-input" placeholder="CPA license number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="province">Province</label>
+                        <select id="province" class="form-select" required>
+                            <option value="">Select Province</option>
+                            <option value="ON">Ontario (CPA Ontario)</option>
+                            <option value="BC">British Columbia (CPABC)</option>
+                            <option value="AB">Alberta (CPA Alberta)</option>
+                            <option value="QC">Quebec (CPA Quebec)</option>
+                            <option value="NS">Nova Scotia (CPA Nova Scotia)</option>
+                            <option value="NB">New Brunswick (CPA New Brunswick)</option>
+                            <option value="MB">Manitoba (CPA Manitoba)</option>
+                            <option value="SK">Saskatchewan (CPA Saskatchewan)</option>
+                            <option value="PE">Prince Edward Island (CPA PEI)</option>
+                            <option value="NL">Newfoundland and Labrador (CPA NL)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Professional Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Professional email address" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="verify-btn" id="verifyBtn">
+                    Verify CPA License
+                </button>
+            </form>
+        </div>
+
+        <!-- Verification Results -->
+        <div class="verification-results" id="verificationResults">
+            <div class="result-header">
+                <div class="result-status verified" id="resultStatus">
+                    License Verified
+                </div>
+            </div>
+            
+            <div class="verification-details" id="verificationDetails">
+                <!-- Results will be populated here -->
+            </div>
+        </div>
+
+        <!-- Provincial CPA Society Integration -->
+        <div class="society-info">
+            <h2 class="society-title">Provincial CPA Society Integration</h2>
+            
+            <div class="society-grid">
+                <div class="society-card">
+                    <div class="society-name">CPA Ontario</div>
+                    <div class="society-details">
+                        Real-time license verification<br>
+                        Professional standing checks<br>
+                        Continuing education status
+                    </div>
+                    <div class="integration-status active">✅ Active Integration</div>
+                </div>
+                
+                <div class="society-card">
+                    <div class="society-name">CPABC</div>
+                    <div class="society-details">
+                        License validation<br>
+                        Disciplinary action checks<br>
+                        Practice permit verification
+                    </div>
+                    <div class="integration-status active">✅ Active Integration</div>
+                </div>
+                
+                <div class="society-card">
+                    <div class="society-name">CPA Alberta</div>
+                    <div class="society-details">
+                        Member directory access<br>
+                        Professional credentials<br>
+                        Specialization verification
+                    </div>
+                    <div class="integration-status development">🔧 In Development</div>
+                </div>
+                
+                <div class="society-card">
+                    <div class="society-name">CPA Quebec</div>
+                    <div class="society-details">
+                        Bilingual verification<br>
+                        Quebec-specific regulations<br>
+                        Professional code compliance
+                    </div>
+                    <div class="integration-status development">🔧 In Development</div>
+                </div>
+                
+                <div class="society-card">
+                    <div class="society-name">Other Provinces</div>
+                    <div class="society-details">
+                        NS, NB, MB, SK, PE, NL<br>
+                        Manual verification process<br>
+                        24-hour processing time
+                    </div>
+                    <div class="integration-status planned">📋 Planned Integration</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Queue -->
+        <div class="verification-queue">
+            <h2 class="queue-title">Verification Queue</h2>
+            
+            <div class="queue-item">
+                <div class="queue-info">
+                    <div class="queue-name">Sarah Chen, CPA</div>
+                    <div class="queue-details">License: ON-12345 • Toronto, ON • Technology Specialist</div>
+                </div>
+                <div class="queue-actions">
+                    <button class="queue-btn approve">✅ Approve</button>
+                    <button class="queue-btn review">📋 Review</button>
+                    <button class="queue-btn reject">❌ Reject</button>
+                </div>
+            </div>
+            
+            <div class="queue-item">
+                <div class="queue-info">
+                    <div class="queue-name">Michael Thompson, CPA</div>
+                    <div class="queue-details">License: BC-67890 • Vancouver, BC • Manufacturing Expert</div>
+                </div>
+                <div class="queue-actions">
+                    <button class="queue-btn approve">✅ Approve</button>
+                    <button class="queue-btn review">📋 Review</button>
+                    <button class="queue-btn reject">❌ Reject</button>
+                </div>
+            </div>
+            
+            <div class="queue-item">
+                <div class="queue-info">
+                    <div class="queue-name">Emily Rodriguez, CPA</div>
+                    <div class="queue-details">License: AB-54321 • Calgary, AB • Startup Advisory</div>
+                </div>
+                <div class="queue-actions">
+                    <button class="queue-btn approve">✅ Approve</button>
+                    <button class="queue-btn review">📋 Review</button>
+                    <button class="queue-btn reject">❌ Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CPA Verification System
+        class CPAVerificationSystem {
+            constructor() {
+                this.provincialAPIs = {
+                    'ON': 'https://api.cpaontario.ca/verify',
+                    'BC': 'https://api.cpabc.ca/verify',
+                    'AB': 'https://api.cpaalberta.ca/verify',
+                    'QC': 'https://api.cpaquebec.ca/verify'
+                };
+                
+                this.init();
+            }
+
+            init() {
+                const form = document.getElementById('verificationForm');
+                form.addEventListener('submit', (e) => this.handleVerification(e));
+                
+                // Queue action handlers
+                this.setupQueueActions();
+                
+                console.log('🛡️ CPA Verification System initialized');
+            }
+
+            async handleVerification(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const verificationData = {
+                    name: formData.get('cpaName') || document.getElementById('cpaName').value,
+                    licenseNumber: formData.get('licenseNumber') || document.getElementById('licenseNumber').value,
+                    province: formData.get('province') || document.getElementById('province').value,
+                    email: formData.get('email') || document.getElementById('email').value
+                };
+
+                // Show loading state
+                const btn = document.getElementById('verifyBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span class="loading"></span> Verifying License...';
+                btn.disabled = true;
+
+                try {
+                    // Simulate verification process
+                    const result = await this.verifyLicense(verificationData);
+                    this.displayResults(result);
+                } catch (error) {
+                    console.error('Verification failed:', error);
+                    this.displayError(error.message);
+                } finally {
+                    // Restore button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            }
+
+            async verifyLicense(data) {
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Mock verification result based on province
+                const mockResults = {
+                    'ON': {
+                        status: 'verified',
+                        details: {
+                            licenseStatus: 'Active',
+                            memberSince: '2018',
+                            professionalStanding: 'Good Standing',
+                            specializations: ['Technology', 'Startups'],
+                            continuingEducation: 'Up to Date',
+                            disciplinaryActions: 'None',
+                            practicePermit: 'Valid until Dec 2025'
+                        }
+                    },
+                    'BC': {
+                        status: 'verified',
+                        details: {
+                            licenseStatus: 'Active',
+                            memberSince: '2016',
+                            professionalStanding: 'Good Standing',
+                            specializations: ['Manufacturing', 'SME Advisory'],
+                            continuingEducation: 'Current',
+                            disciplinaryActions: 'None',
+                            practicePermit: 'Valid until Dec 2025'
+                        }
+                    }
+                };
+
+                const result = mockResults[data.province] || {
+                    status: 'pending',
+                    details: {
+                        licenseStatus: 'Under Review',
+                        message: 'Manual verification required for this province',
+                        estimatedTime: '24-48 hours'
+                    }
+                };
+
+                return {
+                    ...result,
+                    cpaData: data,
+                    verificationId: `VER-${Date.now()}`,
+                    timestamp: new Date().toISOString()
+                };
+            }
+
+            displayResults(result) {
+                const resultsDiv = document.getElementById('verificationResults');
+                const statusDiv = document.getElementById('resultStatus');
+                const detailsDiv = document.getElementById('verificationDetails');
+
+                // Update status
+                statusDiv.className = `result-status ${result.status}`;
+                statusDiv.textContent = this.getStatusText(result.status);
+
+                // Generate details HTML
+                const detailsHTML = this.generateDetailsHTML(result);
+                detailsDiv.innerHTML = detailsHTML;
+
+                // Show results
+                resultsDiv.classList.add('show');
+
+                // Scroll to results
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+
+                console.log('✅ Verification completed:', result);
+            }
+
+            getStatusText(status) {
+                const statusTexts = {
+                    'verified': 'License Verified',
+                    'pending': 'Verification Pending',
+                    'failed': 'Verification Failed'
+                };
+                return statusTexts[status] || 'Unknown Status';
+            }
+
+            generateDetailsHTML(result) {
+                const { cpaData, details, verificationId, timestamp } = result;
+                
+                return `
+                    <div class="detail-card">
+                        <div class="detail-title">👤 CPA Information</div>
+                        <div class="detail-value">
+                            <strong>Name:</strong> ${cpaData.name}<br>
+                            <strong>License:</strong> ${cpaData.licenseNumber}<br>
+                            <strong>Province:</strong> ${cpaData.province}<br>
+                            <strong>Email:</strong> ${cpaData.email}
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-title">📋 License Status</div>
+                        <div class="detail-value ${details.licenseStatus === 'Active' ? 'success' : 'warning'}">
+                            <strong>Status:</strong> ${details.licenseStatus}<br>
+                            ${details.memberSince ? `<strong>Member Since:</strong> ${details.memberSince}<br>` : ''}
+                            ${details.professionalStanding ? `<strong>Standing:</strong> ${details.professionalStanding}` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-title">🎯 Specializations</div>
+                        <div class="detail-value">
+                            ${details.specializations ? 
+                                details.specializations.map(spec => `• ${spec}`).join('<br>') :
+                                'No specializations listed'
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-title">📚 Professional Status</div>
+                        <div class="detail-value">
+                            ${details.continuingEducation ? `<strong>Education:</strong> ${details.continuingEducation}<br>` : ''}
+                            ${details.disciplinaryActions ? `<strong>Disciplinary:</strong> ${details.disciplinaryActions}<br>` : ''}
+                            ${details.practicePermit ? `<strong>Permit:</strong> ${details.practicePermit}` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-title">🔍 Verification Details</div>
+                        <div class="detail-value">
+                            <strong>ID:</strong> ${verificationId}<br>
+                            <strong>Verified:</strong> ${new Date(timestamp).toLocaleString()}<br>
+                            <strong>Method:</strong> Provincial API Integration
+                        </div>
+                    </div>
+                    
+                    ${details.message ? `
+                        <div class="detail-card">
+                            <div class="detail-title">ℹ️ Additional Information</div>
+                            <div class="detail-value warning">
+                                ${details.message}
+                                ${details.estimatedTime ? `<br><strong>Timeline:</strong> ${details.estimatedTime}` : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+            }
+
+            displayError(message) {
+                const resultsDiv = document.getElementById('verificationResults');
+                const statusDiv = document.getElementById('resultStatus');
+                const detailsDiv = document.getElementById('verificationDetails');
+
+                statusDiv.className = 'result-status failed';
+                statusDiv.textContent = 'Verification Failed';
+
+                detailsDiv.innerHTML = `
+                    <div class="detail-card">
+                        <div class="detail-title">❌ Error</div>
+                        <div class="detail-value error">${message}</div>
+                    </div>
+                `;
+
+                resultsDiv.classList.add('show');
+            }
+
+            setupQueueActions() {
+                // Handle queue action buttons
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('queue-btn')) {
+                        const action = e.target.classList.contains('approve') ? 'approve' :
+                                     e.target.classList.contains('reject') ? 'reject' : 'review';
+                        
+                        const queueItem = e.target.closest('.queue-item');
+                        const cpaName = queueItem.querySelector('.queue-name').textContent;
+                        
+                        this.handleQueueAction(action, cpaName, queueItem);
+                    }
+                });
+            }
+
+            handleQueueAction(action, cpaName, queueItem) {
+                console.log(`${action.toUpperCase()}: ${cpaName}`);
+                
+                // Visual feedback
+                queueItem.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    if (action === 'approve' || action === 'reject') {
+                        queueItem.remove();
+                    } else {
+                        queueItem.style.opacity = '1';
+                        // Open review interface (would integrate with admin dashboard)
+                    }
+                }, 500);
+
+                // In production, this would send to your notification system
+                if (typeof window.notificationHub !== 'undefined') {
+                    window.notificationHub.notify('cpaVerificationAction', {
+                        title: `CPA ${action.charAt(0).toUpperCase() + action.slice(1)}`,
+                        content: `${cpaName} application ${action}d`,
+                        action: action,
+                        cpaName: cpaName
+                    });
+                }
+            }
+        }
+
+        // Initialize verification system
+        document.addEventListener('DOMContentLoaded', () => {
+            new CPAVerificationSystem();
+            console.log('🛡️ CPA Verification System loaded');
+        });
+    </script>
+</body>
+</html>

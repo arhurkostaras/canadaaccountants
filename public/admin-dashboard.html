@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 CanadaAccountants Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+
+        /* Header */
+        .header {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+
+        .logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            background: #059669;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .live-indicator::before {
+            content: "🔴";
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Metric Cards */
+        .metric-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .metric-icon {
+            font-size: 2rem;
+        }
+
+        .metric-change {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .metric-change.positive {
+            background: #059669;
+            color: white;
+        }
+
+        .metric-change.negative {
+            background: #dc2626;
+            color: white;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-trend {
+            height: 40px;
+            background: #334155;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-btn {
+            padding: 0.25rem 0.75rem;
+            background: #334155;
+            border: none;
+            border-radius: 6px;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chart-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .chart-container {
+            height: 300px;
+            background: #334155;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .activity-icon.registration {
+            background: #3b82f6;
+        }
+
+        .activity-icon.match {
+            background: #10b981;
+        }
+
+        .activity-icon.payment {
+            background: #f59e0b;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            color: #64748b;
+            font-size: 0.75rem;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+
+        .data-table th {
+            background: #334155;
+            color: #f1f5f9;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .data-table td {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Status Indicators */
+        .status-online {
+            color: #10b981;
+        }
+
+        .status-offline {
+            color: #64748b;
+        }
+
+        .status-busy {
+            color: #f59e0b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                padding: 1rem;
+            }
+            
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .metric-value {
+                font-size: 2rem;
+            }
+        }
+
+        /* Real-time animations */
+        .updating {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            to { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+        }
+
+        .new-data {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CanadaAccountants Analytics</div>
+        <div class="live-indicator">LIVE</div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Key Metrics Grid -->
+        <div class="dashboard-grid">
+            <!-- Active Users -->
+            <div class="metric-card updating">
+                <div class="metric-header">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-change positive">+12%</div>
+                </div>
+                <div class="metric-value" id="activeUsers">247</div>
+                <div class="metric-label">Active Users (Last 24h)</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 78%"></div>
+                </div>
+            </div>
+
+            <!-- New Registrations -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📝</div>
+                    <div class="metric-change positive">+8%</div>
+                </div>
+                <div class="metric-value" id="newRegistrations">34</div>
+                <div class="metric-label">New Registrations Today</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 65%"></div>
+                </div>
+            </div>
+
+            <!-- Successful Matches -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-change positive">+15%</div>
+                </div>
+                <div class="metric-value" id="successfulMatches">89</div>
+                <div class="metric-label">Successful Matches This Week</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 89%"></div>
+                </div>
+            </div>
+
+            <!-- Revenue -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-change positive">+23%</div>
+                </div>
+                <div class="metric-value" id="revenue">$12,450</div>
+                <div class="metric-label">Revenue This Month</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 92%"></div>
+                </div>
+            </div>
+
+            <!-- Algorithm Performance -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🧠</div>
+                    <div class="metric-change positive">+5%</div>
+                </div>
+                <div class="metric-value" id="algorithmSuccess">94.2%</div>
+                <div class="metric-label">Algorithm Success Rate</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 94%"></div>
+                </div>
+            </div>
+
+            <!-- CPA Utilization -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-change positive">+7%</div>
+                </div>
+                <div class="metric-value" id="cpaUtilization">76%</div>
+                <div class="metric-label">CPA Utilization Rate</div>
+                <div class="metric-trend">
+                    <div class="trend-line" style="width: 76%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <!-- Main Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">📈 Platform Activity (Real-time)</div>
+                    <div class="chart-controls">
+                        <button class="chart-btn active">1H</button>
+                        <button class="chart-btn">24H</button>
+                        <button class="chart-btn">7D</button>
+                        <button class="chart-btn">30D</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activityChart" width="600" height="300"></canvas>
+                </div>
+            </div>
+
+            <!-- Live Activity Feed -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">🔔 Live Activity Feed</div>
+                </div>
+                <div class="activity-feed" id="activityFeed">
+                    <div class="activity-item new-data">
+                        <div class="activity-icon registration">👤</div>
+                        <div class="activity-content">
+                            <div class="activity-text">New SME registered: TechStart Solutions</div>
+                            <div class="activity-time">2 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon match">🎯</div>
+                        <div class="activity-content">
+                            <div class="activity-text">Match created: Sarah Chen, CPA ↔ Manufacturing Co.</div>
+                            <div class="activity-time">5 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon payment">💳</div>
+                        <div class="activity-content">
+                            <div class="activity-text">Payment received: CPA Premium subscription</div>
+                            <div class="activity-time">8 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon registration">👤</div>
+                        <div class="activity-content">
+                            <div class="activity-text">New CPA application: Michael Thompson</div>
+                            <div class="activity-time">12 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon match">🎯</div>
+                        <div class="activity-content">
+                            <div class="activity-text">Algorithm demo completed: 93% match success</div>
+                            <div class="activity-time">15 minutes ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Tables -->
+        <div class="dashboard-grid">
+            <!-- Top Performing CPAs -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">🏆 Top Performing CPAs</div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>CPA Name</th>
+                            <th>Matches</th>
+                            <th>Success Rate</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sarah Chen</td>
+                            <td>23</td>
+                            <td>96.7%</td>
+                            <td><span class="status-online">●</span> Online</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Thompson</td>
+                            <td>19</td>
+                            <td>94.2%</td>
+                            <td><span class="status-busy">●</span> Busy</td>
+                        </tr>
+                        <tr>
+                            <td>Emily Rodriguez</td>
+                            <td>16</td>
+                            <td>91.8%</td>
+                            <td><span class="status-online">●</span> Online</td>
+                        </tr>
+                        <tr>
+                            <td>David Kim</td>
+                            <td>14</td>
+                            <td>89.3%</td>
+                            <td><span class="status-offline">●</span> Offline</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent SME Activity -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">🏢 Recent SME Activity</div>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Industry</th>
+                            <th>Stage</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TechStart Solutions</td>
+                            <td>Technology</td>
+                            <td>Profile Setup</td>
+                            <td><span style="color: #f59e0b;">●</span> High</td>
+                        </tr>
+                        <tr>
+                            <td>Maple Manufacturing</td>
+                            <td>Manufacturing</td>
+                            <td>Matched</td>
+                            <td><span style="color: #10b981;">●</span> Normal</td>
+                        </tr>
+                        <tr>
+                            <td>Northern Retail Corp</td>
+                            <td>Retail</td>
+                            <td>Under Review</td>
+                            <td><span style="color: #ef4444;">●</span> Urgent</td>
+                        </tr>
+                        <tr>
+                            <td>Green Energy Ltd</td>
+                            <td>Energy</td>
+                            <td>Connected</td>
+                            <td><span style="color: #10b981;">●</span> Normal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Real-time data simulation
+        function updateMetrics() {
+            // Simulate real-time updates
+            const activeUsers = document.getElementById('activeUsers');
+            const newRegistrations = document.getElementById('newRegistrations');
+            const successfulMatches = document.getElementById('successfulMatches');
+            const revenue = document.getElementById('revenue');
+            const algorithmSuccess = document.getElementById('algorithmSuccess');
+            const cpaUtilization = document.getElementById('cpaUtilization');
+
+            // Add small random variations to simulate real-time changes
+            const currentActiveUsers = parseInt(activeUsers.textContent);
+            const variation = Math.floor(Math.random() * 10) - 5; // -5 to +5
+            
+            if (Math.random() > 0.7) { // 30% chance of update
+                activeUsers.textContent = Math.max(200, currentActiveUsers + variation);
+                activeUsers.parentElement.classList.add('updating');
+                setTimeout(() => {
+                    activeUsers.parentElement.classList.remove('updating');
+                }, 2000);
+            }
+        }
+
+        // Activity feed updates
+        function addActivityItem() {
+            const activities = [
+                { icon: 'registration', text: 'New SME registered: ' + generateCompanyName(), time: 'Just now' },
+                { icon: 'match', text: 'Match created: ' + generateCPAName() + ' ↔ ' + generateCompanyName(), time: 'Just now' },
+                { icon: 'payment', text: 'Payment received: CPA subscription renewal', time: 'Just now' },
+                { icon: 'match', text: 'Algorithm demo completed: 95% match success', time: 'Just now' }
+            ];
+
+            const activity = activities[Math.floor(Math.random() * activities.length)];
+            const feed = document.getElementById('activityFeed');
+            
+            const newItem = document.createElement('div');
+            newItem.className = 'activity-item new-data';
+            newItem.innerHTML = `
+                <div class="activity-icon ${activity.icon}">
+                    ${activity.icon === 'registration' ? '👤' : activity.icon === 'match' ? '🎯' : '💳'}
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">${activity.text}</div>
+                    <div class="activity-time">${activity.time}</div>
+                </div>
+            `;
+
+            feed.insertBefore(newItem, feed.firstChild);
+            
+            // Remove old items if too many
+            while (feed.children.length > 8) {
+                feed.removeChild(feed.lastChild);
+            }
+        }
+
+        // Generate random names for demo
+        function generateCompanyName() {
+            const adjectives = ['Tech', 'Digital', 'Smart', 'Global', 'Prime', 'Elite', 'Maple', 'Northern'];
+            const nouns = ['Solutions', 'Corp', 'Industries', 'Systems', 'Group', 'Enterprises', 'Innovations'];
+            return adjectives[Math.floor(Math.random() * adjectives.length)] + ' ' + 
+                   nouns[Math.floor(Math.random() * nouns.length)];
+        }
+
+        function generateCPAName() {
+            const firstNames = ['Sarah', 'Michael', 'Emily', 'David', 'Jessica', 'Robert', 'Linda', 'James'];
+            const lastNames = ['Chen', 'Thompson', 'Rodriguez', 'Kim', 'Brown', 'Wilson', 'Davis', 'Miller'];
+            return firstNames[Math.floor(Math.random() * firstNames.length)] + ' ' + 
+                   lastNames[Math.floor(Math.random() * lastNames.length)] + ', CPA';
+        }
+
+        // Chart simulation (basic)
+        function initChart() {
+            const canvas = document.getElementById('activityChart');
+            const ctx = canvas.getContext('2d');
+            
+            // Simple line chart simulation
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            const points = [];
+            for (let i = 0; i < 50; i++) {
+                points.push({
+                    x: (canvas.width / 50) * i,
+                    y: canvas.height - (Math.random() * canvas.height * 0.8 + canvas.height * 0.1)
+                });
+            }
+            
+            ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(points[i].x, points[i].y);
+            }
+            ctx.stroke();
+            
+            // Add gradient fill
+            ctx.globalCompositeOperation = 'destination-over';
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+            gradient.addColorStop(1, 'rgba(59, 130, 246, 0.05)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Chart control buttons
+        document.querySelectorAll('.chart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Reinitialize chart with new timeframe
+                initChart();
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            
+            // Update metrics every 5 seconds
+            setInterval(updateMetrics, 5000);
+            
+            // Add new activity every 10-20 seconds
+            setInterval(addActivityItem, Math.random() * 10000 + 10000);
+            
+            console.log('🔥 CanadaAccountants Analytics Dashboard loaded');
+            console.log('📊 Real-time monitoring active');
+            console.log('🎯 Admin dashboard ready');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍁 Join CanadaAccountants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .user-type-selector {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .user-type-selector h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .type-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .type-button {
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .type-button:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .type-button.active {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .type-button h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .type-button p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .type-button.active p {
+            opacity: 0.9;
+        }
+
+        /* CPA Pricing Styles */
+        .cpa-pricing {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-header h3 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .pricing-card.featured {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .price-note {
+            font-size: 0.7rem;
+            color: #059669;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.3rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #059669;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .revenue-example {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .revenue-example h4 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .calculation {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+        }
+
+        .calculation:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            color: #059669;
+            font-size: 1rem;
+        }
+
+        /* Registration Form Styles */
+        .registration-form {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, #b91c1c, #dc2626);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        .back-button {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .type-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍁 Join CanadaAccountants</h1>
+            <p>Canada's Premier CPA Matching Platform</p>
+            <div class="guarantee-badge">
+                🎯 3 qualified business leads in 3 months or 100% money back
+            </div>
+        </div>
+
+        <!-- Step 1: User Type Selection -->
+        <div class="user-type-selector" id="userTypeSelector">
+            <h2>Choose Your Registration Type</h2>
+            <div class="type-buttons">
+                <div class="type-button" onclick="selectUserType('cpa')">
+                    <h3>🏢 I'm a CPA</h3>
+                    <p>Join our exclusive network and get qualified leads</p>
+                </div>
+                <div class="type-button" onclick="selectUserType('business')">
+                    <h3>💼 I'm a Business</h3>
+                    <p>Find pre-screened CPAs within 24 hours - Completely FREE</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: CPA Pricing (Only shown for CPAs) -->
+        <div class="cpa-pricing" id="cpaPricing">
+            <div class="pricing-header">
+                <h3>CPA Membership Pricing</h3>
+                <p>Transparent, success-based pricing designed for your growth</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Standard</h4>
+                    <div class="price">$149<span class="price-period">/month</span></div>
+                    <div class="price-note">+ 3% of first year contracts</div>
+                    <ul class="pricing-features">
+                        <li>Access to qualified leads</li>
+                        <li>Basic profile listing</li>
+                        <li>Client matching algorithm</li>
+                        <li>Performance analytics</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h4>Premium</h4>
+                    <div class="price">$299<span class="price-period">/month</span></div>
+                    <div class="price-note">+ 3% of first year contracts</div>
+                    <ul class="pricing-features">
+                        <li>Featured placement</li>
+                        <li>Priority lead distribution</li>
+                        <li>Enhanced profile</li>
+                        <li>Priority support</li>
+                        <li>Advanced analytics</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <h4>Success Bonus</h4>
+                    <div class="price">$300<span class="price-period">/project</span></div>
+                    <div class="price-note">Additional earning opportunity</div>
+                    <ul class="pricing-features">
+                        <li>Bonus per completion</li>
+                        <li>Quality assurance program</li>
+                        <li>Performance recognition</li>
+                        <li>Referral network access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="revenue-example">
+                <h4>💰 Revenue Example: Standard Member (3 clients/month)</h4>
+                <div class="calculation">
+                    <span>Monthly subscription:</span>
+                    <span>-$149</span>
+                </div>
+                <div class="calculation">
+                    <span>Client revenue (3 × $25,000):</span>
+                    <span>$75,000</span>
+                </div>
+                <div class="calculation">
+                    <span>Platform fee (3%):</span>
+                    <span>-$2,250</span>
+                </div>
+                <div class="calculation">
+                    <span>Success bonuses (3 × $300):</span>
+                    <span>+$900</span>
+                </div>
+                <div class="calculation">
+                    <span><strong>Net monthly revenue:</strong></span>
+                    <span><strong>$74,501</strong></span>
+                </div>
+            </div>
+
+            <button class="submit-button" onclick="proceedToForm()">Continue to Application</button>
+        </div>
+
+        <!-- Step 3: Registration Form -->
+        <div class="registration-form" id="registrationForm">
+            <h2 id="formTitle">Complete Your Registration</h2>
+            
+            <form id="applicationForm">
+                <!-- CPA Form Fields -->
+                <div id="cpaFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Selected Plan:</label>
+                        <select id="selectedPlan" name="plan">
+                            <option value="standard">Standard - $149/month</option>
+                            <option value="premium">Premium - $299/month</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CPA License Number *</label>
+                            <input type="text" name="licenseNumber" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Province *</label>
+                        <select name="province" required>
+                            <option value="">Select Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Years of Experience *</label>
+                        <select name="experience" required>
+                            <option value="">Select Experience</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="4-7">4-7 years</option>
+                            <option value="8-15">8-15 years</option>
+                            <option value="15+">15+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Specializations (Check all that apply)</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="tax"> Tax Planning</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="audit"> Audit & Assurance</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="bookkeeping"> Bookkeeping</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="financial"> Financial Planning</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="payroll"> Payroll Services</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="specializations" value="consulting"> Business Consulting</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Form Fields -->
+                <div id="businessFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Contact Name *</label>
+                            <input type="text" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Business Name *</label>
+                            <input type="text" name="businessName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Employees *</label>
+                            <select name="employees" required>
+                                <option value="">Select Range</option>
+                                <option value="5-10">5-10 employees</option>
+                                <option value="11-25">11-25 employees</option>
+                                <option value="26-50">26-50 employees</option>
+                                <option value="51-100">51-100 employees</option>
+                                <option value="100+">100+ employees</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Industry *</label>
+                        <select name="industry" required>
+                            <option value="">Select Industry</option>
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="retail">Retail</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="construction">Construction</option>
+                            <option value="professional">Professional Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Services Needed (Check all that apply)</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="tax"> Tax Preparation</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="bookkeeping"> Bookkeeping</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="payroll"> Payroll Management</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="financial"> Financial Planning</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="audit"> Audit Services</label>
+                            <label style="font-weight: normal;"><input type="checkbox" name="services" value="consulting"> Business Consulting</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Urgency *</label>
+                        <select name="urgency" required>
+                            <option value="">Select Timeline</option>
+                            <option value="immediate">Immediate (within 1 week)</option>
+                            <option value="month">Within 1 month</option>
+                            <option value="quarter">Within 3 months</option>
+                            <option value="planning">Just planning ahead</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <button type="button" class="back-button" onclick="goBack()">Back</button>
+                    <button type="submit" class="submit-button" id="submitButton">Complete Registration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentUserType = '';
+        let currentStep = 1;
+
+        function selectUserType(type) {
+            currentUserType = type;
+            
+            // Update button states
+            document.querySelectorAll('.type-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.type-button').classList.add('active');
+
+            // Show next step after short delay
+            setTimeout(() => {
+                if (type === 'cpa') {
+                    showCPAPricing();
+                } else {
+                    showRegistrationForm();
+                }
+            }, 500);
+        }
+
+        function showCPAPricing() {
+            document.getElementById('userTypeSelector').style.display = 'none';
+            document.getElementById('cpaPricing').style.display = 'block';
+            currentStep = 2;
+        }
+
+        function proceedToForm() {
+            document.getElementById('cpaPricing').style.display = 'none';
+            showRegistrationForm();
+        }
+
+        function showRegistrationForm() {
+            document.getElementById('userTypeSelector').style.display = 'none';
+            document.getElementById('cpaPricing').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'block';
+            
+            if (currentUserType === 'cpa') {
+                document.getElementById('formTitle').textContent = 'Complete Your CPA Application';
+                document.getElementById('cpaFields').style.display = 'block';
+                document.getElementById('businessFields').style.display = 'none';
+                document.getElementById('submitButton').textContent = 'Submit CPA Application';
+                currentStep = 3;
+            } else {
+                document.getElementById('formTitle').textContent = 'Tell Us About Your Business';
+                document.getElementById('cpaFields').style.display = 'none';
+                document.getElementById('businessFields').style.display = 'block';
+                document.getElementById('submitButton').textContent = 'Find My CPAs';
+                currentStep = 2;
+            }
+        }
+
+        function goBack() {
+            if (currentUserType === 'cpa' && currentStep === 3) {
+                // Go back to pricing
+                document.getElementById('registrationForm').style.display = 'none';
+                document.getElementById('cpaPricing').style.display = 'block';
+                currentStep = 2;
+            } else if (currentUserType === 'cpa' && currentStep === 2) {
+                // Go back to user type selection
+                document.getElementById('cpaPricing').style.display = 'none';
+                document.getElementById('userTypeSelector').style.display = 'block';
+                currentStep = 1;
+            } else {
+                // Business users go directly back to user type selection
+                document.getElementById('registrationForm').style.display = 'none';
+                document.getElementById('userTypeSelector').style.display = 'block';
+                currentStep = 1;
+            }
+            
+            // Reset user type selection
+            if (currentStep === 1) {
+                currentUserType = '';
+                document.querySelectorAll('.type-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    // Handle multiple values (checkboxes)
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            data.userType = currentUserType;
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            if (currentUserType === 'cpa') {
+                alert('Thank you for your CPA application! We will review your information and contact you within 24 hours to complete the verification process.');
+            } else {
+                alert('Thank you! We will connect you with 3-5 pre-screened CPAs within 24 hours. Check your email for confirmation.');
+            }
+            
+            // Reset form
+            this.reset();
+            goBackToStart();
+        });
+
+        function goBackToStart() {
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('cpaPricing').style.display = 'none';
+            document.getElementById('userTypeSelector').style.display = 'block';
+            currentUserType = '';
+            currentStep = 1;
+            document.querySelectorAll('.type-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>
