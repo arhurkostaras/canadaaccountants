@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Perfect CPA Matches - CanadaAccountants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .maple-leaf {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .loading-screen {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .loading-animation {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #22c55e;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .match-summary {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .match-summary h2 {
+            color: #22c55e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #22c55e;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .matches-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .match-rank {
+            position: absolute;
+            top: -10px;
+            left: 2rem;
+            background: #22c55e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .match-rank.second { background: #f59e0b; }
+        .match-rank.third { background: #8b5cf6; }
+
+        .match-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .cpa-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .cpa-firm {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .cpa-location {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+        }
+
+        .cpa-location::before {
+            content: "📍";
+            margin-right: 0.5rem;
+        }
+
+        .compatibility-score {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem;
+            min-width: 120px;
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(#22c55e var(--score-percentage), rgba(255, 255, 255, 0.2) 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .score-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .confidence-badge {
+            background: #22c55e;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .confidence-badge.high { background: #22c55e; }
+        .confidence-badge.medium { background: #f59e0b; }
+        .confidence-badge.low { background: #ef4444; }
+
+        .match-reasons {
+            margin-bottom: 1.5rem;
+        }
+
+        .match-reasons h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #22c55e;
+        }
+
+        .reasons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .reason-item {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .reason-item::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .score-breakdown {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.8rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .score-breakdown h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .score-bars {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .score-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-bar-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            min-width: 120px;
+        }
+
+        .score-bar-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: #22c55e;
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .score-bar-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .next-steps {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .next-steps h2 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .next-steps p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .guarantee-reminder {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 0.8rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .guarantee-reminder h3 {
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .match-header {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="maple-leaf">🍁</span>
+                CanadaAccountants
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="guarantee.html">Guarantee</a></li>
+                <li><a href="metrics.html">Metrics</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-animation"></div>
+        <div class="loading-text">🤖 AI Analyzing Your Requirements...</div>
+        <div class="loading-subtext">Evaluating 200+ CPAs to find your perfect matches</div>
+    </div>
+
+    <!-- Results Content -->
+    <div id="resultsContent" class="container hidden">
+        <div class="header">
+            <h1>🍁 Your Perfect CPA Matches</h1>
+            <p class="subtitle" id="analysisSubtitle">Our AI analyzed your requirements and found your top matches</p>
+        </div>
+
+        <div class="match-summary">
+            <h2>🎯 AI Matching Complete</h2>
+            <p id="summaryText">We've identified exceptional CPAs who are perfectly suited for your business needs.</p>
+            
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalAnalyzed">200+</span>
+                    <span class="stat-label">CPAs Analyzed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Perfect Matches</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="topScore">--</span>
+                    <span class="stat-label">Top Match Score</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24hrs</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="matches-grid" id="matchesContainer">
+            <!-- Matches will be dynamically generated here -->
+        </div>
+
+        <div class="next-steps">
+            <h2>🚀 What Happens Next?</h2>
+            <p>We've sent your requirements to all three CPAs. You'll receive personalized proposals within 24 hours. Choose the CPA that feels like the best fit and start your partnership!</p>
+            
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Questions? Contact Us</a>
+                <a href="find-cpa.html" class="btn btn-secondary">Find More CPAs</a>
+            </div>
+
+            <div class="guarantee-reminder">
+                <h3>🛡️ 3 Leads or Money Back Guarantee</h3>
+                <p>If we don't provide you with 3 qualified leads within your first 3 months, you get your money back in full - no questions asked!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AI Matching Algorithm (Integrated)
+        class CPAMatchingAlgorithm {
+            constructor() {
+                this.weights = {
+                    industryMatch: 0.30,
+                    sizeComplexity: 0.25,
+                    serviceAlignment: 0.20,
+                    geographic: 0.10,
+                    budgetFit: 0.08,
+                    availabilityUrgency: 0.05,
+                    communicationStyle: 0.02
+                };
+
+                this.industrySpecializations = {
+                    'tech': ['software', 'saas', 'it-services', 'fintech', 'ecommerce'],
+                    'retail': ['ecommerce', 'brick-mortar', 'inventory-heavy', 'consumer-goods'],
+                    'professional': ['consulting', 'legal-services', 'marketing', 'service-based'],
+                    'manufacturing': ['production', 'supply-chain', 'industrial', 'distribution'],
+                    'healthcare': ['medical', 'dental', 'wellness', 'healthcare-services'],
+                    'other': ['construction', 'real-estate', 'food-service', 'transportation']
+                };
+
+                this.serviceComplexity = {
+                    'bookkeeping': 1,
+                    'tax-prep': 2,
+                    'tax-planning': 4,
+                    'financial-analysis': 3,
+                    'cfo-services': 5,
+                    'audit': 4
+                };
+            }
+
+            findMatches(businessProfile, availableCPAs) {
+                console.log('🎯 Starting AI matching process...', businessProfile);
+                
+                const scoredMatches = availableCPAs.map(cpa => {
+                    const score = this.calculateCompatibilityScore(businessProfile, cpa);
+                    const reasoning = this.generateMatchReasoning(businessProfile, cpa, score);
+                    
+                    return {
+                        cpa: cpa,
+                        compatibilityScore: score.total,
+                        scoreBreakdown: score.breakdown,
+                        matchReasoning: reasoning,
+                        confidenceLevel: this.calculateConfidence(score.breakdown)
+                    };
+                });
+
+                return scoredMatches.sort((a, b) => b.compatibilityScore - a.compatibilityScore);
+            }
+
+            calculateCompatibilityScore(business, cpa) {
+                const breakdown = {
+                    industryMatch: this.scoreIndustryMatch(business, cpa),
+                    sizeComplexity: this.scoreSizeComplexity(business, cpa),
+                    serviceAlignment: this.scoreServiceAlignment(business, cpa),
+                    geographic: this.scoreGeographic(business, cpa),
+                    budgetFit: this.scoreBudgetFit(business, cpa),
+                    availabilityUrgency: this.scoreAvailabilityUrgency(business, cpa),
+                    communicationStyle: this.scoreCommunicationStyle(business, cpa)
+                };
+
+                const total = Object.keys(breakdown).reduce((sum, key) => {
+                    return sum + (breakdown[key] * this.weights[key]);
+                }, 0);
+
+                return {
+                    total: Math.round(total * 100),
+                    breakdown: breakdown
+                };
+            }
+
+            scoreIndustryMatch(business, cpa) {
+                const businessIndustry = business.question_1;
+                const cpaSpecializations = cpa.industrySpecializations || [];
+                
+                if (cpaSpecializations.includes(businessIndustry)) return 1.0;
+                
+                const relatedIndustries = this.industrySpecializations[businessIndustry] || [];
+                const hasRelatedExperience = relatedIndustries.some(industry => 
+                    cpaSpecializations.includes(industry)
+                );
+                
+                if (hasRelatedExperience) return 0.7;
+                if (cpaSpecializations.includes('general-business')) return 0.4;
+                return 0.1;
+            }
+
+            scoreSizeComplexity(business, cpa) {
+                const businessSize = business.question_2;
+                const cpaExperience = cpa.clientSizeExperience || [];
+                
+                const sizeComplexity = {
+                    'startup': 1, 'small': 2, 'medium': 3, 'large': 4
+                };
+                
+                const businessComplexity = sizeComplexity[businessSize];
+                const cpaMaxComplexity = Math.max(...cpaExperience.map(size => sizeComplexity[size] || 0));
+                
+                if (cpaMaxComplexity >= businessComplexity) {
+                    return cpaExperience.includes(businessSize) ? 1.0 : 0.8;
+                }
+                return 0.3;
+            }
+
+            scoreServiceAlignment(business, cpa) {
+                const requiredServices = business.question_3 || [];
+                const cpaServices = cpa.serviceOfferings || [];
+                
+                if (requiredServices.length === 0) return 0.5;
+                
+                const matchedServices = requiredServices.filter(service => 
+                    cpaServices.includes(service)
+                );
+                
+                return matchedServices.length / requiredServices.length;
+            }
+
+            scoreGeographic(business, cpa) {
+                const businessLocation = business['business-location'];
+                const locationPreference = business.question_5;
+                const cpaLocation = cpa.location;
+                const cpaRemoteCapable = cpa.remoteCapable || false;
+                
+                const businessCity = this.extractCity(businessLocation);
+                const cpaCity = this.extractCity(cpaLocation);
+                const isLocalCPA = businessCity === cpaCity;
+                
+                switch (locationPreference) {
+                    case 'local-only': return isLocalCPA ? 1.0 : 0.1;
+                    case 'local-preferred': return isLocalCPA ? 1.0 : (cpaRemoteCapable ? 0.6 : 0.2);
+                    case 'remote-ok': return isLocalCPA ? 1.0 : (cpaRemoteCapable ? 0.9 : 0.3);
+                    default: return 0.5;
+                }
+            }
+
+            scoreBudgetFit(business, cpa) {
+                const businessBudget = business.question_6;
+                const cpaRateRange = cpa.rateRange || 'budget-1000';
+                
+                const budgetValues = {
+                    'budget-500': 400, 'budget-1000': 750, 'budget-2500': 1750, 'budget-high': 3500
+                };
+                
+                const businessMax = budgetValues[businessBudget] || 750;
+                const cpaRate = budgetValues[cpaRateRange] || 750;
+                
+                if (cpaRate <= businessMax) return 1.0;
+                if (cpaRate <= businessMax * 1.2) return 0.7;
+                if (cpaRate <= businessMax * 1.5) return 0.4;
+                return 0.1;
+            }
+
+            scoreAvailabilityUrgency(business, cpa) {
+                const businessUrgency = business.question_4;
+                const cpaAvailability = cpa.availability || 'month';
+                
+                const urgencyLevels = {
+                    'immediate': 4, 'soon': 3, 'month': 2, 'flexible': 1
+                };
+                
+                const businessUrgencyLevel = urgencyLevels[businessUrgency];
+                const cpaAvailabilityLevel = urgencyLevels[cpaAvailability];
+                
+                if (cpaAvailabilityLevel >= businessUrgencyLevel) return 1.0;
+                if (cpaAvailabilityLevel >= businessUrgencyLevel - 1) return 0.6;
+                return 0.2;
+            }
+
+            scoreCommunicationStyle(business, cpa) {
+                const businessStyle = business.question_7;
+                const cpaStyle = cpa.communicationStyle || 'responsive';
+                
+                if (businessStyle === cpaStyle) return 1.0;
+                
+                const compatiblePairs = {
+                    'detailed': ['proactive'],
+                    'summary': ['responsive'],
+                    'proactive': ['detailed', 'summary'],
+                    'responsive': ['summary', 'detailed']
+                };
+                
+                if (compatiblePairs[businessStyle]?.includes(cpaStyle)) return 0.8;
+                return 0.5;
+            }
+
+            generateMatchReasoning(business, cpa, score) {
+                const reasons = [];
+                const breakdown = score.breakdown;
+                
+                if (breakdown.industryMatch >= 0.8) {
+                    reasons.push(`Specializes in ${business.question_1} industry`);
+                } else if (breakdown.industryMatch >= 0.5) {
+                    reasons.push(`Has related industry experience`);
+                }
+                
+                if (breakdown.sizeComplexity >= 0.8) {
+                    reasons.push(`Experienced with ${business.question_2} businesses`);
+                }
+                
+                if (breakdown.serviceAlignment >= 0.8) {
+                    reasons.push(`Offers all your required services`);
+                } else if (breakdown.serviceAlignment >= 0.6) {
+                    reasons.push(`Offers most of your required services`);
+                }
+                
+                if (breakdown.geographic >= 0.9) {
+                    reasons.push(`Local to your area`);
+                } else if (breakdown.geographic >= 0.6) {
+                    reasons.push(`Provides remote services`);
+                }
+                
+                if (breakdown.budgetFit >= 0.8) {
+                    reasons.push(`Within your budget range`);
+                }
+                
+                return reasons.slice(0, 4);
+            }
+
+            calculateConfidence(breakdown) {
+                const highScores = Object.values(breakdown).filter(score => score >= 0.8).length;
+                const mediumScores = Object.values(breakdown).filter(score => score >= 0.6 && score < 0.8).length;
+                
+                if (highScores >= 4) return 'Very High';
+                if (highScores >= 2 && mediumScores >= 2) return 'High';
+                if (highScores >= 1 && mediumScores >= 3) return 'Medium';
+                return 'Low';
+            }
+
+            extractCity(location) {
+                if (!location) return '';
+                return location.split(',')[0].trim().toLowerCase();
+            }
+        }
+
+        // CPA Database
+        const cpaDatabase = [
+            {
+                id: 'cpa_001',
+                name: 'Sarah Chen, CPA',
+                firm: 'TechAccounting Solutions',
+                location: 'Toronto, ON',
+                email: 'sarah@techaccounting.ca',
+                industrySpecializations: ['tech', 'software', 'saas'],
+                clientSizeExperience: ['startup', 'small', 'medium'],
+                serviceOfferings: ['bookkeeping', 'tax-prep', 'tax-planning', 'financial-analysis'],
+                rateRange: 'budget-1000',
+                availability: 'soon',
+                communicationStyle: 'proactive',
+                remoteCapable: true,
+                yearsExperience: 8,
+                clientCount: 45
+            },
+            {
+                id: 'cpa_002',
+                name: 'Michael Dubois, CPA',
+                firm: 'Dubois & Associates',
+                location: 'Montreal, QC',
+                email: 'michael@duboisassoc.ca',
+                industrySpecializations: ['professional', 'consulting', 'service-based'],
+                clientSizeExperience: ['small', 'medium', 'large'],
+                serviceOfferings: ['bookkeeping', 'tax-prep', 'audit', 'cfo-services'],
+                rateRange: 'budget-2500',
+                availability: 'month',
+                communicationStyle: 'detailed',
+                remoteCapable: false,
+                yearsExperience: 12,
+                clientCount: 65
+            },
+            {
+                id: 'cpa_003',
+                name: 'Jennifer Wu, CPA',
+                firm: 'Startup Financial Partners',
+                location: 'Vancouver, BC',
+                email: 'jennifer@startupfp.ca',
+                industrySpecializations: ['tech', 'startup', 'ecommerce'],
+                clientSizeExperience: ['startup', 'small'],
+                serviceOfferings: ['bookkeeping', 'tax-planning', 'cfo-services', 'financial-analysis'],
+                rateRange: 'budget-1000',
+                availability: 'immediate',
+                communicationStyle: 'summary',
+                remoteCapable: true,
+                yearsExperience: 6,
+                clientCount: 32
+            },
+            {
+                id: 'cpa_004',
+                name: 'David Thompson, CPA',
+                firm: 'Northern Business Solutions',
+                location: 'Calgary, AB',
+                email: 'david@northernbs.ca',
+                industrySpecializations: ['manufacturing', 'industrial', 'energy'],
+                clientSizeExperience: ['medium', 'large'],
+                serviceOfferings: ['bookkeeping', 'tax-prep', 'audit', 'financial-analysis'],
+                rateRange: 'budget-2500',
+                availability: 'soon',
+                communicationStyle: 'detailed',
+                remoteCapable: true,
+                yearsExperience: 15,
+                clientCount: 78
+            },
+            {
+                id: 'cpa_005',
+                name: 'Lisa Park, CPA',
+                firm: 'Healthcare Financial Group',
+                location: 'Toronto, ON',
+                email: 'lisa@healthcarefg.ca',
+                industrySpecializations: ['healthcare', 'medical', 'professional'],
+                clientSizeExperience: ['small', 'medium'],
+                serviceOfferings: ['bookkeeping', 'tax-prep', 'tax-planning'],
+                rateRange: 'budget-1000',
+                availability: 'flexible',
+                communicationStyle: 'responsive',
+                remoteCapable: false,
+                yearsExperience: 10,
+                clientCount: 55
+            }
+        ];
+
+        // Main Application Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate loading and run matching
+            setTimeout(() => {
+                runMatching();
+            }, 2000);
+        });
+
+        function runMatching() {
+            // Get questionnaire data from URL params or localStorage
+            const businessData = getBusinessData();
+            
+            // Run AI matching algorithm
+            const algorithm = new CPAMatchingAlgorithm();
+            const matches = algorithm.findMatches(businessData, cpaDatabase);
+            
+            // Display results
+            displayResults(matches, businessData);
+            
+            // Hide loading, show results
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('resultsContent').classList.remove('hidden');
+        }
+
+        function getBusinessData() {
+            // Try to get data from URL parameters or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // If no data available, use sample data for demo
+            return {
+                question_1: urlParams.get('industry') || 'tech',
+                question_2: urlParams.get('size') || 'small',
+                question_3: (urlParams.get('services') || 'bookkeeping,tax-planning,financial-analysis').split(','),
+                question_4: urlParams.get('urgency') || 'soon',
+                question_5: urlParams.get('location_pref') || 'remote-ok',
+                question_6: urlParams.get('budget') || 'budget-1000',
+                question_7: urlParams.get('communication') || 'proactive',
+                'business-location': urlParams.get('business_location') || 'Toronto, ON'
+            };
+        }
+
+        function displayResults(matches, businessData) {
+            const topMatches = matches.slice(0, 3);
+            const topScore = topMatches[0]?.compatibilityScore || 0;
+            
+            // Update summary stats
+            document.getElementById('topScore').textContent = topScore + '%';
+            document.getElementById('totalAnalyzed').textContent = cpaDatabase.length;
+            
+            // Update summary text based on business type
+            const industryText = {
+                'tech': 'technology business',
+                'retail': 'retail business',
+                'professional': 'professional services',
+                'manufacturing': 'manufacturing business',
+                'healthcare': 'healthcare practice',
+                'other': 'business'
+            };
+            
+            const businessType = industryText[businessData.question_1] || 'business';
+            document.getElementById('summaryText').textContent = 
+                `We've identified exceptional CPAs who are perfectly suited for your ${businessType} needs.`;
+            
+            // Generate match cards
+            const container = document.getElementById('matchesContainer');
+            container.innerHTML = '';
+            
+            topMatches.forEach((match, index) => {
+                const card = createMatchCard(match, index);
+                container.appendChild(card);
+            });
+        }
+
+        function createMatchCard(match, index) {
+            const { cpa, compatibilityScore, scoreBreakdown, matchReasoning, confidenceLevel } = match;
+            
+            const rankLabels = ['🏆 Best Match', '🥈 Excellent Match', '🥉 Strong Match'];
+            const rankClasses = ['', 'second', 'third'];
+            
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            
+            card.innerHTML = `
+                <div class="match-rank ${rankClasses[index]}">${rankLabels[index]}</div>
+                
+                <div class="match-header">
+                    <div class="cpa-info">
+                        <h3>${cpa.name}</h3>
+                        <div class="cpa-firm">${cpa.firm}</div>
+                        <div class="cpa-location">${cpa.location} • ${cpa.yearsExperience} years experience</div>
+                    </div>
+                    
+                    <div class="compatibility-score">
+                        <div class="score-circle" style="--score-percentage: ${compatibilityScore}%;">
+                            <span class="score-number">${compatibilityScore}%</span>
+                        </div>
+                        <div class="confidence-badge ${confidenceLevel.toLowerCase().replace(' ', '')}">${confidenceLevel} Confidence</div>
+                    </div>
+                </div>
+
+                <div class="match-reasons">
+                    <h4>🎯 Why This is a ${index === 0 ? 'Perfect' : index === 1 ? 'Excellent' : 'Strong'} Match</h4>
+                    <div class="reasons-list">
+                        ${matchReasoning.map(reason => `<div class="reason-item">${reason}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="score-breakdown">
+                    <h4>📊 Compatibility Breakdown</h4>
+                    <div class="score-bars">
+                        ${createScoreBars(scoreBreakdown)}
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="mailto:${cpa.email}" class="btn btn-primary">Connect with ${cpa.name.split(',')[0]}</a>
+                    <a href="#" class="btn btn-secondary">View Full Profile</a>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function createScoreBars(breakdown) {
+            const labels = {
+                industryMatch: 'Industry Match',
+                sizeComplexity: 'Business Size',
+                serviceAlignment: 'Services',
+                geographic: 'Location',
+                budgetFit: 'Budget Fit'
+            };
+            
+            return Object.entries(labels).map(([key, label]) => {
+                const score = Math.round(breakdown[key] * 100);
+                return `
+                    <div class="score-bar">
+                        <span class="score-bar-label">${label}</span>
+                        <div class="score-bar-track">
+                            <div class="score-bar-fill" style="width: ${score}%"></div>
+                        </div>
+                        <span class="score-bar-value">${score}%</span>
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
