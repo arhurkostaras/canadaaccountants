@@ -625,12 +625,28 @@
         }
 
         function submitForm() {
-            // In real implementation, this would send data to your matching algorithm
-            console.log('Form submitted with answers:', answers);
-            
-            // Show success message or redirect to results
-            alert('Thank you! We\'re analyzing your responses to find your perfect CPA matches. You\'ll receive an email with your top 3 matches within 24 hours.');
-        }
+    // Collect form data
+    const formData = collectFormData();
+    
+    // Store data for results page
+    localStorage.setItem('cpaMatchingData', JSON.stringify(formData));
+    
+    // Redirect to results
+    window.location.href = 'cpa-matches.html';
+}
+
+function collectFormData() {
+    return {
+        businessType: document.querySelector('input[name="business-type"]:checked')?.value || '',
+        revenue: document.querySelector('input[name="revenue"]:checked')?.value || '',
+        services: Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value),
+        urgency: document.querySelector('input[name="urgency"]:checked')?.value || '',
+        location: document.querySelector('input[name="location"]:checked')?.value || '',
+        budget: document.querySelector('input[name="budget"]:checked')?.value || '',
+        communication: document.querySelector('input[name="communication"]:checked')?.value || '',
+        requirements: document.querySelector('textarea[name="requirements"]')?.value || ''
+    };
+}
 
         // Handle option selections
         document.addEventListener('click', function(e) {
