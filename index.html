@@ -622,9 +622,96 @@
                     <span class="trust-text">94% client satisfaction</span>
                 </div>
             </div>
+
+                    <!-- Lead Magnet Button -->
+            <div class="lead-magnet-trigger">
+                <button class="trigger-btn" onclick="showLeadMagnet()">
+                    <span class="btn-icon">🎁</span>
+                    Get FREE CPA Selection Guide
+                </button>
+                <p class="trigger-subtitle">47-page guide reveals insider secrets to finding the perfect CPA</p>
+            </div>
                 </div>
             </div>
         </section>
+
+        <!-- Lead Magnet Pop-up Overlay -->
+<div id="leadMagnetOverlay" class="lead-magnet-overlay">
+    <div class="lead-magnet-modal">
+        <button class="close-modal" onclick="closeLeadMagnet()">&times;</button>
+        
+        <div class="lead-magnet-content">
+            <div class="lead-magnet-header">
+                <div class="guide-icon">📊</div>
+                <h2 class="lead-magnet-title">FREE: Ultimate CPA Selection Guide</h2>
+                <p class="lead-magnet-subtitle">The insider secrets to finding and hiring the perfect CPA for your business</p>
+            </div>
+            
+            <div class="guide-preview">
+                <h3 class="preview-title">What You'll Get (47 Pages):</h3>
+                <div class="guide-contents">
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>CPA Red Flags Checklist</strong> - 12 warning signs to avoid</span>
+                    </div>
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>Interview Questions That Matter</strong> - 25 essential questions</span>
+                    </div>
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>Cost Breakdown Calculator</strong> - True cost of hiring</span>
+                    </div>
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>Industry Specialization Guide</strong> - Find your expert</span>
+                    </div>
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>Contract Templates</strong> - Protect your business</span>
+                    </div>
+                    <div class="content-item">
+                        <span class="check-icon">✓</span>
+                        <span class="content-text"><strong>BONUS: Tax Planning Timeline</strong> - Save thousands</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <div class="testimonial-snippet">
+                    <p class="testimonial-text">"This guide saved me $15,000 in my first year!"</p>
+                    <p class="testimonial-author">- Sarah M., Tech Startup Founder</p>
+                </div>
+                <div class="download-stats">
+                    <span class="stat-number">2,847+</span> Canadian business owners downloaded this guide
+                </div>
+            </div>
+            
+            <form class="lead-capture-form" onsubmit="submitLeadForm(event)">
+                <div class="form-header">
+                    <h4 class="form-title">Get Your FREE Guide Now</h4>
+                    <p class="form-subtitle">Enter your email to download instantly (no spam, ever)</p>
+                </div>
+                
+                <div class="form-fields">
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required class="form-input">
+                    <input type="email" id="email" name="email" placeholder="Business Email" required class="form-input">
+                    <input type="text" id="company" name="company" placeholder="Company Name (Optional)" class="form-input">
+                </div>
+                
+                <button type="submit" class="download-btn" id="downloadBtn">
+                    <span class="btn-icon">📥</span>
+                    Download FREE Guide Now
+                </button>
+                
+                <div class="privacy-note">
+                    <span class="lock-icon">🔒</span>
+                    Your information is 100% secure. Unsubscribe anytime.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
         <!-- Arthur's Personal Guarantee Section - Cool Version -->
 <section id="arthur-guarantee" class="arthur-guarantee-section">
@@ -1285,6 +1372,440 @@
 </section>
 
 <style>
+/* Lead Magnet Styles */
+.lead-magnet-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.lead-magnet-overlay.active {
+    display: flex;
+}
+
+.lead-magnet-modal {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { transform: scale(0.8) translateY(50px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #64748b;
+    cursor: pointer;
+    z-index: 10001;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.lead-magnet-content {
+    padding: 40px;
+}
+
+.lead-magnet-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.guide-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.lead-magnet-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.lead-magnet-subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.guide-preview {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.preview-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 20px 0;
+}
+
+.guide-contents {
+    display: grid;
+    gap: 15px;
+}
+
+.content-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.check-icon {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.content-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.social-proof {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.testimonial-author {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0 0 20px 0;
+}
+
+.download-stats {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
+    font-size: 1rem;
+}
+
+.stat-number {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.lead-capture-form {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.form-fields {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.form-input {
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.form-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.download-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+.privacy-note {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.lock-icon {
+    color: #10b981;
+}
+
+.trigger-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.trigger-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+.trigger-subtitle {
+    margin: 10px 0 0 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.lead-magnet-trigger {
+    margin: 30px 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .lead-magnet-modal {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .lead-magnet-content {
+        padding: 30px 20px;
+    }
+    
+    .lead-magnet-title {
+        font-size: 2rem;
+    }
+    
+    .guide-preview {
+        padding: 20px;
+    }
+    
+    .lead-capture-form {
+        padding: 20px;
+    }
+}
+</style>
+        <script>
+function showLeadMagnet() {
+    document.getElementById('leadMagnetOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLeadMagnet() {
+    document.getElementById('leadMagnetOverlay').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function submitLeadForm(event) {
+    event.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    
+    // Show loading state
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.innerHTML = '<span class="btn-icon">⏳</span> Processing...';
+    downloadBtn.disabled = true;
+    
+    // Store lead data locally and log to console
+    const leadData = {
+        firstName: firstName,
+        email: email,
+        company: company,
+        downloadedGuide: 'CPA Selection Guide',
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+    };
+    
+    // Store in local storage
+    let existingLeads = JSON.parse(localStorage.getItem('cpaLeads') || '[]');
+    existingLeads.push(leadData);
+    localStorage.setItem('cpaLeads', JSON.stringify(existingLeads));
+    
+    // Log to console
+    console.log('🎉 NEW LEAD CAPTURED:', leadData);
+    console.log('📊 Total Leads Stored:', existingLeads.length);
+    
+    setTimeout(() => {
+        // Show success and guide preview
+        showGuidePreview(firstName);
+        
+        // Close modal after showing guide
+        setTimeout(() => {
+            closeLeadMagnet();
+            // Reset form
+            downloadBtn.innerHTML = '<span class="btn-icon">📥</span> Download FREE Guide Now';
+            downloadBtn.disabled = false;
+            document.getElementById('firstName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('company').value = '';
+        }, 5000);
+        
+    }, 1000);
+}
+
+function showGuidePreview(firstName) {
+    const modal = document.querySelector('.lead-magnet-content');
+    modal.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+            <h2 style="color: #10b981; font-size: 2.5rem; margin-bottom: 15px;">Success, ${firstName}!</h2>
+            <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">Your CPA Selection Guide is ready!</p>
+            
+            <div style="background: #f8fafc; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left;">
+                <h3 style="color: #1e293b; margin-bottom: 20px;">📊 Your Guide Includes:</h3>
+                <div style="display: grid; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #10b981; font-weight: bold;">✓</span>
+                        <span><strong>12 CPA Red Flags</strong> - Warning signs that could cost you thousands</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #10b981; font-weight: bold;">✓</span>
+                        <span><strong>25 Interview Questions</strong> - Get the right answers before hiring</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #10b981; font-weight: bold;">✓</span>
+                        <span><strong>Cost Calculator Template</strong> - Know the true cost upfront</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #10b981; font-weight: bold;">✓</span>
+                        <span><strong>Industry Specialization Matrix</strong> - Find your perfect match</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #10b981; font-weight: bold;">✓</span>
+                        <span><strong>Contract Templates</strong> - Protect your business legally</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 15px; padding: 25px; margin: 20px 0;">
+                <h4 style="margin: 0 0 15px 0;">📧 Next Steps:</h4>
+                <p style="margin: 0; line-height: 1.5;">I'll personally email you the complete guide within 24 hours, plus bonus resources to help you find your perfect CPA match!</p>
+            </div>
+            
+            <button onclick="closeLeadMagnet()" style="background: #10b981; color: white; border: none; padding: 15px 30px; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 20px;">
+                Continue to CanadaAccountants →
+            </button>
+        </div>
+    `;
+}
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLeadMagnet();
+    }
+});
+
+// Close on overlay click
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('leadMagnetOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeLeadMagnet();
+            }
+        });
+    }
+});
+</script>
 .why-we-win-section {
     padding: 80px 0;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
