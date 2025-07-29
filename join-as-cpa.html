@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Canada's Most Exclusive CPA Network | CanadaAccountants</title>
+    <meta name="description" content="Join an elite network of Canadian CPAs receiving pre-qualified, high-value business leads. 15% acceptance rate. Apply now.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #10b981;
+        }
+
+        .business-link {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .business-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exclusive-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1f2937;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #94a3b8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .step-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #10b981;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .step-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .step-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .feature-check {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: #10b981;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .benefit-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Application Form Section */
+        .application {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .form-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: #10b981;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #10b981;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .form-container {
+                margin: 0 20px;
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                🍁 CanadaAccountants
+            </a>
+            <ul class="nav-links">
+                <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#apply" class="nav-link">Apply Now</a></li>
+                <li><a href="/" class="business-link">For Businesses</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="exclusive-badge">
+                👑 EXCLUSIVE NETWORK - Only 15% Acceptance Rate
+            </div>
+            <h1 class="hero-title">Join Canada's Most Exclusive CPA Network</h1>
+            <p class="hero-subtitle">
+                Stop chasing leads. Start receiving pre-qualified, high-value clients who are actively seeking YOUR expertise. 
+                Elite CPAs see 40%+ revenue growth in their first year.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">$47K+</div>
+                    <div class="stat-label">Average Revenue Increase</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15%</div>
+                    <div class="stat-label">CPA Acceptance Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">94%</div>
+                    <div class="stat-label">CPA Satisfaction Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">48hrs</div>
+                    <div class="stat-label">Average Match Time</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#apply" class="cta-button">
+                    🚀 Apply for Elite Status Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How You Get Quality Clients</h2>
+                <p class="section-subtitle">
+                    Our AI-powered platform delivers pre-qualified, high-value business leads directly to your inbox. 
+                    No more cold calling, expensive ads, or time-wasting prospects.
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🏆</div>
+                    <h3 class="step-title">Join Our Elite Network</h3>
+                    <p class="step-description">
+                        Complete our rigorous verification process and set your specializations, availability, and ideal client profile.
+                    </p>
+                    <ul class="step-features">
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Professional credential verification</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Industry specialization setup</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Ideal client profile creation</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Availability & capacity settings</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🎯</div>
+                    <h3 class="step-title">AI Delivers Perfect Clients</h3>
+                    <p class="step-description">
+                        Our algorithm matches businesses to YOUR specific expertise and automatically sends you qualified leads that fit your criteria.
+                    </p>
+                    <ul class="step-features">
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Pre-qualified business leads only</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Industry & size matching</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Budget & timeline pre-screening</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Geographic preference matching</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📈</div>
+                    <h3 class="step-title">Grow Your Practice</h3>
+                    <p class="step-description">
+                        Connect with matched businesses instantly. Higher close rates, premium clients, and predictable revenue growth.
+                    </p>
+                    <ul class="step-features">
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Direct client contact information</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Warm introduction emails</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>60%+ higher close rates</span>
+                        </li>
+                        <li class="step-feature">
+                            <span class="feature-check">✓</span>
+                            <span>Ongoing support & optimization</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Why Elite CPAs Choose Us</h2>
+                <p class="section-subtitle" style="color: #cbd5e1;">
+                    Stop wasting time and money on ineffective marketing. Join the network that delivers results.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Predictable Revenue Growth</h3>
+                    <p class="benefit-description">
+                        Our CPAs see an average of 40% revenue increase in their first year. Stop feast-or-famine cycles and build consistent growth.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Pre-Qualified Leads Only</h3>
+                    <p class="benefit-description">
+                        No more tire-kickers or unqualified prospects. Every lead has been vetted, has budget, and needs your specific expertise.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏰</div>
+                    <h3 class="benefit-title">Save 15+ Hours Per Week</h3>
+                    <p class="benefit-description">
+                        Stop cold calling, networking events, and expensive ads. Spend your time on billable work, not business development.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">👑</div>
+                    <h3 class="benefit-title">Premium Client Base</h3>
+                    <p class="benefit-description">
+                        Work with businesses that value expertise and pay premium rates. Our clients understand the value of quality accounting.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3 class="benefit-title">Exclusive Network</h3>
+                    <p class="benefit-description">
+                        Only 15% acceptance rate ensures you're competing with the best, not fighting for scraps in overcrowded directories.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3 class="benefit-title">Zero Marketing Costs</h3>
+                    <p class="benefit-description">
+                        Stop spending thousands on ads that don't work. Our platform brings clients to you at no marketing cost.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="apply" class="application">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Apply for Elite CPA Status</h2>
+                    <p class="form-subtitle">
+                        Join Canada's most exclusive CPA network. Only 15% of applicants are accepted. 
+                        Do you have what it takes?
+                    </p>
+                </div>
+
+                <form id="cpaApplicationForm" onsubmit="submitCPAApplication(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Professional Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="firmName">Firm Name</label>
+                        <input type="text" id="firmName" name="firmName" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="province">Province *</label>
+                        <select id="province" name="province" class="form-select" required>
+                            <option value="">Select Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="experience">Years of Experience *</label>
+                        <select id="experience" name="experience" class="form-select" required>
+                            <option value="">Select Experience</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10-15">10-15 years</option>
+                            <option value="15-20">15-20 years</option>
+                            <option value="20+">20+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="specializations">Industry Specializations</label>
+                        <textarea id="specializations" name="specializations" class="form-textarea" 
+                                placeholder="e.g., Technology startups, Real estate, Manufacturing, Restaurants, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="whyJoin">Why do you want to join our exclusive network?</label>
+                        <textarea id="whyJoin" name="whyJoin" class="form-textarea" 
+                                placeholder="Tell us about your goals and what makes you an elite CPA..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        🚀 Submit Elite Application
+                    </button>
+
+                    <p class="form-note">
+                        🔒 Your information is secure. We'll review your application within 48 hours and contact you with next steps.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 CanadaAccountants. Connecting elite CPAs with premium clients across Canada.</p>
+            <div class="footer-links">
+                <a href="/" class="footer-link">For Businesses</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function submitCPAApplication(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '⏳ Processing Application...';
+            submitBtn.disabled = true;
+            
+            // Get form data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                firmName: document.getElementById('firmName').value,
+                province: document.getElementById('province').value,
+                experience: document.getElementById('experience').value,
+                specializations: document.getElementById('specializations').value,
+                whyJoin: document.getElementById('whyJoin').value,
+                applicationType: 'CPA Application',
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
+            };
+            
+            // Store locally
+            let existingApplications = JSON.parse(localStorage.getItem('cpaApplications') || '[]');
+            existingApplications.push(formData);
+            localStorage.setItem('cpaApplications', JSON.stringify(existingApplications));
+            
+            // Log to console
+            console.log('🎉 NEW CPA APPLICATION:', formData);
+            console.log('📊 Total Applications:', existingApplications.length);
+            
+            // Show success message
+            setTimeout(() => {
+                showSuccessMessage();
+            }, 1500);
+        }
+        
+        function showSuccessMessage() {
+            const formContainer = document.querySelector('.form-container');
+            formContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+                    <h2 style="color: #10b981; font-size: 2.5rem; margin-bottom: 15px;">Application Submitted!</h2>
+                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
+                        Thank you for applying to Canada's most exclusive CPA network.
+                    </p>
+                    
+                    <div style="background: #f8fafc; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left;">
+                        <h3 style="color: #1e293b; margin-bottom: 20px;">📋 Next Steps:</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #10b981; font-weight: bold;">✓</span>
+                                <span><strong>Application Review</strong> - We'll evaluate your credentials within 48 hours</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #10b981; font-weight: bold;">✓</span>
+                                <span><strong>Verification Process</strong> - Professional credential and reference checks</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #10b981; font-weight: bold;">✓</span>
+                                <span><strong>Interview Call</strong> - 15-minute qualification conversation</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: #10b981; font-weight: bold;">✓</span>
+                                <span><strong>Network Activation</strong> - Welcome to the elite network!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 15px; padding: 25px; margin: 20px 0;">
+                        <h4 style="margin: 0 0 15px 0;">📧 What Happens Next:</h4>
+                        <p style="margin: 0; line-height: 1.5;">Arthur will personally review your application and contact you within 48 hours with your acceptance status and next steps.</p>
+                    </div>
+                    
+                    <a href="/" style="display: inline-block; background: #10b981; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 20px;">
+                        Return to Homepage →
+                    </a>
+                </div>
+            `;
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
