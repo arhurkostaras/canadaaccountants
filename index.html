@@ -22,6 +22,39 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .trust-indicators {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0 0 0;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
+
+        .trust-icon {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .trust-text {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .trust-indicators {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -560,9 +593,24 @@
                     <h1>Find Your Perfect CPA in 48 Hours, Guaranteed</h1>
                     <p>Premium matching platform connecting pre-screened, verified CPAs with small and medium enterprises across Canada through cutting-edge technology</p>
                     <div class="hero-buttons">
-                        <a href="find-cpa.html" class="btn btn-primary">Find My CPA Now - Free</a>
+                        <a href="find-cpa.html" class="btn btn-primary">Find My Perfect CPA - Free</a>
                         <a href="cpa-onboarding.html" class="btn btn-secondary">Join as a CPA</a>
                     </div>
+                    <!-- Trust Indicators -->
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">15% CPA acceptance rate</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">$47,000+ avg. CPA revenue increase</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">94% client satisfaction</span>
+                </div>
+            </div>
                 </div>
             </div>
         </section>
