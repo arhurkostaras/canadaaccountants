@@ -148,6 +148,22 @@
             width: 100%;
         }
 
+        .cpa-nav-link {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: white !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .cpa-nav-link:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4) !important;
+            color: white !important;
+        }
+
         .cta-button {
             background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
             color: white;
@@ -592,6 +608,7 @@
                 <li><a href="metrics.html" onclick="closeMobileMenu()">Metrics</a></li>
                 <li><a href="#why-we-win" onclick="closeMobileMenu()">Why We Win</a></li>
                 <li><a href="contact.html" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="/join-as-cpa.html" class="cpa-nav-link" onclick="closeMobileMenu()">Join as CPA</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
