@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Our AI in Action - Canada Accountants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .demo-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            color: #10b981;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            color: #e2e8f0;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            background: rgba(51, 65, 85, 0.8);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .results-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .analysis-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .analysis-header h3 {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .factor-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .factor-card {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .factor-card h4 {
+            color: #34d399;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            background: rgba(71, 85, 105, 0.5);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .cpa-matches {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .cpa-card {
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cpa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .cpa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .cpa-info h4 {
+            color: #e2e8f0;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cpa-specialty {
+            color: #10b981;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .match-score {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cpa-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .match-reasons {
+            margin-top: 1rem;
+        }
+
+        .match-reasons h5 {
+            color: #34d399;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .reason-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .reason-tag {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .cta-section h3 {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #10b981;
+            border: 2px solid #10b981;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .demo-card {
+                padding: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">🍁 CanadaAccountants</a>
+            <a href="/" class="back-btn">← Back to Main Site</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>🤖 See Our AI in Action</h1>
+        <p>Watch our advanced algorithm analyze 30+ compatibility factors to find your perfect CPA match in real-time</p>
+    </section>
+
+    <div class="demo-container">
+        <div class="demo-card">
+            <div class="form-section">
+                <h3>📊 Tell Us About Your Business</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" placeholder="Enter your business name">
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry">
+                            <option value="">Select Industry</option>
+                            <option value="technology">Technology</option>
+                            <option value="retail">Retail</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="construction">Construction</option>
+                            <option value="professional-services">Professional Services</option>
+                            <option value="food-beverage">Food & Beverage</option>
+                            <option value="real-estate">Real Estate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="revenue">Annual Revenue</label>
+                        <select id="revenue">
+                            <option value="">Select Revenue Range</option>
+                            <option value="under-100k">Under $100K</option>
+                            <option value="100k-500k">$100K - $500K</option>
+                            <option value="500k-1m">$500K - $1M</option>
+                            <option value="1m-5m">$1M - $5M</option>
+                            <option value="5m-plus">$5M+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="employees">Number of Employees</label>
+                        <select id="employees">
+                            <option value="">Select Employee Count</option>
+                            <option value="1-5">1-5 employees</option>
+                            <option value="6-20">6-20 employees</option>
+                            <option value="21-50">21-50 employees</option>
+                            <option value="51-100">51-100 employees</option>
+                            <option value="100-plus">100+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Province</label>
+                        <select id="location">
+                            <option value="">Select Province</option>
+                            <option value="ontario">Ontario</option>
+                            <option value="quebec">Quebec</option>
+                            <option value="british-columbia">British Columbia</option>
+                            <option value="alberta">Alberta</option>
+                            <option value="manitoba">Manitoba</option>
+                            <option value="saskatchewan">Saskatchewan</option>
+                            <option value="nova-scotia">Nova Scotia</option>
+                            <option value="new-brunswick">New Brunswick</option>
+                            <option value="newfoundland">Newfoundland & Labrador</option>
+                            <option value="pei">Prince Edward Island</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="needs">Primary Accounting Needs</label>
+                        <select id="needs">
+                            <option value="">Select Primary Need</option>
+                            <option value="bookkeeping">Monthly Bookkeeping</option>
+                            <option value="tax-prep">Tax Preparation</option>
+                            <option value="financial-planning">Financial Planning</option>
+                            <option value="audit">Audit & Assurance</option>
+                            <option value="payroll">Payroll Services</option>
+                            <option value="business-advisory">Business Advisory</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="analyze-btn" onclick="analyzeMatches()">
+                <span>🔍</span>
+                Analyze My Perfect CPA Matches
+            </button>
+
+            <div class="results-section" id="resultsSection">
+                <div class="analysis-header">
+                    <h3>🎯 AI Analysis Complete</h3>
+                    <p style="color: #94a3b8;">Our algorithm analyzed 30+ compatibility factors</p>
+                </div>
+
+                <div class="factor-analysis" id="factorAnalysis">
+                    <!-- Factors will be populated by JavaScript -->
+                </div>
+
+                <div class="cpa-matches" id="cpaMatches">
+                    <!-- CPA matches will be populated by JavaScript -->
+                </div>
+
+                <div class="cta-section">
+                    <h3>Ready to Connect with Your Perfect CPA?</h3>
+                    <p>Get your FREE CPA Selection Guide and connect with pre-screened, elite CPAs in 48 hours</p>
+                    <div class="cta-buttons">
+                        <a href="/" class="cta-btn cta-primary">
+                            📖 Get FREE CPA Selection Guide
+                        </a>
+                        <a href="/join-as-cpa.html" class="cta-btn cta-secondary">
+                            👔 Are You a CPA? Join Our Network
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeMatches() {
+            const button = document.querySelector('.analyze-btn');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            // Get form values
+            const formData = {
+                businessName: document.getElementById('businessName').value || 'Your Business',
+                industry: document.getElementById('industry').value,
+                revenue: document.getElementById('revenue').value,
+                employees: document.getElementById('employees').value,
+                location: document.getElementById('location').value,
+                needs: document.getElementById('needs').value
+            };
+
+            // Check if required fields are filled
+            if (!formData.industry || !formData.revenue || !formData.location) {
+                alert('Please fill in at least Industry, Revenue, and Province to see your matches!');
+                return;
+            }
+
+            // Disable button and show loading
+            button.disabled = true;
+            button.innerHTML = '<span>🔄</span> Analyzing...';
+
+            // Simulate AI processing
+            setTimeout(() => {
+                displayFactorAnalysis(formData);
+                setTimeout(() => {
+                    displayCPAMatches(formData);
+                    resultsSection.classList.add('show');
+                    button.disabled = false;
+                    button.innerHTML = '<span>🔍</span> Analyze Again';
+                }, 1000);
+            }, 2000);
+        }
+
+        function displayFactorAnalysis(formData) {
+            const factorAnalysis = document.getElementById('factorAnalysis');
+            
+            const factors = [
+                { name: 'Industry Expertise', score: 95 },
+                { name: 'Business Size Match', score: 88 },
+                { name: 'Geographic Proximity', score: 92 },
+                { name: 'Service Alignment', score: 90 },
+                { name: 'Experience Level', score: 87 },
+                { name: 'Technology Stack', score: 85 }
+            ];
+
+            factorAnalysis.innerHTML = factors.map(factor => `
+                <div class="factor-card">
+                    <h4>${factor.name}</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${factor.score}%"></div>
+                    </div>
+                    <div style="color: #34d399; font-weight: 600;">${factor.score}% Match</div>
+                </div>
+            `).join('');
+        }
+
+        function displayCPAMatches(formData) {
+            const cpaMatches = document.getElementById('cpaMatches');
+            
+            const matches = [
+                {
+                    name: 'Sarah Chen, CPA',
+                    specialty: `${formData.industry.charAt(0).toUpperCase() + formData.industry.slice(1)} Specialist`,
+                    score: 96,
+                    experience: '12 years',
+                    clients: '85+ businesses',
+                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
+                    responseTime: '2 hours',
+                    reasons: ['Industry Expert', 'Size Match', 'Local', 'Tech Forward']
+                },
+                {
+                    name: 'Michael Rodriguez, CPA',
+                    specialty: 'Business Growth Advisory',
+                    score: 91,
+                    experience: '15 years',
+                    clients: '120+ businesses',
+                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
+                    responseTime: '4 hours',
+                    reasons: ['Growth Focus', 'Experience', 'Service Match', 'Proven Results']
+                },
+                {
+                    name: 'Jennifer Park, CPA',
+                    specialty: 'Tax Optimization',
+                    score: 89,
+                    experience: '10 years',
+                    clients: '95+ businesses',
+                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
+                    responseTime: '3 hours',
+                    reasons: ['Tax Expert', 'Strategic', 'Responsive', 'Similar Clients']
+                }
+            ];
+
+            cpaMatches.innerHTML = matches.map(cpa => `
+                <div class="cpa-card">
+                    <div class="cpa-header">
+                        <div class="cpa-info">
+                            <h4>${cpa.name}</h4>
+                            <div class="cpa-specialty">${cpa.specialty}</div>
+                        </div>
+                        <div class="match-score">${cpa.score}% Match</div>
+                    </div>
+                    <div class="cpa-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Experience</div>
+                            <div class="detail-value">${cpa.experience}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Clients Served</div>
+                            <div class="detail-value">${cpa.clients}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Location</div>
+                            <div class="detail-value">${cpa.location}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Response Time</div>
+                            <div class="detail-value">${cpa.responseTime}</div>
+                        </div>
+                    </div>
+                    <div class="match-reasons">
+                        <h5>Why This Match:</h5>
+                        <div class="reason-tags">
+                            ${cpa.reasons.map(reason => `<span class="reason-tag">${reason}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
