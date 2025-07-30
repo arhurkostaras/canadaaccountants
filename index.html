@@ -649,6 +649,15 @@
             </div>
                 </div>
             </div>
+            <!-- Secondary CTA: AI Demo -->
+                    <div class="ai-demo-cta">
+                        <button class="ai-demo-btn" onclick="window.open('/ai-demo.html', '_blank')">
+                            <span class="btn-icon">🤖</span>
+                            See AI in Action
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <p class="ai-demo-subtitle">Watch our algorithm find your perfect CPA match</p>
+                    </div>
         </section>
 
         <!-- How It Works Section -->
@@ -2098,6 +2107,56 @@
     transition: all 0.2s ease;
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
 }
+
+    /* AI Demo Button Styling */
+        .ai-demo-cta {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .ai-demo-btn {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
+            border: 2px solid #475569;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .ai-demo-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-color: #64748b;
+            box-shadow: 0 8px 20px rgba(30, 41, 59, 0.3);
+        }
+
+        .ai-demo-subtitle {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin: 8px 0 0 0;
+            font-style: italic;
+        }
+
+        .btn-icon {
+            font-size: 1.1rem;
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .ai-demo-btn:hover .btn-arrow {
+            transform: translateX(3px);
+        }
 
 .trigger-btn:hover {
     transform: translateY(-2px);
