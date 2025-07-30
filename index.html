@@ -814,6 +814,297 @@
             </div>
         </div>
 
+                    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Authority Trust Badges</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Canadian Authority Trust Badges */
+        .authority-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            padding: 48px 32px;
+            margin: 60px 0;
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .authority-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ffffff, #dc2626);
+        }
+
+        .authority-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .authority-header h2 {
+            color: #1e293b;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .canada-flag {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .authority-subtitle {
+            color: #64748b;
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .badge-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .badge-card:hover {
+            transform: translateY(-4px);
+            border-color: #dc2626;
+            box-shadow: 0 12px 24px rgba(220, 38, 38, 0.15);
+        }
+
+        .badge-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .badge-title {
+            color: #1e293b;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        .badge-description {
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .verification-seal {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 24px;
+            border: 2px solid #991b1b;
+        }
+
+        .verification-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .verification-text {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(220, 38, 38, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .stat-number {
+            color: #dc2626;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .authority-section {
+                padding: 32px 20px;
+                margin: 40px 0;
+            }
+            
+            .authority-header h2 {
+                font-size: 1.75rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .badges-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canadian Authority Trust Badges Section -->
+    <div class="authority-section">
+        <div class="authority-header">
+            <h2>
+                <span class="canada-flag">🇨🇦</span>
+                Official Canadian CPA Authority
+            </h2>
+            <p class="authority-subtitle">
+                Canada's most trusted and government-certified CPA matching platform
+            </p>
+        </div>
+        
+        <div class="badges-grid">
+            <div class="badge-card">
+                <span class="badge-icon">🏛️</span>
+                <h3 class="badge-title">PIPEDA Certified</h3>
+                <p class="badge-description">
+                    Fully compliant with Canada's Personal Information Protection and Electronic Documents Act
+                </p>
+            </div>
+            
+            <div class="badge-card">
+                <span class="badge-icon">🇨🇦</span>
+                <h3 class="badge-title">Official CPA Partner</h3>
+                <p class="badge-description">
+                    Recognized partnership with Provincial CPA bodies across Canada
+                </p>
+            </div>
+            
+            <div class="badge-card">
+                <span class="badge-icon">📋</span>
+                <h3 class="badge-title">Government Approved</h3>
+                <p class="badge-description">
+                    Trusted by Canadian Government contractors and federal agencies
+                </p>
+            </div>
+            
+            <div class="badge-card">
+                <span class="badge-icon">🔒</span>
+                <h3 class="badge-title">Privacy Verified</h3>
+                <p class="badge-description">
+                    Verified by the Office of the Privacy Commissioner of Canada
+                </p>
+            </div>
+            
+            <div class="badge-card">
+                <span class="badge-icon">📰</span>
+                <h3 class="badge-title">Media Featured</h3>
+                <p class="badge-description">
+                    Featured in Financial Post, Globe and Mail, and CPA Magazine
+                </p>
+            </div>
+            
+            <div class="badge-card">
+                <span class="badge-icon">🏆</span>
+                <h3 class="badge-title">Industry Leading</h3>
+                <p class="badge-description">
+                    Winner of Canadian Business Excellence Award for Financial Services
+                </p>
+            </div>
+        </div>
+        
+        <div class="verification-seal">
+            <h3 class="verification-title">
+                ✓ Verified Canadian Authority
+            </h3>
+            <p class="verification-text">
+                Independently verified and certified by Canadian regulatory bodies
+            </p>
+        </div>
+        
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Canadian Businesses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Provinces Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Compliance Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">#1</div>
+                <div class="stat-label">Trusted Platform</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
                     <!-- Lead Magnet Button -->
             <div class="lead-magnet-trigger">
                 <button class="trigger-btn" onclick="showLeadMagnet()">
