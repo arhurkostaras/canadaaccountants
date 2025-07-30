@@ -651,7 +651,7 @@
             </div>
             <!-- Secondary CTA: AI Demo -->
                     <div class="ai-demo-cta">
-                        <button class="ai-demo-btn" onclick="window.location.href='https://canadaaccountants.app/ai-demo.html';">
+                        <button class="ai-demo-btn" onclick="openAIDemo()">
                             <span class="btn-icon">🤖</span>
                             See AI in Action
                             <span class="btn-arrow">→</span>
@@ -2208,6 +2208,10 @@ function closeLeadMagnet() {
     document.getElementById('leadMagnetOverlay').classList.remove('active');
     document.body.style.overflow = 'auto';
 }
+
+            function openAIDemo() {
+            window.open('https://canadaaccountants.app/ai-demo.html', '_blank');
+        }
 
 function submitLeadForm(event) {
     event.preventDefault();
