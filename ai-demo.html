@@ -3,664 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>See Our AI in Action - Canada Accountants</title>
+    <title>Enhanced AI Demo - SME Intelligence Collection</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            color: white;
             min-height: 100vh;
+            color: #e2e8f0;
         }
 
-        .header {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(71, 85, 105, 0.3);
-        }
-
-        .header-content {
-            max-width: 1200px;
+        .demo-container {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #475569;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #10b981;
-            text-decoration: none;
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
-        }
-
-        .hero {
+        .demo-header {
             text-align: center;
-            padding: 4rem 2rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-bottom: 40px;
         }
 
-        .hero h1 {
-            font-size: 3rem;
+        .demo-title {
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            margin: 0 0 16px 0;
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .demo-subtitle {
+            font-size: 1.125rem;
             color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 3rem;
+            margin: 0 0 12px 0;
         }
 
-        .demo-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-        }
-
-        .demo-card {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
+        .intelligence-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 8px 16px;
             border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(71, 85, 105, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 12px;
         }
 
         .form-section {
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            border: 1px solid #374151;
         }
 
-        .form-section h3 {
-            color: #10b981;
+        .section-title {
             font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 0 0 16px 0;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+        }
+
+        .section-description {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin: 0 0 20px 0;
+            font-style: italic;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            margin-bottom: 20px;
         }
 
-        label {
-            color: #e2e8f0;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        input, select {
-            background: rgba(51, 65, 85, 0.8);
-            border: 1px solid rgba(71, 85, 105, 0.5);
-            border-radius: 8px;
-            padding: 0.75rem;
-            color: white;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        .analyze-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
+        .form-label {
+            display: block;
             font-weight: 600;
-            cursor: pointer;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
             width: 100%;
-            margin: 2rem 0;
+            padding: 12px 16px;
+            background: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            color: #f3f4f6;
+            font-size: 0.875rem;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            box-sizing: border-box;
         }
 
-        .analyze-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: #1f2937;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
         }
 
-        .analyze-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
         }
 
-        .results-section {
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .results-section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .analysis-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .analysis-header h3 {
-            color: #10b981;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .factor-analysis {
+        .checkbox-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 12px;
+            margin-top: 12px;
         }
 
-        .factor-card {
-            background: rgba(51, 65, 85, 0.6);
-            border-radius: 12px;
-            padding: 1rem;
-            border: 1px solid rgba(71, 85, 105, 0.3);
-        }
-
-        .factor-card h4 {
-            color: #34d399;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-bar {
-            background: rgba(71, 85, 105, 0.5);
-            border-radius: 10px;
-            height: 8px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #10b981, #34d399);
-            border-radius: 10px;
-            width: 0%;
-            transition: width 1s ease;
-        }
-
-        .cpa-matches {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .cpa-card {
-            background: rgba(51, 65, 85, 0.8);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(71, 85, 105, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cpa-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #10b981, #34d399);
-        }
-
-        .cpa-header {
+        .checkbox-item {
             display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .cpa-info h4 {
-            color: #e2e8f0;
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .cpa-specialty {
-            color: #10b981;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .match-score {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .cpa-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .detail-item {
-            text-align: center;
-        }
-
-        .detail-label {
-            color: #94a3b8;
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .detail-value {
-            color: #e2e8f0;
-            font-weight: 600;
-        }
-
-        .match-reasons {
-            margin-top: 1rem;
-        }
-
-        .match-reasons h5 {
-            color: #34d399;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .reason-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .reason-tag {
-            background: rgba(16, 185, 129, 0.2);
-            color: #34d399;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-            border: 1px solid rgba(71, 85, 105, 0.3);
-        }
-
-        .cta-section h3 {
-            color: #10b981;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: #94a3b8;
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 6px;
+            border: 1px solid #4b5563;
+            transition: all 0.3s ease;
         }
 
-        .cta-primary {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        .checkbox-item:hover {
+            background: rgba(55, 65, 81, 0.8);
+            border-color: #60a5fa;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .analyze-button {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 32px;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
         }
 
-        .cta-secondary {
-            background: transparent;
-            color: #10b981;
-            border: 2px solid #10b981;
-        }
-
-        .cta-btn:hover {
+        .analyze-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 28px rgba(220, 38, 38, 0.4);
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
         }
 
+        .intelligence-note {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            border: 1px solid #059669;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .intelligence-note-title {
+            font-weight: 700;
+            color: #d1fae5;
+            margin: 0 0 8px 0;
+        }
+
+        .intelligence-note-text {
+            font-size: 0.875rem;
+            color: #a7f3d0;
+            margin: 0;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4b5563;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #60a5fa;
+            transform: scale(1.2);
+        }
+
+        .progress-dot.completed {
+            background: #10b981;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .demo-container {
+                padding: 20px;
+                margin: 10px;
             }
             
-            .demo-card {
-                padding: 1.5rem;
+            .demo-title {
+                font-size: 2rem;
             }
             
             .form-grid {
                 grid-template-columns: 1fr;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .checkbox-group {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <a href="/" class="logo">🍁 CanadaAccountants</a>
-            <a href="/" class="back-btn">← Back to Main Site</a>
-        </div>
-    </header>
-
-    <section class="hero">
-        <h1>🤖 See Our AI in Action</h1>
-        <p>Watch our advanced algorithm analyze 30+ compatibility factors to find your perfect CPA match in real-time</p>
-    </section>
-
     <div class="demo-container">
-        <div class="demo-card">
-            <div class="form-section">
-                <h3>📊 Tell Us About Your Business</h3>
+        <div class="demo-header">
+            <h1 class="demo-title">🤖 Enhanced AI CPA Matching</h1>
+            <p class="demo-subtitle">Advanced business intelligence for perfect CPA matches</p>
+            <div class="intelligence-badge">
+                🇨🇦 Contributing to Canadian SME Intelligence Database
+            </div>
+        </div>
+
+        <div class="progress-indicator">
+            <div class="progress-dot active" id="dot1"></div>
+            <div class="progress-dot" id="dot2"></div>
+            <div class="progress-dot" id="dot3"></div>
+            <div class="progress-dot" id="dot4"></div>
+        </div>
+
+        <form id="enhancedBusinessForm">
+            <!-- Section 1: Basic Business Information -->
+            <div class="form-section" id="section1">
+                <h3 class="section-title">📊 Basic Business Information</h3>
+                <p class="section-description">Help us understand your business foundation</p>
+                
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="businessName">Business Name</label>
-                        <input type="text" id="businessName" placeholder="Enter your business name">
+                        <label class="form-label" for="businessName">Business Name</label>
+                        <input type="text" id="businessName" class="form-input" placeholder="Your business name" required>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="industry">Industry</label>
-                        <select id="industry">
-                            <option value="">Select Industry</option>
-                            <option value="technology">Technology</option>
-                            <option value="retail">Retail</option>
+                        <label class="form-label" for="industry">Industry Sector</label>
+                        <select id="industry" class="form-select" required>
+                            <option value="">Select your industry</option>
+                            <option value="technology">Technology & Software</option>
+                            <option value="retail">Retail & E-commerce</option>
                             <option value="manufacturing">Manufacturing</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="construction">Construction</option>
+                            <option value="healthcare">Healthcare & Medical</option>
+                            <option value="construction">Construction & Real Estate</option>
                             <option value="professional-services">Professional Services</option>
-                            <option value="food-beverage">Food & Beverage</option>
-                            <option value="real-estate">Real Estate</option>
+                            <option value="hospitality">Hospitality & Tourism</option>
+                            <option value="agriculture">Agriculture & Food</option>
+                            <option value="finance">Finance & Insurance</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="revenue">Annual Revenue</label>
-                        <select id="revenue">
-                            <option value="">Select Revenue Range</option>
-                            <option value="under-100k">Under $100K</option>
-                            <option value="100k-500k">$100K - $500K</option>
-                            <option value="500k-1m">$500K - $1M</option>
+                        <label class="form-label" for="revenue">Annual Revenue (CAD)</label>
+                        <select id="revenue" class="form-select" required>
+                            <option value="">Select revenue range</option>
+                            <option value="under-100k">Under $100,000</option>
+                            <option value="100k-500k">$100,000 - $500,000</option>
+                            <option value="500k-1m">$500,000 - $1M</option>
                             <option value="1m-5m">$1M - $5M</option>
-                            <option value="5m-plus">$5M+</option>
+                            <option value="5m-10m">$5M - $10M</option>
+                            <option value="over-10m">Over $10M</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="employees">Number of Employees</label>
-                        <select id="employees">
-                            <option value="">Select Employee Count</option>
+                        <label class="form-label" for="employees">Number of Employees</label>
+                        <select id="employees" class="form-select" required>
+                            <option value="">Select employee count</option>
                             <option value="1-5">1-5 employees</option>
                             <option value="6-20">6-20 employees</option>
                             <option value="21-50">21-50 employees</option>
                             <option value="51-100">51-100 employees</option>
-                            <option value="100-plus">100+ employees</option>
+                            <option value="over-100">Over 100 employees</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="location">Province</label>
-                        <select id="location">
-                            <option value="">Select Province</option>
-                            <option value="ontario">Ontario</option>
-                            <option value="quebec">Quebec</option>
-                            <option value="british-columbia">British Columbia</option>
-                            <option value="alberta">Alberta</option>
-                            <option value="manitoba">Manitoba</option>
-                            <option value="saskatchewan">Saskatchewan</option>
-                            <option value="nova-scotia">Nova Scotia</option>
-                            <option value="new-brunswick">New Brunswick</option>
-                            <option value="newfoundland">Newfoundland & Labrador</option>
-                            <option value="pei">Prince Edward Island</option>
+                        <label class="form-label" for="province">Province/Territory</label>
+                        <select id="province" class="form-select" required>
+                            <option value="">Select your province</option>
+                            <option value="ON">Ontario</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="AB">Alberta</option>
+                            <option value="QC">Quebec</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="YT">Yukon</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
                         </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="needs">Primary Accounting Needs</label>
-                        <select id="needs">
-                            <option value="">Select Primary Need</option>
-                            <option value="bookkeeping">Monthly Bookkeeping</option>
-                            <option value="tax-prep">Tax Preparation</option>
-                            <option value="financial-planning">Financial Planning</option>
-                            <option value="audit">Audit & Assurance</option>
-                            <option value="payroll">Payroll Services</option>
-                            <option value="business-advisory">Business Advisory</option>
+                        <label class="form-label" for="businessAge">Business Age</label>
+                        <select id="businessAge" class="form-select" required>
+                            <option value="">Select business age</option>
+                            <option value="startup">Startup (0-2 years)</option>
+                            <option value="growing">Growing (3-5 years)</option>
+                            <option value="established">Established (6-10 years)</option>
+                            <option value="mature">Mature (10+ years)</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <button class="analyze-btn" onclick="analyzeMatches()">
-                <span>🔍</span>
-                Analyze My Perfect CPA Matches
+            <!-- Section 2: Pain Points & Challenges -->
+            <div class="form-section" id="section2" style="display: none;">
+                <h3 class="section-title">🎯 Current Challenges & Pain Points</h3>
+                <p class="section-description">Help us understand your specific accounting challenges for better matching</p>
+                
+                <div class="form-group">
+                    <label class="form-label" for="primaryChallenge">What's your biggest accounting challenge right now?</label>
+                    <textarea id="primaryChallenge" class="form-textarea" placeholder="Describe your main accounting pain point..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Which areas need the most attention? (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bookkeeping" name="painPoints" value="bookkeeping">
+                            <label for="bookkeeping">Daily Bookkeeping</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="taxPlanning" name="painPoints" value="taxPlanning">
+                            <label for="taxPlanning">Tax Planning & Filing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cashFlow" name="painPoints" value="cashFlow">
+                            <label for="cashFlow">Cash Flow Management</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="financialReporting" name="painPoints" value="financialReporting">
+                            <label for="financialReporting">Financial Reporting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="payroll" name="painPoints" value="payroll">
+                            <label for="payroll">Payroll Processing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="compliance" name="painPoints" value="compliance">
+                            <label for="compliance">Regulatory Compliance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="budgeting" name="painPoints" value="budgeting">
+                            <label for="budgeting">Budgeting & Forecasting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="audit" name="painPoints" value="audit">
+                            <label for="audit">Audit Preparation</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="regionalChallenges">What local/provincial compliance issues concern you most?</label>
+                    <textarea id="regionalChallenges" class="form-textarea" placeholder="HST/GST, provincial tax requirements, local regulations, etc."></textarea>
+                </div>
+            </div>
+
+            <!-- Section 3: Seasonal Patterns & Growth -->
+            <div class="form-section" id="section3" style="display: none;">
+                <h3 class="section-title">📈 Business Patterns & Growth</h3>
+                <p class="section-description">Understanding your business cycles helps us predict optimal CPA matching</p>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="peakSeason">When do you need the most accounting support?</label>
+                        <select id="peakSeason" class="form-select" required>
+                            <option value="">Select peak season</option>
+                            <option value="q1">Q1 (Jan-Mar) - Tax Season</option>
+                            <option value="q2">Q2 (Apr-Jun) - Post Tax Season</option>
+                            <option value="q3">Q3 (Jul-Sep) - Mid Year</option>
+                            <option value="q4">Q4 (Oct-Dec) - Year End</option>
+                            <option value="year-round">Year-round consistent support</option>
+                            <option value="project-based">Project-based needs</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="businessGoal">Primary business goal for the next 12 months?</label>
+                        <select id="businessGoal" class="form-select" required>
+                            <option value="">Select primary goal</option>
+                            <option value="scale-growth">Scale & Growth</option>
+                            <option value="improve-profitability">Improve Profitability</option>
+                            <option value="expand-markets">Expand to New Markets</option>
+                            <option value="optimize-operations">Optimize Operations</option>
+                            <option value="prepare-investment">Prepare for Investment</option>
+                            <option value="exit-planning">Exit Planning</option>
+                            <option value="maintain-stability">Maintain Stability</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="growthStage">Where is your business in its growth journey?</label>
+                        <select id="growthStage" class="form-select" required>
+                            <option value="">Select growth stage</option>
+                            <option value="pre-revenue">Pre-Revenue/Concept</option>
+                            <option value="early-revenue">Early Revenue Generation</option>
+                            <option value="rapid-growth">Rapid Growth Phase</option>
+                            <option value="scaling">Scaling Operations</option>
+                            <option value="mature-growth">Mature Growth</option>
+                            <option value="established-stable">Established & Stable</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="urgency">How urgent is your need for CPA services?</label>
+                        <select id="urgency" class="form-select" required>
+                            <option value="">Select urgency level</option>
+                            <option value="immediate">Immediate (within 1 week)</option>
+                            <option value="soon">Soon (within 1 month)</option>
+                            <option value="planning">Planning ahead (2-3 months)</option>
+                            <option value="exploring">Just exploring options</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Technology & Preferences -->
+            <div class="form-section" id="section4" style="display: none;">
+                <h3 class="section-title">💻 Technology & Preferences</h3>
+                <p class="section-description">Your tech stack helps us match you with CPAs who use compatible systems</p>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="accountingSoftware">Current accounting software</label>
+                        <select id="accountingSoftware" class="form-select" required>
+                            <option value="">Select your software</option>
+                            <option value="quickbooks">QuickBooks</option>
+                            <option value="sage">Sage</option>
+                            <option value="xero">Xero</option>
+                            <option value="freshbooks">FreshBooks</option>
+                            <option value="wave">Wave</option>
+                            <option value="excel">Excel/Spreadsheets</option>
+                            <option value="none">No current software</option>
+                            <option value="custom">Custom/Enterprise Solution</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="techComfort">Technology comfort level</label>
+                        <select id="techComfort" class="form-select" required>
+                            <option value="">Select comfort level</option>
+                            <option value="beginner">Beginner - Prefer simple solutions</option>
+                            <option value="intermediate">Intermediate - Comfortable with most software</option>
+                            <option value="advanced">Advanced - Love new tech and automation</option>
+                            <option value="expert">Expert - Want cutting-edge solutions</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="communicationStyle">Preferred communication style</label>
+                        <select id="communicationStyle" class="form-select" required>
+                            <option value="">Select preference</option>
+                            <option value="in-person">In-person meetings</option>
+                            <option value="video-calls">Video calls</option>
+                            <option value="phone-calls">Phone calls</option>
+                            <option value="email-messaging">Email/messaging</option>
+                            <option value="mixed">Mixed approach</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="serviceModel">Preferred service model</label>
+                        <select id="serviceModel" class="form-select" required>
+                            <option value="">Select service model</option>
+                            <option value="full-service">Full-service ongoing relationship</option>
+                            <option value="project-based">Project-based engagements</option>
+                            <option value="consultation">Consultation & advisory only</option>
+                            <option value="hybrid">Hybrid approach</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="additionalNeeds">Any specific requirements or preferences?</label>
+                    <textarea id="additionalNeeds" class="form-textarea" placeholder="Industry specialization, certifications, experience level, etc."></textarea>
+                </div>
+            </div>
+
+            <button type="button" class="analyze-button" id="nextButton" onclick="nextSection()">
+                Continue to Next Section →
             </button>
+        </form>
 
-            <div class="results-section" id="resultsSection">
-                <div class="analysis-header">
-                    <h3>🎯 AI Analysis Complete</h3>
-                    <p style="color: #94a3b8;">Our algorithm analyzed 30+ compatibility factors</p>
-                </div>
-
-                <div class="factor-analysis" id="factorAnalysis">
-                    <!-- Factors will be populated by JavaScript -->
-                </div>
-
-                <div class="cpa-matches" id="cpaMatches">
-                    <!-- CPA matches will be populated by JavaScript -->
-                </div>
-
-                <div class="cta-section">
-                    <h3>Ready to Connect with Your Perfect CPA?</h3>
-                    <p>Get your FREE CPA Selection Guide and connect with pre-screened, elite CPAs in 48 hours</p>
-                    <div class="cta-buttons">
-                        <a href="/" class="cta-btn cta-primary">
-                            📖 Get FREE CPA Selection Guide
-                        </a>
-                        <a href="/join-as-cpa.html" class="cta-btn cta-secondary">
-                            👔 Are You a CPA? Join Our Network
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="intelligence-note">
+            <h4 class="intelligence-note-title">🇨🇦 Building Canada's SME Intelligence Database</h4>
+            <p class="intelligence-note-text">
+                Your responses help us understand Canadian business needs better, enabling more accurate matching and contributing to industry insights. All data is PIPEDA-compliant and anonymized for research purposes.
+            </p>
         </div>
     </div>
 
     <script>
+        let currentSection = 1;
+        const totalSections = 4;
+
+        function nextSection() {
+            if (currentSection < totalSections) {
+                // Hide current section
+                document.getElementById(`section${currentSection}`).style.display = 'none';
+                
+                // Update progress
+                document.getElementById(`dot${currentSection}`).classList.remove('active');
+                document.getElementById(`dot${currentSection}`).classList.add('completed');
+                
+                // Show next section
+                currentSection++;
+                document.getElementById(`section${currentSection}`).style.display = 'block';
+                document.getElementById(`dot${currentSection}`).classList.add('active');
+                
+                // Update button text
+                if (currentSection === totalSections) {
+                    document.getElementById('nextButton').innerHTML = '🚀 Analyze My Perfect CPA Matches';
+                    document.getElementById('nextButton').onclick = analyzeMatches;
+                }
+                
+                // Scroll to top
+                document.querySelector('.demo-container').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         function analyzeMatches() {
-            const button = document.querySelector('.analyze-btn');
-            const resultsSection = document.getElementById('resultsSection');
+            // Collect all form data
+            const formData = collectFormData();
             
-            // Get form values
-            const formData = {
-                businessName: document.getElementById('businessName').value || 'Your Business',
+            // Show loading state
+            document.getElementById('nextButton').innerHTML = '🔄 Analyzing Your Business Intelligence...';
+            document.getElementById('nextButton').disabled = true;
+            
+            // Simulate AI analysis
+            setTimeout(() => {
+                showResults(formData);
+            }, 3000);
+        }
+
+        function collectFormData() {
+            const data = {
+                // Basic info
+                businessName: document.getElementById('businessName').value,
                 industry: document.getElementById('industry').value,
                 revenue: document.getElementById('revenue').value,
                 employees: document.getElementById('employees').value,
-                location: document.getElementById('location').value,
-                needs: document.getElementById('needs').value
+                province: document.getElementById('province').value,
+                businessAge: document.getElementById('businessAge').value,
+                
+                // Challenges
+                primaryChallenge: document.getElementById('primaryChallenge').value,
+                painPoints: Array.from(document.querySelectorAll('input[name="painPoints"]:checked')).map(cb => cb.value),
+                regionalChallenges: document.getElementById('regionalChallenges').value,
+                
+                // Growth patterns
+                peakSeason: document.getElementById('peakSeason').value,
+                businessGoal: document.getElementById('businessGoal').value,
+                growthStage: document.getElementById('growthStage').value,
+                urgency: document.getElementById('urgency').value,
+                
+                // Technology
+                accountingSoftware: document.getElementById('accountingSoftware').value,
+                techComfort: document.getElementById('techComfort').value,
+                communicationStyle: document.getElementById('communicationStyle').value,
+                serviceModel: document.getElementById('serviceModel').value,
+                additionalNeeds: document.getElementById('additionalNeeds').value
             };
-
-            // Check if required fields are filled
-            if (!formData.industry || !formData.revenue || !formData.location) {
-                alert('Please fill in at least Industry, Revenue, and Province to see your matches!');
-                return;
-            }
-
-            // Disable button and show loading
-            button.disabled = true;
-            button.innerHTML = '<span>🔄</span> Analyzing...';
-
-            // Simulate AI processing
-            setTimeout(() => {
-                displayFactorAnalysis(formData);
-                setTimeout(() => {
-                    displayCPAMatches(formData);
-                    resultsSection.classList.add('show');
-                    button.disabled = false;
-                    button.innerHTML = '<span>🔍</span> Analyze Again';
-                }, 1000);
-            }, 2000);
+            
+            return data;
         }
 
-        function displayFactorAnalysis(formData) {
-            const factorAnalysis = document.getElementById('factorAnalysis');
-            
-            const factors = [
-                { name: 'Industry Expertise', score: 95 },
-                { name: 'Business Size Match', score: 88 },
-                { name: 'Geographic Proximity', score: 92 },
-                { name: 'Service Alignment', score: 90 },
-                { name: 'Experience Level', score: 87 },
-                { name: 'Technology Stack', score: 85 }
-            ];
-
-            factorAnalysis.innerHTML = factors.map(factor => `
-                <div class="factor-card">
-                    <h4>${factor.name}</h4>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${factor.score}%"></div>
+        function showResults(data) {
+            // Create results display (simplified for demo)
+            const resultsHTML = `
+                <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #065f46 0%, #047857 100%); border-radius: 16px;">
+                    <h3 style="color: #d1fae5; margin: 0 0 20px 0; text-align: center;">
+                        🎉 SME Intelligence Analysis Complete!
+                    </h3>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
+                        <h4 style="color: #a7f3d0; margin: 0 0 12px 0;">📊 Your Business Intelligence Profile:</h4>
+                        <p style="color: #d1fae5; margin: 5px 0;"><strong>Industry:</strong> ${data.industry}</p>
+                        <p style="color: #d1fae5; margin: 5px 0;"><strong>Growth Stage:</strong> ${data.growthStage}</p>
+                        <p style="color: #d1fae5; margin: 5px 0;"><strong>Primary Challenge:</strong> ${data.primaryChallenge.substring(0, 100)}...</p>
+                        <p style="color: #d1fae5; margin: 5px 0;"><strong>Peak Season:</strong> ${data.peakSeason}</p>
+                        <p style="color: #d1fae5; margin: 5px 0;"><strong>Tech Stack:</strong> ${data.accountingSoftware}</p>
                     </div>
-                    <div style="color: #34d399; font-weight: 600;">${factor.score}% Match</div>
-                </div>
-            `).join('');
-        }
-
-        function displayCPAMatches(formData) {
-            const cpaMatches = document.getElementById('cpaMatches');
-            
-            const matches = [
-                {
-                    name: 'Sarah Chen, CPA',
-                    specialty: `${formData.industry.charAt(0).toUpperCase() + formData.industry.slice(1)} Specialist`,
-                    score: 96,
-                    experience: '12 years',
-                    clients: '85+ businesses',
-                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
-                    responseTime: '2 hours',
-                    reasons: ['Industry Expert', 'Size Match', 'Local', 'Tech Forward']
-                },
-                {
-                    name: 'Michael Rodriguez, CPA',
-                    specialty: 'Business Growth Advisory',
-                    score: 91,
-                    experience: '15 years',
-                    clients: '120+ businesses',
-                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
-                    responseTime: '4 hours',
-                    reasons: ['Growth Focus', 'Experience', 'Service Match', 'Proven Results']
-                },
-                {
-                    name: 'Jennifer Park, CPA',
-                    specialty: 'Tax Optimization',
-                    score: 89,
-                    experience: '10 years',
-                    clients: '95+ businesses',
-                    location: formData.location.charAt(0).toUpperCase() + formData.location.slice(1),
-                    responseTime: '3 hours',
-                    reasons: ['Tax Expert', 'Strategic', 'Responsive', 'Similar Clients']
-                }
-            ];
-
-            cpaMatches.innerHTML = matches.map(cpa => `
-                <div class="cpa-card">
-                    <div class="cpa-header">
-                        <div class="cpa-info">
-                            <h4>${cpa.name}</h4>
-                            <div class="cpa-specialty">${cpa.specialty}</div>
-                        </div>
-                        <div class="match-score">${cpa.score}% Match</div>
-                    </div>
-                    <div class="cpa-details">
-                        <div class="detail-item">
-                            <div class="detail-label">Experience</div>
-                            <div class="detail-value">${cpa.experience}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Clients Served</div>
-                            <div class="detail-value">${cpa.clients}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Location</div>
-                            <div class="detail-value">${cpa.location}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Response Time</div>
-                            <div class="detail-value">${cpa.responseTime}</div>
-                        </div>
-                    </div>
-                    <div class="match-reasons">
-                        <h5>Why This Match:</h5>
-                        <div class="reason-tags">
-                            ${cpa.reasons.map(reason => `<span class="reason-tag">${reason}</span>`).join('')}
-                        </div>
+                    <div style="text-align: center; margin-top: 24px;">
+                        <p style="color: #a7f3d0; margin: 0 0 16px 0;">
+                            🇨🇦 Thank you for contributing to Canada's SME Intelligence Database!
+                        </p>
+                        <button onclick="window.location.href='../index.html'" 
+                                style="background: white; color: #047857; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            Get Your FREE CPA Selection Guide
+                        </button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            
+            document.querySelector('.demo-container').innerHTML += resultsHTML;
+            
+            // Store data (in real implementation, send to server)
+            console.log('SME Intelligence Data Collected:', data);
         }
     </script>
 </body>
