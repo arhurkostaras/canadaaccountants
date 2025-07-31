@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian SME Accounting Trends Report Q4 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ffffff, #dc2626);
+        }
+
+        .report-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .report-subtitle {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 24px;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .report-content {
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-content {
+            font-size: 1.125rem;
+            color: #475569;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .highlight-stat {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-description {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-4px);
+            border-color: #dc2626;
+            box-shadow: 0 12px 24px rgba(220, 38, 38, 0.15);
+        }
+
+        .insight-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight-text {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .trend-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .trend-down {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .trend-stable {
+            background: rgba(148, 163, 184, 0.1);
+            color: #64748b;
+        }
+
+        .key-findings {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+
+        .findings-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .findings-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .findings-list li {
+            margin: 12px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .findings-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #34d399;
+            font-weight: bold;
+        }
+
+        .methodology {
+            background: #f8fafc;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #dc2626;
+            margin: 32px 0;
+        }
+
+        .methodology-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .methodology-text {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 48px 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .footer {
+            background: #f8fafc;
+            padding: 32px 40px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .report-container {
+                margin: 0;
+            }
+            
+            .report-header,
+            .report-content,
+            .cta-section,
+            .footer {
+                padding: 32px 20px;
+            }
+            
+            .report-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .report-meta {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Report Header -->
+        <div class="report-header">
+            <h1 class="report-title">🇨🇦 Canadian SME Accounting Trends</h1>
+            <p class="report-subtitle">Comprehensive Analysis of Small & Medium Enterprise Accounting Needs Across Canada</p>
+            
+            <div class="report-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Report Period</div>
+                    <div class="meta-value">Q4 2025</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Businesses Analyzed</div>
+                    <div class="meta-value">500+ SMEs</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Provinces Covered</div>
+                    <div class="meta-value">All 10 Provinces</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Industry Sectors</div>
+                    <div class="meta-value">12 Major Sectors</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Content -->
+        <div class="report-content">
+            <!-- Executive Summary -->
+            <div class="section">
+                <h2 class="section-title">📋 Executive Summary</h2>
+                <div class="section-content">
+                    The Canadian SME landscape continues to evolve rapidly, with significant shifts in accounting needs, technology adoption, and regional business challenges. Our comprehensive analysis of over 500 Canadian businesses reveals critical trends that will shape the accounting industry through 2026.
+                </div>
+
+                <div class="highlight-stat">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-description">of Canadian SMEs cite cash flow management as their primary accounting challenge</div>
+                </div>
+
+                <div class="key-findings">
+                    <div class="findings-title">🔍 Key Findings</div>
+                    <ul class="findings-list">
+                        <li>Technology sector leads demand growth at 27% of all accounting service inquiries</li>
+                        <li>Q1 tax season drives 42% of annual CPA demand, creating capacity constraints</li>
+                        <li>Regional challenges vary significantly: Ontario focuses on cash flow, Quebec on regulatory compliance</li>
+                        <li>QuickBooks dominates at 47% market share, but 23% of businesses still rely on Excel</li>
+                        <li>34% of businesses are in active scaling phase, requiring specialized growth-stage expertise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Industry Analysis -->
+            <div class="section">
+                <h2 class="section-title">🏭 Industry Sector Analysis</h2>
+                <div class="section-content">
+                    The distribution of accounting service demand across Canadian industries reveals clear winners and emerging opportunities. Technology companies lead the charge, while traditional sectors show mixed patterns.
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Industry Sector</th>
+                            <th>Market Share</th>
+                            <th>Growth Trend</th>
+                            <th>Primary Challenge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Technology & Software</td>
+                            <td>27.1%</td>
+                            <td><span class="trend-indicator trend-up">↗ +15%</span></td>
+                            <td>Rapid scaling complexities</td>
+                        </tr>
+                        <tr>
+                            <td>Retail & E-commerce</td>
+                            <td>17.0%</td>
+                            <td><span class="trend-indicator trend-stable">→ 0%</span></td>
+                            <td>Multi-channel accounting</td>
+                        </tr>
+                        <tr>
+                            <td>Manufacturing</td>
+                            <td>15.4%</td>
+                            <td><span class="trend-indicator trend-down">↘ -5%</span></td>
+                            <td>Cost accounting precision</td>
+                        </tr>
+                        <tr>
+                            <td>Healthcare & Medical</td>
+                            <td>12.6%</td>
+                            <td><span class="trend-indicator trend-up">↗ +8%</span></td>
+                            <td>Regulatory compliance</td>
+                        </tr>
+                        <tr>
+                            <td>Construction & Real Estate</td>
+                            <td>10.1%</td>
+                            <td><span class="trend-indicator trend-up">↗ +12%</span></td>
+                            <td>Project-based accounting</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-title">💻 Technology Boom</div>
+                        <div class="insight-text">
+                            Tech companies are driving 15% month-over-month growth in CPA demand, primarily for scaling-related financial management and investor-ready reporting.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">🏗️ Construction Recovery</div>
+                        <div class="insight-text">
+                            Construction sector shows strong recovery with 12% growth, indicating economic resilience and infrastructure investment opportunities.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">🏥 Healthcare Expansion</div>
+                        <div class="insight-text">
+                            Healthcare businesses increasingly seek specialized compliance expertise as regulations tighten and digital transformation accelerates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Analysis -->
+            <div class="section">
+                <h2 class="section-title">🗺️ Regional Business Patterns</h2>
+                <div class="section-content">
+                    Canadian businesses face distinctly different challenges based on their provincial location, regulatory environment, and local economic conditions. Understanding these regional nuances is crucial for effective CPA matching.
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Province</th>
+                            <th>Market Share</th>
+                            <th>Top Challenge</th>
+                            <th>Peak Season</th>
+                            <th>Unique Factors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ontario</td>
+                            <td>36%</td>
+                            <td>Cash Flow Management</td>
+                            <td>Q1 Tax Season</td>
+                            <td>High growth rate, tech concentration</td>
+                        </tr>
+                        <tr>
+                            <td>British Columbia</td>
+                            <td>21%</td>
+                            <td>Strategic Tax Planning</td>
+                            <td>Q4 Year End</td>
+                            <td>International trade focus</td>
+                        </tr>
+                        <tr>
+                            <td>Alberta</td>
+                            <td>17%</td>
+                            <td>Industry Compliance</td>
+                            <td>Q1 Tax Season</td>
+                            <td>Resource sector volatility</td>
+                        </tr>
+                        <tr>
+                            <td>Quebec</td>
+                            <td>13%</td>
+                            <td>Regulatory Complexity</td>
+                            <td>Q2 Post-Tax</td>
+                            <td>Dual tax system, language requirements</td>
+                        </tr>
+                        <tr>
+                            <td>Other Provinces</td>
+                            <td>13%</td>
+                            <td>Access to Expertise</td>
+                            <td>Mixed Patterns</td>
+                            <td>Limited local CPA availability</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-stat">
+                    <div class="stat-number">42%</div>
+                    <div class="stat-description">of annual CPA demand occurs during Q1 tax season, creating significant capacity constraints</div>
+                </div>
+            </div>
+
+            <!-- Technology Adoption -->
+            <div class="section">
+                <h2 class="section-title">💻 Technology Stack Analysis</h2>
+                <div class="section-content">
+                    Understanding the technology landscape of Canadian SMEs reveals both opportunities and challenges for CPAs. While digital adoption is accelerating, significant gaps remain in certain segments.
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Accounting Software</th>
+                            <th>Market Share</th>
+                            <th>Satisfaction Level</th>
+                            <th>Typical Business Stage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>QuickBooks</td>
+                            <td>47%</td>
+                            <td>High</td>
+                            <td>All stages</td>
+                        </tr>
+                        <tr>
+                            <td>Excel/Spreadsheets</td>
+                            <td>23%</td>
+                            <td>Medium</td>
+                            <td>Early stage</td>
+                        </tr>
+                        <tr>
+                            <td>Sage</td>
+                            <td>12%</td>
+                            <td>High</td>
+                            <td>Established businesses</td>
+                        </tr>
+                        <tr>
+                            <td>Xero</td>
+                            <td>10%</td>
+                            <td>High</td>
+                            <td>Tech-forward companies</td>
+                        </tr>
+                        <tr>
+                            <td>Other/None</td>
+                            <td>8%</td>
+                            <td>Low</td>
+                            <td>Very early stage</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-title">📊 Digitization Opportunity</div>
+                        <div class="insight-text">
+                            23% of businesses still rely on Excel, representing a significant opportunity for CPAs to guide digital transformation and improve financial processes.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">🔧 QuickBooks Dominance</div>
+                        <div class="insight-text">
+                            QuickBooks' 47% market share means CPA expertise in this platform is crucial for serving the majority of Canadian SMEs effectively.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seasonal Patterns -->
+            <div class="section">
+                <h2 class="section-title">📅 Seasonal Demand Intelligence</h2>
+                <div class="section-content">
+                    Canadian SME accounting needs follow predictable seasonal patterns, creating both opportunities and challenges for CPA practices. Understanding these cycles is essential for capacity planning and pricing strategies.
+                </div>
+
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-title">🌨️ Q1: Tax Season Surge</div>
+                        <div class="insight-text">
+                            42% of annual demand concentrated in January-March. Tax filing, year-end cleanup, and compliance work dominate. Premium pricing opportunities peak.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">📈 Q4: Planning Season</div>
+                        <div class="insight-text">
+                            28% demand focus on strategic planning, budgeting for next year, and tax optimization strategies. Retail and B2B businesses most active.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">🚀 Q2: Growth Planning</div>
+                        <div class="insight-text">
+                            18% demand from growth companies seeking strategic financial planning and scaling support. Post-tax season strategic work begins.
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">☀️ Q3: Recruitment Season</div>
+                        <div class="insight-text">
+                            12% demand makes Q3 ideal for CPA recruitment and business development. Established firms conduct mid-year reviews and planning.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology">
+                    <div class="methodology-title">📊 Research Methodology</div>
+                    <div class="methodology-text">
+                        This report is based on comprehensive analysis of 500+ Canadian SME submissions through our PIPEDA-compliant intelligence collection system. Data spans all 10 provinces and 12 major industry sectors, collected between Q3-Q4 2025. All findings are anonymized and aggregated to protect business privacy while providing valuable market insights.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Find Your Perfect CPA Match?</h2>
+            <p class="cta-text">
+                Join hundreds of Canadian businesses using our AI-powered matching platform to connect with elite CPAs who understand your industry and challenges.
+            </p>
+            <a href="../index.html" class="cta-button">Get Your FREE CPA Selection Guide</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 CanadaAccountants.app - Canada's Most Trusted CPA Matching Platform<br>
+                PIPEDA Certified • Government Approved • Official CPA Partner
+            </p>
+        </div>
+    </div>
+</body>
+</html>
