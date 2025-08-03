@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPA Revenue Dashboard - CanadaAccountants.app</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Brand Colors from canadaaccountants.app */
+        :root {
+            --brand-primary: #dc2626;    /* Red */
+            --brand-secondary: #1e40af;  /* Blue */
+            --brand-accent: #059669;     /* Green */
+            --brand-dark: #111827;       /* Dark Gray */
+            --brand-light: #f9fafb;      /* Light Gray */
+            --maple-red: #dc2626;        /* Maple Leaf Red */
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+        }
+        
+        .brand-gradient {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 50%, var(--brand-accent) 100%);
+        }
+        
+        .maple-leaf {
+            color: var(--maple-red);
+        }
+        
+        .brand-red { color: var(--brand-primary); }
+        .brand-blue { color: var(--brand-secondary); }
+        .brand-green { color: var(--brand-accent); }
+        
+        .bg-brand-red { background-color: var(--brand-primary); }
+        .bg-brand-blue { background-color: var(--brand-secondary); }
+        .bg-brand-green { background-color: var(--brand-accent); }
+        
+        .border-brand-red { border-color: var(--brand-primary); }
+        .border-brand-blue { border-color: var(--brand-secondary); }
+        .border-brand-green { border-color: var(--brand-accent); }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .professional-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .premium-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b-4 border-brand-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-maple-leaf text-2xl maple-leaf mr-2"></i>
+                        <span class="font-bold text-xl text-gray-900">CanadaAccountants</span>
+                        <span class="brand-red font-bold text-xl">.app</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        ← Back to Home
+                    </a>
+                    <a href="tel:6479567290" class="bg-brand-red text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors professional-shadow">
+                        Call Arthur: (647) 956-7290
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center mb-6">
+                    <div class="p-4 bg-white bg-opacity-20 rounded-full">
+                        <i class="fas fa-brain text-4xl"></i>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    See Exactly How Much More<br>
+                    <span class="text-yellow-300">You'll Earn</span> with AI Matching
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+                    Our revolutionary 6-factor AI algorithm has generated <strong>$47,000+ additional revenue</strong> 
+                    for Canadian CPAs. See your personalized projection in under 60 seconds.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-lg">
+                        <div class="text-2xl font-bold">75,700+</div>
+                        <div class="text-sm">Verified Canadian CPAs</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-lg">
+                        <div class="text-2xl font-bold">95%</div>
+                        <div class="text-sm">Average Match Score</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-lg">
+                        <div class="text-2xl font-bold">94%</div>
+                        <div class="text-sm">Client Retention Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Content -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Step 1: Revenue Estimator -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-red-50 text-red-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 professional-shadow">
+                        <i class="fas fa-calculator mr-2"></i>
+                        STEP 1: Quick Revenue Assessment
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                        🤖 Your AI-Powered Revenue Potential
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Based on real market data from <span class="brand-red font-semibold">75,700+ Canadian CPAs</span> and current business intelligence
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <div id="revenue-estimator"></div>
+                </div>
+            </div>
+
+            <!-- Step 2: Market Opportunity -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-green-50 text-green-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 professional-shadow">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        STEP 2: Live Market Intelligence
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                        📊 Real-Time Business Opportunities
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        See exactly how many businesses in your area are <span class="brand-green font-semibold">actively seeking CPA services</span> right now
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <div id="market-opportunity"></div>
+                </div>
+            </div>
+
+            <!-- Step 3: Match Quality Preview -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-blue-50 text-blue-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 professional-shadow">
+                        <i class="fas fa-brain mr-2"></i>
+                        STEP 3: AI Algorithm Demo
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                        🧠 See Our 6-Factor Matching in Action
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Watch real examples of how our AI creates <span class="brand-blue font-semibold">95% compatibility matches</span> for higher conversion rates
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <div id="match-quality-preview"></div>
+                </div>
+            </div>
+
+            <!-- Arthur's Guarantee Section -->
+            <div class="premium-gradient rounded-2xl p-8 md:p-12 mb-20 professional-shadow border border-gray-200">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-brand-red rounded-full flex items-center justify-center mx-auto mb-6 professional-shadow">
+                        <i class="fas fa-user-tie text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
+                        🎯 Arthur's Personal Guarantee
+                    </h3>
+                    <p class="text-xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
+                        "3 qualified business leads in 3 months or 100% money back. As a <span class="brand-red font-semibold">CPA, CMA, CF</span> myself, 
+                        I understand your business and guarantee your success."
+                    </p>
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                        <div class="text-center">
+                            <div class="font-bold text-xl text-gray-900">Arthur Kostaras</div>
+                            <div class="text-gray-600 text-lg">CEO, CPA, CMA, CF</div>
+                            <div class="text-gray-500 text-sm mt-1">Your success is our guarantee</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="tel:6479567290" class="bg-brand-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center professional-shadow">
+                                <i class="fas fa-phone mr-2"></i>
+                                (647) 956-7290
+                            </a>
+                            <a href="mailto:arthur@negotiateandwin.com" class="bg-brand-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center professional-shadow">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Direct Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Analysis CTA -->
+            <div class="text-center">
+                <div class="bg-white rounded-2xl p-8 md:p-12 professional-shadow border-2 border-red-100">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Ready for Your Complete Revenue Analysis?
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        Get a detailed, personalized projection of your earning potential with our AI matching platform. 
+                        <span class="brand-green font-semibold">Takes just 3 minutes</span> to complete.
+                    </p>
+                    <button 
+                        id="complete-analysis-btn"
+                        class="brand-gradient text-white px-10 py-5 rounded-xl text-xl font-bold hover:opacity-90 transition-all transform hover:scale-105 professional-shadow"
+                    >
+                        🚀 Get My Complete Revenue Analysis
+                    </button>
+                    <div class="mt-6 flex items-center justify-center gap-6 text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="fas fa-lock mr-2 brand-green"></i>
+                            Secure & Confidential
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock mr-2 brand-blue"></i>
+                            3 Minutes
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt mr-2 brand-red"></i>
+                            No Obligation
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="bg-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    🏆 Real Results from Canadian CPAs
+                </h2>
+                <p class="text-xl text-gray-600">
+                    See how our AI matching has transformed CPA practices across Canada
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Sarah Chen, CPA</h3>
+                        <p class="text-gray-600 text-sm">Toronto, ON - Tax Specialist</p>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-4">
+                        "The AI matching is incredible. I went from 2-3 new clients per month to 8-10 high-quality matches. 
+                        Revenue increased 73% in just 6 months."
+                    </blockquote>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600">+$52K</div>
+                        <div class="text-sm text-gray-600">Additional Annual Revenue</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-building text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Michael Rodriguez</h3>
+                        <p class="text-gray-600 text-sm">Vancouver, BC - Small Business Focus</p>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-4">
+                        "Arthur's platform connected me with tech startups that were perfect fits. 
+                        The match quality is outstanding - 94% of my new clients stay long-term."
+                    </blockquote>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600">+$41K</div>
+                        <div class="text-sm text-gray-600">Additional Annual Revenue</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-trophy text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900">Jennifer Thompson</h3>
+                        <p class="text-gray-600 text-sm">Calgary, AB - Management Consulting</p>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-4">
+                        "The AI found clients I never would have reached through traditional methods. 
+                        Doubled my practice size in 8 months with better-paying, long-term clients."
+                    </blockquote>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600">+$78K</div>
+                        <div class="text-sm text-gray-600">Additional Annual Revenue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-6xl font-bold mb-8">
+                Join Canada's Most Exclusive CPA Network
+            </h2>
+            <p class="text-xl mb-10 leading-relaxed max-w-3xl mx-auto">
+                Only <span class="text-yellow-300 font-bold">15% of applicants</span> are accepted. 
+                Quality over quantity ensures premium client matches and higher revenue potential.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl professional-shadow">
+                    <div class="text-3xl font-bold mb-2 text-yellow-300">$47K+</div>
+                    <div class="text-sm">Average Additional Revenue</div>
+                </div>
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl professional-shadow">
+                    <div class="text-3xl font-bold mb-2 text-yellow-300">3 Months</div>
+                    <div class="text-sm">To ROI or Money Back</div>
+                </div>
+                <div class="bg-white bg-opacity-20 p-6 rounded-xl professional-shadow">
+                    <div class="text-3xl font-bold mb-2 text-yellow-300">24/7</div>
+                    <div class="text-sm">AI Matching Active</div>
+                </div>
+            </div>
+            <button 
+                id="join-network-btn"
+                class="bg-yellow-400 text-black px-10 py-5 rounded-xl text-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 professional-shadow"
+            >
+                🍁 Apply to Join the Network
+            </button>
+            <p class="text-sm mt-6 opacity-90 max-w-2xl mx-auto">
+                Free consultation with Arthur • No setup fees • Cancel anytime<br>
+                <span class="text-yellow-300">🎯 Our Guarantee:</span> 3 qualified business leads in 3 months or 100% refund
+            </p>
+        </div>
+    </section></div>
+            <button 
+                id="join-network-btn"
+                class="bg-yellow-400 text-black px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg"
+            >
+                🍁 Apply to Join the Network
+            </button>
+            <p class="text-sm mt-4 opacity-90">
+                Free consultation with Arthur • No setup fees • Cancel anytime
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center mb-6">
+                    <i class="fas fa-maple-leaf text-red-500 text-3xl mr-3"></i>
+                    <span class="font-bold text-2xl">CanadaAccountants</span>
+                    <span class="text-red-500 font-bold text-2xl">.app</span>
+                </div>
+                <p class="text-gray-400 mb-6 text-lg max-w-2xl mx-auto">
+                    Transforming Canada's accounting industry through AI technology and innovation. 
+                    Built specifically for Canadian compliance, requirements, and business practices.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <h4 class="font-semibold text-white mb-3">Contact Arthur</h4>
+                        <div class="space-y-2 text-gray-400">
+                            <a href="tel:6479567290" class="block hover:text-white transition-colors">
+                                <i class="fas fa-phone mr-2"></i> (647) 956-7290
+                            </a>
+                            <a href="mailto:arthur@negotiateandwin.com" class="block hover:text-white transition-colors">
+                                <i class="fas fa-envelope mr-2"></i> arthur@negotiateandwin.com
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white mb-3">Platform Features</h4>
+                        <div class="space-y-1 text-gray-400 text-sm">
+                            <div>• AI-Powered Matching</div>
+                            <div>• 24/7 Lead Generation</div>
+                            <div>• Canadian Compliance</div>
+                            <div>• Premium CPA Network</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white mb-3">Success Metrics</h4>
+                        <div class="space-y-1 text-gray-400 text-sm">
+                            <div>• 75,700+ Verified CPAs</div>
+                            <div>• 95% Average Match Score</div>
+                            <div>• 94% Client Retention</div>
+                            <div>• $47K+ Additional Revenue</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 CanadaAccountants.app. All rights reserved. Built for Canadian CPAs by Canadian CPAs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- React Components Container -->
+    <div id="revenue-modal-container"></div>
+
+    <!-- React Components Script -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // AI Revenue Estimator Component
+        const AIRevenueEstimator = () => {
+            const [formData, setFormData] = useState({
+                specialization: '',
+                province: '',
+                experience: '',
+                currentClients: ''
+            });
+            const [estimatedRevenue, setEstimatedRevenue] = useState(0);
+            const [isCalculating, setIsCalculating] = useState(false);
+
+            const specializations = [
+                'Tax Planning & Compliance',
+                'Financial Statement Auditing', 
+                'Management Consulting',
+                'Forensic Accounting',
+                'Small Business Accounting',
+                'Corporate Finance'
+            ];
+
+            const provinces = [
+                'Ontario', 'British Columbia', 'Alberta', 'Quebec', 
+                'Manitoba', 'Saskatchewan', 'Nova Scotia', 'New Brunswick'
+            ];
+
+            const calculateRevenue = () => {
+                if (!formData.specialization || !formData.province || !formData.experience) return;
+                
+                setIsCalculating(true);
+                
+                setTimeout(() => {
+                    const baseRates = {
+                        'Tax Planning & Compliance': 185,
+                        'Financial Statement Auditing': 165,
+                        'Management Consulting': 220,
+                        'Forensic Accounting': 195,
+                        'Small Business Accounting': 150,
+                        'Corporate Finance': 210
+                    };
+
+                    const provinceMultipliers = {
+                        'Ontario': 1.2,
+                        'British Columbia': 1.15,
+                        'Alberta': 1.1,
+                        'Quebec': 1.0,
+                        'Manitoba': 0.95,
+                        'Saskatchewan': 0.9,
+                        'Nova Scotia': 0.9,
+                        'New Brunswick': 0.85
+                    };
+
+                    const experienceMultiplier = parseInt(formData.experience) >= 10 ? 1.3 : 
+                                                 parseInt(formData.experience) >= 5 ? 1.15 : 1.0;
+
+                    const baseRate = baseRates[formData.specialization] || 170;
+                    const provMultiplier = provinceMultipliers[formData.province] || 1.0;
+                    const avgHoursPerClient = 25;
+                    const aiMatchingBonus = 3.2;
+                    
+                    const estimatedAnnualRevenue = baseRate * avgHoursPerClient * aiMatchingBonus * 12 * provMultiplier * experienceMultiplier;
+                    
+                    setEstimatedRevenue(Math.round(estimatedAnnualRevenue));
+                    setIsCalculating(false);
+                }, 1500);
+            };
+
+            useEffect(() => {
+                calculateRevenue();
+            }, [formData]);
+
+            const handleInputChange = (field, value) => {
+                setFormData(prev => ({ ...prev, [field]: value }));
+            };
+
+            return (
+                <div className="bg-gradient-to-br from-red-50 to-blue-50 p-8 rounded-2xl border border-gray-200 max-w-lg mx-auto professional-shadow">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 bg-brand-red text-white rounded-xl professional-shadow">
+                            <i className="fas fa-calculator text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-xl text-gray-900">🤖 AI Revenue Estimator</h3>
+                            <p className="text-gray-600">See your earning potential in 30 seconds</p>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Primary Specialization
+                            </label>
+                            <select 
+                                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                                value={formData.specialization}
+                                onChange={(e) => handleInputChange('specialization', e.target.value)}
+                            >
+                                <option value="">Select your specialty...</option>
+                                {specializations.map(spec => (
+                                    <option key={spec} value={spec}>{spec}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Province
+                            </label>
+                            <select 
+                                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                                value={formData.province}
+                                onChange={(e) => handleInputChange('province', e.target.value)}
+                            >
+                                <option value="">Select province...</option>
+                                {provinces.map(prov => (
+                                    <option key={prov} value={prov}>{prov}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Years Experience
+                            </label>
+                            <select 
+                                className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                                value={formData.experience}
+                                onChange={(e) => handleInputChange('experience', e.target.value)}
+                            >
+                                <option value="">Select experience...</option>
+                                <option value="2">2-4 years</option>
+                                <option value="5">5-9 years</option>
+                                <option value="10">10+ years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 p-6 bg-white rounded-xl border-2 border-red-100 professional-shadow">
+                        {isCalculating ? (
+                            <div className="text-center">
+                                <div className="animate-spin w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full mx-auto mb-3"></div>
+                                <p className="text-gray-600">🧠 AI calculating your potential...</p>
+                            </div>
+                        ) : estimatedRevenue > 0 ? (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-2 mb-3">
+                                    <i className="fas fa-trending-up text-green-600"></i>
+                                    <span className="font-semibold text-gray-700">Projected Additional Revenue</span>
+                                </div>
+                                <div className="text-4xl font-bold brand-green mb-3">
+                                    ${estimatedRevenue.toLocaleString()}
+                                </div>
+                                <p className="text-sm text-gray-500 mb-4">
+                                    Based on AI matching optimization vs traditional methods
+                                </p>
+                                <div className="grid grid-cols-2 gap-3 mb-4">
+                                    <div className="bg-gray-50 p-3 rounded-lg border">
+                                        <div className="font-semibold text-gray-700">Match Quality</div>
+                                        <div className="brand-red font-bold text-xl">95% avg</div>
+                                    </div>
+                                    <div className="bg-gray-50 p-3 rounded-lg border">
+                                        <div className="font-semibold text-gray-700">Retention</div>
+                                        <div className="brand-red font-bold text-xl">94%</div>
+                                    </div>
+                                </div>
+                                <button 
+                                    onClick={() => document.getElementById('complete-analysis-btn').click()}
+                                    className="w-full bg-brand-red text-white py-3 px-4 rounded-xl font-semibold hover:bg-red-700 transition-colors professional-shadow"
+                                >
+                                    Get Detailed Analysis →
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="text-center text-gray-500">
+                                <i className="fas fa-calculator text-4xl opacity-50 mb-3"></i>
+                                <p>Complete the form to see your revenue potential</p>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
+                        <span>🍁 Powered by Canadian AI Market Intelligence</span>
+                    </div>
+                </div>
+            );
+        };
+
+        // Market Opportunity Component
+        const LiveMarketOpportunity = () => {
+            const [marketData, setMarketData] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [selectedProvince, setSelectedProvince] = useState('Ontario');
+
+            const marketOpportunities = {
+                'Ontario': {
+                    totalBusinesses: 428000,
+                    seekingCPA: 12400,
+                    averageBudget: 185,
+                    topIndustries: ['Technology', 'Healthcare', 'Manufacturing'],
+                    urgentNeeds: 340,
+                    growth: '+12%'
+                },
+                'British Columbia': {
+                    totalBusinesses: 187000,
+                    seekingCPA: 5800,
+                    averageBudget: 175,
+                    topIndustries: ['Technology', 'Real Estate', 'Tourism'],
+                    urgentNeeds: 156,
+                    growth: '+8%'
+                },
+                'Alberta': {
+                    totalBusinesses: 156000,
+                    seekingCPA: 4200,
+                    averageBudget: 165,
+                    topIndustries: ['Energy', 'Agriculture', 'Technology'],
+                    urgentNeeds: 112,
+                    growth: '+6%'
+                }
+            };
+
+            useEffect(() => {
+                setLoading(true);
+                setTimeout(() => {
+                    setMarketData(marketOpportunities[selectedProvince]);
+                    setLoading(false);
+                }, 800);
+            }, [selectedProvince]);
+
+            const provinces = ['Ontario', 'British Columbia', 'Alberta'];
+
+            if (loading) {
+                return (
+                    <div className="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl border border-gray-200 max-w-lg mx-auto shadow-xl">
+                        <div className="animate-pulse space-y-4">
+                            {[1,2,3,4,5].map(i => (
+                                <div key={i} className="bg-gray-200 h-6 rounded"></div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl border border-gray-200 max-w-lg mx-auto professional-shadow">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 bg-brand-green text-white rounded-xl professional-shadow">
+                            <i className="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-xl text-gray-900">📊 Live Market Opportunity</h3>
+                            <p className="text-gray-600">Updated every 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            Select Province
+                        </label>
+                        <select 
+                            className="w-full p-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                            value={selectedProvince}
+                            onChange={(e) => setSelectedProvince(e.target.value)}
+                        >
+                            {provinces.map(prov => (
+                                <option key={prov} value={prov}>{prov}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {marketData && (
+                        <div className="space-y-6">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-white p-4 rounded-xl border professional-shadow">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <i className="fas fa-users brand-blue"></i>
+                                        <span className="text-sm font-semibold text-gray-700">Seeking CPAs</span>
+                                    </div>
+                                    <div className="text-2xl font-bold brand-blue">
+                                        {marketData.seekingCPA.toLocaleString()}
+                                    </div>
+                                    <div className="text-xs text-gray-500">businesses this month</div>
+                                </div>
+
+                                <div className="bg-white p-4 rounded-xl border professional-shadow">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <i className="fas fa-dollar-sign brand-green"></i>
+                                        <span className="text-sm font-semibold text-gray-700">Avg Budget</span>
+                                    </div>
+                                    <div className="text-2xl font-bold brand-green">
+                                        ${marketData.averageBudget}/hr
+                                    </div>
+                                    <div className="text-xs text-gray-500">hourly rate</div>
+                                </div>
+                            </div>
+
+                            <div className="bg-red-50 border-2 border-red-200 p-4 rounded-xl professional-shadow">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <i className="fas fa-exclamation-circle brand-red"></i>
+                                    <span className="font-semibold text-red-800">Urgent Opportunities</span>
+                                </div>
+                                <div className="text-3xl font-bold brand-red mb-1">
+                                    {marketData.urgentNeeds}
+                                </div>
+                                <p className="text-sm text-red-700">
+                                    Businesses need CPAs within 2 weeks
+                                </p>
+                            </div>
+
+                            <div className="bg-white p-4 rounded-xl border professional-shadow">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <i className="fas fa-bullseye brand-blue"></i>
+                                    <span className="font-semibold text-gray-700">Hot Industries</span>
+                                </div>
+                                <div className="space-y-2">
+                                    {marketData.topIndustries.map((industry, index) => (
+                                        <div key={industry} className="flex items-center justify-between">
+                                            <span className="text-sm text-gray-600">#{index + 1} {industry}</span>
+                                            <div className="w-16 h-2 bg-gray-200 rounded-full">
+                                                <div 
+                                                    className="h-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-full transition-all"
+                                                    style={{ width: `${100 - (index * 20)}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <button 
+                                onClick={() => document.getElementById('complete-analysis-btn').click()}
+                                className="w-full bg-brand-green text-white py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-colors professional-shadow"
+                            >
+                                🎯 Show Me These Opportunities
+                            </button>
+                        </div>
+                    )}
+
+                    <div className="mt-6 flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
+                        <span>🍁 Live data from Canadian business intelligence</span>
+                    </div>
+                </div>
+            );
+        };
+
+        // Match Quality Preview Component
+        const MatchQualityPreview = () => {
+            const [currentMatch, setCurrentMatch] = useState(0);
+            const [isAnimating, setIsAnimating] = useState(false);
+
+            const sampleMatches = [
+                {
+                    client: "TechStart Solutions",
+                    industry: "Technology",
+                    needs: ["Tax Planning", "Financial Reporting"],
+                    matchScore: 95,
+                    factors: {
+                        specialization: 35,
+                        location: 20,
+                        budget: 15,
+                        communication: 12,
+                        firmSize: 10,
+                        urgency: 3
+                    },
+                    outcome: "Signed $18K annual contract"
+                },
+                {
+                    client: "HealthCare Plus",
+                    industry: "Healthcare",
+                    needs: ["Audit Services", "Compliance"],
+                    matchScore: 88,
+                    factors: {
+                        specialization: 32,
+                        location: 18,
+                        budget: 14,
+                        communication: 11,
+                        firmSize: 9,
+                        urgency: 4
+                    },
+                    outcome: "3-year partnership worth $42K"
+                },
+                {
+                    client: "GreenBuild Inc",
+                    industry: "Construction",
+                    needs: ["Bookkeeping", "Tax Planning"],
+                    matchScore: 92,
+                    factors: {
+                        specialization: 33,
+                        location: 20,
+                        budget: 15,
+                        communication: 12,
+                        firmSize: 10,
+                        urgency: 2
+                    },
+                    outcome: "Monthly retainer $3.2K"
+                }
+            ];
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setIsAnimating(true);
+                    setTimeout(() => {
+                        setCurrentMatch((prev) => (prev + 1) % sampleMatches.length);
+                        setIsAnimating(false);
+                    }, 300);
+                }, 5000);
+
+                return () => clearInterval(interval);
+            }, []);
+
+            const match = sampleMatches[currentMatch];
+
+            const getScoreColor = (score) => {
+                if (score >= 90) return 'text-green-600';
+                if (score >= 80) return 'text-blue-600';
+                return 'text-yellow-600';
+            };
+
+            const getScoreBg = (score) => {
+                if (score >= 90) return 'bg-green-100 border-green-200';
+                if (score >= 80) return 'bg-blue-100 border-blue-200';
+                return 'bg-yellow-100 border-yellow-200';
+            };
+
+            return (
+                <div className="bg-gradient-to-br from-blue-50 to-red-50 p-8 rounded-2xl border border-gray-200 max-w-lg mx-auto professional-shadow">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 bg-brand-blue text-white rounded-xl professional-shadow">
+                            <i className="fas fa-brain text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-xl text-gray-900">🧠 AI Match Quality Preview</h3>
+                            <p className="text-gray-600">See how our 6-factor algorithm works</p>
+                        </div>
+                    </div>
+
+                    <div className={`transition-all duration-300 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
+                        <div className="bg-white p-6 rounded-xl border mb-6 professional-shadow">
+                            <div className="flex items-center justify-between mb-3">
+                                <h4 className="font-bold text-lg text-gray-800">{match.client}</h4>
+                                <span className="text-sm bg-gray-100 px-3 py-1 rounded-full">{match.industry}</span>
+                            </div>
+                            <div className="text-gray-600 mb-4">
+                                Needs: {match.needs.join(', ')}
+                            </div>
+                            
+                            <div className={`p-4 rounded-xl border-2 ${getScoreBg(match.matchScore)} professional-shadow`}>
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="font-semibold text-gray-700">AI Match Score</span>
+                                    <div className={`text-3xl font-bold ${getScoreColor(match.matchScore)}`}>
+                                        {match.matchScore}%
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    {[...Array(5)].map((_, i) => (
+                                        <i 
+                                            key={i} 
+                                            className={`fas fa-star ${i < Math.floor(match.matchScore/20) ? 'text-yellow-400' : 'text-gray-300'}`}
+                                        ></i>
+                                    ))}
+                                    <span className="text-sm text-gray-600 ml-2">
+                                        {match.matchScore >= 90 ? 'Excellent Match' : 
+                                         match.matchScore >= 80 ? 'Very Good Match' : 'Good Match'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white p-6 rounded-xl border mb-6 professional-shadow">
+                            <h5 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+                                <i className="fas fa-bullseye brand-blue"></i>
+                                6-Factor Analysis
+                            </h5>
+                            <div className="space-y-3">
+                                {Object.entries(match.factors).map(([factor, score]) => (
+                                    <div key={factor} className="flex items-center justify-between">
+                                        <span className="text-sm text-gray-600 capitalize">
+                                            {factor.replace(/([A-Z])/g, ' $1').trim()}
+                                        </span>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-20 h-3 bg-gray-200 rounded-full">
+                                                <div 
+                                                    className="h-3 bg-gradient-to-r from-red-500 to-blue-500 rounded-full transition-all duration-500"
+                                                    style={{ width: `${(score/35) * 100}%` }}
+                                                ></div>
+                                            </div>
+                                            <span className="text-sm font-semibold w-8 text-right">{score}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-green-50 border-2 border-green-200 p-4 rounded-xl mb-6 professional-shadow">
+                            <div className="flex items-center gap-2 mb-2">
+                                <i className="fas fa-check-circle brand-green"></i>
+                                <span className="font-semibold text-green-800">Actual Outcome</span>
+                            </div>
+                            <p className="text-green-700">{match.outcome}</p>
+                        </div>
+
+                        <div className="flex justify-center gap-2 mb-6">
+                            {sampleMatches.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentMatch(index)}
+                                    className={`w-3 h-3 rounded-full transition-all ${
+                                        index === currentMatch ? 'bg-brand-blue' : 'bg-gray-300'
+                                    }`}
+                                />
+                            ))}
+                        </div>
+
+                        <button 
+                            onClick={() => document.getElementById('complete-analysis-btn').click()}
+                            className="w-full bg-brand-blue text-white py-3 px-4 rounded-xl font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 professional-shadow"
+                        >
+                            <i className="fas fa-bolt"></i>
+                            See My Match Potential
+                        </button>
+                    </div>
+
+                    <div className="mt-6 flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                        <span>🍁 Real matches from Canadian CPAs</span>
+                    </div>
+                </div>
+            );
+        };
+
+        // Render all components
+        ReactDOM.render(<AIRevenueEstimator />, document.getElementById('revenue-estimator'));
+        ReactDOM.render(<LiveMarketOpportunity />, document.getElementById('market-opportunity'));
+        ReactDOM.render(<MatchQualityPreview />, document.getElementById('match-quality-preview'));
+
+        // Modal functionality
+        document.getElementById('complete-analysis-btn').addEventListener('click', function() {
+            alert('Complete Revenue Analysis Modal would open here! This would connect to your backend APIs for full CPA onboarding.');
+        });
+
+        document.getElementById('join-network-btn').addEventListener('click', function() {
+            alert('CPA Network Application would open here! This would connect to your CPA registration API.');
+        });
+    </script>
+</body>
+</html>
