@@ -913,7 +913,12 @@
             
             topMatches.forEach((match, index) => {
                 const card = createMatchCard(match, index);
-                container.appendChild(card);
+                // Safety check before appendChild
+if (card && card.nodeType === Node.ELEMENT_NODE) {
+    container.appendChild(card);
+} else {
+    console.error('Invalid card element, skipping:', card);
+}
             });
         }
 
