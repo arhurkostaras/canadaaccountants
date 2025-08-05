@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Canada's Most Exclusive CPA Network | CanadaAccountants</title>
-    <meta name="description" content="Join an elite network of Canadian CPAs receiving pre-qualified, high-value business leads. 15% acceptance rate. Apply now.">
+    <title>Stop Wasting $30,000+ on CPA Marketing | CanadaAccountants</title>
+    <meta name="description" content="End your 585-day sales cycle nightmare. Join Canada's only friction elimination CPA network and get pre-qualified clients in 24 hours, not 585 days.">
     <style>
         * {
             margin: 0;
@@ -64,7 +64,7 @@
         }
 
         .nav-link:hover {
-            color: #10b981;
+            color: #2563eb;
         }
 
         .business-link {
@@ -82,11 +82,36 @@
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
         }
 
+        /* Friction Alert Banner */
+        .friction-alert {
+            background: #dc2626;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 70px;
+            border-bottom: 3px solid #991b1b;
+        }
+
+        .friction-alert h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .friction-alert p {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            margin: 0 auto;
+            text-align: center;
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 120px 0 80px;
+            padding: 80px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -99,8 +124,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -116,14 +141,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #1f2937;
-            padding: 10px 20px;
+            background: #dc2626;
+            color: white;
+            padding: 12px 24px;
             border-radius: 30px;
             font-size: 0.95rem;
             font-weight: 700;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
 
         .hero-title {
@@ -131,73 +156,120 @@
             font-weight: 900;
             margin-bottom: 25px;
             line-height: 1.1;
-            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cpa-pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .pain-point-card {
+            background: rgba(220, 38, 38, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pain-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .pain-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .pain-description {
+            color: #fecaca;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .solution-arrow {
+            text-align: center;
+            font-size: 3rem;
+            margin: 40px 0;
+            color: #fbbf24;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 40px;
-            color: #94a3b8;
-            max-width: 800px;
+            color: #ffffff;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.4;
+            font-weight: 700;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin: 50px 0;
         }
 
         .stat {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #10b981;
-            margin-bottom: 5px;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
             color: #cbd5e1;
-            font-weight: 500;
         }
 
         .hero-cta {
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
-            padding: 20px 40px;
+            padding: 25px 50px;
             border-radius: 12px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
         }
 
         /* How It Works Section */
@@ -228,7 +300,7 @@
         .section-subtitle {
             font-size: 1.3rem;
             color: #64748b;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
         }
@@ -262,7 +334,7 @@
             right: -15px;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -270,13 +342,13 @@
             font-size: 1.5rem;
             font-weight: 800;
             color: white;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
 
         .step-icon {
             font-size: 4rem;
             margin-bottom: 30px;
-            color: #10b981;
+            color: #2563eb;
         }
 
         .step-title {
@@ -309,7 +381,7 @@
         }
 
         .feature-check {
-            color: #10b981;
+            color: #2563eb;
             font-weight: bold;
         }
 
@@ -339,13 +411,13 @@
 
         .benefit-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(16, 185, 129, 0.3);
+            border-color: rgba(37, 99, 235, 0.3);
         }
 
         .benefit-icon {
             font-size: 3.5rem;
             margin-bottom: 25px;
-            color: #10b981;
+            color: #2563eb;
         }
 
         .benefit-title {
@@ -419,9 +491,9 @@
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
-            border-color: #10b981;
+            border-color: #2563eb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .form-textarea {
@@ -431,7 +503,7 @@
 
         .submit-button {
             width: 100%;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             border: none;
             padding: 18px 30px;
@@ -440,12 +512,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
         }
 
         .form-note {
@@ -482,7 +554,7 @@
         }
 
         .footer-link:hover {
-            color: #10b981;
+            color: #2563eb;
         }
 
         /* Mobile Responsive */
@@ -500,6 +572,10 @@
             }
 
             .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cpa-pain-points {
                 grid-template-columns: 1fr;
             }
 
@@ -530,40 +606,72 @@
         </div>
     </nav>
 
+    <!-- Friction Alert Banner -->
+    <section class="friction-alert">
+        <h3>🚨 CANADIAN CPAs ARE BLEEDING $30,000+ YEARLY ON MARKETING</h3>
+        <p>Stop the 585-day sales cycle nightmare • End ineffective cold calling • Turn marketing waste into qualified leads</p>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
             <div class="exclusive-badge">
-                👑 EXCLUSIVE NETWORK - Only 15% Acceptance Rate
+                🛑 STOP THE MARKETING WASTE - Revolutionary CPA Network
             </div>
-            <h1 class="hero-title">Join Canada's Most Exclusive CPA Network</h1>
+            <h1 class="hero-title">Stop Wasting $30,000+ on Ineffective CPA Marketing</h1>
+            
+            <!-- CPA Pain Points -->
+            <div class="cpa-pain-points">
+                <div class="pain-point-card">
+                    <div class="pain-icon">💸</div>
+                    <h3 class="pain-title">$30,000+ Yearly Marketing Waste</h3>
+                    <p class="pain-description">Cold calling, expensive ads, networking events that produce zero qualified leads</p>
+                </div>
+                <div class="pain-point-card">
+                    <div class="pain-icon">📅</div>
+                    <h3 class="pain-title">585-Day Sales Cycle Nightmare</h3>
+                    <p class="pain-description">From first contact to signed client - the industry's broken sales process</p>
+                </div>
+                <div class="pain-point-card">
+                    <div class="pain-icon">📉</div>
+                    <h3 class="pain-title">25-35% Win Rates</h3>
+                    <p class="pain-description">Industry standard failure rate - competing for scraps in overcrowded directories</p>
+                </div>
+            </div>
+
+            <div class="solution-arrow">⬇️</div>
+
             <p class="hero-subtitle">
-                Stop chasing leads. Start receiving pre-qualified, high-value clients who are actively seeking YOUR expertise. 
-                Elite CPAs see 40%+ revenue growth in their first year.
+                END THE MARKETING NIGHTMARE: Get pre-qualified clients in 24 hours, not 585 days. 
+                Turn your $30K marketing waste into $100K+ revenue growth.
             </p>
 
             <div class="stats-grid">
                 <div class="stat">
-                    <div class="stat-number">$47K+</div>
-                    <div class="stat-label">Average Revenue Increase</div>
+                    <div class="stat-number">24hrs</div>
+                    <div class="stat-label">Client Response Time</div>
+                    <div class="stat-description">vs 585-day industry average</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">15%</div>
-                    <div class="stat-label">CPA Acceptance Rate</div>
+                    <div class="stat-number">70%+</div>
+                    <div class="stat-label">Our CPA Win Rate</div>
+                    <div class="stat-description">vs 25% industry average</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">94%</div>
-                    <div class="stat-label">CPA Satisfaction Rate</div>
+                    <div class="stat-number">$0</div>
+                    <div class="stat-label">Marketing Costs</div>
+                    <div class="stat-description">Eliminate your $30K+ waste</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">48hrs</div>
-                    <div class="stat-label">Average Match Time</div>
+                    <div class="stat-number">$7K→$1K</div>
+                    <div class="stat-label">Client Acquisition Cost</div>
+                    <div class="stat-description">Slash your marketing expenses</div>
                 </div>
             </div>
 
             <div class="hero-cta">
                 <a href="#apply" class="cta-button">
-                    🚀 Apply for Elite Status Now
+                    🚀 End My Marketing Waste Now
                 </a>
             </div>
         </div>
@@ -573,37 +681,37 @@
     <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">How You Get Quality Clients</h2>
+                <h2 class="section-title">How We End Your Marketing Nightmare</h2>
                 <p class="section-subtitle">
-                    Our AI-powered platform delivers pre-qualified, high-value business leads directly to your inbox. 
-                    No more cold calling, expensive ads, or time-wasting prospects.
+                    Our friction elimination system delivers pre-qualified clients directly to you. 
+                    No more $30K marketing waste, no more 585-day sales cycles, no more cold calling.
                 </p>
             </div>
 
             <div class="steps-container">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <div class="step-icon">🏆</div>
-                    <h3 class="step-title">Join Our Elite Network</h3>
+                    <div class="step-icon">🛑</div>
+                    <h3 class="step-title">Stop Your Marketing Waste</h3>
                     <p class="step-description">
-                        Complete our rigorous verification process and set your specializations, availability, and ideal client profile.
+                        Cancel your expensive ads, stop cold calling, end the networking nightmare. Join our friction elimination network.
                     </p>
                     <ul class="step-features">
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Professional credential verification</span>
+                            <span>End $30K+ yearly marketing waste</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Industry specialization setup</span>
+                            <span>Stop 585-day sales cycle nightmare</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Ideal client profile creation</span>
+                            <span>Eliminate cold calling forever</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Availability & capacity settings</span>
+                            <span>Replace marketing with AI matching</span>
                         </li>
                     </ul>
                 </div>
@@ -611,9 +719,9 @@
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div class="step-icon">🎯</div>
-                    <h3 class="step-title">AI Delivers Perfect Clients</h3>
+                    <h3 class="step-title">Receive Pre-Qualified Clients</h3>
                     <p class="step-description">
-                        Our algorithm matches businesses to YOUR specific expertise and automatically sends you qualified leads that fit your criteria.
+                        Our AI identifies businesses actively seeking CPAs and matches them to your expertise automatically.
                     </p>
                     <ul class="step-features">
                         <li class="step-feature">
@@ -622,42 +730,42 @@
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Industry & size matching</span>
+                            <span>Budget & timeline pre-screened</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Budget & timeline pre-screening</span>
+                            <span>Industry & expertise matching</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Geographic preference matching</span>
+                            <span>24-hour response guarantee</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="step-card">
                     <div class="step-number">3</div>
-                    <div class="step-icon">📈</div>
-                    <h3 class="step-title">Grow Your Practice</h3>
+                    <div class="step-icon">💰</div>
+                    <h3 class="step-title">Turn Waste Into Revenue</h3>
                     <p class="step-description">
-                        Connect with matched businesses instantly. Higher close rates, premium clients, and predictable revenue growth.
+                        Transform your $30K marketing waste into $100K+ revenue growth with 70%+ win rates.
                     </p>
                     <ul class="step-features">
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Direct client contact information</span>
+                            <span>70%+ win rates vs 25% industry</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Warm introduction emails</span>
+                            <span>$7K → $1K client acquisition cost</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>60%+ higher close rates</span>
+                            <span>Predictable revenue growth</span>
                         </li>
                         <li class="step-feature">
                             <span class="feature-check">✓</span>
-                            <span>Ongoing support & optimization</span>
+                            <span>Premium client relationships</span>
                         </li>
                     </ul>
                 </div>
@@ -669,58 +777,58 @@
     <section id="benefits" class="benefits">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" style="color: white;">Why Elite CPAs Choose Us</h2>
+                <h2 class="section-title" style="color: white;">Why CPAs Join Our Friction Elimination Network</h2>
                 <p class="section-subtitle" style="color: #cbd5e1;">
-                    Stop wasting time and money on ineffective marketing. Join the network that delivers results.
+                    Stop bleeding money on marketing that doesn't work. Join the revolution that eliminates friction.
                 </p>
             </div>
 
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3 class="benefit-title">Predictable Revenue Growth</h3>
+                    <div class="benefit-icon">🛑</div>
+                    <h3 class="benefit-title">End $30K+ Marketing Waste</h3>
                     <p class="benefit-description">
-                        Our CPAs see an average of 40% revenue increase in their first year. Stop feast-or-famine cycles and build consistent growth.
+                        Stop spending thousands on ads, cold calling, and networking that produce zero qualified leads. Turn waste into profit.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title">24-Hour Client Response</h3>
+                    <p class="benefit-description">
+                        End your 585-day sales cycle nightmare. Get pre-qualified clients responding in 24 hours, not 585 days.
                     </p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">🎯</div>
-                    <h3 class="benefit-title">Pre-Qualified Leads Only</h3>
+                    <h3 class="benefit-title">70%+ Win Rate Success</h3>
                     <p class="benefit-description">
-                        No more tire-kickers or unqualified prospects. Every lead has been vetted, has budget, and needs your specific expertise.
+                        Stop the 25-35% industry failure rate. Our CPAs achieve 70%+ win rates with pre-qualified, ready-to-buy clients.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">$7K → $1K Acquisition Cost</h3>
+                    <p class="benefit-description">
+                        Slash your client acquisition costs by 85%. Turn your marketing expense into pure profit growth.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Predictable Revenue Growth</h3>
+                    <p class="benefit-description">
+                        End feast-or-famine cycles. Build consistent, predictable revenue with a steady stream of qualified clients.
                     </p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">⏰</div>
-                    <h3 class="benefit-title">Save 15+ Hours Per Week</h3>
+                    <h3 class="benefit-title">Save 20+ Hours Per Week</h3>
                     <p class="benefit-description">
-                        Stop cold calling, networking events, and expensive ads. Spend your time on billable work, not business development.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">👑</div>
-                    <h3 class="benefit-title">Premium Client Base</h3>
-                    <p class="benefit-description">
-                        Work with businesses that value expertise and pay premium rates. Our clients understand the value of quality accounting.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🔒</div>
-                    <h3 class="benefit-title">Exclusive Network</h3>
-                    <p class="benefit-description">
-                        Only 15% acceptance rate ensures you're competing with the best, not fighting for scraps in overcrowded directories.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">📊</div>
-                    <h3 class="benefit-title">Zero Marketing Costs</h3>
-                    <p class="benefit-description">
-                        Stop spending thousands on ads that don't work. Our platform brings clients to you at no marketing cost.
+                        Stop cold calling, networking, and chasing leads. Spend your time on billable work, not business development.
                     </p>
                 </div>
             </div>
@@ -732,10 +840,9 @@
         <div class="container">
             <div class="form-container">
                 <div class="form-header">
-                    <h2 class="form-title">Apply for Elite CPA Status</h2>
+                    <h2 class="form-title">End Your $30K Marketing Waste</h2>
                     <p class="form-subtitle">
-                        Join Canada's most exclusive CPA network. Only 15% of applicants are accepted. 
-                        Do you have what it takes?
+                        Join Canada's only friction elimination CPA network. Stop the marketing nightmare and start receiving pre-qualified clients in 24 hours.
                     </p>
                 </div>
 
@@ -793,23 +900,34 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label" for="currentMarketingWaste">How much do you spend yearly on marketing that doesn't work?</label>
+                        <select id="currentMarketingWaste" name="currentMarketingWaste" class="form-select">
+                            <option value="">Select Amount</option>
+                            <option value="under-10k">Under $10,000</option>
+                            <option value="10k-30k">$10,000 - $30,000</option>
+                            <option value="30k-50k">$30,000 - $50,000</option>
+                            <option value="50k-plus">$50,000+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label" for="specializations">Industry Specializations</label>
                         <textarea id="specializations" name="specializations" class="form-textarea" 
                                 placeholder="e.g., Technology startups, Real estate, Manufacturing, Restaurants, etc."></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="whyJoin">Why do you want to join our exclusive network?</label>
+                        <label class="form-label" for="whyJoin">Why do you want to end your marketing waste?</label>
                         <textarea id="whyJoin" name="whyJoin" class="form-textarea" 
-                                placeholder="Tell us about your goals and what makes you an elite CPA..."></textarea>
+                                placeholder="Tell us about your marketing frustrations and revenue goals..."></textarea>
                     </div>
 
                     <button type="submit" class="submit-button" id="submitBtn">
-                        🚀 Submit Elite Application
+                        🚀 End My Marketing Waste Now
                     </button>
 
                     <p class="form-note">
-                        🔒 Your information is secure. We'll review your application within 48 hours and contact you with next steps.
+                        🔒 Your information is secure. We'll contact you within 24 hours to end your marketing nightmare and start delivering qualified clients.
                     </p>
                 </form>
             </div>
@@ -819,7 +937,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">© 2025 CanadaAccountants. Connecting elite CPAs with premium clients across Canada.</p>
+            <p class="footer-text">© 2025 CanadaAccountants. Ending CPA marketing waste across Canada with friction elimination technology.</p>
             <div class="footer-links">
                 <a href="/" class="footer-link">For Businesses</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
@@ -834,7 +952,7 @@
             event.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerHTML = '⏳ Processing Application...';
+            submitBtn.innerHTML = '⏳ Ending Your Marketing Waste...';
             submitBtn.disabled = true;
             
             // Get form data
@@ -845,22 +963,23 @@
                 firmName: document.getElementById('firmName').value,
                 province: document.getElementById('province').value,
                 experience: document.getElementById('experience').value,
+                currentMarketingWaste: document.getElementById('currentMarketingWaste').value,
                 specializations: document.getElementById('specializations').value,
                 whyJoin: document.getElementById('whyJoin').value,
-                applicationType: 'CPA Application',
+                applicationType: 'Friction Elimination CPA Application',
                 timestamp: new Date().toISOString(),
                 userAgent: navigator.userAgent,
                 referrer: document.referrer
             };
             
-            // Store locally
-            let existingApplications = JSON.parse(localStorage.getItem('cpaApplications') || '[]');
+            // Store locally (replace with your backend integration)
+            let existingApplications = JSON.parse(localStorage.getItem('frictionEliminationCPAs') || '[]');
             existingApplications.push(formData);
-            localStorage.setItem('cpaApplications', JSON.stringify(existingApplications));
+            localStorage.setItem('frictionEliminationCPAs', JSON.stringify(existingApplications));
             
             // Log to console
-            console.log('🎉 NEW CPA APPLICATION:', formData);
-            console.log('📊 Total Applications:', existingApplications.length);
+            console.log('🎉 NEW FRICTION ELIMINATION CPA APPLICATION:', formData);
+            console.log('📊 Total Friction Elimination Applications:', existingApplications.length);
             
             // Show success message
             setTimeout(() => {
@@ -873,39 +992,39 @@
             formContainer.innerHTML = `
                 <div style="text-align: center; padding: 40px;">
                     <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
-                    <h2 style="color: #10b981; font-size: 2.5rem; margin-bottom: 15px;">Application Submitted!</h2>
+                    <h2 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 15px;">Marketing Waste Elimination Started!</h2>
                     <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
-                        Thank you for applying to Canada's most exclusive CPA network.
+                        Welcome to Canada's friction elimination CPA network. Your marketing nightmare ends now.
                     </p>
                     
-                    <div style="background: #f8fafc; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left;">
-                        <h3 style="color: #1e293b; margin-bottom: 20px;">📋 Next Steps:</h3>
+                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left;">
+                        <h3 style="color: #dc2626; margin-bottom: 20px;">🛑 IMMEDIATE ACTIONS:</h3>
                         <div style="display: grid; gap: 15px;">
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #10b981; font-weight: bold;">✓</span>
-                                <span><strong>Application Review</strong> - We'll evaluate your credentials within 48 hours</span>
+                                <span style="color: #dc2626; font-weight: bold;">🛑</span>
+                                <span><strong>STOP</strong> all current marketing spend immediately</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #10b981; font-weight: bold;">✓</span>
-                                <span><strong>Verification Process</strong> - Professional credential and reference checks</span>
+                                <span style="color: #dc2626; font-weight: bold;">📞</span>
+                                <span><strong>CANCEL</strong> cold calling campaigns and expensive ads</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #10b981; font-weight: bold;">✓</span>
-                                <span><strong>Interview Call</strong> - 15-minute qualification conversation</span>
+                                <span style="color: #2563eb; font-weight: bold;">✓</span>
+                                <span><strong>PREPARE</strong> for 24-hour qualified client delivery</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #10b981; font-weight: bold;">✓</span>
-                                <span><strong>Network Activation</strong> - Welcome to the elite network!</span>
+                                <span style="color: #2563eb; font-weight: bold;">✓</span>
+                                <span><strong>EXPECT</strong> 70%+ win rates starting immediately</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border-radius: 15px; padding: 25px; margin: 20px 0;">
-                        <h4 style="margin: 0 0 15px 0;">📧 What Happens Next:</h4>
-                        <p style="margin: 0; line-height: 1.5;">Arthur will personally review your application and contact you within 48 hours with your acceptance status and next steps.</p>
+                    <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 15px; padding: 25px; margin: 20px 0;">
+                        <h4 style="margin: 0 0 15px 0; color: #1e40af;">📧 What Happens in the Next 24 Hours:</h4>
+                        <p style="margin: 0; line-height: 1.5; color: #1e3a8a;">Arthur will personally review your application and contact you with your friction elimination onboarding. Your marketing waste ends today.</p>
                     </div>
                     
-                    <a href="/" style="display: inline-block; background: #10b981; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 20px;">
+                    <a href="/" style="display: inline-block; background: #2563eb; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 20px;">
                         Return to Homepage →
                     </a>
                 </div>
