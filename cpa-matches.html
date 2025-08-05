@@ -1050,7 +1050,15 @@ async function createMatchCard(match, index) {
         </div>
     `;
 
-    return card;
+    // Ensure we always return a valid DOM element
+if (!card || !card.nodeType) {
+    console.error('createMatchCard failed to create valid DOM element');
+    const errorCard = document.createElement('div');
+    errorCard.className = 'match-card error';
+    errorCard.innerHTML = '<div class="error">Error creating CPA card</div>';
+    return errorCard;
+}
+return card;
 }
 
 // Generate intelligent performance score based on CPA data
