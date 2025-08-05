@@ -752,68 +752,691 @@
     <main>
         <section class="hero" id="home">
             <div class="container">
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanadaAccountants - Stop Wasting $30,000+ on CPA Marketing</title>
+    <meta name="description" content="Stop wasting $30,000+ annually on ineffective CPA marketing. Get pre-qualified clients in 24 hours, not 585 days. Revolutionary AI platform with 70%+ win rates.">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="js/api-config.js" as="script">
+    <link rel="preload" href="js/matching-engine.js" as="script">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4F46E5;
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4F46E5;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4F46E5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cpa-nav-link {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: white !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .cpa-nav-link:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4) !important;
+            color: white !important;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Revolutionary Hero Section - Friction Elimination */
+        .hero {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Friction Alert Banner */
+        .friction-alert {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            animation: pulse-alert 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-alert {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 35px rgba(220, 38, 38, 0.4); }
+        }
+
+        .friction-alert h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+        }
+
+        .friction-alert p {
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        /* Dual-Sided Hero Content */
+        .hero-dual-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .hero-side {
+            text-align: left;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .side-badge {
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-side h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .pain-points {
+            margin: 25px 0;
+        }
+
+        .pain-point {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(220, 38, 38, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .pain-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .pain-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .solution-points {
+            margin: 25px 0;
+        }
+
+        .solution-point {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+
+        .solution-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .solution-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Central CTA Section */
+        .hero-cta-center {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1f2937;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-headline {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #dc2626 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .cta-subheadline {
+            font-size: 1.3rem;
+            color: #4b5563;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Friction Stats Section */
+        .friction-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .friction-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fbbf24;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* AI Technology Badge */
+        .ai-technology-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 0 auto 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hero-dual-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-side {
+                padding: 25px;
+            }
+
+            .hero-side h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-headline {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .friction-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Success Animations */
+        .success-checkmark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #10B981;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #4F46E5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">CanadaAccountants</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#features" onclick="closeMobileMenu()">Features</a></li>
+                <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
+                <li><a href="guarantee.html" onclick="closeMobileMenu()">Guarantee</a></li>
+                <li><a href="metrics.html" onclick="closeMobileMenu()">Metrics</a></li>
+                <li><a href="#why-we-win" onclick="closeMobileMenu()">Why We Win</a></li>
+                <li><a href="contact.html" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="market-trends-report.html" onclick="closeMobileMenu()">Market Insights</a></li>
+                <li><a href="ai-demo.html" onclick="closeMobileMenu()">AI Demo</a></li>
+                <li><a href="/join-as-cpa.html" class="cpa-nav-link" onclick="closeMobileMenu()">Join as CPA</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
                 <div class="hero-content">
-                    <h1>Find Your Perfect CPA in 48 Hours, Guaranteed</h1>
-                    <p>Premium matching platform connecting pre-screened, verified CPAs with small and medium enterprises across Canada through cutting-edge technology</p>
-                    <div class="hero-buttons">
-                        <a href="find-cpa.html" class="btn btn-primary">Find My Perfect CPA - Free</a>
-                        <a href="cpa-onboarding.html" class="btn btn-secondary">Join as a CPA</a>
+                    <!-- Friction Alert Banner -->
+                    <div class="friction-alert">
+                        <h3>🚨 CANADIAN BUSINESSES ARE BLEEDING MONEY</h3>
+                        <p>CPAs waste $30,000+ yearly on marketing that doesn't work • SMEs lose 25% of their work week to financial chaos</p>
                     </div>
-                 <!-- Real-Time CPA Dashboard -->
-        <div class="dashboard-container">
-            <div class="dashboard-header">
-                <h3>🔴 Live Platform Metrics</h3>
-                <span class="last-updated">Updated 3 minutes ago</span>
+
+                    <!-- AI Technology Badge -->
+                    <div class="ai-technology-badge">
+                        🤖 Revolutionary AI Technology • 7 Machine Learning Algorithms
+                    </div>
+
+                    <!-- Dual-Sided Hero Content -->
+                    <div class="hero-dual-content">
+                        <!-- CPA Side -->
+                        <div class="hero-side">
+                            <div class="side-badge">FOR CPAs</div>
+                            <h2>Stop Wasting $30,000+ on Ineffective Marketing</h2>
+                            
+                            <div class="pain-points">
+                                <div class="pain-point">
+                                    <span class="pain-icon">💸</span>
+                                    <span class="pain-text">$30,000+ yearly marketing waste</span>
+                                </div>
+                                <div class="pain-point">
+                                    <span class="pain-icon">📅</span>
+                                    <span class="pain-text">585-day average sales cycle</span>
+                                </div>
+                                <div class="pain-point">
+                                    <span class="pain-icon">📉</span>
+                                    <span class="pain-text">25-35% win rates (industry average)</span>
+                                </div>
+                            </div>
+
+                            <div class="solution-points">
+                                <div class="solution-point">
+                                    <span class="solution-icon">⚡</span>
+                                    <span class="solution-text">Pre-qualified clients in 24 hours</span>
+                                </div>
+                                <div class="solution-point">
+                                    <span class="solution-icon">🎯</span>
+                                    <span class="solution-text">70%+ win rates guaranteed</span>
+                                </div>
+                                <div class="solution-point">
+                                    <span class="solution-icon">💰</span>
+                                    <span class="solution-text">$7,000 → $1,000 client acquisition cost</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SME Side -->
+                        <div class="hero-side">
+                            <div class="side-badge">FOR BUSINESSES</div>
+                            <h2>Stop Losing 25% of Your Work Week to Financial Chaos</h2>
+                            
+                            <div class="pain-points">
+                                <div class="pain-point">
+                                    <span class="pain-icon">⏰</span>
+                                    <span class="pain-text">20+ hours/month financial tasks</span>
+                                </div>
+                                <div class="pain-point">
+                                    <span class="pain-icon">💔</span>
+                                    <span class="pain-text">24-week CPA search process</span>
+                                </div>
+                                <div class="pain-point">
+                                    <span class="pain-icon">💸</span>
+                                    <span class="pain-text">$3,534/year in tax overpayments</span>
+                                </div>
+                            </div>
+
+                            <div class="solution-points">
+                                <div class="solution-point">
+                                    <span class="solution-icon">🚀</span>
+                                    <span class="solution-text">Perfect CPA match in 24 hours</span>
+                                </div>
+                                <div class="solution-point">
+                                    <span class="solution-icon">⚡</span>
+                                    <span class="solution-text">15+ hours/month time recovery</span>
+                                </div>
+                                <div class="solution-point">
+                                    <span class="solution-icon">🛡️</span>
+                                    <span class="solution-text">Eliminate tax errors & overpayments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Central Call to Action -->
+                    <div class="hero-cta-center">
+                        <h1 class="cta-headline">End the Friction. Start the Revolution.</h1>
+                        <p class="cta-subheadline">Canada's First AI-Powered CPA Matching Platform with Live Performance Scoring</p>
+                        
+                        <div class="hero-buttons">
+                            <a href="find-cpa.html" class="btn btn-primary">
+                                <span>🚀</span>
+                                Find My Perfect CPA - FREE
+                            </a>
+                            <a href="cpa-onboarding.html" class="btn btn-secondary">
+                                <span>💰</span>
+                                Get Pre-Qualified Clients
+                            </a>
+                        </div>
+
+                        <!-- Friction Stats -->
+                        <div class="friction-stats">
+                            <div class="friction-stat">
+                                <div class="stat-number">585</div>
+                                <div class="stat-label">Days Average CPA Sales Cycle</div>
+                                <div class="stat-description">Reduced to 24 hours with our AI</div>
+                            </div>
+                            <div class="friction-stat">
+                                <div class="stat-number">$30K+</div>
+                                <div class="stat-label">Annual CPA Marketing Waste</div>
+                                <div class="stat-description">Eliminated with qualified leads</div>
+                            </div>
+                            <div class="friction-stat">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Hours/Month Financial Tasks</div>
+                                <div class="stat-description">Reduced to 2 hours with right CPA</div>
+                            </div>
+                            <div class="friction-stat">
+                                <div class="stat-number">70%+</div>
+                                <div class="stat-label">Our Platform Win Rate</div>
+                                <div class="stat-description">vs 25% industry average</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="dashboard-grid">
-                <div class="metric-card">
-                    <div class="metric-icon">👥</div>
-                    <div class="metric-value" id="available-cpas">27</div>
-                    <div class="metric-label">Available CPAs in Ontario</div>
-                    <div class="metric-change positive">+3 today</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-icon">⚡</div>
-                    <div class="metric-value" id="response-time">2.4</div>
-                    <div class="metric-label">Hours Avg. Response Time</div>
-                    <div class="metric-change positive">-0.3 from yesterday</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-icon">📈</div>
-                    <div class="metric-value" id="success-rate">96%</div>
-                    <div class="metric-label">Success Rate This Month</div>
-                    <div class="metric-change positive">+2% from last month</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-icon">🔄</div>
-                    <div class="metric-value" id="active-matches">14</div>
-                    <div class="metric-label">Matches in Progress Today</div>
-                    <div class="metric-change neutral">Live updates</div>
-                </div>
-            </div>
-            
-            <div class="activity-feed">
-                <h4>🔥 Recent Platform Activity</h4>
-                <div class="activity-items">
-                    <div class="activity-item">
-                        <span class="activity-time">2 min ago</span>
-                        <span class="activity-text">Sarah Chen, CPA joined the network (Toronto)</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-time">8 min ago</span>
-                        <span class="activity-text">Successful match: Tech Startup ↔ Michael Rodriguez, CPA</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-time">15 min ago</span>
-                        <span class="activity-text">3 new CPA applications under review</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('show');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize platform
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🍁 CanadaAccountants Platform - FRICTION ELIMINATION VERSION Loaded');
+            console.log('🚀 Revolutionary Messaging Active');
+            console.log('💰 Friction Cost Messaging Deployed');
+            console.log('🎯 Dual-Sided Value Props Live');
+            console.log('⚡ All Systems Ready for Revolution');
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ SW registered: ', registration);
+                    }, function(error) {
+                        console.log('❌ SW registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
 
                     <!DOCTYPE html>
 <html lang="en">
