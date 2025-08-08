@@ -373,7 +373,7 @@
 
     <script>
         // Enhanced form submission handling
-        document.getElementById('cpaRegistrationForm').addEventListener('submit', function(e) {
+        document.getElementById('cpaRegistrationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Collect form data
@@ -400,11 +400,25 @@
             
             console.log('CPA Registration Data:', registrationData);
             
-            // Simulate API call
-            console.log('Submitting CPA registration to backend...');
-            
-            // Show success message
-            alert('🎉 CPA Registration Successful!\n\nYour application has been submitted. You will receive a confirmation email shortly with next steps for profile verification.');
+            // Submit to Railway backend
+try {
+    const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/cpa-registration', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registrationData)
+    });
+    
+    if (response.ok) {
+        alert('🎉 CPA Registration Successful!\n\nYour application has been submitted. You will receive a confirmation email shortly with next steps for profile verification.');
+    } else {
+        throw new Error('Registration failed');
+    }
+} catch (error) {
+    console.error('Registration error:', error);
+    alert('Sorry, there was an error submitting your registration. Please try again or contact support.');
+}
             
             // In real implementation, this would call your backend API
             // submitToBackend(registrationData);
