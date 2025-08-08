@@ -861,29 +861,70 @@
         }
 
         function collectFormData() {
-            const data = {};
-            
-            // Collect all form inputs
-            document.querySelectorAll('input, select, textarea').forEach(field => {
-                if (field.type === 'checkbox') {
-                    if (!data[field.name]) data[field.name] = [];
-                    if (field.checked) data[field.name].push(field.value);
-                } else if (field.type === 'radio') {
-                    if (field.checked) data[field.name] = field.value;
-                } else {
-                    data[field.name] = field.value;
-                }
-            });
-            
-            // Collect option card selections
-            document.querySelectorAll('.option-card.selected').forEach(card => {
-                const stepElement = card.closest('.step');
-                const stepId = stepElement.id;
-                if (!data[stepId]) data[stepId] = [];
-                data[stepId].push(card.dataset.value);
-            });
-            
-            return data;
+    const data = {};
+    
+    // Collect all form inputs
+    document.querySelectorAll('input, select, textarea').forEach(field => {
+        if (field.type === 'checkbox') {
+            if (!data[field.name]) data[field.name] = [];
+            if (field.checked) data[field.name].push(field.value);
+        } else if (field.type === 'radio') {
+            if (field.checked) data[field.name] = field.value;
+        } else {
+            data[field.name] = field.value;
+        }
+    });
+    
+    // Collect option card selections
+    document.querySelectorAll('.option-card.selected').forEach(card => {
+        const stepElement = card.closest('.step');
+        const stepId = stepElement.id;
+        if (!data[stepId]) data[stepId] = [];
+        data[stepId].push(card.dataset.value);
+    });
+    
+    // TRANSFORM DATA TO MATCH BACKEND EXPECTATIONS
+    const transformedData = {
+        // Split fullName into firstName and lastName
+        firstName: data.fullName ? data.fullName.split(' ')[0] || '' : '',
+        lastName: data.fullName ? data.fullName.split(' ').slice(1).join(' ') || '' : '',
+        
+        // Map direct fields
+        email: data.email || '',
+        phone: data.phone || '',
+        cpaLicense: data.licenseNumber || '',
+        province: data.province || '',
+        experience: data.yearsExperience || '',
+        firmSize: data.step2 ? data.step2[0] : '',
+        
+        // Map arrays to JSON strings
+        services: JSON.stringify(data.services || []),
+        industries: JSON.stringify(data.industries || []),
+        
+        // Map additional fields
+        bio: data.professionalBio || '',
+        hourlyRate: data.step6 ? data.step6[0] : '',
+        availability: data.step6 ? data.step6[1] : '',
+        
+        // Add metadata
+        selectedPlan: 'cpa-network',
+        registrationType: '8-step-professional',
+        firmName: data.firmName || '',
+        practiceLocation: data.practiceLocation || '',
+        website: data.website || '',
+        linkedIn: data.linkedIn || '',
+        
+        // Geographic and client preferences
+        geographicCoverage: data.step7 ? data.step7[0] : '',
+        serviceRadius: data.serviceRadius || '',
+        clientSizes: JSON.stringify(data['client-sizes'] || []),
+        
+        // Timestamp
+        submissionTimestamp: new Date().toISOString()
+    };
+    
+    return transformedData;
+}
         }
 
         // Handle option card selections
