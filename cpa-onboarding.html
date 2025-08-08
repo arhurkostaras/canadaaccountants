@@ -961,7 +961,47 @@
                 }
             }
         });
+function nextStep() {
+            if (validateCurrentStep()) {
+                currentStepNum++;
+                showStep(currentStepNum);
+            }
+        }
 
+        function previousStep() {
+            currentStepNum--;
+            showStep(currentStepNum);
+        }
+
+        function validateCurrentStep() {
+            const currentStep = document.getElementById('step' + currentStepNum);
+            const requiredFields = currentStep.querySelectorAll('[required]');
+            
+            for (let field of requiredFields) {
+                if (!field.value && field.type !== 'checkbox') {
+                    field.focus();
+                    alert('Please complete all required fields before proceeding.');
+                    return false;
+                }
+                if (field.type === 'checkbox' && !field.checked) {
+                    field.focus();
+                    alert('Please accept the terms to continue.');
+                    return false;
+                }
+            }
+            
+            // Check if at least one option is selected for option cards
+            const optionCards = currentStep.querySelectorAll('.option-card');
+            if (optionCards.length > 0) {
+                const hasSelection = Array.from(optionCards).some(card => card.classList.contains('selected'));
+                if (!hasSelection) {
+                    alert('Please select an option before proceeding.');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
         // Initialize
         showStep(1);
     </script>
