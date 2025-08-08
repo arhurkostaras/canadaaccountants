@@ -961,19 +961,19 @@
                 }
             }
         });
-function nextStep() {
+                function nextStep() {
             if (validateCurrentStep()) {
                 currentStepNum++;
                 showStep(currentStepNum);
             }
         }
 
-        function previousStep() {
+                function previousStep() {
             currentStepNum--;
             showStep(currentStepNum);
         }
 
-        function validateCurrentStep() {
+                function validateCurrentStep() {
             const currentStep = document.getElementById('step' + currentStepNum);
             const requiredFields = currentStep.querySelectorAll('[required]');
             
