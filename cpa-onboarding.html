@@ -833,19 +833,30 @@
             return true;
         }
 
-        function submitForm() {
+        async function submitForm() {
             if (validateCurrentStep()) {
                 // Collect all form data
                 const formData = collectFormData();
                 
-                // In real implementation, send to your backend
-                console.log('CPA Profile Data:', formData);
-                
-                // Show success message
-                alert('Thank you for joining our CPA network! We\'ll review your profile and contact you within 24 hours to get you set up for receiving quality client leads.');
-                
-                // Redirect to CPA dashboard or confirmation page
-                // window.location.href = 'cpa-dashboard.html';
+                // Submit to Railway backend
+        try {
+            const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/cpa-registration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                alert('🎉 Thank you for joining our CPA network! We\'ll review your profile and contact you within 24 hours to get you set up for receiving quality client leads.');
+            } else {
+                throw new Error('Registration failed');
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Sorry, there was an error submitting your registration. Please try again or contact support.');
+        }
             }
         }
 
