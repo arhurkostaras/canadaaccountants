@@ -877,11 +877,20 @@
     
     // Collect option card selections
     document.querySelectorAll('.option-card.selected').forEach(card => {
-        const stepElement = card.closest('.step');
-        const stepId = stepElement.id;
+    const stepElement = card.closest('.step');
+    const stepId = stepElement.id;
+    
+    // Handle special classes for Step 6
+    if (card.classList.contains('hourly-rate')) {
+        data['hourlyRate'] = card.dataset.value;
+    } else if (card.classList.contains('availability')) {
+        data['availability'] = card.dataset.value;
+    } else {
+        // Default step-based collection for other steps
         if (!data[stepId]) data[stepId] = [];
         data[stepId].push(card.dataset.value);
-    });
+    }
+});
     
     // TRANSFORM DATA TO MATCH BACKEND EXPECTATIONS
     const transformedData = {
@@ -903,8 +912,8 @@
         
         // Map additional fields
         bio: data.professionalBio || '',
-        hourlyRate: data.step6 ? data.step6[0] : '',
-        availability: data.step6 ? data.step6[1] : '',
+        hourlyRate: data.hourlyRate || '',
+        availability: data.availability || '',
         
         // Add metadata
         selectedPlan: 'cpa-network',
