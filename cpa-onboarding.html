@@ -936,9 +936,18 @@
                     // Multiple selection allowed
                     card.classList.toggle('selected');
                 } else {
-                    // Single selection only
-                    questionCard.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
+    // Single selection only - but respect separate groups
+    if (card.classList.contains('hourly-rate')) {
+        // Clear only other hourly-rate selections
+        questionCard.querySelectorAll('.option-card.hourly-rate').forEach(c => c.classList.remove('selected'));
+    } else if (card.classList.contains('availability')) {
+        // Clear only other availability selections
+        questionCard.querySelectorAll('.option-card.availability').forEach(c => c.classList.remove('selected'));
+    } else {
+        // Default behavior for other single-select cards
+        questionCard.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    }
+    card.classList.add('selected');
                 }
             }
         });
