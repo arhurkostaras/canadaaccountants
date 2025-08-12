@@ -1053,6 +1053,11 @@
 
         function validateCurrentQuestion() {
             const currentCard = document.querySelector(`.question-card[data-question="${currentQuestion}"]`);
+            // Add null check
+        if (!currentCard) {
+            console.error('Current question card not found:', currentQuestion);
+            return true; // Allow progression if card not found
+        }
             
             // Check for selected options
             const selectedOptions = currentCard.querySelectorAll('.option-card.selected');
@@ -1079,6 +1084,11 @@
 
         function saveCurrentAnswers() {
             const currentCard = document.querySelector(`.question-card[data-question="${currentQuestion}"]`);
+            // Add null check
+    if (!currentCard) {
+        console.error('Current question card not found for saving:', currentQuestion);
+        return;
+    }
             const questionKey = `question_${currentQuestion}`;
             
             // Handle option selections
