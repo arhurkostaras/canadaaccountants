@@ -1588,7 +1588,7 @@
             let recommendation = {};
             
             // Determine recommendation based on revenue potential
-            if (totalImpact >= 300000) {
+            if (totalImpact >= 200000) {
                 recommendation = {
                     plan: 'founding',
                     planName: 'Founding 500',
@@ -1597,12 +1597,12 @@
                     leads: '6-10 leads/month',
                     capture: '85%',
                     title: 'You NEED Founding 500 positioning',
-                    reason: `With $${Math.round(totalImpact/1000)}K revenue potential and ${newClientsPerYear} additional clients/year, only top 3 positioning can capture your full potential.`,
+                    reason: `With ${Math.round(totalImpact/1000)}K revenue potential and ${newClientsPerYear} additional clients/year, only top 3 positioning can capture your full potential.`,
                     socialProof: '87%',
                     quote: 'I wish I had started with Founding 500 from day one. The difference in lead quality at positions 1-3 is incredible.',
                     urgency: '342 Founding 500 spots remaining'
                 };
-            } else if (totalImpact >= 150000) {
+            } else if (totalImpact >= 100000) {
                 recommendation = {
                     plan: 'premium',
                     planName: 'Premium Position',
