@@ -588,6 +588,104 @@
                 padding: 30px 25px;
             }
         }
+        /* Revenue Reference Styles */
+        .revenue-reference {
+            margin: 40px 0;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .revenue-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .revenue-header {
+            margin-bottom: 30px;
+        }
+
+        .revenue-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .revenue-header h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .revenue-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .revenue-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .revenue-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .revenue-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fbbf24;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .revenue-label {
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .revenue-cta {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .revenue-cta p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .revenue-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .revenue-number {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -666,6 +764,36 @@
                     <div class="stat-number">$7K→$1K</div>
                     <div class="stat-label">Client Acquisition Cost</div>
                     <div class="stat-description">Slash your marketing expenses</div>
+                </div>
+            </div>
+            <!-- Revenue Calculation Reference -->
+            <div class="revenue-reference" id="revenueReference" style="display: none;">
+                <div class="revenue-card">
+                    <div class="revenue-header">
+                        <div class="revenue-icon">💰</div>
+                        <h3>Your Revenue Projection is Ready!</h3>
+                        <p>Based on your calculation, here's what you could achieve:</p>
+                    </div>
+                    
+                    <div class="revenue-stats">
+                        <div class="revenue-stat">
+                            <div class="revenue-number" id="displayTotalImpact">$135K</div>
+                            <div class="revenue-label">Total Annual Impact</div>
+                        </div>
+                        <div class="revenue-stat">
+                            <div class="revenue-number" id="displayNewClients">24</div>
+                            <div class="revenue-label">Additional Clients/Year</div>
+                        </div>
+                        <div class="revenue-stat">
+                            <div class="revenue-number" id="displaySavings">$15K</div>
+                            <div class="revenue-label">Marketing Savings</div>
+                        </div>
+                    </div>
+                    
+                    <div class="revenue-cta">
+                        <p><strong>Ready to turn this projection into reality?</strong></p>
+                        <p>Complete your application below to start earning more in 24 hours.</p>
+                    </div>
                 </div>
             </div>
 
@@ -948,6 +1076,33 @@
     </footer>
 
     <script>
+        // Display revenue calculation results if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const revenueData = localStorage.getItem('revenueCalculation');
+            
+            if (revenueData) {
+                try {
+                    const calculation = JSON.parse(revenueData);
+                    const revenueReference = document.getElementById('revenueReference');
+                    
+                    if (revenueReference) {
+                        // Update display values
+                        const totalImpactEl = document.getElementById('displayTotalImpact');
+                        const newClientsEl = document.getElementById('displayNewClients');
+                        const savingsEl = document.getElementById('displaySavings');
+                        
+                        if (totalImpactEl) totalImpactEl.textContent = '$' + Math.round(calculation.totalImpact).toLocaleString();
+                        if (newClientsEl) newClientsEl.textContent = calculation.newClientsPerYear;
+                        if (savingsEl) savingsEl.textContent = '$' + Math.round(calculation.marketingSavings).toLocaleString();
+                        
+                        // Show the section with animation
+                        revenueReference.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.log('No revenue calculation data found');
+                }
+            }
+        });
         function submitCPAApplication(event) {
             event.preventDefault();
             
