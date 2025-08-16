@@ -248,6 +248,94 @@
             color: #cbd5e1;
         }
 
+        /* Revenue Reference Styles */
+        .revenue-reference {
+            margin: 40px 0;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .revenue-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .revenue-header {
+            margin-bottom: 30px;
+        }
+
+        .revenue-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .revenue-header h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .revenue-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .revenue-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .revenue-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .revenue-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fbbf24;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .revenue-label {
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .revenue-cta {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .revenue-cta p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .hero-cta {
             margin-top: 50px;
         }
@@ -587,96 +675,7 @@
                 margin: 0 20px;
                 padding: 30px 25px;
             }
-        }
-        /* Revenue Reference Styles */
-        .revenue-reference {
-            margin: 40px 0;
-            animation: slideInUp 0.6s ease-out;
-        }
 
-        .revenue-card {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .revenue-header {
-            margin-bottom: 30px;
-        }
-
-        .revenue-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .revenue-header h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .revenue-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .revenue-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .revenue-stat {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .revenue-number {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #fbbf24;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .revenue-label {
-            font-size: 0.9rem;
-            color: white;
-            font-weight: 600;
-        }
-
-        .revenue-cta {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .revenue-cta p {
-            margin: 5px 0;
-            font-size: 1.1rem;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
             .revenue-stats {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -693,7 +692,7 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="/" class="logo">
-                🍁 CanadaAccountants
+                🏛️ CanadaAccountants
             </a>
             <ul class="nav-links">
                 <li><a href="#benefits" class="nav-link">Benefits</a></li>
@@ -714,7 +713,7 @@
     <section class="hero">
         <div class="hero-container">
             <div class="exclusive-badge">
-                🛑 STOP THE MARKETING WASTE - Revolutionary CPA Network
+                🛡️ STOP THE MARKETING WASTE - Revolutionary CPA Network
             </div>
             <h1 class="hero-title">Stop Wasting $30,000+ on Ineffective CPA Marketing</h1>
             
@@ -766,6 +765,7 @@
                     <div class="stat-description">Slash your marketing expenses</div>
                 </div>
             </div>
+
             <!-- Revenue Calculation Reference -->
             <div class="revenue-reference" id="revenueReference" style="display: none;">
                 <div class="revenue-card">
@@ -819,7 +819,7 @@
             <div class="steps-container">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <div class="step-icon">🛑</div>
+                    <div class="step-icon">🛡️</div>
                     <h3 class="step-title">Stop Your Marketing Waste</h3>
                     <p class="step-description">
                         Cancel your expensive ads, stop cold calling, end the networking nightmare. Join our friction elimination network.
@@ -913,7 +913,7 @@
 
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">🛑</div>
+                    <div class="benefit-icon">🛡️</div>
                     <h3 class="benefit-title">End $30K+ Marketing Waste</h3>
                     <p class="benefit-description">
                         Stop spending thousands on ads, cold calling, and networking that produce zero qualified leads. Turn waste into profit.
@@ -1103,6 +1103,7 @@
                 }
             }
         });
+
         function submitCPAApplication(event) {
             event.preventDefault();
             
@@ -1153,10 +1154,10 @@
                     </p>
                     
                     <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left;">
-                        <h3 style="color: #dc2626; margin-bottom: 20px;">🛑 IMMEDIATE ACTIONS:</h3>
+                        <h3 style="color: #dc2626; margin-bottom: 20px;">🛡️ IMMEDIATE ACTIONS:</h3>
                         <div style="display: grid; gap: 15px;">
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #dc2626; font-weight: bold;">🛑</span>
+                                <span style="color: #dc2626; font-weight: bold;">🛡️</span>
                                 <span><strong>STOP</strong> all current marketing spend immediately</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 12px;">
