@@ -737,25 +737,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                calculateRevenue();
                 updateSliderValue('acquisitionRate', 'acquisitionValue');
                 updateSliderValue('growthGoal', 'growthValue');
                 updateSliderValue('marketingEffectiveness', 'effectivenessValue');
             }, 100);
         });
 
-        const currentClientsEl = document.getElementById('currentClients');
-        const avgClientValueEl = document.getElementById('avgClientValue');
-        const experienceLevelEl = document.getElementById('experienceLevel');
-        const locationEl = document.getElementById('location');
-        const marketingSpendEl = document.getElementById('marketingSpend');
-
-        if (currentClientsEl) currentClientsEl.addEventListener('change', calculateRevenue);
-        if (avgClientValueEl) avgClientValueEl.addEventListener('change', calculateRevenue);
-        if (experienceLevelEl) experienceLevelEl.addEventListener('change', calculateRevenue);
-        if (locationEl) locationEl.addEventListener('change', calculateRevenue);
-        if (marketingSpendEl) marketingSpendEl.addEventListener('input', calculateRevenue);
-
+        // Only update slider displays, don't auto-calculate
         const acquisitionRateEl = document.getElementById('acquisitionRate');
         const growthGoalEl = document.getElementById('growthGoal');
         const marketingEffectivenessEl = document.getElementById('marketingEffectiveness');
@@ -763,14 +751,18 @@
         if (acquisitionRateEl) {
             acquisitionRateEl.addEventListener('input', function() {
                 updateSliderValue('acquisitionRate', 'acquisitionValue');
-                calculateRevenue();
             });
         }
 
         if (growthGoalEl) {
             growthGoalEl.addEventListener('input', function() {
                 updateSliderValue('growthGoal', 'growthValue');
-                calculateRevenue();
+            });
+        }
+
+        if (marketingEffectivenessEl) {
+            marketingEffectivenessEl.addEventListener('input', function() {
+                updateSliderValue('marketingEffectiveness', 'effectivenessValue');
             });
         }
 
