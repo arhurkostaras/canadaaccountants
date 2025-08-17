@@ -849,7 +849,13 @@
             });
             
             if (response.ok) {
-                alert('🎉 Thank you for joining our CPA network! We\'ll review your profile and contact you within 24 hours to get you set up for receiving quality client leads.');
+                // Show success message briefly
+showPricingSuccessMessage();
+
+// Redirect to pricing after 3 seconds
+setTimeout(() => {
+    window.location.href = 'pricing.html?from=8step-registration&plan=recommended';
+}, 3000);
             } else {
                 throw new Error('Registration failed');
             }
@@ -1021,6 +1027,29 @@
         }
         // Initialize
         showStep(1);
+        function showPricingSuccessMessage() {
+            const container = document.querySelector('.questionnaire-container');
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+                    <h2 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 15px;">CPA Registration Complete!</h2>
+                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
+                        Welcome to Canada's premier CPA network!
+                    </p>
+                    
+                    <div style="background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 15px; padding: 25px; margin: 20px 0;">
+                        <h3 style="color: #0369a1; margin-bottom: 15px;">🚀 Next Step: Choose Your Membership Plan</h3>
+                        <p style="color: #0c4a6e;">Redirecting you to select your CPA membership tier in 3 seconds...</p>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <div style="display: inline-block; padding: 8px 16px; background: #10b981; color: white; border-radius: 20px; font-size: 0.9rem;">
+                            ⏳ Preparing your pricing options...
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
     </script>
 </body>
 </html>
