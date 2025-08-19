@@ -11,11 +11,6 @@ const CACHE_KEY = APP_PREFIX + VERSION;
 const STATIC_CACHE_URLS = [
   '/index.html',
   '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/icon-144.png',
-  '/icon-72.png', 
-  '/icon-48.png',
   'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap'
 ];
 
