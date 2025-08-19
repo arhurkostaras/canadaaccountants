@@ -18,21 +18,21 @@
       "description": "Open CEO Dashboard",
       "url": "/index.html#slide-1",
       
-    }
+    },
     {
       "name": "Revenue Analytics",
       "short_name": "Revenue",
       "description": "View Revenue Projections",
       "url": "/index.html#slide-4",
       
-    }
+    },
     {
       "name": "Platform Features",
       "short_name": "Features",
       "description": "View AI Platform Features",
       "url": "/index.html#slide-5",
       
-    }
+    },
   ]
   "related_applications": [
     {
