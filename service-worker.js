@@ -135,8 +135,6 @@ self.addEventListener('push', (event) => {
   
   const options = {
     body: event.data ? event.data.text() : 'New update from CanadaAccountants',
-    icon: '/icon-192.png',
-    badge: '/icon-72.png',
     vibrate: [200, 100, 200],
     data: {
       dateOfArrival: Date.now(),
@@ -146,12 +144,10 @@ self.addEventListener('push', (event) => {
       {
         action: 'explore',
         title: 'View Dashboard',
-        icon: '/icon-48.png'
       },
       {
         action: 'close',
         title: 'Close',
-        icon: '/icon-48.png'
       }
     ]
   };
