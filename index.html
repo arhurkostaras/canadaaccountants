@@ -83,6 +83,37 @@
             font-size: 16px !important;
           }
         }
+
+        /* ========================================
+           COMPREHENSIVE CENTERING FIX
+           ======================================== */
+        
+        @media (max-width: 480px) {
+          
+          /* Center the main statistics container */
+          .stats-container,
+          .metrics-section,
+          .dashboard-grid,
+          .dashboard-container {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 1rem !important;
+            box-sizing: border-box !important;
+          }
+          
+          /* Center individual stat boxes */
+          .stat-box,
+          .metric-card,
+          .stats-grid {
+            margin: 0 auto !important;
+            text-align: center !important;
+            max-width: 90% !important;
+          }
+        }
   /* Real-Time CPA Dashboard */
         .dashboard-container {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
