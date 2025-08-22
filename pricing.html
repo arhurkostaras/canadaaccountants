@@ -738,12 +738,16 @@
 
 function proceedToCheckout(plan) {
     closeModal();
+    
+    // Add success redirect back to dashboard
+    const successUrl = encodeURIComponent(window.location.origin + '/cpa-dashboard.html?payment=success&plan=' + plan);
+    
     if (plan === 'basic') {
-        window.open('https://buy.stripe.com/7sY5kE3vwarQ19ZflxbMQ03', '_blank');
+        window.open('https://buy.stripe.com/7sY5kE3vwarQ19ZflxbMQ03?success_url=' + successUrl, '_blank');
     } else if (plan === 'premium') {
-        window.open('https://buy.stripe.com/3cI3cwfeeeI6dWL0qDbMQ02', '_blank');
+        window.open('https://buy.stripe.com/3cI3cwfeeeI6dWL0qDbMQ02?success_url=' + successUrl, '_blank');
     } else if (plan === 'founding') {
-        window.open('https://buy.stripe.com/28EdRa7LM0RgdWL7T5bMQ01', '_blank');
+        window.open('https://buy.stripe.com/28EdRa7LM0RgdWL7T5bMQ01?success_url=' + successUrl, '_blank');
     }
 }
 
