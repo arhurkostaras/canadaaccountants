@@ -1189,7 +1189,7 @@
         if (response.ok) {
             const result = await response.json();
             console.log('✅ SME friction request sent successfully:', result);
-            showSuccessMessage();
+            showSuccessMessage(result);
         } else {
             console.error('❌ Backend error:', response.status, response.statusText);
             showErrorMessage();
@@ -1220,55 +1220,29 @@ function showErrorMessage() {
     `;
 }
 
-        function showSuccessMessage() {
-            const container = document.querySelector('.container');
-            container.innerHTML = `
-                <div style="text-align: center; padding: 60px 20px;">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
-                    <h2 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 15px; font-weight: 800;">Your Financial Chaos Ends Now!</h2>
-                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                        We're matching you with 2-3 perfect CPAs who will eliminate your financial stress and save you 20+ hours/month.
-                    </p>
-                    
-                    <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 15px; padding: 30px; margin: 30px 0; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        <h3 style="color: #dc2626; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span>🛑</span>
-                            <span>IMMEDIATE RELIEF COMING:</span>
-                        </h3>
-                        <div style="display: grid; gap: 15px;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #2563eb; font-weight: bold;">✓</span>
-                                <span><strong>Within 24 hours:</strong> Receive 2-3 perfect CPA matches with profiles</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #2563eb; font-weight: bold;">✓</span>
-                                <span><strong>Within 48 hours:</strong> Schedule calls with your top CPA choices</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #2563eb; font-weight: bold;">✓</span>
-                                <span><strong>Within 1 week:</strong> End financial chaos and recover 20+ hours/month</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="color: #2563eb; font-weight: bold;">✓</span>
-                                <span><strong>Ongoing:</strong> Professional financial management and tax optimization</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 15px; padding: 25px; margin: 20px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        <h4 style="margin: 0 0 15px 0; color: #1e40af; display: flex; align-items: center; gap: 10px;">
-                            <span>⚡</span>
-                            <span>Expected Results:</span>
-                        </h4>
-                        <p style="margin: 0; line-height: 1.5; color: #1e3a8a;">Recover 20+ hours/month, eliminate $3,534/year in tax overpayments, and gain complete financial clarity and peace of mind.</p>
-                    </div>
-                    
-                    <a href="/" style="display: inline-block; background: #2563eb; color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 20px;">
-                        Return to Homepage →
-                    </a>
-                </div>
-            `;
-        }
+        function showSuccessMessage(response) {
+    const sessionId = response.session_id;
+    const resultsUrl = response.results_url || `cpa-matches.html?session=${sessionId}`;
+    
+    const container = document.querySelector('.container');
+    container.innerHTML = `
+        <div style="text-align: center; padding: 60px 20px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+            <h2 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 15px; font-weight: 800;">AI Matching Complete!</h2>
+            <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
+                Your perfect CPA matches are ready for review.
+            </p>
+            
+            <a href="${resultsUrl}" style="display: inline-block; background: #2563eb; color: white; padding: 20px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.2rem; margin-top: 20px;">
+                View My CPA Matches →
+            </a>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">
+                Session ID: ${sessionId}
+            </p>
+        </div>
+    `;
+}
 
         // Handle option selections
         document.addEventListener('click', function(e) {
