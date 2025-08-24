@@ -760,89 +760,7 @@
             }
         }
 
-        // CPA Database
-        const cpaDatabase = [
-            {
-                id: 'cpa_001',
-                name: 'Sarah Chen, CPA',
-                firm: 'TechAccounting Solutions',
-                location: 'Toronto, ON',
-                email: 'sarah@techaccounting.ca',
-                industrySpecializations: ['tech', 'software', 'saas'],
-                clientSizeExperience: ['startup', 'small', 'medium'],
-                serviceOfferings: ['bookkeeping', 'tax-prep', 'tax-planning', 'financial-analysis'],
-                rateRange: 'budget-1000',
-                availability: 'soon',
-                communicationStyle: 'proactive',
-                remoteCapable: true,
-                yearsExperience: 8,
-                clientCount: 45
-            },
-            {
-                id: 'cpa_002',
-                name: 'Michael Dubois, CPA',
-                firm: 'Dubois & Associates',
-                location: 'Montreal, QC',
-                email: 'michael@duboisassoc.ca',
-                industrySpecializations: ['professional', 'consulting', 'service-based'],
-                clientSizeExperience: ['small', 'medium', 'large'],
-                serviceOfferings: ['bookkeeping', 'tax-prep', 'audit', 'cfo-services'],
-                rateRange: 'budget-2500',
-                availability: 'month',
-                communicationStyle: 'detailed',
-                remoteCapable: false,
-                yearsExperience: 12,
-                clientCount: 65
-            },
-            {
-                id: 'cpa_003',
-                name: 'Jennifer Wu, CPA',
-                firm: 'Startup Financial Partners',
-                location: 'Vancouver, BC',
-                email: 'jennifer@startupfp.ca',
-                industrySpecializations: ['tech', 'startup', 'ecommerce'],
-                clientSizeExperience: ['startup', 'small'],
-                serviceOfferings: ['bookkeeping', 'tax-planning', 'cfo-services', 'financial-analysis'],
-                rateRange: 'budget-1000',
-                availability: 'immediate',
-                communicationStyle: 'summary',
-                remoteCapable: true,
-                yearsExperience: 6,
-                clientCount: 32
-            },
-            {
-                id: 'cpa_004',
-                name: 'David Thompson, CPA',
-                firm: 'Northern Business Solutions',
-                location: 'Calgary, AB',
-                email: 'david@northernbs.ca',
-                industrySpecializations: ['manufacturing', 'industrial', 'energy'],
-                clientSizeExperience: ['medium', 'large'],
-                serviceOfferings: ['bookkeeping', 'tax-prep', 'audit', 'financial-analysis'],
-                rateRange: 'budget-2500',
-                availability: 'soon',
-                communicationStyle: 'detailed',
-                remoteCapable: true,
-                yearsExperience: 15,
-                clientCount: 78
-            },
-            {
-                id: 'cpa_005',
-                name: 'Lisa Park, CPA',
-                firm: 'Healthcare Financial Group',
-                location: 'Toronto, ON',
-                email: 'lisa@healthcarefg.ca',
-                industrySpecializations: ['healthcare', 'medical', 'professional'],
-                clientSizeExperience: ['small', 'medium'],
-                serviceOfferings: ['bookkeeping', 'tax-prep', 'tax-planning'],
-                rateRange: 'budget-1000',
-                availability: 'flexible',
-                communicationStyle: 'responsive',
-                remoteCapable: false,
-                yearsExperience: 10,
-                clientCount: 55
-            }
-        ];
+        
 
         // Main Application Logic
         document.addEventListener('DOMContentLoaded', function() {
@@ -853,6 +771,7 @@
         });
 
         async function runMatching() {
+    try {
             // Get questionnaire data from URL params or localStorage
             const businessData = await getBusinessData();
             // Fetch live CPA database
@@ -870,6 +789,21 @@
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsContent').classList.remove('hidden');
         }
+        } catch (error) {
+        console.error('Matching failed:', error);
+        showErrorState();
+    }
+}
+
+function showErrorState() {
+    document.getElementById('loadingScreen').innerHTML = `
+        <div style="text-align: center; padding: 4rem 2rem;">
+            <div style="font-size: 4rem; margin-bottom: 2rem;">⚠️</div>
+            <div style="font-size: 1.2rem; margin-bottom: 1rem;">Unable to load CPA matches</div>
+            <div style="opacity: 0.8;">Please try refreshing the page or contact support.</div>
+        </div>
+    `;
+}
 
         async function getBusinessData() {
     // Get session ID from URL parameters
