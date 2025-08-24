@@ -852,9 +852,9 @@
             }, 2000);
         });
 
-        function runMatching() {
+        async function runMatching() {
             // Get questionnaire data from URL params or localStorage
-            const businessData = getBusinessData();
+            const businessData = await getBusinessData();
             
             // Run AI matching algorithm
             const algorithm = new CPAMatchingAlgorithm();
@@ -868,21 +868,46 @@
             document.getElementById('resultsContent').classList.remove('hidden');
         }
 
-        function getBusinessData() {
-            // Try to get data from URL parameters or localStorage
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // If no data available, use sample data for demo
-            return {
-                question_1: urlParams.get('industry') || 'tech',
-                question_2: urlParams.get('size') || 'small',
-                question_3: (urlParams.get('services') || 'bookkeeping,tax-planning,financial-analysis').split(','),
-                question_4: urlParams.get('urgency') || 'soon',
-                question_5: urlParams.get('location_pref') || 'remote-ok',
-                question_6: urlParams.get('budget') || 'budget-1000',
-                question_7: urlParams.get('communication') || 'proactive',
-                'business-location': urlParams.get('business_location') || 'Toronto, ON'
-            };
+        async function getBusinessData() {
+    // Get session ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session');
+    
+    if (!sessionId) {
+        console.error('No session ID found in URL');
+        return getDemoData();
+    }
+    
+    try {
+        // Fetch questionnaire data from your backend
+        const response = await fetch(`https://sme-intelligence-backend-production-5185.up.railway.app/api/questionnaire/retrieve/${sessionId}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const result = await response.json();
+        console.log('Retrieved questionnaire data:', result);
+        
+        return result.formatted_for_matching;
+    } catch (error) {
+        console.error('Failed to fetch questionnaire data:', error);
+        return getDemoData();
+    }
+}
+
+function getDemoData() {
+    return {
+        question_1: 'tech',
+        question_2: 'small',
+        question_3: ['bookkeeping', 'tax-planning', 'financial-analysis'],
+        question_4: 'soon',
+        question_5: 'remote-ok',
+        question_6: 'budget-1000',
+        question_7: 'proactive',
+        'business-location': 'Toronto, ON'
+    };
+}
         }
 
         function displayResults(matches, businessData) {
