@@ -855,6 +855,9 @@
         async function runMatching() {
             // Get questionnaire data from URL params or localStorage
             const businessData = await getBusinessData();
+            // Fetch live CPA database
+        const cpaDatabase = await getCPADatabase();
+        console.log('Using CPA database:', cpaDatabase.length, 'CPAs');
             
             // Run AI matching algorithm
             const algorithm = new CPAMatchingAlgorithm();
@@ -907,6 +910,76 @@ function getDemoData() {
         question_7: 'proactive',
         'business-location': 'Toronto, ON'
     };
+}
+        async function getCPADatabase() {
+    try {
+        console.log('Fetching verified CPAs from database...');
+        const response = await fetch('https://sme-intelligence-backend-production-5185.up.railway.app/api/cpa/search?verification_status=verified&limit=50');
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Retrieved CPAs:', result);
+            
+            // Transform database format to match your matching algorithm
+            return result.cpas.map(cpa => ({
+                id: cpa.cpa_id,
+                name: `${cpa.first_name} ${cpa.last_name}`,
+                firm: cpa.firm_name,
+                location: `${cpa.city}, ${cpa.province}`,
+                email: cpa.email,
+                industrySpecializations: cpa.industries_served || [],
+                clientSizeExperience: ['startup', 'small', 'medium'],
+                serviceOfferings: cpa.specializations || [],
+                rateRange: mapRateRange(cpa.hourly_rate_min, cpa.hourly_rate_max),
+                availability: 'soon',
+                communicationStyle: cpa.communication_style || 'professional',
+                remoteCapable: cpa.remote_services || false,
+                yearsExperience: cpa.years_experience || 5,
+                clientCount: Math.floor(Math.random() * 50) + 20
+            }));
+        }
+        
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    } catch (error) {
+        console.error('Failed to fetch live CPA database:', error);
+        console.log('Falling back to static CPA data');
+        return getStaticCPADatabase();
+    }
+            function mapRateRange(minRate, maxRate) {
+    const avgRate = (minRate + maxRate) / 2;
+    if (avgRate < 500) return 'budget-500';
+    if (avgRate < 1000) return 'budget-1000';  
+    if (avgRate < 2500) return 'budget-2500';
+    return 'budget-high';
+}
+}
+        function getStaticCPADatabase() {
+    return [
+        {
+            id: 'cpa_fallback',
+            name: 'David Wilson, CPA',
+            firm: 'Reliable Accounting Services',
+            location: 'Toronto, ON',
+            email: 'david@reliableaccounting.ca',
+            industrySpecializations: ['general-business'],
+            clientSizeExperience: ['startup', 'small', 'medium'],
+            serviceOfferings: ['bookkeeping', 'tax-prep'],
+            rateRange: 'budget-1000',
+            availability: 'soon',
+            communicationStyle: 'professional',
+            remoteCapable: true,
+            yearsExperience: 10,
+            clientCount: 30
+        }
+    ];
+}
+
+function mapRateRange(minRate, maxRate) {
+    const avgRate = (minRate + maxRate) / 2;
+    if (avgRate < 500) return 'budget-500';
+    if (avgRate < 1000) return 'budget-1000';
+    if (avgRate < 2500) return 'budget-2500';
+    return 'budget-high';
 }
         }
 
