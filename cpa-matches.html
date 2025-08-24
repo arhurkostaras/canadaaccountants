@@ -879,13 +879,14 @@ function getDemoData() {
         console.log('Falling back to static CPA data');
         return getStaticCPADatabase();
     }
-            function mapRateRange(minRate, maxRate) {
+}
+
+function mapRateRange(minRate, maxRate) {
     const avgRate = (minRate + maxRate) / 2;
     if (avgRate < 500) return 'budget-500';
-    if (avgRate < 1000) return 'budget-1000';  
+    if (avgRate < 1000) return 'budget-1000';
     if (avgRate < 2500) return 'budget-2500';
     return 'budget-high';
-}
 }
         function getStaticCPADatabase() {
     return [
