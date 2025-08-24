@@ -822,6 +822,10 @@ function showErrorState() {
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
+        } catch (error) {
+        console.error('Failed to fetch questionnaire data:', error);
+        return getDemoData();
+    }
         
         const result = await response.json();
         console.log('Retrieved questionnaire data:', result);
