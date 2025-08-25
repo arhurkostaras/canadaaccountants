@@ -788,8 +788,7 @@
             // Hide loading, show results
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsContent').classList.remove('hidden');
-        }
-        } catch (error) {
+            } catch (error) {
         console.error('Matching failed:', error);
         showErrorState();
     }
