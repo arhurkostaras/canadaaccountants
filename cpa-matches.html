@@ -879,13 +879,6 @@ function getDemoData() {
     }
 }
 
-function mapRateRange(minRate, maxRate) {
-    const avgRate = (minRate + maxRate) / 2;
-    if (avgRate < 500) return 'budget-500';
-    if (avgRate < 1000) return 'budget-1000';
-    if (avgRate < 2500) return 'budget-2500';
-    return 'budget-high';
-}
         function getStaticCPADatabase() {
     return [
         {
@@ -922,7 +915,7 @@ function mapRateRange(minRate, maxRate) {
             
             // Update summary stats
             document.getElementById('topScore').textContent = topScore + '%';
-            document.getElementById('totalAnalyzed').textContent = cpaDatabase.length;
+            document.getElementById('totalAnalyzed').textContent = matches.length;
             
             // Update summary text based on business type
             const industryText = {
