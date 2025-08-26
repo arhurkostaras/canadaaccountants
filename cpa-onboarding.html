@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-XCF2Z737', {
+        custom_map: {
+          'custom_parameter_1': 'business_type',
+          'custom_parameter_2': 'pain_point',
+          'custom_parameter_3': 'session_id'
+        }
+      });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Our CPA Network - CanadaAccountants</title>
@@ -762,6 +777,19 @@
             <p>🔒 Your information is secure and will only be shared with verified business clients</p>
         </div>
     </div>
+    function getStepName(stepNum) {
+    const stepNames = {
+        1: 'basic_info',
+        2: 'firm_details', 
+        3: 'services',
+        4: 'specializations',
+        5: 'client_preferences',
+        6: 'pricing_availability',
+        7: 'geographic_coverage',
+        8: 'review_submit'
+    };
+    return stepNames[stepNum] || 'unknown';
+}
 
     <script>
         let currentStepNum = 1;
@@ -837,6 +865,17 @@
             if (validateCurrentStep()) {
                 // Collect all form data
                 const formData = collectFormData();
+                // Track registration attempt
+        gtag('event', 'cpa_registration_submitted', {
+            'event_category': 'conversion',
+            'event_label': 'registration_attempt',
+            'value': 1,
+            'custom_parameters': {
+                'registration_type': '8-step-professional',
+                'firm_size': formData.firmSize || 'unknown',
+                'services_offered': Array.isArray(formData.services) ? formData.services.join(',') : 'unknown'
+            }
+        });
                 
                 // Submit to Railway backend
         try {
@@ -849,6 +888,16 @@
             });
             
             if (response.ok) {
+                // Track successful registration
+    gtag('event', 'cpa_registration_completed', {
+        'event_category': 'conversion',
+        'event_label': 'registration_success',
+        'value': 1,
+        'custom_parameters': {
+            'registration_type': '8-step-professional',
+            'redirect_destination': 'pricing_page'
+        }
+    });
                 // Show success message briefly
 alert('Registration Complete! Redirecting to pricing options in 3 seconds...');
 
@@ -857,9 +906,21 @@ setTimeout(() => {
     window.location.href = 'pricing.html?from=8step-registration&plan=recommended';
 }, 3000);
             } else {
+                // Track registration failure
+    gtag('event', 'cpa_registration_failed', {
+        'event_category': 'error',
+        'event_label': 'backend_error',
+        'value': response.status
+    });
                 throw new Error('Registration failed');
             }
         } catch (error) {
+            // Track network errors
+    gtag('event', 'cpa_registration_failed', {
+        'event_category': 'error',
+        'event_label': 'network_error',
+        'value': 0
+    });
             console.error('Registration error:', error);
             alert('Sorry, there was an error submitting your registration. Please try again or contact support.');
         }
@@ -985,6 +1046,30 @@ setTimeout(() => {
             }
         });
                 function nextStep() {
+                    if (validateCurrentStep()) {
+        // Track step progression
+        gtag('event', 'cpa_registration_progress', {
+            'event_category': 'cpa_onboarding',
+            'event_label': `step_${currentStepNum}_completed`,
+            'value': currentStepNum,
+            'custom_parameters': {
+                'completion_percentage': Math.round((currentStepNum / totalSteps) * 100),
+                'total_steps': totalSteps,
+                'step_name': getStepName(currentStepNum)
+            }
+        });
+        
+        currentStepNum++;
+        showStep(currentStepNum);
+    } else {
+        // Track validation failures
+        gtag('event', 'cpa_registration_validation_failed', {
+            'event_category': 'cpa_onboarding',
+            'event_label': `step_${currentStepNum}_validation_error`,
+            'value': currentStepNum
+        });
+    }
+}
             if (validateCurrentStep()) {
                 currentStepNum++;
                 showStep(currentStepNum);
