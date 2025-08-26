@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-XCF2Z737', {
+        custom_map: {
+          'custom_parameter_1': 'business_type',
+          'custom_parameter_2': 'pain_point', 
+          'custom_parameter_3': 'session_id'
+        }
+      });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Perfect CPA Matches - CanadaAccountants</title>
@@ -772,8 +787,31 @@
 
         async function runMatching() {
     try {
+        try {
+        // Track results page load
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session');
+        
+        gtag('event', 'results_page_loaded', {
+            'event_category': 'conversion',
+            'event_label': 'matches_page_accessed',
+            'value': 1,
+            'custom_parameters': {
+                'session_id': sessionId || 'unknown'
+            }
+        });
+
             // Get questionnaire data from URL params or localStorage
             const businessData = await getBusinessData();
+            // Track successful session retrieval
+        gtag('event', 'session_retrieved', {
+            'event_category': 'conversion', 
+            'event_label': 'session_data_loaded',
+            'custom_parameters': {
+                'session_id': sessionId,
+                'business_type': businessData.question_2 || 'unknown'
+            }
+        });
             // Fetch live CPA database
         const cpaDatabase = await getCPADatabase();
         console.log('Using CPA database:', cpaDatabase.length, 'CPAs');
@@ -781,6 +819,17 @@
             // Run AI matching algorithm
             const algorithm = new CPAMatchingAlgorithm();
             const matches = algorithm.findMatches(businessData, cpaDatabase);
+            // Track successful matching
+        gtag('event', 'matches_displayed', {
+            'event_category': 'conversion',
+            'event_label': 'cpa_matches_shown', 
+            'value': matches.length,
+            'custom_parameters': {
+                'match_count': matches.length,
+                'session_id': sessionId,
+                'business_type': businessData.question_2 || 'unknown'
+            }
+        });
             
             // Display results
             displayResults(matches, businessData);
@@ -789,6 +838,19 @@
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsContent').classList.remove('hidden');
             } catch (error) {
+            // Track matching errors
+        gtag('event', 'matching_failed', {
+            'event_category': 'error',
+            'event_label': 'matching_algorithm_error',
+            'custom_parameters': {
+                'session_id': sessionId,
+                'error_message': error.message
+            }
+        });
+        
+        console.error('Matching failed:', error);
+        showErrorState();
+    }
         console.error('Matching failed:', error);
         showErrorState();
     }
