@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-XCF2Z737', {
+        custom_map: {
+          'custom_parameter_1': 'business_type',
+          'custom_parameter_2': 'pain_point',
+          'custom_parameter_3': 'session_id'
+        }
+      });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Matching Test - CanadaAccountants</title>
@@ -214,11 +229,29 @@
         window.addEventListener('load', loadBusinessSubmissions);
         
         async function loadBusinessSubmissions() {
+            // Track admin page access
+    gtag('event', 'admin_page_loaded', {
+        'event_category': 'admin_workflow',
+        'event_label': 'test_page_accessed',
+        'value': 1
+    });
             try {
                 // For now, we'll use the test data since we need to fetch from database
                 // In production, this would fetch from /api/get-business-submissions
                 displayMockBusinessSubmissions();
+                // Track successful data loading
+        gtag('event', 'test_data_loaded', {
+            'event_category': 'admin_workflow',
+            'event_label': 'business_submissions_loaded',
+            'value': businessSubmissions.length
+        });
             } catch (error) {
+                // Track loading errors
+        gtag('event', 'test_data_load_failed', {
+            'event_category': 'admin_error',
+            'event_label': 'submissions_load_error',
+            'value': 0
+        });
                 console.error('Error loading submissions:', error);
                 document.getElementById('businessList').innerHTML = `
                     <div class="error">
@@ -227,6 +260,11 @@
                 `;
             }
         }
+        function calculateAverageScore(matches) {
+        if (!matches || matches.length === 0) return 0;
+        const totalScore = matches.reduce((sum, match) => sum + match.match_score, 0);
+        return Math.round(totalScore / matches.length);
+    }
         
         function displayMockBusinessSubmissions() {
             // Mock data representing your actual database entries
@@ -297,10 +335,23 @@
         async function testAIMatching(businessIndex) {
             const business = businessSubmissions[businessIndex];
             const button = event.target;
+            // Track matching test initiation
+    gtag('event', 'ai_matching_test_started', {
+        'event_category': 'admin_testing',
+        'event_label': 'matching_algorithm_test',
+        'value': 1,
+        'custom_parameters': {
+            'business_type': business.business_type,
+            'services_count': business.services_needed.length,
+            'urgency_level': business.urgency_level
+        }
+    });
             
             // Show loading state
             button.disabled = true;
             button.innerHTML = '🔄 Running AI Matching...';
+            // Add timing for performance tracking
+const startTime = Date.now();
             
             // Show results section
             document.getElementById('resultsSection').style.display = 'block';
@@ -337,6 +388,19 @@
                 const data = await response.json();
                 
                 if (data.status === 'success') {
+                    const processingTime = Date.now() - startTime;
+                     // Track successful matching
+    gtag('event', 'ai_matching_completed', {
+        'event_category': 'admin_testing',
+        'event_label': 'matching_success',
+        'value': data.matches.length,
+        'custom_parameters': {
+            'processing_time_ms': processingTime,
+            'matches_found': data.matches.length,
+            'business_type': business.business_type,
+            'avg_match_score': calculateAverageScore(data.matches)
+        }
+    });
                     displayMatchResults(business, data.matches);
                     showSuccess('AI matching completed successfully!');
                 } else {
@@ -344,6 +408,16 @@
                 }
                 
             } catch (error) {
+                // Track matching failures
+    gtag('event', 'ai_matching_failed', {
+        'event_category': 'admin_error',
+        'event_label': 'matching_algorithm_error',
+        'custom_parameters': {
+            'processing_time_ms': Date.now() - startTime,
+            'error_message': error.message,
+            'business_type': business.business_type
+        }
+    });
                 console.error('Matching error:', error);
                 document.getElementById('matchResults').innerHTML = `
                     <div class="error">
