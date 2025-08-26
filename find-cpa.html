@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  gtag('config', 'G-XCF2Z737', {
+    custom_map: {
+      'custom_parameter_1': 'business_type',
+      'custom_parameter_2': 'pain_point',
+      'custom_parameter_3': 'session_id'
+    }
+  });
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stop Losing 25% of Your Work Week to Financial Chaos | CanadaAccountants</title>
@@ -1142,6 +1157,17 @@
         async function submitForm() {
     // Save final answers
     saveCurrentAnswers();
+            // Track form submission attempt
+gtag('event', 'questionnaire_submitted', {
+    'event_category': 'conversion',
+    'event_label': 'form_submission_attempt',
+    'value': 1,
+    'custom_parameters': {
+        'business_type': answers['question_2'] || '',
+        'pain_point': answers['question_1'] || '',
+        'urgency': answers['question_5'] || ''
+    }
+});
     
     // Generate unique request ID
     const requestId = 'req_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -1188,14 +1214,37 @@
         
         if (response.ok) {
             const result = await response.json();
+            // Track successful session creation
+gtag('event', 'session_created', {
+    'event_category': 'conversion',
+    'event_label': 'session_success',
+    'value': 1,
+    'custom_parameters': {
+        'session_id': result.session_id,
+        'business_type': answers['question_2'] || '',
+        'pain_point': answers['question_1'] || ''
+    }
+});
             console.log('✅ SME friction request sent successfully:', result);
             showSuccessMessage(result);
         } else {
+            // Track submission failure
+gtag('event', 'session_creation_failed', {
+    'event_category': 'error',
+    'event_label': 'backend_error',
+    'value': response.status
+});
             console.error('❌ Backend error:', response.status, response.statusText);
             showErrorMessage();
         }
         
     } catch (error) {
+        // Track network errors
+gtag('event', 'session_creation_failed', {
+    'event_category': 'error',
+    'event_label': 'network_error',
+    'value': 0
+});
         console.error('❌ Network error:', error);
         showErrorMessage();
     }
