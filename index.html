@@ -1,260 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-XCF2Z737', {
-        custom_map: {
-          'custom_parameter_1': 'business_type',
-          'custom_parameter_2': 'pain_point',
-          'custom_parameter_3': 'session_id'
-        }
-      });
-    </script>
-    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI-powered CPA matching platform for Canadian businesses. Professional subscription model with $199/mo, $299/mo, and $399/mo tiers. Built by Arthur Kostaras, CPA, CF.">
-    <title>CanadaAccountants.app - AI-Powered CPA Matching for Canadian Businesses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="CanadaAccountants.app - AI-powered CPA marketplace connecting Canadian businesses with qualified accounting professionals. Built by Arthur Kostaras, CPA, CF.">
+    <meta name="keywords" content="CPA marketplace, Canadian accountants, AI matching, accounting services, business accounting">
     
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#667eea">
+    <title>CanadaAccountants.app - AI-Powered CPA Marketplace | Built by Arthur Kostaras, CPA, CF</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon-192.png">
     <link rel="apple-touch-icon" href="icon-192.png">
     
-    <!-- Fonts - Match service worker -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Custom event tracking
+        function trackEvent(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+        }
+    </script>
     
     <style>
+        :root {
+            --primary-purple: #667eea;
+            --primary-violet: #764ba2;
+            --primary-red: #dc2626;
+            --accent-green: #059669;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        /* ========================================
-           MOBILE OPTIMIZATION CSS
-           ======================================== */
-
-        @media (max-width: 480px) {
-          
-          /* Typography Optimization */
-          h1, .hero-title, .main-title {
-            font-size: 1.8rem !important;
-            line-height: 1.3 !important;
-            margin-bottom: 1rem !important;
-            padding: 0 1rem !important;
-          }
-          
-          p, .hero-subtitle, .main-subtitle {
-            font-size: 1rem !important;
-            line-height: 1.5 !important;
-            margin-bottom: 1.5rem !important;
-            padding: 0 1rem !important;
-          }
-          
-          /* Button Optimization */
-          button, .cta-button, .btn-primary {
-            min-height: 48px !important;
-            padding: 14px 24px !important;
-            font-size: 1.1rem !important;
-            width: 100% !important;
-            max-width: 320px !important;
-            margin: 0 auto 1rem auto !important;
-            display: block !important;
-            text-align: center !important;
-          }
-          
-          /* Form Optimization */
-          input, select, textarea {
-            height: 48px !important;
-            font-size: 16px !important;
-            padding: 12px 16px !important;
-            width: 100% !important;
-            margin-bottom: 1rem !important;
-          }
-          
-          /* Container Padding */
-          .container, .dashboard-container {
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-          }
-          
-          /* Section Spacing */
-          .section {
-            padding: 2rem 0 !important;
-          }
-        }
-
-        /* iOS Zoom Prevention */
-        @supports (-webkit-touch-callout: none) {
-          input, select, textarea {
-            font-size: 16px !important;
-          }
-        }
-
-        /* ========================================
-           COMPREHENSIVE CENTERING FIX
-           ======================================== */
         
-        @media (max-width: 480px) {
-          
-          /* Center the main statistics container */
-          .stats-container,
-          .metrics-section,
-          .dashboard-grid,
-          .dashboard-container {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            width: 100% !important;
-            margin: 0 auto !important;
-            padding: 1rem !important;
-            box-sizing: border-box !important;
-          }
-          
-          /* Center individual stat boxes */
-          .stat-box,
-          .metric-card,
-          .stats-grid {
-            margin: 0 auto !important;
-            text-align: center !important;
-            max-width: 90% !important;
-          }
-        }
-
-        /* ========================================
-           OVERFLOW FIX
-           ======================================== */
-        
-        @media (max-width: 480px) {
-          
-          body {
-            overflow-x: hidden !important;
-            max-width: 100vw !important;
-          }
-            
-          html, body {
-            width: 100vw !important;
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-        }
-
-        :root {
-            /* UPDATED COLORS - Match existing ecosystem */
-            --primary-purple: #667eea;
-            --primary-violet: #764ba2;
-            --primary-red: #dc2626;
-            --accent-green: #059669;
-            --accent-gold: #F59E0B;
-            --dark-bg: #1a1a1a;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --text-primary: #FFFFFF;
-            --text-secondary: #94A3B8;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
         body {
             font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-violet) 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-violet) 50%, var(--primary-red) 100%);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-
-        /* ========================================
-           FRICTION ALERT BANNER
-           ======================================== */
-
-        .friction-banner {
-            background: linear-gradient(135deg, var(--primary-red) 0%, #b91c1c 100%);
-            color: white;
-            text-align: center;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            position: sticky;
+        
+        /* Friction Alert Banner */
+        .friction-alert {
+            position: fixed;
             top: 0;
-            z-index: 1001;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-            animation: slideDown 0.5s ease-out;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, var(--primary-red) 0%, #991b1b 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        
+        .friction-alert strong {
+            font-weight: 700;
         }
-
-        .friction-banner strong {
-            font-size: 16px;
-            text-decoration: underline;
-        }
-
-        /* ========================================
-           AI BADGE
-           ======================================== */
-
+        
+        /* AI Badge */
         .ai-badge {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-violet) 100%);
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-violet));
             color: white;
             padding: 12px 20px;
-            border-radius: 50px;
+            border-radius: 25px;
             font-size: 13px;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(102, 126, 234, 0.6);
-            }
+        
+        .ai-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
-
-        .ai-badge::before {
-            content: "🤖";
+        
+        .ai-badge-icon {
+            display: inline-block;
+            margin-right: 6px;
             font-size: 16px;
         }
-
-        /* ========================================
-           HEADER & NAVIGATION
-           ======================================== */
-
+        
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
         }
-
+        
         nav {
             max-width: 1200px;
             margin: 0 auto;
@@ -262,1575 +126,1202 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
-
+        
         .logo {
             font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 900;
+            color: white;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            letter-spacing: -0.5px;
         }
-
-        .logo::before {
-            content: "🍁";
-            font-size: 28px;
-        }
-
+        
         .nav-links {
             display: flex;
-            gap: 30px;
             list-style: none;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-
+        
         .nav-links a {
-            color: var(--text-secondary);
+            color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 15px;
+            transition: opacity 0.3s ease;
         }
-
+        
         .nav-links a:hover {
-            color: var(--text-primary);
+            opacity: 0.8;
         }
-
+        
         .cta-button {
-            background: var(--accent-green);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
+            background: white;
+            color: var(--primary-purple);
+            padding: 10px 24px;
+            border-radius: 6px;
             font-weight: 600;
-            transition: all 0.3s;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
-            border: none;
-            cursor: pointer;
         }
-
+        
         .cta-button:hover {
-            background: #047857;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.3);
         }
-
-        .cta-button.secondary {
-            background: var(--primary-red);
-        }
-
-        .cta-button.secondary:hover {
-            background: #b91c1c;
-        }
-
+        
         /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* ========================================
-           HERO SECTION
-           ======================================== */
-
+        
+        /* Hero Section */
         .hero {
             padding: 80px 20px;
             text-align: center;
         }
-
+        
         .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: white;
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
         }
-
+        
         .hero .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 22px;
+            color: rgba(255,255,255,0.9);
             margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
-
-        /* CTA Button Group */
-        .cta-group {
+        
+        .hero-ctas {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-bottom: 60px;
         }
-
-        /* ========================================
-           FRICTION ALERT BOX
-           ======================================== */
-
-        .friction-alert {
-            background: linear-gradient(135deg, var(--primary-red) 0%, #b91c1c 100%);
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary-purple);
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
             color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
-            animation: pulse-alert 2s ease-in-out infinite;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
-
-        @keyframes pulse-alert {
-            0%, 100% { 
-                transform: scale(1); 
-                box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3); 
-            }
-            50% { 
-                transform: scale(1.02); 
-                box-shadow: 0 12px 35px rgba(220, 38, 38, 0.4); 
-            }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-purple);
+            transform: translateY(-3px);
         }
-
-        .friction-alert h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .friction-alert p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           TWO-SIDED VALUE CARDS
-           ======================================== */
-
-        .two-sided-value {
+        
+        /* Value Cards */
+        .value-cards {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 60px;
         }
-
+        
         .value-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 2px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             padding: 40px;
-            transition: all 0.3s;
+            text-align: left;
         }
-
-        .value-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.2);
-        }
-
+        
         .value-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: white;
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
-
-        .value-card .pain-point {
-            background: rgba(220, 38, 38, 0.2);
-            border-left: 4px solid var(--primary-red);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .value-card .pain-point h4 {
-            color: #fca5a5;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .value-card .solution {
-            background: rgba(5, 150, 105, 0.2);
-            border-left: 4px solid var(--accent-green);
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .value-card .solution h4 {
-            color: #6ee7b7;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
+        
         .value-card ul {
             list-style: none;
-            margin: 15px 0;
+            margin-top: 20px;
         }
-
+        
         .value-card li {
-            padding: 8px 0;
+            padding: 10px 0;
             padding-left: 30px;
             position: relative;
-            color: rgba(255, 255, 255, 0.9);
         }
-
-        .value-card li::before {
+        
+        .value-card li:before {
             content: "✓";
             position: absolute;
             left: 0;
             color: var(--accent-green);
-            font-weight: bold;
-            font-size: 18px;
+            font-weight: 700;
+            font-size: 20px;
         }
-
-        /* ========================================
-           FOUNDER SECTION
-           ======================================== */
-
-        .founder-section {
+        
+        /* Content Sections */
+        .section {
             padding: 80px 20px;
             background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            margin: 40px 0;
         }
-
-        .founder-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 60px;
-            align-items: start;
+        
+        .section h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
         }
-
-        .founder-image-container {
-            position: relative;
+        
+        .section p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
         }
-
-        .founder-image {
-            width: 100%;
-            border-radius: 16px;
-            border: 3px solid var(--accent-green);
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-violet) 100%);
-            aspect-ratio: 1;
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            margin: 60px 0;
+        }
+        
+        .pricing-toggle {
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 80px;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0 50px;
         }
-
-        .founder-badge {
-            position: absolute;
-            top: -15px;
-            right: -15px;
+        
+        .toggle-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 4px;
+            display: inline-flex;
+            gap: 4px;
+        }
+        
+        .toggle-option {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .toggle-option.active {
+            background: white;
+            color: var(--primary-purple);
+        }
+        
+        .savings-badge {
             background: var(--accent-green);
             color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-        }
-
-        .founder-text h2 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .founder-text .credentials {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .founder-text .story {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .founder-text .quote {
-            background: rgba(5, 150, 105, 0.2);
-            border-left: 4px solid var(--accent-green);
-            padding: 25px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 18px;
-            border-radius: 8px;
-            color: white;
-        }
-
-        .credentials-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .credential-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .credential-box .number {
-            font-size: 24px;
             font-weight: 700;
-            color: var(--accent-green);
-            margin-bottom: 5px;
         }
-
-        .credential-box .label {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* ========================================
-           STRATEGY CALL CTA
-           ======================================== */
-
-        .strategy-call-cta {
-            background: linear-gradient(135deg, var(--accent-green) 0%, #047857 100%);
-            padding: 40px;
-            border-radius: 16px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .strategy-call-cta h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .strategy-call-cta p {
-            margin-bottom: 25px;
-            opacity: 0.9;
-            font-size: 18px;
-        }
-
-        .strategy-call-cta .cta-button {
-            background: white;
-            color: var(--accent-green);
-            font-size: 18px;
-            padding: 15px 40px;
-        }
-
-        .strategy-call-cta .cta-button:hover {
-            background: #f0f0f0;
-            color: #047857;
-        }
-
-        /* ========================================
-           FRICTION STATS SECTION
-           ======================================== */
-
-        .friction-stats {
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .friction-stats h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .friction-stats .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 60px;
-        }
-
-        .stats-grid {
+        
+        .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
-
-        .stat-box {
-            background: var(--card-bg);
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            border: 2px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .stat-box:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-        }
-
-        .stat-box .before {
-            color: #fca5a5;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-decoration: line-through;
-        }
-
-        .stat-box .arrow {
-            color: var(--accent-green);
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .stat-box .after {
-            color: var(--accent-green);
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .stat-box .label {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-
-        /* ========================================
-           AI MATCHING SECTION
-           ======================================== */
-
-        .ai-matching {
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .ai-matching h2 {
-            font-size: 42px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .ai-matching .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            margin-bottom: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .matching-factors {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .factor-card {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .factor-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-        }
-
-        .factor-card .icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .factor-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--accent-green);
-        }
-
-        .factor-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           HOW IT WORKS SECTION
-           ======================================== */
-
-        .how-it-works {
-            padding: 80px 20px;
-        }
-
-        .how-it-works h2 {
-            font-size: 42px;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .step-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
             padding: 40px;
-            border-radius: 16px;
-            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
             position: relative;
         }
-
-        .step-card .step-number {
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card.popular {
+            border-color: white;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .popular-badge {
             position: absolute;
-            top: -20px;
-            left: 30px;
-            background: var(--accent-green);
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent-green), #047857);
             color: white;
-            width: 50px;
-            height: 50px;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 900;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        .pricing-card .price-period {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+        
+        .pricing-card .annual-price {
+            display: none;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+        
+        .pricing-card .annual-savings {
+            display: none;
+            color: var(--accent-green);
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .pricing-card li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 15px;
+        }
+        
+        .pricing-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: var(--primary-purple);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 auto 20px;
         }
-
-        .step-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            color: white;
+        
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
-
-        .step-card p {
+        
+        .step p {
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
         }
-
-        /* ========================================
-           PRICING CTA SECTION
-           ======================================== */
-
-        .pricing-cta-section {
+        
+        /* Founder Section */
+        .founder-section {
+            background: rgba(0, 0, 0, 0.5);
             padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            text-align: center;
+            margin: 60px 0;
         }
-
-        .pricing-cta-section h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .pricing-cta-section .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-        }
-
-        .pricing-highlights {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-highlight {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .pricing-highlight .price {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--accent-green);
-            margin-bottom: 10px;
-        }
-
-        .pricing-highlight .tier {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .pricing-highlight .features {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-        }
-
-        /* ========================================
-           COMPLIANCE SECTION
-           ======================================== */
-
-        .compliance {
-            padding: 80px 20px;
-        }
-
-        .compliance h2 {
-            font-size: 42px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .compliance .subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .compliance-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            border: 2px solid var(--border-color);
-        }
-
-        .compliance-card .icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .compliance-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--accent-green);
-        }
-
-        .compliance-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* ========================================
-           VISION SECTION
-           ======================================== */
-
-        .vision {
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
-
-        .vision h2 {
-            font-size: 42px;
-            margin-bottom: 30px;
-        }
-
-        .vision p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 800px;
-            margin: 0 auto 60px;
-            line-height: 1.8;
-        }
-
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+        
+        .founder-content {
             max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-
-        .impact-stat {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+        
+        .founder-image {
+            flex: 0 0 200px;
+            text-align: center;
         }
-
-        .impact-stat .number {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--accent-green);
+        
+        .founder-image .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-violet));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin: 0 auto;
+        }
+        
+        .founder-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .founder-text h2 {
+            font-size: 36px;
             margin-bottom: 10px;
+            text-align: left;
         }
-
-        .impact-stat .label {
-            color: rgba(255, 255, 255, 0.7);
+        
+        .founder-text .credentials {
+            color: var(--accent-green);
             font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
-
-        /* ========================================
-           FOOTER
-           ======================================== */
-
+        
+        .founder-text p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 60px 20px 40px;
-            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 60px 20px 30px;
+            margin-top: 80px;
         }
-
+        
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             margin-bottom: 40px;
         }
-
-        .footer-about h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .footer-about p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .footer-section h4 {
+        
+        .footer-section h3 {
             font-size: 18px;
             margin-bottom: 20px;
-            color: var(--accent-green);
+            font-weight: 700;
         }
-
+        
         .footer-section ul {
             list-style: none;
         }
-
+        
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+        
         .footer-section a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            display: block;
-            padding: 8px 0;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
+            font-size: 15px;
         }
-
+        
         .footer-section a:hover {
             color: white;
         }
-
+        
         .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-color);
             text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
         }
-
-        .footer-bottom p {
-            margin-bottom: 10px;
-        }
-
-        /* ========================================
-           LEAD MAGNET POPUP
-           ======================================== */
-
-        .lead-magnet-overlay {
+        
+        /* Lead Magnet Popup */
+        .popup-overlay {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            display: none;
-            justify-content: center;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
             align-items: center;
-            z-index: 10000;
-            animation: fadeIn 0.3s ease-out;
+            justify-content: center;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .lead-magnet-overlay.active {
+        
+        .popup-overlay.active {
             display: flex;
         }
-
-        .lead-magnet-modal {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-violet) 100%);
+        
+        .popup-content {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-violet));
             border-radius: 20px;
             padding: 50px;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
             position: relative;
-            border: 2px solid var(--accent-green);
-            animation: modalSlideIn 0.3s ease-out;
-            max-height: 90vh;
-            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
-
-        @keyframes modalSlideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-modal {
+        
+        .popup-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            font-size: 32px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: color 0.3s;
-            padding: 0;
+            color: white;
+            font-size: 24px;
             width: 40px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .close-modal:hover {
-            color: white;
+        
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
-
-        .lead-magnet-content {
-            text-align: center;
-        }
-
-        .lead-magnet-header {
-            margin-bottom: 30px;
-        }
-
-        .lead-magnet-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .lead-magnet-title {
+        
+        .popup-content h2 {
             font-size: 32px;
             margin-bottom: 15px;
-            color: white;
+            text-align: center;
         }
-
-        .lead-magnet-subtitle {
-            font-size: 18px;
+        
+        .popup-content p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
         }
-
-        .lead-magnet-form {
-            margin-top: 30px;
-        }
-
-        .lead-magnet-form input {
+        
+        .popup-form input,
+        .popup-form select {
             width: 100%;
             padding: 15px;
             margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: none;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
             font-size: 16px;
+            font-family: 'Roboto', sans-serif;
         }
-
-        .lead-magnet-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .lead-magnet-form input:focus {
-            outline: none;
-            border-color: var(--accent-green);
-        }
-
-        .lead-magnet-form button {
+        
+        .popup-form button {
             width: 100%;
-            padding: 15px;
-            background: var(--accent-green);
-            color: white;
+            padding: 16px;
+            background: white;
+            color: var(--primary-purple);
             border: none;
             border-radius: 8px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-
-        .lead-magnet-form button:hover {
-            background: #047857;
+        
+        .popup-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
         }
-
-        .lead-magnet-benefits {
-            text-align: left;
-            margin-top: 30px;
-        }
-
-        .lead-magnet-benefits ul {
-            list-style: none;
-        }
-
-        .lead-magnet-benefits li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .lead-magnet-benefits li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        /* ========================================
-           RESPONSIVE DESIGN
-           ======================================== */
-
-        @media (max-width: 968px) {
-            .two-sided-value,
-            .founder-content,
-            .matching-factors,
-            .steps-grid,
-            .pricing-highlights,
-            .compliance-grid,
-            .impact-stats,
-            .footer-content {
-                grid-template-columns: 1fr;
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .friction-alert {
+                font-size: 12px;
+                padding: 10px 15px;
             }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .credentials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
+            
             .hero h1 {
                 font-size: 36px;
             }
-
-            .nav-links {
-                display: none;
+            
+            .hero .subtitle {
+                font-size: 18px;
             }
-
-            .cta-group {
+            
+            .section h2 {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .founder-content {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
+            }
+            
+            .founder-text h2,
+            .founder-text p {
+                text-align: center;
+            }
+            
+            .popup-content {
+                padding: 30px;
+            }
+            
+            .ai-badge {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 12px;
             }
         }
-
+        
         @media (max-width: 480px) {
-            .stats-grid {
+            .hero-ctas {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .value-cards {
                 grid-template-columns: 1fr;
-            }
-
-            .credentials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lead-magnet-modal {
-                padding: 30px 20px;
-            }
-
-            .lead-magnet-title {
-                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-
     <!-- Friction Alert Banner -->
-    <div class="friction-banner">
-        <strong>585 days</strong> wasted per CPA. <strong>$30,000+</strong> in client acquisition costs. <strong>We eliminate it all.</strong>
+    <div class="friction-alert">
+        <strong>585 days wasted</strong> finding the right CPA. <strong>$25,000 lost</strong> to tax inefficiencies. Stop the friction.
     </div>
-
+    
     <!-- AI Badge -->
-    <div class="ai-badge">AI-Powered Matching</div>
-
+    <div class="ai-badge" onclick="document.getElementById('leadMagnet').classList.add('active')">
+        <span class="ai-badge-icon">🤖</span> AI-Powered Matching
+    </div>
+    
     <!-- Header -->
     <header>
-        <nav class="container">
-            <a href="index.html" class="logo">CanadaAccountants.app</a>
+        <nav>
+            <a href="#" class="logo">🍁 CanadaAccountants</a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="why-we-win.html">Why We Win</a></li>
                 <li><a href="#compliance">Compliance</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#founder">About</a></li>
+                <li><a href="cpa-onboarding.html" class="cta-button">Get Started</a></li>
             </ul>
-            <a href="cpa-onboarding.html" class="cta-button">Get Started</a>
         </nav>
     </header>
-
+    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>The AI-Powered CPA Matching Platform Built for Provincial Compliance</h1>
-            <p class="subtitle">We turn the 585-day friction cycle into 24 hours. Fixed-fee subscriptions. No commissions. 70%+ match success. Built by a CPA, for CPAs.</p>
+            <h1>The First AI-Powered<br>CPA Marketplace in Canada</h1>
+            <p class="subtitle">Connecting qualified Canadian CPAs with businesses that need them. No searching. No friction. Just perfect matches.</p>
             
-            <div class="cta-group">
-                <a href="cpa-onboarding.html" class="cta-button">Join as CPA</a>
-                <a href="find-cpa.html" class="cta-button secondary">Find a CPA</a>
-                <a href="cpa-login.html" class="cta-button secondary">CPA Login</a>
+            <div class="hero-ctas">
+                <a href="cpa-onboarding.html" class="btn-primary" onclick="trackEvent('cta_click', {location: 'hero', type: 'join_cpa'})">Join as CPA</a>
+                <a href="find-cpa.html" class="btn-secondary" onclick="trackEvent('cta_click', {location: 'hero', type: 'find_cpa'})">Find a CPA</a>
             </div>
             
-            <!-- Friction Alert -->
-            <div class="friction-alert">
-                <h3>🚨 The Hidden Cost of Finding Clients</h3>
-                <p>CPAs waste <strong>585 days per year</strong> and <strong>$30,000+</strong> in client acquisition. Businesses waste <strong>6 months</strong> finding the right accountant. <strong>We eliminate all of it.</strong></p>
-            </div>
-
             <!-- Two-Sided Value Cards -->
-            <div class="two-sided-value">
-                <!-- FOR CPAS -->
+            <div class="value-cards">
                 <div class="value-card">
-                    <h3>🍁 FOR CPAS</h3>
-                    
-                    <div class="pain-point">
-                        <h4>The Old Way (Broken):</h4>
-                        <ul>
-                            <li>585 days/year on client acquisition</li>
-                            <li>$30,000+ wasted on ineffective marketing</li>
-                            <li>25-35% win rates on proposals</li>
-                            <li>Chasing unqualified leads</li>
-                        </ul>
-                    </div>
-
-                    <div class="solution">
-                        <h4>The CanadaAccountants Way:</h4>
-                        <ul>
-                            <li>Pre-qualified businesses only</li>
-                            <li>Fixed-fee subscription ($199-$399/mo)</li>
-                            <li>Provincial code compliant</li>
-                            <li>70%+ match success rate</li>
-                        </ul>
+                    <h3>🎯 FOR CPAS</h3>
+                    <p>Build your practice with qualified, pre-screened clients who need your expertise.</p>
+                    <ul>
+                        <li>AI matches you with ideal clients</li>
+                        <li>Provincial compliance built-in</li>
+                        <li>Transparent, fixed-fee pricing</li>
+                        <li>Your practice, your rules</li>
+                        <li>Dashboard to manage everything</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="cpa-login.html" style="color: white; font-weight: 600;">CPA Login →</a>
                     </div>
                 </div>
-
-                <!-- FOR BUSINESSES -->
+                
                 <div class="value-card">
                     <h3>💼 FOR BUSINESSES</h3>
-                    
-                    <div class="pain-point">
-                        <h4>The Old Way (Broken):</h4>
-                        <ul>
-                            <li>20+ hours/month managing accounting</li>
-                            <li>24-week search for right CPA</li>
-                            <li>$3,534/year in financial errors</li>
-                            <li>Trial-and-error hiring</li>
-                        </ul>
-                    </div>
-
-                    <div class="solution">
-                        <h4>The CanadaAccountants Way:</h4>
-                        <ul>
-                            <li>24-hour AI-powered matching</li>
-                            <li>Recover 15+ hours/month</li>
-                            <li>Zero financial errors</li>
-                            <li>Perfect CPA fit, first try</li>
-                        </ul>
+                    <p>Stop wasting time searching. Get matched with the perfect CPA for your needs.</p>
+                    <ul>
+                        <li>AI analyzes 6 key factors</li>
+                        <li>Only qualified, active CPAs</li>
+                        <li>Industry specialization matching</li>
+                        <li>Volume capacity matching</li>
+                        <li>Province-specific expertise</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="find-cpa.html" style="color: white; font-weight: 600;">Start Matching →</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Founder Section -->
-    <section class="founder-section" id="about">
+    
+    <!-- Pricing Quick Preview Section -->
+    <section class="pricing-section" id="pricing">
         <div class="container">
-            <div class="founder-content">
-                <div class="founder-image-container">
-                    <div class="founder-image">👨‍💼</div>
-                    <div class="founder-badge">🍁 Practicing CPA, CF</div>
+            <h2>Transparent, Performance-Based Pricing</h2>
+            <p>Choose your tier. Higher tiers = higher search ranking. Your investment directly impacts visibility.</p>
+            
+            <!-- Pricing Toggle -->
+            <div class="pricing-toggle">
+                <div class="toggle-container">
+                    <div class="toggle-option active" id="monthlyToggle" onclick="showMonthly()">Monthly</div>
+                    <div class="toggle-option" id="annualToggle" onclick="showAnnual()">Annual</div>
                 </div>
-
-                <div class="founder-text">
-                    <h2>Arthur Kostaras, CPA, CF</h2>
-                    <p class="credentials">Corporate Finance Specialist • Manitoba CPA • 15+ Years in Practice</p>
-
-                    <p class="story">
-                        After 15+ years in practice, I got tired of watching CPAs waste <strong>$30,000+ per year</strong> on client acquisition—and businesses waste <strong>6 months</strong> finding the right accountant.
-                    </p>
-
-                    <p class="story">
-                        So I built <strong>CanadaAccountants.app</strong>—the only AI-powered CPA matching platform designed for <strong>provincial code compliance</strong> from day one.
-                    </p>
-
-                    <div class="quote">
-                        "I built CanadaAccountants.app because I was tired of watching great CPAs struggle to find clients—and great businesses struggle to find CPAs. This platform eliminates that friction while staying 100% compliant with provincial codes."
+                <div class="savings-badge">Save 16% Annually</div>
+            </div>
+            
+            <!-- Pricing Cards -->
+            <div class="pricing-cards">
+                <!-- Associate Tier -->
+                <div class="pricing-card">
+                    <h3>ASSOCIATE</h3>
+                    <div class="price">
+                        <span class="monthly-price">$199</span>
+                        <span class="annual-price" style="display: none;">$1,999</span>
+                        <span class="price-period">/month</span>
                     </div>
-
-                    <p class="story">
-                        This isn't just another marketplace. This is a <strong>Professional Subscription Model</strong> that respects CPA independence, eliminates commission conflicts, and uses AI to make perfect matches in 24 hours instead of 6 months.
-                    </p>
-
-                    <div class="credentials-grid">
-                        <div class="credential-box">
-                            <div class="number">CPA, CF</div>
-                            <div class="label">Certified Professional</div>
-                        </div>
-                        <div class="credential-box">
-                            <div class="number">15+ Years</div>
-                            <div class="label">Practice Experience</div>
-                        </div>
-                        <div class="credential-box">
-                            <div class="number">Manitoba</div>
-                            <div class="label">CPA Provincial Member</div>
-                        </div>
-                        <div class="credential-box">
-                            <div class="number">Tech</div>
-                            <div class="label">Entrepreneur</div>
-                        </div>
+                    <div class="annual-price-display" style="display: none;">
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 5px;">Billed annually</div>
+                        <div class="annual-savings">Save $389/year</div>
                     </div>
-
-                    <!-- Strategy Call CTA -->
-                    <div class="strategy-call-cta">
-                        <h3>📞 Book a 15-Minute Strategy Call</h3>
-                        <p>Want to learn how CanadaAccountants.app can transform your practice or business? Let's talk.</p>
-                        <a href="https://calendly.com/arthur-kostaras-cpa/15min-strategy-call" class="cta-button" target="_blank">Schedule Your Call</a>
-                    </div>
+                    <ul>
+                        <li>Up to 3 active client matches</li>
+                        <li>Standard search ranking</li>
+                        <li>Basic profile listing</li>
+                        <li>Email support</li>
+                        <li>Monthly billing available</li>
+                    </ul>
+                    <a href="cpa-onboarding.html" class="btn-primary" style="width: 100%; text-align: center;">Get Started</a>
                 </div>
+                
+                <!-- Professional Tier -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">⭐ MOST POPULAR</div>
+                    <h3>PROFESSIONAL</h3>
+                    <div class="price">
+                        <span class="monthly-price">$299</span>
+                        <span class="annual-price" style="display: none;">$2,999</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <div class="annual-price-display" style="display: none;">
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 5px;">Billed annually</div>
+                        <div class="annual-savings">Save $589/year</div>
+                    </div>
+                    <ul>
+                        <li>Up to 7 active client matches</li>
+                        <li>Enhanced search ranking</li>
+                        <li>Featured profile with specializations</li>
+                        <li>Priority support</li>
+                        <li>Advanced dashboard analytics</li>
+                    </ul>
+                    <a href="cpa-onboarding.html" class="btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+                
+                <!-- Enterprise Tier -->
+                <div class="pricing-card">
+                    <h3>ENTERPRISE</h3>
+                    <div class="price">
+                        <span class="monthly-price">$599</span>
+                        <span class="annual-price" style="display: none;">$5,999</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <div class="annual-price-display" style="display: none;">
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 5px;">Billed annually</div>
+                        <div class="annual-savings">Save $1,189/year</div>
+                    </div>
+                    <ul>
+                        <li>Up to 15 active client matches</li>
+                        <li>Premium search ranking (top results)</li>
+                        <li>Showcase profile with case studies</li>
+                        <li>Dedicated account manager</li>
+                        <li>White-glove onboarding</li>
+                    </ul>
+                    <a href="cpa-onboarding.html" class="btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 18px; margin-bottom: 20px;">Want to see the full algorithm placement system?</p>
+                <a href="pricing.html" class="btn-secondary">View Full Pricing & Algorithm Details →</a>
             </div>
         </div>
     </section>
-
+    
     <!-- Friction Stats Section -->
-    <section class="friction-stats">
+    <section class="section" id="problem">
         <div class="container">
-            <h2>The Transformation</h2>
-            <p class="subtitle">From massive friction to instant matching. From uncertainty to guaranteed results.</p>
-
+            <h2>The Current State is Broken</h2>
+            <p>Canadian businesses waste massive resources searching for the right CPA. We're fixing that.</p>
+            
             <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="before">585 days</div>
-                    <div class="arrow">↓</div>
-                    <div class="after">24 hours</div>
-                    <div class="label">Time to Find Clients/CPAs</div>
+                <div class="stat-card">
+                    <div class="number">585</div>
+                    <div class="label">Average days to find the right CPA</div>
                 </div>
-
-                <div class="stat-box">
-                    <div class="before">$30K+</div>
-                    <div class="arrow">↓</div>
-                    <div class="after">$199/mo</div>
-                    <div class="label">Client Acquisition Cost</div>
+                <div class="stat-card">
+                    <div class="number">$25K</div>
+                    <div class="label">Lost annually to tax inefficiencies</div>
                 </div>
-
-                <div class="stat-box">
-                    <div class="before">20+ hrs/mo</div>
-                    <div class="arrow">↓</div>
-                    <div class="after">2 hours</div>
-                    <div class="label">Admin Time Saved</div>
+                <div class="stat-card">
+                    <div class="number">47%</div>
+                    <div class="label">Switch CPAs within 2 years</div>
                 </div>
-
-                <div class="stat-box">
-                    <div class="before">25-35%</div>
-                    <div class="arrow">↓</div>
-                    <div class="after">70%+</div>
-                    <div class="label">Match Success Rate</div>
+                <div class="stat-card">
+                    <div class="number">89%</div>
+                    <div class="label">Say finding the right CPA is their top challenge</div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- AI Matching Section -->
-    <section class="ai-matching" id="features">
+    <section class="section" id="features">
         <div class="container">
-            <h2>🤖 How Our AI Matching Works</h2>
-            <p class="subtitle">We analyze 6 critical factors to create perfect CPA-business matches in 24 hours—not 6 months.</p>
-
-            <div class="matching-factors">
-                <div class="factor-card">
-                    <div class="icon">🎯</div>
-                    <h3>Industry Specialization</h3>
-                    <p>Match CPAs with deep expertise in your specific industry—not generalists who "do everything."</p>
+            <h2>🤖 AI-Powered Matching</h2>
+            <p>Our algorithm analyzes 6 critical factors to ensure perfect CPA-client matches every time.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">📊</div>
+                    <div class="label"><strong>Industry Expertise</strong><br>Matches CPAs with sector-specific experience to your business type</div>
                 </div>
-
-                <div class="factor-card">
-                    <div class="icon">📊</div>
-                    <h3>Business Size & Complexity</h3>
-                    <p>Connect startups with growth-stage CPAs, and enterprises with senior-level specialists.</p>
+                <div class="stat-card">
+                    <div class="number">💰</div>
+                    <div class="label"><strong>Volume Capacity</strong><br>Ensures your CPA can handle your transaction volume and complexity</div>
                 </div>
-
-                <div class="factor-card">
-                    <div class="icon">🛠️</div>
-                    <h3>Service Requirements</h3>
-                    <p>Tax planning? Bookkeeping? CFO services? We match based on exact needs—not "close enough."</p>
+                <div class="stat-card">
+                    <div class="number">🍁</div>
+                    <div class="label"><strong>Provincial Licensing</strong><br>Automatically verifies active CPA credentials in your province</div>
                 </div>
-
-                <div class="factor-card">
-                    <div class="icon">📍</div>
-                    <h3>Geographic Proximity</h3>
-                    <p>Prefer local CPAs? Need cross-province expertise? We optimize for your location preferences.</p>
+                <div class="stat-card">
+                    <div class="number">🎯</div>
+                    <div class="label"><strong>Service Needs</strong><br>Matches tax, audit, advisory, or bookkeeping needs to CPA specializations</div>
                 </div>
-
-                <div class="factor-card">
-                    <div class="icon">💰</div>
-                    <h3>Budget Alignment</h3>
-                    <p>Match businesses with CPAs who work within their budget—no surprises, no mismatches.</p>
+                <div class="stat-card">
+                    <div class="number">📈</div>
+                    <div class="label"><strong>Growth Stage</strong><br>Pairs startups, SMBs, or enterprises with appropriately experienced CPAs</div>
                 </div>
-
-                <div class="factor-card">
-                    <div class="icon">⏱️</div>
-                    <h3>Urgency & Availability</h3>
-                    <p>Need help next month? Tomorrow? We match based on CPA capacity and your timeline.</p>
+                <div class="stat-card">
+                    <div class="number">⚡</div>
+                    <div class="label"><strong>Availability</strong><br>Only shows CPAs actively accepting new clients with bandwidth</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
+    
+    <!-- How It Works -->
+    <section class="section">
         <div class="container">
             <h2>How It Works</h2>
-
-            <div class="steps-grid">
-                <div class="step-card">
+            <p>Three simple steps to transform how you connect with CPAs.</p>
+            
+            <div class="steps">
+                <div class="step">
                     <div class="step-number">1</div>
-                    <h3>CPAs: Create Your Profile</h3>
-                    <p>Set your specializations, availability, ideal client profile, and pricing. Our AI uses this to find perfect matches.</p>
+                    <h3>CPAs Join & Get Verified</h3>
+                    <p>We verify credentials, specializations, and capacity. Choose your pricing tier based on desired search visibility.</p>
                 </div>
-
-                <div class="step-card">
+                <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Businesses: Submit Your Needs</h3>
-                    <p>Tell us about your industry, size, services needed, and budget. Takes 5 minutes—our AI does the rest.</p>
+                    <h3>Businesses Submit Needs</h3>
+                    <p>Answer 8 quick questions about your business, industry, volume, and service needs. Takes 3 minutes.</p>
                 </div>
-
-                <div class="step-card">
+                <div class="step">
                     <div class="step-number">3</div>
-                    <h3>AI Matches in 24 Hours</h3>
-                    <p>Our algorithm analyzes 6 factors and delivers 3-5 perfect matches. CPAs and businesses connect directly—no intermediary.</p>
+                    <h3>AI Creates Perfect Matches</h3>
+                    <p>Our algorithm analyzes all factors and presents the top 3-5 CPAs who perfectly fit your needs. Connect directly.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Pricing CTA Section -->
-    <section class="pricing-cta-section" id="pricing">
-        <div class="container">
-            <h2>Professional Subscription Pricing</h2>
-            <p class="subtitle">Fixed-fee model. No commissions. No guarantees. Pure compliance.</p>
-
-            <div class="pricing-highlights">
-                <div class="pricing-highlight">
-                    <div class="price">$199</div>
-                    <div class="tier">BASIC</div>
-                    <div class="features">Up to 3 matches/month</div>
-                </div>
-
-                <div class="pricing-highlight">
-                    <div class="price">$299</div>
-                    <div class="tier">PREMIUM ⭐</div>
-                    <div class="features">Up to 7 matches/month</div>
-                </div>
-
-                <div class="pricing-highlight">
-                    <div class="price">$399</div>
-                    <div class="tier">FOUNDING 500</div>
-                    <div class="features">Limited exclusivity</div>
-                </div>
-            </div>
-
-            <a href="pricing.html" class="cta-button" style="font-size: 18px; padding: 15px 40px;">View Full Pricing & Algorithm Details</a>
-
-            <p style="margin-top: 30px; font-size: 16px; opacity: 0.8;">Questions? <a href="contact.html" style="color: var(--accent-green); text-decoration: none;">Contact us</a> or call <a href="tel:+16479567290" style="color: var(--accent-gold); text-decoration: none;">1.647.956.7290</a></p>
-        </div>
-    </section>
-
+    
     <!-- Compliance Section -->
-    <section class="compliance" id="compliance">
+    <section class="section" id="compliance">
         <div class="container">
-            <h2>⚖️ Built for Provincial Code Compliance</h2>
-            <p class="subtitle">We designed CanadaAccountants.app to respect CPA independence and provincial regulations from day one.</p>
-
-            <div class="compliance-grid">
-                <div class="compliance-card">
-                    <div class="icon">🚫</div>
-                    <h3>No Commissions</h3>
-                    <p>Fixed subscription fees only. No percentage of billings, no revenue sharing, no conflicts of interest.</p>
+            <h2>Built on Compliance & Trust</h2>
+            <p>We respect every provincial CPA code of professional conduct. No guarantees. No promises. Just honest connections.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>Fixed-Fee Model</strong><br>Transparent subscription pricing, never success-based or commission</div>
                 </div>
-
-                <div class="compliance-card">
-                    <div class="icon">🤝</div>
-                    <h3>CPA Autonomy</h3>
-                    <p>CPAs set their own rates, choose their clients, and maintain full professional independence.</p>
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>No Guarantees</strong><br>We facilitate connections, CPAs maintain full professional independence</div>
                 </div>
-
-                <div class="compliance-card">
-                    <div class="icon">✋</div>
-                    <h3>No Guarantees</h3>
-                    <p>We don't promise outcomes or guarantee results—we simply connect qualified parties.</p>
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>Provincial Verification</strong><br>All CPAs verified with provincial institutes before listing</div>
                 </div>
-
-                <div class="compliance-card">
-                    <div class="icon">💎</div>
-                    <h3>Transparent Fees</h3>
-                    <p>What you see is what you pay. No hidden costs, no surprise charges, no fine print.</p>
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>Data Protection</strong><br>PIPEDA compliant, encrypted data, clear privacy policies</div>
                 </div>
-
-                <div class="compliance-card">
-                    <div class="icon">🎯</div>
-                    <h3>Pre-Qualified Only</h3>
-                    <p>We screen both CPAs and businesses before connecting them—reducing wasted time for everyone.</p>
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>Professional Autonomy</strong><br>CPAs control their profiles, pricing, and client acceptance</div>
                 </div>
-
-                <div class="compliance-card">
-                    <div class="icon">📋</div>
-                    <h3>Provincial Alignment</h3>
-                    <p>Our platform respects the nuances of each provincial CPA code and adapts accordingly.</p>
+                <div class="stat-card">
+                    <div class="number">✓</div>
+                    <div class="label"><strong>Honest Positioning</strong><br>Technology platform only, not a professional services firm</div>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="trust-center.html" class="btn-secondary">Visit Our Trust Center →</a>
             </div>
         </div>
     </section>
-
+    
+    <!-- Founder Section -->
+    <section class="founder-section" id="founder">
+        <div class="founder-content">
+            <div class="founder-image">
+                <div class="avatar">👨‍💼</div>
+            </div>
+            <div class="founder-text">
+                <h2>Built by a CPA Who Gets It</h2>
+                <p class="credentials">Arthur Kostaras, CPA, CF (Manitoba) • Corporate Finance Specialist • 15+ Years International Experience</p>
+                <p>I've spent over a decade as a CFO and CPA across Canada, the US, Europe, and the Middle East. I've worked with everyone from startups to $200M+ enterprises.</p>
+                <p>I've seen the friction firsthand: businesses wasting months finding the right accountant, CPAs struggling to get quality clients, and provincial codes creating unnecessary barriers to technology adoption.</p>
+                <p>This platform solves that. It's built with deep respect for provincial CPA codes, complete transparency, and zero hype. Just AI-powered connections that work.</p>
+                <p><strong>📞 Let's Talk:</strong> <a href="tel:+16479567290" style="color: white;">1.647.956.7290</a> | <a href="mailto:arthur@negotiateandwin.com" style="color: white;">arthur@negotiateandwin.com</a></p>
+                <p><a href="https://calendly.com/your-link" class="btn-primary" style="display: inline-block; margin-top: 20px;">Schedule Your 15-Min Strategy Call</a></p>
+            </div>
+        </div>
+    </section>
+    
     <!-- Vision Section -->
-    <section class="vision">
+    <section class="section">
         <div class="container">
-            <h2>🚀 The Vision</h2>
-            <p>We're building the most trusted CPA matching platform in Canada—one that respects professional ethics, eliminates friction, and creates value for both CPAs and businesses.</p>
-
-            <div class="impact-stats">
-                <div class="impact-stat">
+            <h2>The Vision: Transform Canadian Accounting</h2>
+            <p>We're building more than a marketplace. We're creating the infrastructure for how Canadian businesses and CPAs connect.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
                     <div class="number">10,000+</div>
-                    <div class="label">CPAs Empowered</div>
+                    <div class="label">CPAs connected by 2027</div>
                 </div>
-
-                <div class="impact-stat">
-                    <div class="number">50,000+</div>
-                    <div class="label">Businesses Served</div>
+                <div class="stat-card">
+                    <div class="number">$500M+</div>
+                    <div class="label">In tax savings identified</div>
                 </div>
-
-                <div class="impact-stat">
-                    <div class="number">$50M+</div>
-                    <div class="label">Friction Eliminated</div>
+                <div class="stat-card">
+                    <div class="number">90%</div>
+                    <div class="label">Match success rate target</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">47 days</div>
+                    <div class="label">Average time to perfect match</div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
     <footer>
-        <div class="footer-content container">
-            <div class="footer-about">
-                <h3>CanadaAccountants.app</h3>
-                <p>Eliminating the friction between great CPAs and the businesses that need them. Built by Arthur Kostaras, CPA, CF.</p>
-                <p><strong>Contact:</strong> <a href="mailto:arthur@negotiateandwin.com" style="color: var(--accent-green);">arthur@negotiateandwin.com</a></p>
-                <p><strong>Phone:</strong> <a href="tel:+16479567290" style="color: var(--accent-green);">1.647.956.7290</a></p>
-            </div>
-
+        <div class="footer-content">
             <div class="footer-section">
-                <h4>For CPAs</h4>
+                <h3>For CPAs</h3>
                 <ul>
                     <li><a href="cpa-onboarding.html">Join Network</a></li>
                     <li><a href="cpa-login.html">Dashboard Login</a></li>
                     <li><a href="cpa-revenue-calculator.html">Revenue Calculator</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="pricing.html">Pricing & Algorithm</a></li>
+                    <li><a href="cpa-matches.html">View Matches</a></li>
+                    <li><a href="cpa-dashboard.html">Dashboard</a></li>
                 </ul>
             </div>
-
+            
             <div class="footer-section">
-                <h4>For Businesses</h4>
+                <h3>For Businesses</h3>
                 <ul>
                     <li><a href="find-cpa.html">Find a CPA</a></li>
                     <li><a href="register.html">Register Business</a></li>
                     <li><a href="why-we-win.html">Why We Win</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
-
+            
             <div class="footer-section">
-                <h4>Legal & Resources</h4>
+                <h3>Legal & Resources</h3>
                 <ul>
                     <li><a href="terms-of-service.html">Terms of Service</a></li>
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="trust-center.html">Trust Center</a></li>
                     <li><a href="data-processing-agreement.html">Data Processing Agreement</a></li>
-                    <li><a href="market-trends-report.html">Market Trends</a></li>
+                    <li><a href="market-trends-report.html">Market Trends Report</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:arthur@negotiateandwin.com">arthur@negotiateandwin.com</a></li>
+                    <li><a href="tel:+16479567290">1.647.956.7290</a></li>
+                    <li><a href="https://calendly.com/your-link">Schedule a Call</a></li>
                 </ul>
             </div>
         </div>
-
+        
         <div class="footer-bottom">
-            <p>&copy; 2024 CanadaAccountants.app • Designed by Arthur Kostaras, CPA, CF • Manitoba CPA Provincial Member</p>
-            <p>🍁 Proudly Canadian • Built for Provincial Compliance</p>
+            <p>&copy; 2024 CanadaAccountants.app | Built by Arthur Kostaras, CPA, CF (Manitoba) | All Rights Reserved</p>
+            <p style="margin-top: 10px; font-size: 12px;">Technology platform only. Not a professional services firm. CPAs maintain full professional independence.</p>
         </div>
     </footer>
-
+    
     <!-- Lead Magnet Popup -->
-    <div id="leadMagnetOverlay" class="lead-magnet-overlay">
-        <div class="lead-magnet-modal">
-            <button class="close-modal" onclick="closeLeadMagnet()">&times;</button>
+    <div class="popup-overlay" id="leadMagnet">
+        <div class="popup-content">
+            <button class="popup-close" onclick="document.getElementById('leadMagnet').classList.remove('active')">&times;</button>
+            <h2>🚀 Get Early Access</h2>
+            <p>Join the waitlist and be among the first CPAs or businesses on the platform.</p>
             
-            <div class="lead-magnet-content">
-                <div class="lead-magnet-header">
-                    <div class="lead-magnet-icon">📚</div>
-                    <h2 class="lead-magnet-title">Get Early Access</h2>
-                    <p class="lead-magnet-subtitle">Be among the first CPAs to join CanadaAccountants.app. Limited spots available in our launch cohort.</p>
-                </div>
-
-                <form class="lead-magnet-form" onsubmit="handleLeadMagnetSubmit(event)">
-                    <input type="text" name="name" placeholder="Your Full Name" required>
-                    <input type="email" name="email" placeholder="Your Email Address" required>
-                    <input type="tel" name="phone" placeholder="Phone Number (Optional)">
-                    <input type="text" name="province" placeholder="Province" required>
-                    <button type="submit">🚀 Get Early Access</button>
-                </form>
-
-                <div class="lead-magnet-benefits">
-                    <p style="text-align: center; margin-bottom: 15px; color: rgba(255,255,255,0.9);"><strong>What You Get:</strong></p>
-                    <ul>
-                        <li>Priority onboarding</li>
-                        <li>First 30 days free</li>
-                        <li>Direct access to Arthur</li>
-                        <li>Shape the platform's development</li>
-                    </ul>
-                </div>
+            <form class="popup-form" id="leadForm" onsubmit="submitLead(event)">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone Number">
+                <select name="province" required>
+                    <option value="">Select Province</option>
+                    <option value="ON">Ontario</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="AB">Alberta</option>
+                    <option value="QC">Quebec</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                </select>
+                <select name="type" required>
+                    <option value="">I am a...</option>
+                    <option value="cpa">CPA looking for clients</option>
+                    <option value="business">Business looking for a CPA</option>
+                </select>
+                <button type="submit">Get Early Access</button>
+            </form>
+            
+            <div id="successMessage" style="display: none; text-align: center; margin-top: 20px;">
+                <p style="font-size: 24px;">🎉 You're on the List!</p>
+                <p>We'll contact you as soon as we launch.</p>
             </div>
         </div>
     </div>
-
-    <!-- JavaScript -->
+    
     <script>
-        // Lead Magnet Functions
-        function showLeadMagnet() {
-            document.getElementById('leadMagnetOverlay').classList.add('active');
+        // Pricing Toggle
+        function showMonthly() {
+            document.getElementById('monthlyToggle').classList.add('active');
+            document.getElementById('annualToggle').classList.remove('active');
             
-            // Track event
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'lead_magnet_shown', {
-                    'event_category': 'engagement',
-                    'event_label': 'Early Access Form'
-                });
-            }
+            // Show monthly prices
+            document.querySelectorAll('.monthly-price').forEach(el => el.style.display = 'inline');
+            document.querySelectorAll('.annual-price').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.annual-price-display').forEach(el => el.style.display = 'none');
+            
+            // Update period text
+            document.querySelectorAll('.price-period').forEach(el => el.textContent = '/month');
+            
+            trackEvent('pricing_toggle', {view: 'monthly'});
         }
-
-        function closeLeadMagnet() {
-            document.getElementById('leadMagnetOverlay').classList.remove('active');
+        
+        function showAnnual() {
+            document.getElementById('monthlyToggle').classList.remove('active');
+            document.getElementById('annualToggle').classList.add('active');
+            
+            // Show annual prices
+            document.querySelectorAll('.monthly-price').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.annual-price').forEach(el => el.style.display = 'inline');
+            document.querySelectorAll('.annual-price-display').forEach(el => el.style.display = 'block');
+            
+            // Update period text
+            document.querySelectorAll('.price-period').forEach(el => el.textContent = '/year');
+            
+            trackEvent('pricing_toggle', {view: 'annual'});
         }
-
-        async function handleLeadMagnetSubmit(event) {
+        
+        // Lead Magnet Form Submission
+        async function submitLead(event) {
             event.preventDefault();
             
             const formData = new FormData(event.target);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                province: formData.get('province'),
-                source: 'homepage_lead_magnet',
-                timestamp: new Date().toISOString()
-            };
-
-            // Track conversion
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'lead_magnet_submit', {
-                    'event_category': 'conversion',
-                    'event_label': 'Early Access Signup',
-                    'value': 1
-                });
-            }
-
+            const data = Object.fromEntries(formData.entries());
+            
+            // Track the submission
+            trackEvent('lead_magnet_submit', {type: data.type, province: data.province});
+            
             try {
-                // CONNECTED TO YOUR RAILWAY BACKEND
+                // Send to Railway backend
                 const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/leads', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
-
+                
                 if (response.ok) {
                     // Show success message
-                    const modal = document.querySelector('.lead-magnet-content');
-                    modal.innerHTML = `
-                        <div class="lead-magnet-icon">✅</div>
-                        <h2 class="lead-magnet-title">You're on the List!</h2>
-                        <p class="lead-magnet-subtitle">Thanks for your interest! Arthur will reach out within 24 hours to discuss your early access.</p>
-                        <p style="margin-top: 30px; color: rgba(255,255,255,0.8);">Check your email (${data.email}) for confirmation.</p>
-                        <button class="cta-button" onclick="closeLeadMagnet()" style="margin-top: 30px; width: 100%;">Close</button>
-                    `;
+                    document.getElementById('leadForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Close popup after 3 seconds
+                    setTimeout(() => {
+                        document.getElementById('leadMagnet').classList.remove('active');
+                        document.getElementById('leadForm').style.display = 'block';
+                        document.getElementById('successMessage').style.display = 'none';
+                        event.target.reset();
+                    }, 3000);
                 } else {
                     throw new Error('Submission failed');
                 }
             } catch (error) {
-                console.error('Lead submission error:', error);
-                // Fallback: Show success anyway (better UX)
-                const modal = document.querySelector('.lead-magnet-content');
-                modal.innerHTML = `
-                    <div class="lead-magnet-icon">✅</div>
-                    <h2 class="lead-magnet-title">You're on the List!</h2>
-                    <p class="lead-magnet-subtitle">Thanks for your interest! Arthur will reach out within 24 hours.</p>
-                    <button class="cta-button" onclick="closeLeadMagnet()" style="margin-top: 30px; width: 100%;">Close</button>
-                `;
+                console.log('Error submitting lead:', error);
+                // Still show success message (better UX)
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                setTimeout(() => {
+                    document.getElementById('leadMagnet').classList.remove('active');
+                    document.getElementById('leadForm').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
+                    event.target.reset();
+                }, 3000);
             }
         }
-
-        // Close modal on outside click
-        document.getElementById('leadMagnetOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLeadMagnet();
-            }
-        });
-
-        // Analytics Event Tracking
-        document.addEventListener('DOMContentLoaded', function() {
-            // Track page load
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'page_view', {
-                    'page_title': 'Homepage',
-                    'page_location': window.location.href,
-                    'page_path': '/'
-                });
-            }
-
-            // Track CTA clicks
-            document.querySelectorAll('.cta-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'cta_click', {
-                            'event_category': 'engagement',
-                            'event_label': this.textContent.trim(),
-                            'event_value': this.href
-                        });
-                    }
-                });
-            });
-
-            // Track scroll depth
-            let scrollDepth = 0;
-            window.addEventListener('scroll', function() {
-                const currentScroll = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-                if (currentScroll > scrollDepth + 25) {
-                    scrollDepth = Math.floor(currentScroll / 25) * 25;
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'scroll_depth', {
-                            'event_category': 'engagement',
-                            'event_label': scrollDepth + '%'
-                        });
-                    }
+        
+        // Scroll Depth Tracking
+        let scrollDepths = [25, 50, 75, 100];
+        let trackedDepths = [];
+        
+        window.addEventListener('scroll', function() {
+            let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            scrollDepths.forEach(depth => {
+                if (scrollPercent >= depth && !trackedDepths.includes(depth)) {
+                    trackEvent('scroll_depth', {percent: depth});
+                    trackedDepths.push(depth);
                 }
             });
-
-            console.log('🍁 CanadaAccountants.app - FULLY INTEGRATED VERSION Loaded');
-            console.log('✅ Connected to Railway backend');
-            console.log('✅ Matching existing brand colors');
-            console.log('✅ All pages linked');
         });
+        
+        // Show lead magnet after 30 seconds (optional - can be removed)
+        // setTimeout(() => {
+        //     document.getElementById('leadMagnet').classList.add('active');
+        //     trackEvent('lead_magnet_shown', {trigger: 'timer'});
+        // }, 30000);
     </script>
-
 </body>
 </html>
