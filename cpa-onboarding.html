@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-XCF2Z737', {
-        custom_map: {
-          'custom_parameter_1': 'business_type',
-          'custom_parameter_2': 'pain_point',
-          'custom_parameter_3': 'session_id'
-        }
-      });
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Our CPA Network - CanadaAccountants</title>
@@ -635,19 +620,19 @@
                 <div class="form-group">
                     <label>Typical Hourly Rate Range *</label>
                     <div class="options-grid">
-                        <div class="option-card hourly-rate" data-value="under-100">
+                        <div class="option-card" data-value="under-100">
                             <h3>💰 Under $100/hour</h3>
                             <p>Entry-level or volume pricing</p>
                         </div>
-                        <div class="option-card hourly-rate" data-value="100-150">
+                        <div class="option-card" data-value="100-150">
                             <h3>💰 $100-$150/hour</h3>
                             <p>Standard professional rates</p>
                         </div>
-                        <div class="option-card hourly-rate" data-value="150-200">
+                        <div class="option-card" data-value="150-200">
                             <h3>💰 $150-$200/hour</h3>
                             <p>Experienced professional rates</p>
                         </div>
-                        <div class="option-card hourly-rate" data-value="200-plus">
+                        <div class="option-card" data-value="200-plus">
                             <h3>💰 $200+/hour</h3>
                             <p>Premium specialist rates</p>
                         </div>
@@ -657,19 +642,19 @@
                 <div class="form-group">
                     <label>Current Capacity for New Clients *</label>
                     <div class="options-grid">
-                        <div class="option-card availability" data-value="immediate">
+                        <div class="option-card" data-value="immediate">
                             <h3>🚀 Immediate Availability</h3>
                             <p>Can start new projects right away</p>
                         </div>
-                        <div class="option-card availability" data-value="2-4-weeks">
+                        <div class="option-card" data-value="2-4-weeks">
                             <h3>📅 2-4 Weeks</h3>
                             <p>Available for new clients soon</p>
                         </div>
-                        <div class="option-card availability" data-value="1-3-months">
+                        <div class="option-card" data-value="1-3-months">
                             <h3>⏳ 1-3 Months</h3>
                             <p>Limited availability, waitlist</p>
                         </div>
-                        <div class="option-card availability" data-value="not-available">
+                        <div class="option-card" data-value="not-available">
                             <h3>🔒 Not Currently Available</h3>
                             <p>At capacity, future opportunities only</p>
                         </div>
@@ -777,19 +762,6 @@
             <p>🔒 Your information is secure and will only be shared with verified business clients</p>
         </div>
     </div>
-    function getStepName(stepNum) {
-    const stepNames = {
-        1: 'basic_info',
-        2: 'firm_details', 
-        3: 'services',
-        4: 'specializations',
-        5: 'client_preferences',
-        6: 'pricing_availability',
-        7: 'geographic_coverage',
-        8: 'review_submit'
-    };
-    return stepNames[stepNum] || 'unknown';
-}
 
     <script>
         let currentStepNum = 1;
@@ -862,144 +834,72 @@
         }
 
         async function submitForm() {
-            if (validateCurrentStep()) {
-                // Collect all form data
-                const formData = collectFormData();
-                // Track registration attempt
-        gtag('event', 'cpa_registration_submitted', {
-            'event_category': 'conversion',
-            'event_label': 'registration_attempt',
-            'value': 1,
-            'custom_parameters': {
-                'registration_type': '8-step-professional',
-                'firm_size': formData.firmSize || 'unknown',
-                'services_offered': Array.isArray(formData.services) ? formData.services.join(',') : 'unknown'
-            }
-        });
-                
-                // Submit to Railway backend
-        try {
-            const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/cpa-registration', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            if (response.ok) {
-                // Track successful registration
-    gtag('event', 'cpa_registration_completed', {
-        'event_category': 'conversion',
-        'event_label': 'registration_success',
-        'value': 1,
-        'custom_parameters': {
-            'registration_type': '8-step-professional',
-            'redirect_destination': 'pricing_page'
-        }
-    });
-                // Show success message briefly
-alert('Registration Complete! Redirecting to pricing options in 3 seconds...');
+            if (!validateCurrentStep()) return;
 
-// Redirect to pricing after 3 seconds
-setTimeout(() => {
-    window.location.href = 'pricing.html?from=8step-registration&plan=recommended';
-}, 3000);
-            } else {
-                // Track registration failure
-    gtag('event', 'cpa_registration_failed', {
-        'event_category': 'error',
-        'event_label': 'backend_error',
-        'value': response.status
-    });
-                throw new Error('Registration failed');
-            }
-        } catch (error) {
-            // Track network errors
-    gtag('event', 'cpa_registration_failed', {
-        'event_category': 'error',
-        'event_label': 'network_error',
-        'value': 0
-    });
-            console.error('Registration error:', error);
-            alert('Sorry, there was an error submitting your registration. Please try again or contact support.');
-        }
+            const formData = collectFormData();
+            const email = document.getElementById('email').value;
+            const API_BASE_URL = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+
+            try {
+                // Register CPA profile on the backend
+                const res = await fetch(`${API_BASE_URL}/api/cpa/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        first_name: (document.getElementById('fullName').value || '').split(' ')[0],
+                        last_name: (document.getElementById('fullName').value || '').split(' ').slice(1).join(' '),
+                        email: email,
+                        phone: document.getElementById('phone').value,
+                        firm_name: document.getElementById('firmName').value,
+                        province: document.getElementById('province').value,
+                        city: document.getElementById('practiceLocation').value,
+                        years_experience: parseInt(document.getElementById('yearsExperience').value) || 0,
+                        specializations: formData.services || [],
+                        industries_served: formData.industries || [],
+                        remote_services: true
+                    })
+                });
+
+                const data = await res.json();
+                const profileId = data.cpa_id || '';
+
+                // Store email for checkout-success page
+                localStorage.setItem('ca_checkout_email', email);
+
+                // Redirect to pricing page with email and profileId
+                window.location.href = `pricing.html?from=registration&email=${encodeURIComponent(email)}&profileId=${encodeURIComponent(profileId)}`;
+            } catch (err) {
+                console.error('Registration error:', err);
+                // Fallback: still redirect to pricing with email
+                localStorage.setItem('ca_checkout_email', email);
+                window.location.href = `pricing.html?from=registration&email=${encodeURIComponent(email)}`;
             }
         }
 
         function collectFormData() {
-    const data = {};
-    
-    // Collect all form inputs
-    document.querySelectorAll('input, select, textarea').forEach(field => {
-        if (field.type === 'checkbox') {
-            if (!data[field.name]) data[field.name] = [];
-            if (field.checked) data[field.name].push(field.value);
-        } else if (field.type === 'radio') {
-            if (field.checked) data[field.name] = field.value;
-        } else {
-            data[field.name] = field.value;
-        }
-    });
-    
-    // Collect option card selections
-    document.querySelectorAll('.option-card.selected').forEach(card => {
-    const stepElement = card.closest('.step');
-    const stepId = stepElement.id;
-    
-    // Handle special classes for Step 6
-    if (card.classList.contains('hourly-rate')) {
-        data['hourlyRate'] = card.dataset.value;
-    } else if (card.classList.contains('availability')) {
-        data['availability'] = card.dataset.value;
-    } else {
-        // Default step-based collection for other steps
-        if (!data[stepId]) data[stepId] = [];
-        data[stepId].push(card.dataset.value);
-    }
-});
-    
-    // TRANSFORM DATA TO MATCH BACKEND EXPECTATIONS
-    const transformedData = {
-        // Split fullName into firstName and lastName
-        firstName: data.fullName ? data.fullName.split(' ')[0] || '' : '',
-        lastName: data.fullName ? data.fullName.split(' ').slice(1).join(' ') || '' : '',
-        
-        // Map direct fields
-        email: data.email || '',
-        phone: data.phone || '',
-        cpaLicense: data.licenseNumber || '',
-        province: data.province || '',
-        experience: data.yearsExperience || '',
-        firmSize: data.step2 ? data.step2[0] : '',
-        
-        // Map arrays to JSON strings
-        services: JSON.stringify(data.services || []),
-        industries: JSON.stringify(data.industries || []),
-        
-        // Map additional fields
-        bio: data.professionalBio || '',
-        hourlyRate: data.hourlyRate || '',
-        availability: data.availability || '',
-        
-        // Add metadata
-        selectedPlan: 'cpa-network',
-        registrationType: '8-step-professional',
-        firmName: data.firmName || '',
-        practiceLocation: data.practiceLocation || '',
-        website: data.website || '',
-        linkedIn: data.linkedIn || '',
-        
-        // Geographic and client preferences
-        geographicCoverage: data.step7 ? data.step7[0] : '',
-        serviceRadius: data.serviceRadius || '',
-        clientSizes: JSON.stringify(data['client-sizes'] || []),
-        
-        // Timestamp
-        submissionTimestamp: new Date().toISOString()
-    };
-    
-    return transformedData;
+            const data = {};
+            
+            // Collect all form inputs
+            document.querySelectorAll('input, select, textarea').forEach(field => {
+                if (field.type === 'checkbox') {
+                    if (!data[field.name]) data[field.name] = [];
+                    if (field.checked) data[field.name].push(field.value);
+                } else if (field.type === 'radio') {
+                    if (field.checked) data[field.name] = field.value;
+                } else {
+                    data[field.name] = field.value;
+                }
+            });
+            
+            // Collect option card selections
+            document.querySelectorAll('.option-card.selected').forEach(card => {
+                const stepElement = card.closest('.step');
+                const stepId = stepElement.id;
+                if (!data[stepId]) data[stepId] = [];
+                data[stepId].push(card.dataset.value);
+            });
+            
+            return data;
         }
 
         // Handle option card selections
@@ -1012,18 +912,9 @@ setTimeout(() => {
                     // Multiple selection allowed
                     card.classList.toggle('selected');
                 } else {
-    // Single selection only - but respect separate groups
-    if (card.classList.contains('hourly-rate')) {
-        // Clear only other hourly-rate selections
-        questionCard.querySelectorAll('.option-card.hourly-rate').forEach(c => c.classList.remove('selected'));
-    } else if (card.classList.contains('availability')) {
-        // Clear only other availability selections
-        questionCard.querySelectorAll('.option-card.availability').forEach(c => c.classList.remove('selected'));
-    } else {
-        // Default behavior for other single-select cards
-        questionCard.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-    }
-    card.classList.add('selected');
+                    // Single selection only
+                    questionCard.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
                 }
             }
         });
@@ -1045,96 +936,9 @@ setTimeout(() => {
                 }
             }
         });
-                function nextStep() {
-                    if (validateCurrentStep()) {
-        // Track step progression
-        gtag('event', 'cpa_registration_progress', {
-            'event_category': 'cpa_onboarding',
-            'event_label': `step_${currentStepNum}_completed`,
-            'value': currentStepNum,
-            'custom_parameters': {
-                'completion_percentage': Math.round((currentStepNum / totalSteps) * 100),
-                'total_steps': totalSteps,
-                'step_name': getStepName(currentStepNum)
-            }
-        });
-        
-        currentStepNum++;
-        showStep(currentStepNum);
-    } else {
-        // Track validation failures
-        gtag('event', 'cpa_registration_validation_failed', {
-            'event_category': 'cpa_onboarding',
-            'event_label': `step_${currentStepNum}_validation_error`,
-            'value': currentStepNum
-        });
-    }
-}
-            if (validateCurrentStep()) {
-                currentStepNum++;
-                showStep(currentStepNum);
-            }
-        }
 
-                function previousStep() {
-            currentStepNum--;
-            showStep(currentStepNum);
-        }
-
-                function validateCurrentStep() {
-            const currentStep = document.getElementById('step' + currentStepNum);
-            const requiredFields = currentStep.querySelectorAll('[required]');
-            
-            for (let field of requiredFields) {
-                if (!field.value && field.type !== 'checkbox') {
-                    field.focus();
-                    alert('Please complete all required fields before proceeding.');
-                    return false;
-                }
-                if (field.type === 'checkbox' && !field.checked) {
-                    field.focus();
-                    alert('Please accept the terms to continue.');
-                    return false;
-                }
-            }
-            
-            // Check if at least one option is selected for option cards
-            const optionCards = currentStep.querySelectorAll('.option-card');
-            if (optionCards.length > 0) {
-                const hasSelection = Array.from(optionCards).some(card => card.classList.contains('selected'));
-                if (!hasSelection) {
-                    alert('Please select an option before proceeding.');
-                    return false;
-                }
-            }
-            
-            return true;
-        }
         // Initialize
         showStep(1);
-        function showPricingSuccessMessage() {
-            const container = document.querySelector('.questionnaire-container');
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px;">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
-                    <h2 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 15px;">CPA Registration Complete!</h2>
-                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
-                        Welcome to Canada's premier CPA network!
-                    </p>
-                    
-                    <div style="background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 15px; padding: 25px; margin: 20px 0;">
-                        <h3 style="color: #0369a1; margin-bottom: 15px;">🚀 Next Step: Choose Your Membership Plan</h3>
-                        <p style="color: #0c4a6e;">Redirecting you to select your CPA membership tier in 3 seconds...</p>
-                    </div>
-                    
-                    <div style="margin-top: 20px;">
-                        <div style="display: inline-block; padding: 8px 16px; background: #10b981; color: white; border-radius: 20px; font-size: 0.9rem;">
-                            ⏳ Preparing your pricing options...
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
     </script>
 </body>
 </html>
