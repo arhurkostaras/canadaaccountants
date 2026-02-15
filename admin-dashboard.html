@@ -201,11 +201,11 @@
                             <td class="px-4 py-3 text-gray-400">${c.email || '--'}</td>
                             <td class="px-4 py-3">${c.firm_name || '--'}</td>
                             <td class="px-4 py-3">${c.province || '--'}</td>
-                            <td class="px-4 py-3">${c.license_verified ? badge('Verified', 'green') : badge('Unverified', 'yellow')}</td>
+                            <td class="px-4 py-3">${c.verification_status === 'verified' ? badge('Verified', 'green') : badge('Unverified', 'yellow')}</td>
                             <td class="px-4 py-3">
-                                <button onclick="toggleVerify('${c.id}', ${!c.license_verified})"
-                                    class="text-xs px-2 py-1 rounded ${c.license_verified ? 'bg-yellow-700 hover:bg-yellow-600' : 'bg-green-700 hover:bg-green-600'}">
-                                    ${c.license_verified ? 'Unverify' : 'Verify'}
+                                <button onclick="toggleVerify('${c.id}', ${!c.verification_status === 'verified'})"
+                                    class="text-xs px-2 py-1 rounded ${c.verification_status === 'verified' ? 'bg-yellow-700 hover:bg-yellow-600' : 'bg-green-700 hover:bg-green-600'}">
+                                    ${c.verification_status === 'verified' ? 'Unverify' : 'Verify'}
                                 </button>
                             </td>
                         </tr>
