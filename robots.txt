@@ -28,5 +28,7 @@ Disallow: /register.html
 Disallow: /analytics-dashboard.html
 Disallow: /ai-demo.html
 Disallow: /data-processing-agreement.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
 
 Sitemap: https://canadaaccountants.app/sitemap.xml
