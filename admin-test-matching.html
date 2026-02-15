@@ -200,6 +200,15 @@
     </style>
 </head>
 <body>
+    <script>
+        (function() {
+            const token = localStorage.getItem('cpa_token');
+            const user = JSON.parse(localStorage.getItem('cpa_user') || '{}');
+            if (!token || user.userType !== 'admin') {
+                window.location.href = '/cpa-login.html';
+            }
+        })();
+    </script>
     <div class="container">
         <div class="header">
             <h1>🧠 AI Matching Test</h1>

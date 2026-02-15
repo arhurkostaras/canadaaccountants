@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XCF2Z737');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPA Login - CanadaAccountants</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -133,14 +141,18 @@
                     // Store JWT token
                     localStorage.setItem('cpa_token', data.token);
                     localStorage.setItem('cpa_user', JSON.stringify(data.user));
-                    
+
+                    // Route based on user type
+                    const isAdmin = data.user.userType === 'admin';
+                    const destination = isAdmin ? '/admin-dashboard.html' : '/cpa-dashboard.html';
+
                     // Show success message
-                    successMessage.textContent = 'Login successful! Redirecting to dashboard...';
+                    successMessage.textContent = `Login successful! Redirecting to ${isAdmin ? 'admin' : ''} dashboard...`;
                     successMessage.classList.remove('hidden');
-                    
-                    // Redirect to dashboard
+
+                    // Redirect to appropriate dashboard
                     setTimeout(() => {
-                        window.location.href = '/cpa-dashboard.html';
+                        window.location.href = destination;
                     }, 1500);
                     
                 } else {
@@ -162,15 +174,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             const token = localStorage.getItem('cpa_token');
             if (token) {
+                const storedUser = JSON.parse(localStorage.getItem('cpa_user') || '{}');
+                const dest = storedUser.userType === 'admin' ? '/admin-dashboard.html' : '/cpa-dashboard.html';
                 // Verify token is still valid and redirect if so
-                fetch('/api/auth/verify', {
+                fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/auth/verify', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = '/cpa-dashboard.html';
+                        window.location.href = dest;
                     }
                 })
                 .catch(() => {

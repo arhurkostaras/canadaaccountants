@@ -7,34 +7,82 @@
     <meta name="keywords" content="CPA marketplace, Canadian accountants, AI matching, accounting services, business accounting">
     
     <title>CanadaAccountants.app - AI-Powered CPA Marketplace | Built by Arthur Kostaras, CPA, CF</title>
-    
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://canadaaccountants.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canadaaccountants.app/">
+    <meta property="og:title" content="CanadaAccountants.app - AI-Powered CPA Marketplace">
+    <meta property="og:description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified accounting professionals. Built by Arthur Kostaras, CPA, CF.">
+    <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
+    <meta property="og:site_name" content="CanadaAccountants">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CanadaAccountants.app - AI-Powered CPA Marketplace">
+    <meta name="twitter:description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified accounting professionals.">
+    <meta name="twitter:image" content="https://canadaaccountants.app/icon-512.png">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="icon-192.png">
     <link rel="apple-touch-icon" href="icon-192.png">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#667eea">
-    
+
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-        
+        gtag('config', 'G-XCF2Z737');
+
         // Custom event tracking
         function trackEvent(eventName, eventParams) {
             gtag('event', eventName, eventParams);
         }
     </script>
-    
+
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CanadaAccountants",
+        "url": "https://canadaaccountants.app",
+        "logo": "https://canadaaccountants.app/icon-512.png",
+        "description": "AI-powered CPA marketplace connecting Canadian businesses with qualified accounting professionals.",
+        "founder": {
+            "@type": "Person",
+            "name": "Arthur Kostaras",
+            "jobTitle": "CPA, CF"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-647-956-7290",
+            "contactType": "customer service",
+            "email": "arthur@negotiateandwin.com",
+            "areaServed": "CA",
+            "availableLanguage": ["English", "French"]
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Canada"
+        },
+        "sameAs": []
+    }
+    </script>
+
     <style>
         :root {
             --primary-purple: #667eea;
