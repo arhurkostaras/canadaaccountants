@@ -102,7 +102,6 @@
                             <th class="text-left px-4 py-3">Business</th>
                             <th class="text-left px-4 py-3">Urgency</th>
                             <th class="text-left px-4 py-3">Friction</th>
-                            <th class="text-left px-4 py-3">Status</th>
                         </tr>
                     </thead>
                     <tbody id="submissionsTableBody" class="divide-y divide-gray-700"></tbody>
@@ -261,7 +260,6 @@
                                 <td class="px-4 py-3">${s.business_type || '--'}</td>
                                 <td class="px-4 py-3">${badge(s.urgency_level || '--', urgencyColor[s.urgency_level] || 'gray')}</td>
                                 <td class="px-4 py-3">${s.friction_score || 0}</td>
-                                <td class="px-4 py-3">${badge(s.status || 'pending', s.status === 'matched' ? 'green' : 'gray')}</td>
                             </tr>
                         `;
                     }).join('');
