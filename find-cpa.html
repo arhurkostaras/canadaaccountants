@@ -22,11 +22,11 @@
     <meta name="description" content="End your 24-week CPA search nightmare. Find your perfect CPA in 24 hours, not 24 weeks. Save 20+ hours/month and eliminate $3,534/year in tax overpayments.">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://canadaaccountants.app/find-cpa.html">
+    <link rel="canonical" href="https://canadaaccountants.app/find-cpa">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://canadaaccountants.app/find-cpa.html">
+    <meta property="og:url" content="https://canadaaccountants.app/find-cpa">
     <meta property="og:title" content="Find Your Perfect CPA in 24 Hours | CanadaAccountants">
     <meta property="og:description" content="End your 24-week CPA search nightmare. AI-powered matching finds your perfect CPA in 24 hours. Save 20+ hours/month.">
     <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
@@ -45,7 +45,7 @@
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "CanadaAccountants CPA Matching",
-        "url": "https://canadaaccountants.app/find-cpa.html",
+        "url": "https://canadaaccountants.app/find-cpa",
         "description": "AI-powered CPA matching service for Canadian businesses. Find your perfect accountant in 24 hours.",
         "areaServed": {
             "@type": "Country",
@@ -571,9 +571,9 @@
             <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-purple)">.app</span></a>
             <div class="nav-links">
                 <a href="/">Home</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="why-we-win.html">Why We Win</a>
-                <a href="join-as-cpa.html" class="nav-cta">Apply to Join</a>
+                <a href="pricing">Pricing</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
             </div>
         </div>
     </nav>
@@ -1223,7 +1223,7 @@ function showErrorMessage() {
 
         function showSuccessMessage(response) {
     const sessionId = response.session_id;
-    const resultsUrl = response.results_url || `cpa-matches.html?session=${sessionId}`;
+    const resultsUrl = response.results_url || `cpa-matches?session=${sessionId}`;
     
     const container = document.querySelector('.container');
     container.innerHTML = `

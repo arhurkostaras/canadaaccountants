@@ -15,11 +15,11 @@
     <meta name="description" content="Calculate your potential revenue as a CPA on CanadaAccountants. See projected earnings based on your tier, specialization, and client capacity.">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://canadaaccountants.app/cpa-revenue-calculator.html">
+    <link rel="canonical" href="https://canadaaccountants.app/cpa-revenue-calculator">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://canadaaccountants.app/cpa-revenue-calculator.html">
+    <meta property="og:url" content="https://canadaaccountants.app/cpa-revenue-calculator">
     <meta property="og:title" content="CPA Revenue Calculator | CanadaAccountants">
     <meta property="og:description" content="Calculate your potential revenue as a CPA on CanadaAccountants. See projected earnings based on your tier, specialization, and client capacity.">
     <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
@@ -388,9 +388,9 @@
             <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-purple)">.app</span></a>
             <div class="nav-links">
                 <a href="/">Home</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="why-we-win.html">Why We Win</a>
-                <a href="join-as-cpa.html" class="nav-cta">Apply to Join</a>
+                <a href="pricing">Pricing</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
             </div>
         </div>
     </nav>
@@ -788,7 +788,7 @@
 
         function proceedToSignup() {
             localStorage.setItem('revenueCalculation', JSON.stringify(window.calculationResults));
-            window.location.href = 'join-as-cpa.html';
+            window.location.href = 'join-as-cpa';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1070,7 +1070,7 @@
             
             // Redirect to application with scenario tracking
             setTimeout(() => {
-                window.location.href = 'join-as-cpa.html?source=scenario-optimization&interested=true';
+                window.location.href = 'join-as-cpa?source=scenario-optimization&interested=true';
             }, 300);
             
             console.log('🚀 Scenario Implementation Requested:', scenarioData);
@@ -1172,7 +1172,7 @@
                             </div>
                             <div style="font-size: 1rem; text-align: left; line-height: 1.7; color: rgba(255,255,255,0.95);">
                                 ✅ <strong>Personalized roadmap</strong> to achieve your ${revenueAmount} target<br>
-                                ✅ <strong>Algorithm positioning</strong> strategy from Arthur (CPA, CMA, CF)<br>
+                                ✅ <strong>Algorithm positioning</strong> strategy from our team<br>
                                 ✅ <strong>Client acquisition plan</strong> for your ${newClients} new clients<br>
                                 ✅ <strong>Immediate action steps</strong> you can implement today
                             </div>
@@ -1297,7 +1297,7 @@
             
             // Redirect to application with special source tracking
             setTimeout(() => {
-                window.location.href = 'join-as-cpa.html?source=strategy-call&exitintent=true';
+                window.location.href = 'join-as-cpa?source=strategy-call&exitintent=true';
             }, 300);
             
             // Log for analytics

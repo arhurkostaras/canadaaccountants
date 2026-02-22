@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://canadaaccountants.app/join-as-cpa.html">
+    <link rel="canonical" href="https://canadaaccountants.app/join-as-cpa">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://canadaaccountants.app/join-as-cpa.html">
+    <meta property="og:url" content="https://canadaaccountants.app/join-as-cpa">
     <meta property="og:title" content="Join as CPA | CanadaAccountants">
     <meta property="og:description" content="End your 585-day sales cycle nightmare. Join Canada's only friction elimination CPA network and get pre-qualified clients in 24 hours, not 585 days.">
     <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
@@ -1016,9 +1016,9 @@
             <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-purple)">.app</span></a>
             <div class="nav-links">
                 <a href="/">Home</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="why-we-win.html">Why We Win</a>
-                <a href="join-as-cpa.html" class="nav-cta">Apply to Join</a>
+                <a href="pricing">Pricing</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
             </div>
         </div>
     </nav>
@@ -1663,7 +1663,7 @@
             }));
             
             // Redirect to pricing page with plan highlighted
-            window.location.href = `/pricing.html?recommended=${plan}&from=calculator`;
+            window.location.href = `/pricing?recommended=${plan}&from=calculator`;
         }
 
         function selectAlternative(plan) {
@@ -1702,7 +1702,7 @@
             document.querySelector('[style*="position: fixed"]').remove();
             
             // Redirect to pricing page
-            window.location.href = `/pricing.html?selected=${plan}&from=calculator`;
+            window.location.href = `/pricing?selected=${plan}&from=calculator`;
         }
 
         function submitCPAApplication(event) {
@@ -1744,12 +1744,12 @@
                 const planData = JSON.parse(selectedPlan);
                 // Redirect to pricing with their selected plan
                 setTimeout(() => {
-                    window.location.href = `/pricing.html?selected=${planData.plan}&from=application`;
+                    window.location.href = `/pricing?selected=${planData.plan}&from=application`;
                 }, 1500);
             } else {
                 // Default redirect to pricing page
                 setTimeout(() => {
-                    window.location.href = '/pricing.html?from=application';
+                    window.location.href = '/pricing?from=application';
                 }, 1500);
             }
         }
@@ -1788,10 +1788,10 @@
                     
                     <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 15px; padding: 25px; margin: 20px 0;">
                         <h4 style="margin: 0 0 15px 0; color: #1e40af;">📧 What Happens in the Next 24 Hours:</h4>
-                        <p style="margin: 0; line-height: 1.5; color: #1e3a8a;">Arthur will personally review your application and contact you with your friction elimination onboarding. Your marketing waste ends today.</p>
+                        <p style="margin: 0; line-height: 1.5; color: #1e3a8a;">Our team will review your application and contact you with your friction elimination onboarding. Your marketing waste ends today.</p>
                     </div>
                     
-                    <a href="cpa-revenue-calculator.html" style="display: inline-block; background: var(--primary-purple); color: white; padding: 15px 30px; border-radius: 10px;">
+                    <a href="cpa-revenue-calculator" style="display: inline-block; background: var(--primary-purple); color: white; padding: 15px 30px; border-radius: 10px;">
                     🧮 Try Revenue Calculator
                     </a>
                 </div>
