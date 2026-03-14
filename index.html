@@ -23,7 +23,7 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
             min-height: 100vh;
         }
 
@@ -131,7 +131,7 @@
 
         .btn-primary {
             background: white;
-            color: #667eea;
+            color: #1e3a8a;
         }
 
         .btn-secondary {
@@ -237,7 +237,7 @@
         }
 
         .match-score {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #1e3a8a, #2563eb);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -443,6 +443,296 @@
             line-height: 1.6;
         }
 
+        /* AI Tools Showcase Section */
+        .ai-tools-section {
+            background: #0a0a0a;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-tools-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2563eb, transparent);
+        }
+
+        .ai-tools-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .ai-tools-header .section-badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            color: #2563eb;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .ai-tools-header h2 {
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .ai-tools-header h2 span {
+            background: linear-gradient(135deg, #2563eb, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-tools-header p {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .ai-tools-header p strong {
+            color: #059669;
+        }
+
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .ai-tool-card {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .ai-tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .ai-tool-card:hover {
+            transform: translateY(-6px);
+            border-color: #2563eb;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15), 0 0 30px rgba(37, 99, 235, 0.05);
+        }
+
+        .ai-tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .ai-tool-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .ai-tool-icon.bio {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(30, 58, 138, 0.2));
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .ai-tool-icon.seo {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.2), rgba(4, 120, 87, 0.2));
+            border: 1px solid rgba(5, 150, 105, 0.3);
+        }
+
+        .ai-tool-icon.email {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(5, 150, 105, 0.2));
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .ai-tool-card h3 {
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-tool-card > p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-tool-preview {
+            background: #111111;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            padding: 1.25rem;
+            position: relative;
+        }
+
+        .ai-tool-preview .preview-label {
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: #1a1a1a;
+            color: #6b7280;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0 0.5rem;
+        }
+
+        .ai-tool-preview p {
+            color: #d1d5db;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .ai-tool-preview .highlight {
+            color: #2563eb;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .ai-tool-preview .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .ai-tool-preview .score-track {
+            flex: 1;
+            height: 8px;
+            background: #292929;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .ai-tool-preview .score-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #dc2626, #f59e0b, #059669);
+            width: 72%;
+            transition: width 1s ease;
+        }
+
+        .ai-tool-preview .score-value {
+            color: #f59e0b;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-style: normal;
+            min-width: 40px;
+        }
+
+        .ai-tool-preview .rec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+            font-style: normal;
+        }
+
+        .ai-tool-preview .rec-item .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #059669;
+            flex-shrink: 0;
+        }
+
+        .ai-tool-preview .email-subject {
+            color: #d1d5db;
+            font-size: 0.85rem;
+            font-style: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-tool-preview .email-subject strong {
+            color: #2563eb;
+        }
+
+        .ai-tool-preview .email-body {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            font-style: normal;
+            border-left: 2px solid #333;
+            padding-left: 0.75rem;
+        }
+
+        .ai-tools-cta {
+            text-align: center;
+        }
+
+        .ai-tools-cta .btn-ai-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            color: #ffffff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .ai-tools-cta .btn-ai-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
+        }
+
+        .ai-tools-cta p {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .ai-tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .ai-tools-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
         /* Benefits Section */
         .benefits {
             padding: 4rem 2rem;
@@ -549,7 +839,7 @@
                 right: -100%;
                 width: 100%;
                 height: 100vh;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -665,6 +955,7 @@
                 <a href="register.html" class="btn btn-secondary">Join as Professional</a>
             </div>
         </section>
+
 <!-- Vision Section -->
 <section id="vision" class="vision-section">
     <div class="container">
@@ -815,6 +1106,62 @@
             </div>
         </section>
 
+        <!-- AI-Powered Tools Showcase -->
+        <section class="ai-tools-section" id="ai-tools">
+            <div class="ai-tools-header">
+                <div class="section-badge">Included Free With Every Profile</div>
+                <h2>Your <span>AI-Powered</span> Competitive Edge</h2>
+                <p>Claim your profile and instantly unlock powerful AI tools built exclusively for CPAs. These tools help you <strong>stand out, get found, and win new clients</strong> — at no extra cost.</p>
+            </div>
+
+            <div class="ai-tools-grid">
+                <!-- AI Bio Generator -->
+                <div class="ai-tool-card">
+                    <div class="ai-tool-icon bio">&#9998;</div>
+                    <h3>AI Bio Generator</h3>
+                    <p>Turn your credentials into a polished, client-ready professional bio in seconds. No writer needed.</p>
+                    <div class="ai-tool-preview">
+                        <div class="preview-label">Sample Output</div>
+                        <p>"<span class="highlight">Sarah Chen, CPA, CGA</span> is a Toronto-based tax strategist with 12+ years helping owner-managed businesses optimize their corporate structures. Specializing in cross-border taxation and SR&ED claims, Sarah has helped clients recover over <span class="highlight">$4.2M in tax credits</span>..."</p>
+                    </div>
+                </div>
+
+                <!-- Profile SEO Score -->
+                <div class="ai-tool-card">
+                    <div class="ai-tool-icon seo">&#128200;</div>
+                    <h3>Profile SEO Score</h3>
+                    <p>See exactly how visible you are to potential clients searching for a CPA, with clear steps to improve.</p>
+                    <div class="ai-tool-preview">
+                        <div class="preview-label">Live Preview</div>
+                        <div class="score-bar">
+                            <div class="score-track"><div class="score-fill"></div></div>
+                            <div class="score-value">72/100</div>
+                        </div>
+                        <div class="rec-item"><span class="dot"></span> Add 2 more specializations to rank higher</div>
+                        <div class="rec-item"><span class="dot"></span> Upload a professional headshot (+8 pts)</div>
+                        <div class="rec-item"><span class="dot"></span> Add client testimonials (+12 pts)</div>
+                    </div>
+                </div>
+
+                <!-- Outreach Email Template -->
+                <div class="ai-tool-card">
+                    <div class="ai-tool-icon email">&#9993;</div>
+                    <h3>Outreach Email Template</h3>
+                    <p>Generate a personalized announcement email to let your network know you are accepting new clients.</p>
+                    <div class="ai-tool-preview">
+                        <div class="preview-label">Generated Email</div>
+                        <div class="email-subject"><strong>Subject:</strong> I have joined CanadaAccountants — Now Accepting New SME Clients</div>
+                        <div class="email-body">Hi [Name], I wanted to share that my practice has been selected to join CanadaAccountants, a vetted network of top CPAs serving Canadian SMEs. If you or anyone in your network is looking for expert tax and advisory support, I would welcome the conversation...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-tools-cta">
+                <a href="/register.html" class="btn-ai-cta">Join & Access AI Tools</a>
+                <p>No credit card required to claim your profile</p>
+            </div>
+        </section>
+
         <section class="benefits" id="benefits">
             <h2>💼 Why Choose CanadaAccountants</h2>
             <div class="benefits-grid">
@@ -878,869 +1225,6 @@
                         location: 'Toronto, ON',
                         reason: 'Perfect industry match, excellent client reviews'
                     },
-                    {<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍁 CanadaAccountants - Premium CPA Matching Platform</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#1e3a8a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="CanadaAccountants">
-    <meta name="description" content="Premium matching platform connecting pre-screened, verified CPAs with small and medium enterprises across Canada through cutting-edge technology">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo::before {
-            content: "🍁";
-            margin-right: 0.5rem;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #667eea;
-        }
-
-        .btn-secondary {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .desktop-only {
-            display: flex;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Enhanced Matching Algorithm Demo */
-        .matching-demo {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .matching-demo h2 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .matching-demo h2::before {
-            content: "🎯";
-        }
-
-        .demo-button {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 1rem;
-        }
-
-        .demo-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .demo-button::before {
-            content: "🚀 ";
-        }
-
-        /* Demo Results */
-        .demo-results {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-top: 2rem;
-            display: none;
-        }
-
-        .match-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            text-align: left;
-            color: #333;
-        }
-
-        .match-score {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            display: inline-block;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        /* Metrics Section */
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .metric-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .metric-value {
-            font-size: 3rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* Security & Trust Badges Section */
-        .security-badges {
-            background: #f8fafc;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .security-badges h3 {
-            color: #1e3a8a;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .security-badges p {
-            color: #6b7280;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .badges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .security-badge {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .security-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .security-badge h4 {
-            color: #1e3a8a;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .security-badge p {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge-cert {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .badge-cert.active {
-            background: #059669;
-            color: white;
-        }
-
-        .badge-cert.progress {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .badge-cert.rigorous {
-            background: #dc2626;
-            color: white;
-        }
-
-        .trust-statement {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            border-radius: 15px;
-            color: white;
-        }
-
-        .trust-statement h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .trust-statement p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .features h2 {
-            text-align: center;
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Benefits Section */
-        .benefits {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .benefits h2 {
-            text-align: center;
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-        }
-
-        .benefit-list {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .benefit-list h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-        }
-
-        .benefit-item::before {
-            content: "✅";
-            margin-right: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* Guarantee Section */
-        .guarantee {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .guarantee h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .guarantee p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .contact h2 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: right 0.3s ease;
-                z-index: 1000;
-            }
-
-            .nav-links.mobile-open {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 1.5rem 0;
-            }
-
-            .nav-links a {
-                font-size: 1.5rem;
-                color: white;
-                text-decoration: none;
-                transition: all 0.3s ease;
-            }
-
-            .nav-links a:hover {
-                transform: scale(1.1);
-                color: #ffd700;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                margin-top: 2rem;
-            }
-
-            .desktop-only {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .features {
-                margin: 1rem;
-                padding: 2rem 1rem;
-            }
-
-            .metrics {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1rem;
-                padding: 2rem 1rem;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .badges-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">CanadaAccountants</a>
-            
-            <!-- Mobile Menu Toggle -->
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <ul class="nav-links">
-                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#features" onclick="closeMobileMenu()">Features</a></li>
-                <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
-                <li><a href="#guarantee" onclick="closeMobileMenu()">Guarantee</a></li>
-                <li><a href="register.html" onclick="closeMobileMenu()">Register</a></li>
-                <li><a href="#metrics" onclick="closeMobileMenu()">Metrics</a></li>
-                <li><a href="/comparison.html" onclick="closeMobileMenu()">Why We Win</a></li>
-                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-                
-                <!-- Mobile CTA Buttons -->
-                <div class="cta-buttons">
-                    <a href="register.html" class="btn btn-primary" onclick="closeMobileMenu()">Get Started</a>
-                    <a href="register.html" class="btn btn-secondary" onclick="closeMobileMenu()">Apply as CPA</a>
-                </div>
-            </ul>
-            
-            <!-- Desktop CTA Buttons -->
-            <div class="cta-buttons desktop-only">
-                <a href="register.html" class="btn btn-primary">Get Started</a>
-                <a href="register.html" class="btn btn-secondary">Apply as CPA</a>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <section class="hero" id="home">
-            <h1>Connecting Canadian CPAs with SMEs</h1>
-            <p>Premium matching platform connecting pre-screened, verified CPAs with small and medium enterprises across Canada through cutting-edge technology</p>
-            
-            <div class="cta-buttons">
-                <a href="register.html" class="btn btn-primary">Find Your CPA</a>
-                <a href="register.html" class="btn btn-secondary">Join as Professional</a>
-            </div>
-        </section>
-
-        <section class="matching-demo" id="matching">
-            <h2>Enhanced Matching Algorithm Demo</h2>
-            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">
-                Our AI-powered matching system analyzes 6 key factors to find perfect CPA-SME matches
-            </p>
-            
-            <button class="demo-button" onclick="runMatchingDemo()">
-                Test Intelligent Matching
-            </button>
-            
-            <div class="demo-results" id="demoResults">
-                <h3 style="color: white; margin-bottom: 1rem;">🎉 Top CPA Matches Found!</h3>
-                <div id="matchResults"></div>
-            </div>
-        </section>
-
-        <section class="metrics" id="metrics">
-            <div class="metric-card">
-                <div class="metric-value">$47K+</div>
-                <div class="metric-label">Additional Revenue for CPAs</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">15%</div>
-                <div class="metric-label">CPA Acceptance Rate</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">94%</div>
-                <div class="metric-label">Client Retention Rate</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-value">24hrs</div>
-                <div class="metric-label">Average Connection Time</div>
-            </div>
-        </section>
-
-        <!-- Security & Trust Badges Section -->
-        <section class="security-badges">
-            <div class="container">
-                <h3>🔒 Enterprise-Grade Security & Compliance</h3>
-                <p>Your data is protected by the same security standards trusted by Canada's largest financial institutions</p>
-                
-                <div class="badges-grid">
-                    <!-- Bank-Level Encryption -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
-                        <h4>Bank-Level Encryption</h4>
-                        <p>256-bit SSL encryption protects all data in transit</p>
-                        <div class="badge-cert active">ACTIVE</div>
-                    </div>
-
-                    <!-- PIPEDA Compliance -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🍁</div>
-                        <h4>PIPEDA Compliant</h4>
-                        <p>Full compliance with Canadian privacy laws</p>
-                        <div class="badge-cert active">CERTIFIED</div>
-                    </div>
-
-                    <!-- Canadian Data Residency -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🏢</div>
-                        <h4>Canadian Data Residency</h4>
-                        <p>All data stored exclusively in Canadian data centers</p>
-                        <div class="badge-cert active">GUARANTEED</div>
-                    </div>
-
-                    <!-- SOC 2 In Progress -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                        <h4>SOC 2 Type II</h4>
-                        <p>Enterprise security audit in progress</p>
-                        <div class="badge-cert progress">IN PROGRESS</div>
-                    </div>
-
-                    <!-- CPA License Verification -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                        <h4>CPA License Verification</h4>
-                        <p>Direct integration with provincial CPA societies</p>
-                        <div class="badge-cert active">INTEGRATED</div>
-                    </div>
-
-                    <!-- Background Screening -->
-                    <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
-                        <h4>Background Screening</h4>
-                        <p>15% CPA acceptance rate ensures quality</p>
-                        <div class="badge-cert rigorous">RIGOROUS</div>
-                    </div>
-                </div>
-
-                <!-- Trust Statement -->
-                <div class="trust-statement">
-                    <h4>🛡️ Your Trust is Our Foundation</h4>
-                    <p>We understand you're trusting us with sensitive financial information. That's why we've implemented enterprise-grade security measures typically reserved for Canada's largest banks and financial institutions.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="features" id="features">
-            <h2>🚀 Platform Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Industry Expertise Matching</h3>
-                    <p>Advanced algorithm matches CPAs with proven experience in your specific industry sector</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
-                    <h3>Business Size Compatibility</h3>
-                    <p>Perfect matches based on your company size, from micro businesses to large enterprises</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Service Needs Alignment</h3>
-                    <p>Precise matching for your specific needs: bookkeeping, tax, audit, or strategic advisory</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Geographic Proximity</h3>
-                    <p>Smart location-based matching considering city, province, and regional accessibility</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Real-Time Availability</h3>
-                    <p>Connect with CPAs who have current capacity and match your timeline requirements</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>Success Rate Optimization</h3>
-                    <p>Prioritizes CPAs with outstanding track records and high client satisfaction scores</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="benefits" id="benefits">
-            <h2>💼 Why Choose CanadaAccountants</h2>
-            <div class="benefits-grid">
-                <div class="benefit-list">
-                    <h3>🏆 For SMEs</h3>
-                    <div class="benefit-item">Pre-qualified leads only - no time wasted</div>
-                    <div class="benefit-item">24-hour average connection time</div>
-                    <div class="benefit-item">Industry-specialized CPA matching</div>
-                    <div class="benefit-item">94% client retention rate through quality matching</div>
-                    <div class="benefit-item">Arthur's Personal Guarantee - 30-day satisfaction promise</div>
-                </div>
-                
-                <div class="benefit-list">
-                    <h3>💰 For CPAs</h3>
-                    <div class="benefit-item">$47K+ additional annual revenue potential</div>
-                    <div class="benefit-item">Exclusive territory protection and rigorous screening (15% acceptance rate)</div>
-                    <div class="benefit-item">High-quality SME clients pre-matched to your expertise</div>
-                    <div class="benefit-item">Streamlined onboarding and professional support</div>
-                    <div class="benefit-item">Performance-based matching for long-term relationships</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="guarantee" id="guarantee">
-            <h2>🎯 Our Guarantee</h2>
-            <p>3 qualified leads in 3 months or 100% money back</p>
-        </section>
-
-        <section class="contact" id="contact">
-            <h2>📞 Ready to Get Started?</h2>
-            <div class="contact-info">
-                <p><strong>Arthur Kostaras, CPA, CMA, CF</strong></p>
-                <p>📧 support@canadaaccountants.app</p>
-                <p>📱 (647) 956-7290</p>
-                <p>🏢 Toronto, Ontario, Canada</p>
-            </div>
-            <div class="cta-buttons">
-                <a href="register.html" class="btn btn-primary">Get Started Today</a>
-                <a href="register.html" class="btn btn-secondary">Apply as CPA</a>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        // Enhanced Matching Algorithm Demo
-        function runMatchingDemo() {
-            const demoResults = document.getElementById('demoResults');
-            const matchResults = document.getElementById('matchResults');
-            
-            // Show loading
-            demoResults.style.display = 'block';
-            matchResults.innerHTML = '<p style="text-align: center; color: white;">🔄 Analyzing perfect matches...</p>';
-            
-            setTimeout(() => {
-                // Sample demo results
-                const demoMatches = [
                     {
                         name: 'Michael Thompson, CPA',
                         score: '87%',
@@ -1841,10 +1325,3 @@
     </script>
 </body>
 </html>
-                        name: 'Sarah Chen, CPA',
-                        score: '93%',
-                        specialties: ['Technology', 'Software', 'Startups'],
-                        location: 'Toronto, ON',
-                        reason: 'Perfect industry match, excellent client reviews'
-                    },
-                    {
