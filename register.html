@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join CanadaAccountants and connect with clients looking for top CPAs across Canada. Register your accounting practice today.">
     <title>🍁 Join CanadaAccountants</title>
     <style>
         * {
@@ -418,12 +419,12 @@
                     <span>-$149</span>
                 </div>
                 <div class="calculation">
-                    <span>Client revenue (3 × $25,000):</span>
-                    <span>$75,000</span>
+                    <span>Client revenue (3 × $10,000):</span>
+                    <span>$30,000</span>
                 </div>
                 <div class="calculation">
                     <span>Platform fee (3%):</span>
-                    <span>-$2,250</span>
+                    <span>-$900</span>
                 </div>
                 <div class="calculation">
                     <span>Success bonuses (3 × $300):</span>
@@ -431,7 +432,7 @@
                 </div>
                 <div class="calculation">
                     <span><strong>Net monthly revenue:</strong></span>
-                    <span><strong>$74,501</strong></span>
+                    <span><strong>$29,851</strong></span>
                 </div>
             </div>
 
@@ -688,7 +689,7 @@
         }
 
         // Handle form submission
-        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Collect form data
@@ -710,19 +711,32 @@
             
             data.userType = currentUserType;
             
-            // Here you would typically send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            if (currentUserType === 'cpa') {
-                alert('Thank you for your CPA application! We will review your information and contact you within 24 hours to complete the verification process.');
-            } else {
-                alert('Thank you! We will connect you with 3-5 pre-screened CPAs within 24 hours. Check your email for confirmation.');
-            }
-            
-            // Reset form
-            this.reset();
-            goBackToStart();
+            // Submit to backend API
+            const endpoint = currentUserType === 'cpa'
+                ? 'https://canadaaccountants-backend-production-1d8f.up.railway.app/api/profiles/cpas'
+                : 'https://canadaaccountants-backend-production-1d8f.up.railway.app/api/profiles/smes';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+
+                if (response.ok) {
+                    if (currentUserType === 'cpa') {
+                        alert('Thank you for your CPA application! We will review your information and contact you within 24 hours to complete the verification process.');
+                    } else {
+                        alert('Thank you! We will connect you with 3-5 pre-screened CPAs within 24 hours. Check your email for confirmation.');
+                    }
+                    this.reset();
+                    goBackToStart();
+                } else {
+                    alert(result.error || 'Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                alert('Connection error. Please try again later.');
         });
 
         function goBackToStart() {

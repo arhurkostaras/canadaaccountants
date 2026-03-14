@@ -465,33 +465,44 @@
     </div>
 
     <script>
-        // Admin credentials (In production, this would be server-side)
-        const ADMIN_CREDENTIALS = {
-            'arthur': 'canadaaccountants2025!',
-            'admin': 'secure123!'
-        };
-
-        // Login system
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        // Login system - authenticates via backend API
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
-            
-            if (ADMIN_CREDENTIALS[username] && ADMIN_CREDENTIALS[username] === password) {
-                // Successful login
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('dashboardContainer').style.display = 'block';
-                
-                // Store session
-                sessionStorage.setItem('adminLoggedIn', 'true');
-                sessionStorage.setItem('adminUsername', username);
+
+            try {
+                const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: username, password: password })
+                });
+                const data = await response.json();
+
+                if (response.ok && data.token) {
+                    // Successful login
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('dashboardContainer').style.display = 'block';
+
+                    // Store session
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminToken', data.token);
+                    sessionStorage.setItem('adminUsername', username);
                 
                 console.log('🔓 Admin logged in successfully');
                 initializeDashboard();
-            } else {
-                // Failed login
+                } else {
+                    // Failed login
+                    errorMessage.textContent = data.error || 'Invalid credentials';
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            } catch (err) {
+                errorMessage.textContent = 'Connection error. Please try again.';
                 errorMessage.style.display = 'block';
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
