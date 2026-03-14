@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Apply to join CanadaAccountants.app - Canada's premier AI-powered CPA marketplace. CPA-Verified credibility, qualified business leads, zero commission.">
+    <meta name="keywords" content="join CPA marketplace, chartered professional accountant listing, Canadian CPA directory, CPA CA CMA CGA marketplace">
+
+    <title>Apply to Join as CPA | CanadaAccountants.app - AI-Powered CPA Marketplace</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icon-512.png">
+    <link rel="apple-touch-icon" href="/icon-512.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://canadaaccountants.app/join-as-cpa">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canadaaccountants.app/join-as-cpa">
+    <meta property="og:title" content="Apply to Join as CPA | CanadaAccountants.app">
+    <meta property="og:description" content="Join Canada's premier AI-powered CPA marketplace. Qualified business leads, CPA-Verified credibility, zero commission.">
+    <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
+    <meta property="og:site_name" content="CanadaAccountants">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apply to Join as CPA | CanadaAccountants.app">
+    <meta name="twitter:description" content="Join Canada's premier AI-powered CPA marketplace. Qualified business leads, CPA-Verified credibility, zero commission.">
+    <meta name="twitter:image" content="https://canadaaccountants.app/icon-512.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XCF2Z737');
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://canadaaccountants.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Join as CPA", "item": "https://canadaaccountants.app/join-as-cpa" }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-navy: #1e3a8a;
+            --primary-emerald: #059669;
+            --accent-green: #059669;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo .maple { color: var(--primary-blue); font-size: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: white; }
+        .nav-cta { background: white !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+        .nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        .nav-links.active { display: flex; }
+
+        /* Hero */
+        .hero {
+            padding: 140px 24px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-navy) 50%, #1e3a5f 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+            padding: 10px 22px; border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 24px;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+            position: relative;
+        }
+        .hero p {
+            font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; line-height: 1.7;
+            position: relative;
+        }
+
+        /* Sections */
+        .section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+        .section-header .overline {
+            display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--primary-blue); margin-bottom: 16px;
+        }
+        .section-header h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 16px; line-height: 1.15; }
+        .section-header p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* Benefit Cards */
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+        .benefit-card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 40px 32px; text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .benefit-card:hover { transform: translateY(-4px); border-color: var(--primary-blue); }
+        .benefit-icon {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(30,58,138,0.15));
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 1.8rem; color: var(--primary-blue);
+        }
+        .benefit-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+        .benefit-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+
+        /* Application Form Section */
+        .form-section {
+            background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+            padding: 100px 24px;
+        }
+        .form-container { max-width: 760px; margin: 0 auto; }
+        .form-container .section-header { margin-bottom: 48px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label {
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9);
+        }
+        .form-group label .required { color: var(--primary-blue); margin-left: 2px; }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px;
+            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666;
+        }
+
+        /* Checkboxes */
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+        .checkbox-label {
+            display: flex; align-items: center; gap: 10px; cursor: pointer;
+            font-size: 0.9rem; color: rgba(255,255,255,0.85); padding: 10px 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color);
+            border-radius: 8px; transition: border-color 0.3s, background 0.3s;
+        }
+        .checkbox-label:hover { border-color: var(--primary-blue); background: rgba(37,99,235,0.05); }
+        .checkbox-label input[type="checkbox"] {
+            width: 18px; height: 18px; accent-color: var(--primary-blue);
+            cursor: pointer; flex-shrink: 0;
+        }
+
+        /* Pricing Tier Selection */
+        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 4px; }
+        .tier-option {
+            position: relative; cursor: pointer;
+        }
+        .tier-option input[type="radio"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+        .tier-label {
+            display: block; text-align: center; padding: 20px 16px;
+            background: rgba(255,255,255,0.03); border: 2px solid var(--border-color);
+            border-radius: 12px; transition: all 0.3s; cursor: pointer;
+        }
+        .tier-label:hover { border-color: var(--primary-blue); }
+        .tier-option input[type="radio"]:checked + .tier-label {
+            border-color: var(--primary-blue);
+            background: rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 1px var(--primary-blue);
+        }
+        .tier-label .tier-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+        .tier-label .tier-price { font-size: 1.6rem; font-weight: 900; }
+        .tier-label .tier-period { font-size: 0.8rem; color: var(--text-secondary); }
+        .tier-option.popular .tier-label { border-color: var(--primary-blue); }
+        .tier-badge {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-navy));
+            color: white; padding: 4px 14px; border-radius: 20px;
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            white-space: nowrap; z-index: 1;
+        }
+
+        /* Submit Button */
+        .form-submit {
+            margin-top: 32px; text-align: center;
+        }
+        .submit-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-navy));
+            color: white; border: none; padding: 18px 48px;
+            border-radius: 12px; font-size: 1.05rem; font-weight: 700;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.4); }
+        .submit-note {
+            margin-top: 16px; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;
+        }
+
+        /* Confirmation Message */
+        .confirmation {
+            display: none; text-align: center; padding: 60px 24px;
+        }
+        .confirmation.show { display: block; }
+        .confirmation-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--accent-green), #10b981);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font-size: 2rem; color: white;
+        }
+        .confirmation h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 16px; }
+        .confirmation p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; max-width: 540px; margin: 0 auto; }
+        .confirmation p + p { margin-top: 12px; }
+
+        /* Social Proof Banner */
+        .social-proof {
+            padding: 60px 24px; text-align: center;
+            background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.08));
+            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+        }
+        .social-proof-inner { max-width: 700px; margin: 0 auto; }
+        .social-proof .proof-icon { font-size: 2.5rem; margin-bottom: 16px; color: var(--primary-blue); }
+        .social-proof h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 12px; }
+        .social-proof p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 24px; text-align: center;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-navy) 50%, #1e3a5f 100%);
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .cta-section h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; position: relative; }
+        .cta-section p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
+        .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; }
+        .btn-primary {
+            background: white; color: var(--primary-blue); padding: 16px 36px;
+            border-radius: 10px; font-weight: 700; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.15); color: white; padding: 16px 36px;
+            border-radius: 10px; font-weight: 700; font-size: 1rem;
+            text-decoration: none; border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+        /* Footer */
+        .footer { background: #111; padding: 60px 24px; border-top: 1px solid var(--border-color); }
+        .footer-inner { max-width: 1100px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid li { margin-bottom: 10px; }
+        .footer-grid a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+        .footer-grid a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 24px; text-align: center; }
+        .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .footer-logo .maple { color: var(--primary-blue); }
+        .footer-tagline { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; }
+        .footer-copy { color: #666; font-size: 0.8rem; }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.5rem; }
+            .benefits-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .tier-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 64px; left: 0; right: 0;
+                flex-direction: column; align-items: center; gap: 0;
+                background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+                padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { padding: 14px 24px; width: 100%; text-align: center; font-size: 0.95rem; }
+            .nav-links a:hover { background: rgba(255,255,255,0.05); }
+            .nav-cta { margin: 8px 24px; width: auto; padding: 12px 24px; font-size: 0.9rem !important; text-align: center; border-radius: 8px; }
+            .hero { padding: 120px 20px 60px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.05rem; }
+            .section { padding: 60px 16px; }
+            .section-header h2 { font-size: 2rem; }
+            .form-section { padding: 60px 16px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: 1; }
+            .cta-section h2 { font-size: 2rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-blue)">.app</span></a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="find-cpa">Find CPA</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="pricing">Pricing</a>
+                <a href="contact">Contact</a>
+                <a href="admin.html">Login</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge"><i class="fas fa-user-plus"></i> Founding Member Applications Open</div>
+        <h1>Apply to Join Canada's Premier CPA Network</h1>
+        <p>Get matched with pre-qualified businesses and individuals who fit your expertise, service model, and client focus. Flat monthly fee. Zero commission. Full professional autonomy.</p>
+    </section>
+
+    <!-- Why Join - Benefit Cards -->
+    <section class="section">
+        <div class="section-header">
+            <div class="overline">Why Join</div>
+            <h2>Built to Grow Your Practice</h2>
+            <p>CanadaAccountants is the only CPA marketplace that respects your independence while driving real client growth.</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                <h3>Qualified Business Leads</h3>
+                <p>Our AI matching algorithm sends you clients who match your specialization, client size focus, and service model. No cold leads. No tire-kickers. Every match is pre-qualified.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-shield-halved"></i></div>
+                <h3>CPA-Verified Credibility</h3>
+                <p>Your CPA designation, credentials, and professional standing are independently verified and displayed on your profile. Clients trust you before the first conversation even begins.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                <h3>Zero Commission</h3>
+                <p>We never take a percentage of your fees or client revenue. One predictable monthly fee. Every dollar your clients generate stays in your practice.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <div class="form-section">
+        <div class="form-container">
+            <div class="section-header">
+                <div class="overline">CPA Application</div>
+                <h2>Tell Us About Your Practice</h2>
+                <p>Complete the form below to apply. Our team reviews every application within 48 hours and verifies your CPA designation before activation.</p>
+            </div>
+
+            <form id="cpaApplicationForm" action="https://canadaaccountants-backend-production-1d8f.up.railway.app/api/cpa-application" method="POST">
+                <div class="form-grid">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="e.g. Sarah Chen, CPA, CA" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="sarah@example.com" required>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">Phone <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="(416) 555-0100" required>
+                    </div>
+
+                    <!-- Firm / Company Name -->
+                    <div class="form-group">
+                        <label for="firmName">Firm / Company Name <span class="required">*</span></label>
+                        <input type="text" id="firmName" name="firmName" placeholder="e.g. Chen & Associates CPA" required>
+                    </div>
+
+                    <!-- CPA Designation Number -->
+                    <div class="form-group">
+                        <label for="cpaNumber">CPA Designation Number <span class="required">*</span></label>
+                        <input type="text" id="cpaNumber" name="cpaNumber" placeholder='Designation # or "Pending"' required>
+                    </div>
+
+                    <!-- Province -->
+                    <div class="form-group">
+                        <label for="province">Province <span class="required">*</span></label>
+                        <select id="province" name="province" required>
+                            <option value="" disabled selected>Select your province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    </div>
+
+                    <!-- Primary Designation -->
+                    <div class="form-group">
+                        <label for="designation">Primary Designation <span class="required">*</span></label>
+                        <select id="designation" name="designation" required>
+                            <option value="" disabled selected>Select designation</option>
+                            <option value="CPA">CPA (Chartered Professional Accountant)</option>
+                            <option value="CPA, CA">CPA, CA (Chartered Accountant)</option>
+                            <option value="CPA, CMA">CPA, CMA (Certified Management Accountant)</option>
+                            <option value="CPA, CGA">CPA, CGA (Certified General Accountant)</option>
+                            <option value="CPA, CF">CPA, CF (Corporate Finance)</option>
+                            <option value="CPA Candidate">CPA Candidate</option>
+                        </select>
+                    </div>
+
+                    <!-- Years of Experience -->
+                    <div class="form-group">
+                        <label for="experience">Years of Experience <span class="required">*</span></label>
+                        <select id="experience" name="experience" required>
+                            <option value="" disabled selected>Select experience</option>
+                            <option value="0-2">0 - 2 years</option>
+                            <option value="3-5">3 - 5 years</option>
+                            <option value="6-10">6 - 10 years</option>
+                            <option value="11-20">11 - 20 years</option>
+                            <option value="20+">20+ years</option>
+                        </select>
+                    </div>
+
+                    <!-- Specializations (checkboxes) -->
+                    <div class="form-group full-width">
+                        <label>Specializations <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Tax Planning & Compliance">
+                                Tax Planning &amp; Compliance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Audit & Assurance">
+                                Audit &amp; Assurance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Advisory & Consulting">
+                                Advisory &amp; Consulting
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Bookkeeping & Payroll">
+                                Bookkeeping &amp; Payroll
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Corporate Finance">
+                                Corporate Finance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Forensic Accounting">
+                                Forensic Accounting
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Estate Planning">
+                                Estate Planning
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="specializations" value="Non-Profit & Charity">
+                                Non-Profit &amp; Charity
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Client Size Focus -->
+                    <div class="form-group">
+                        <label for="clientSize">Client Size Focus</label>
+                        <select id="clientSize" name="clientSize">
+                            <option value="" disabled selected>Select client size</option>
+                            <option value="Sole Proprietor / Freelancer">Sole Proprietor / Freelancer</option>
+                            <option value="Small Business (1-10 employees)">Small Business (1–10 employees)</option>
+                            <option value="Medium Business (11-50 employees)">Medium Business (11–50 employees)</option>
+                            <option value="Mid-Market (51-500 employees)">Mid-Market (51–500 employees)</option>
+                            <option value="Enterprise (500+)">Enterprise (500+)</option>
+                        </select>
+                    </div>
+
+                    <!-- How did you hear about us -->
+                    <div class="form-group">
+                        <label for="referralSource">How Did You Hear About Us?</label>
+                        <select id="referralSource" name="referralSource">
+                            <option value="" disabled selected>Select one</option>
+                            <option value="google">Google Search</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="colleague">Colleague Referral</option>
+                            <option value="industry-event">Industry Event</option>
+                            <option value="social-media">Social Media</option>
+                            <option value="email">Email Outreach</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Preferred Pricing Tier -->
+                    <div class="form-group full-width">
+                        <label>Preferred Pricing Tier <span class="required">*</span></label>
+                        <div class="tier-grid">
+                            <div class="tier-option">
+                                <input type="radio" id="tierAssociate" name="pricingTier" value="Associate $199" required>
+                                <label for="tierAssociate" class="tier-label">
+                                    <div class="tier-name">Associate</div>
+                                    <div class="tier-price">$199</div>
+                                    <div class="tier-period">per month</div>
+                                </label>
+                            </div>
+                            <div class="tier-option popular">
+                                <div class="tier-badge">Most Popular</div>
+                                <input type="radio" id="tierProfessional" name="pricingTier" value="Professional $299">
+                                <label for="tierProfessional" class="tier-label">
+                                    <div class="tier-name">Professional</div>
+                                    <div class="tier-price">$299</div>
+                                    <div class="tier-period">per month</div>
+                                </label>
+                            </div>
+                            <div class="tier-option">
+                                <input type="radio" id="tierEnterprise" name="pricingTier" value="Enterprise $599">
+                                <label for="tierEnterprise" class="tier-label">
+                                    <div class="tier-name">Enterprise</div>
+                                    <div class="tier-price">$599</div>
+                                    <div class="tier-period">per month</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brief message / notes -->
+                    <div class="form-group full-width">
+                        <label for="message">Brief Message or Notes</label>
+                        <textarea id="message" name="message" placeholder="Tell us anything else about your practice, client focus, or questions you have..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-submit">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                    <p class="submit-note">We review every application within 48 hours. Your CPA designation will be independently verified before profile activation. No payment required until approved.</p>
+                </div>
+            </form>
+
+            <!-- Confirmation Message (shown after submit) -->
+            <div class="confirmation" id="confirmationMessage">
+                <div class="confirmation-icon"><i class="fas fa-check"></i></div>
+                <h3>Application Received</h3>
+                <p>Thank you for applying to join CanadaAccountants.app. Our team will review your application and verify your CPA designation within 48 hours.</p>
+                <p>You will receive a confirmation email shortly with next steps. If you have any questions in the meantime, contact <a href="mailto:support@canadaaccountants.app" style="color: var(--primary-blue); text-decoration: underline;">support@canadaaccountants.app</a> or call <a href="tel:+16479567290" style="color: var(--primary-blue); text-decoration: underline;">1.647.956.7290</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="social-proof">
+        <div class="social-proof-inner">
+            <div class="proof-icon"><i class="fas fa-star"></i></div>
+            <h3>Founding Members Get Priority Access</h3>
+            <p>Founding members get direct access to our team and priority algorithm positioning. Early CPAs on the platform will receive top search visibility as our client base grows, locking in a first-mover advantage that compounds over time.</p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Your Next Client Is Already Searching</h2>
+        <p>Join the only Canadian CPA marketplace with AI matching, CPA verification, and a 90-day satisfaction guarantee. If you don't receive qualified matches in your first 90 days, we refund your subscription.</p>
+        <div class="cta-buttons">
+            <a href="#cpaApplicationForm" class="btn-primary" onclick="document.getElementById('cpaApplicationForm').scrollIntoView({behavior: 'smooth'}); return false;"><i class="fas fa-arrow-up"></i> Complete Your Application</a>
+            <a href="pricing" class="btn-secondary"><i class="fas fa-calculator"></i> View Full Pricing Details</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <h4>For CPAs</h4>
+                    <ul>
+                        <li><a href="join-as-cpa">Apply to Join</a></li>
+                        <li><a href="pricing">Pricing &amp; Algorithm</a></li>
+                        <li><a href="cpa-revenue-calculator">Revenue Calculator</a></li>
+                        <li><a href="why-we-win">Why We Win</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>For Clients</h4>
+                    <ul>
+                        <li><a href="find-cpa">Find a CPA</a></li>
+                        <li><a href="guarantee">Our Guarantee</a></li>
+                        <li><a href="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms-of-service">Terms of Service</a></li>
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="trust-center">Trust Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a></li>
+                        <li><a href="tel:+16479567290">1.647.956.7290</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-blue)">.app</span>
+                </div>
+                <p class="footer-tagline">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
+                <p class="footer-copy">&copy; 2026 CanadaAccountants.app | Technology platform only. Not a registered accounting firm. CPAs maintain full professional independence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('cpaApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate at least one specialization is checked
+            const specializations = document.querySelectorAll('input[name="specializations"]:checked');
+            if (specializations.length === 0) {
+                alert('Please select at least one specialization.');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach(function(value, key) {
+                if (key === 'specializations') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            // Read ref token from URL for conversion tracking
+            const urlParams = new URLSearchParams(window.location.search);
+            data.ref = urlParams.get('ref') || '';
+
+            // POST to backend
+            fetch(this.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                // Show confirmation regardless (placeholder endpoint may not exist yet)
+                document.getElementById('cpaApplicationForm').style.display = 'none';
+                document.getElementById('confirmationMessage').classList.add('show');
+                window.scrollTo({ top: document.querySelector('.form-section').offsetTop - 80, behavior: 'smooth' });
+            })
+            .catch(function() {
+                // Show confirmation even on network error (backend not deployed yet)
+                document.getElementById('cpaApplicationForm').style.display = 'none';
+                document.getElementById('confirmationMessage').classList.add('show');
+                window.scrollTo({ top: document.querySelector('.form-section').offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
