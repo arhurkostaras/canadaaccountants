@@ -148,6 +148,10 @@
             display: flex;
         }
 
+        .mobile-only {
+            display: none;
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 2rem 4rem;
@@ -877,6 +881,10 @@
                 display: none;
             }
 
+            .mobile-only {
+                display: flex;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -921,14 +929,14 @@
             </div>
             
             <ul class="nav-links">
-                <li><a href="find-cpa" onclick="closeMobileMenu()">Find CPA</a></li>
+                <li><a href="find-cpa" onclick="closeMobileMenu()">Find a CPA</a></li>
                 <li><a href="why-we-win" onclick="closeMobileMenu()">Why We Win</a></li>
                 <li><a href="pricing" onclick="closeMobileMenu()">Pricing</a></li>
                 <li><a href="contact" onclick="closeMobileMenu()">Contact</a></li>
                 <li><a href="admin" onclick="closeMobileMenu()">Login</a></li>
 
                 <!-- Mobile CTA Buttons -->
-                <div class="cta-buttons">
+                <div class="cta-buttons mobile-only">
                     <a href="join-as-cpa" class="btn btn-primary" onclick="closeMobileMenu()">Apply to Join</a>
                 </div>
             </ul>
