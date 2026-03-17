@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XCF2Z737');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Claim your CPA profile on CanadaAccountants.app. Verify your identity, customize your listing, and start receiving qualified client leads.">
+    <meta name="keywords" content="claim CPA profile, CPA listing Canada, verified CPA, Canadian accountant directory">
+
+    <title>Claim Your Profile | CanadaAccountants.app</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icon-512.png">
+    <link rel="apple-touch-icon" href="/icon-512.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://canadaaccountants.app/claim-profile">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canadaaccountants.app/claim-profile">
+    <meta property="og:title" content="Claim Your Profile | CanadaAccountants.app">
+    <meta property="og:description" content="Claim your CPA profile on CanadaAccountants.app. Verify your identity and start receiving qualified client leads.">
+    <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
+    <meta property="og:site_name" content="CanadaAccountants">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claim Your Profile | CanadaAccountants.app">
+    <meta name="twitter:description" content="Claim your CPA profile on CanadaAccountants.app. Verify your identity and start receiving qualified client leads.">
+    <meta name="twitter:image" content="https://canadaaccountants.app/icon-512.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://canadaaccountants.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Claim Profile", "item": "https://canadaaccountants.app/claim-profile" }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-navy: #1e3a8a;
+            --accent-green: #059669;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo .maple { color: var(--primary-blue); font-size: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: white; }
+        .nav-cta { background: white !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+        .nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        .nav-links.active { display: flex; }
+
+        /* Hero */
+        .hero {
+            padding: 140px 24px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-navy) 50%, #1e3a5f 100%);
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 60%); pointer-events: none; }
+        .hero h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto; position: relative; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9; line-height: 1.7; position: relative; }
+
+        /* Main Content */
+        .claim-section { padding: 80px 24px; max-width: 680px; margin: 0 auto; }
+
+        /* Loading */
+        .loading { text-align: center; padding: 60px 0; }
+        .spinner { width: 48px; height: 48px; border: 4px solid var(--border-color); border-top-color: var(--primary-blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading p { color: var(--text-secondary); font-size: 1rem; }
+
+        /* Error */
+        .error-state { text-align: center; padding: 60px 0; display: none; }
+        .error-icon { width: 72px; height: 72px; background: rgba(239,68,68,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem; color: #ef4444; }
+        .error-state h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .error-state p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+        /* Profile Card */
+        .profile-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px 32px; display: none; }
+        .profile-name { font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; }
+        .profile-firm { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 16px; }
+        .profile-meta { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+        .profile-meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; color: var(--text-secondary); }
+        .profile-meta-item i { color: var(--primary-blue); font-size: 0.85rem; }
+        .profile-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-designation { background: rgba(37,99,235,0.15); color: #60a5fa; border: 1px solid rgba(37,99,235,0.3); }
+        .badge-status { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+
+        /* Claim Form */
+        .claim-form { margin-top: 32px; display: none; }
+        .claim-form h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; }
+        .form-row { display: flex; gap: 12px; }
+        .form-row input { flex: 1; }
+        .claim-input {
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 10px;
+            padding: 14px 16px; color: var(--text-primary); font-family: 'Roboto', sans-serif; font-size: 0.95rem;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .claim-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        .claim-input::placeholder { color: #666; }
+        .claim-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 16px;
+            background: var(--accent-green); color: white; border: none; padding: 16px 32px; border-radius: 12px;
+            font-size: 1.05rem; font-weight: 700; font-family: 'Roboto', sans-serif; cursor: pointer; transition: all 0.3s;
+        }
+        .claim-btn:hover { background: #047857; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(5,150,105,0.4); }
+        .claim-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .claim-note { margin-top: 12px; font-size: 0.8rem; color: var(--text-secondary); text-align: center; }
+
+        /* Success State */
+        .success-state { text-align: center; padding: 40px 0; display: none; }
+        .success-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-green), #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; color: white; animation: scaleIn 0.5s ease; }
+        @keyframes scaleIn { 0% { transform: scale(0); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        .success-state h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 16px; }
+        .success-state p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; max-width: 540px; margin: 0 auto; }
+        .success-state p + p { margin-top: 12px; }
+
+        /* Upsell */
+        .upsell-box { margin-top: 48px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px 32px; text-align: center; display: none; }
+        .upsell-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; }
+        .upsell-box .upsell-sub { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 32px; }
+        .tier-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .tier-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px 16px; transition: all 0.3s; text-decoration: none; color: var(--text-primary); display: block; }
+        .tier-card:hover { border-color: var(--primary-blue); transform: translateY(-4px); }
+        .tier-card.popular { border-color: var(--primary-blue); position: relative; }
+        .tier-card.popular::before { content: 'Most Popular'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary-blue), var(--primary-navy)); color: white; padding: 4px 14px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+        .tier-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 4px; }
+        .tier-price { font-size: 1.8rem; font-weight: 900; margin-bottom: 4px; }
+        .tier-period { font-size: 0.8rem; color: var(--text-secondary); }
+
+        /* Footer */
+        footer { background: rgba(0, 0, 0, 0.6); padding: 60px 20px 30px; margin-top: 80px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { font-size: 18px; margin-bottom: 20px; font-weight: 700; }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 12px; }
+        .footer-section a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s ease; font-size: 15px; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.6); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 64px; left: 0; right: 0;
+                flex-direction: column; align-items: center; gap: 0;
+                background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+                padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { padding: 14px 24px; width: 100%; text-align: center; font-size: 0.95rem; }
+            .nav-links a:hover { background: rgba(255,255,255,0.05); }
+            .nav-cta { margin: 8px 24px; width: auto; padding: 12px 24px; font-size: 0.9rem !important; text-align: center; border-radius: 8px; }
+            .hero { padding: 120px 20px 60px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.05rem; }
+            .claim-section { padding: 48px 16px; }
+            .profile-card { padding: 28px 20px; }
+            .profile-name { font-size: 1.4rem; }
+            .form-row { flex-direction: column; }
+            .tier-cards { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-blue)">.app</span></a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="find-cpa">Find a CPA</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="pricing">Pricing</a>
+                <a href="contact">Contact</a>
+                <a href="admin">Login</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Claim Your CPA Profile</h1>
+        <p>Your profile is already listed on CanadaAccountants.app — claim it for free in 30 seconds and start receiving qualified client leads.</p>
+    </section>
+
+    <!-- Claim Section -->
+    <div class="claim-section">
+        <!-- Loading State -->
+        <div class="loading" id="loadingState">
+            <div class="spinner"></div>
+            <p>Loading your profile...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-state" id="errorState">
+            <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3 id="errorTitle">Invalid Claim Link</h3>
+            <p id="errorMessage">This claim link has expired or is invalid. If you believe this is an error, please contact us.</p>
+            <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                <a href="admin" style="color: #60a5fa; text-decoration: none; font-size: 0.95rem; font-weight: 500;">Already have an account? Log in here</a>
+                <a href="contact" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Need help? Contact us</a>
+            </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-card" id="profileCard">
+            <div class="profile-name" id="profileName"></div>
+            <div class="profile-firm" id="profileFirm"></div>
+            <div class="profile-meta">
+                <div class="profile-meta-item" id="profileLocation"><i class="fas fa-map-marker-alt"></i> <span></span></div>
+            </div>
+            <div class="profile-badges" id="profileBadges"></div>
+        </div>
+
+        <!-- Claim Form -->
+        <div class="claim-form" id="claimForm">
+            <h3>Confirm your email to claim this profile</h3>
+            <form id="claimFormEl" onsubmit="submitClaim(event)">
+                <div class="form-row">
+                    <input type="email" id="claimEmail" class="claim-input" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="claim-btn" id="claimBtn">
+                    <i class="fas fa-check-circle"></i> Claim This Profile (Free)
+                </button>
+            </form>
+            <p class="claim-note">No credit card required. Upgrade anytime.</p>
+        </div>
+
+        <!-- Success State -->
+        <div class="success-state" id="successState">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h3>Profile Claimed Successfully!</h3>
+            <p style="font-size: 1.1rem; color: #fbbf24; font-weight: 600; margin-bottom: 8px;">Check your email for your temporary password, then log in to access your dashboard.</p>
+            <p>Log in to customize your profile and start receiving client leads.</p>
+            <a href="admin" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: var(--accent-green); color: white; padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.3s;"><i class="fas fa-sign-in-alt"></i> Go to Login</a>
+        </div>
+
+        <!-- Upsell Box -->
+        <div class="upsell-box" id="upsellBox">
+            <h3>Upgrade to Premium</h3>
+            <p class="upsell-sub">Get priority search placement, more client matches, and premium profile features.</p>
+            <div class="tier-cards">
+                <a href="pricing" class="tier-card">
+                    <div class="tier-name">Associate</div>
+                    <div class="tier-price">$199</div>
+                    <div class="tier-period">per month</div>
+                </a>
+                <a href="pricing" class="tier-card popular">
+                    <div class="tier-name">Professional</div>
+                    <div class="tier-price">$299</div>
+                    <div class="tier-period">per month</div>
+                </a>
+                <a href="pricing" class="tier-card">
+                    <div class="tier-name">Enterprise</div>
+                    <div class="tier-price">$599</div>
+                    <div class="tier-period">per month</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>For CPAs</h3>
+                <ul>
+                    <li><a href="join-as-cpa">Join Network</a></li>
+                    <li><a href="admin">Dashboard Login</a></li>
+                    <li><a href="cpa-revenue-calculator">Revenue Calculator</a></li>
+                    <li><a href="pricing">Pricing & Algorithm</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Businesses</h3>
+                <ul>
+                    <li><a href="find-cpa">Find a CPA</a></li>
+                    <li><a href="why-we-win">Why We Win</a></li>
+                    <li><a href="guarantee">Our Guarantee</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal & Resources</h3>
+                <ul>
+                    <li><a href="terms-of-service">Terms of Service</a></li>
+                    <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="data-processing-agreement">Data Processing Agreement</a></li>
+                    <li><a href="market-trends-report">Market Trends Report</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a></li>
+                    <li><a href="tel:+16479567290">1.647.956.7290</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CanadaAccountants.app | All Rights Reserved</p>
+            <p style="margin-top: 10px; font-size: 12px;">Technology platform only. Not a professional services firm. CPAs maintain full professional independence.</p>
+        </div>
+    </footer>
+
+    <script>
+        var API_BASE = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+        var refToken = '';
+
+        var emailFocusTracked = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var params = new URLSearchParams(window.location.search);
+            refToken = params.get('ref') || '';
+
+            if (!refToken) {
+                showError('Invalid Claim Link', 'This claim link is missing the required reference token. Please check the link in your email and try again.');
+                return;
+            }
+
+            // Funnel event 1: page loaded with valid ref token
+            gtag('event', 'claim_page_load', { ref_token: refToken });
+
+            fetchProfile(refToken);
+
+            // Funnel event 3: email input focused
+            document.getElementById('claimEmail').addEventListener('focus', function() {
+                if (!emailFocusTracked) {
+                    emailFocusTracked = true;
+                    gtag('event', 'claim_email_focused');
+                }
+            });
+        });
+
+        function fetchProfile(token) {
+            fetch(API_BASE + '/api/claim/profile/' + encodeURIComponent(token))
+                .then(function(res) {
+                    if (!res.ok) {
+                        return res.json().then(function(data) { throw data; });
+                    }
+                    return res.json();
+                })
+                .then(function(data) {
+                    var profile = data.profile || data;
+                    renderProfile(profile);
+                })
+                .catch(function(err) {
+                    var msg = (err && err.message) || 'This claim link has expired or is invalid.';
+                    if (msg.toLowerCase().indexOf('already claimed') !== -1 || msg.toLowerCase().indexOf('already been claimed') !== -1) {
+                        showError('Profile Already Claimed', 'This profile has already been claimed. If you own this profile, please log in to your dashboard.');
+                    } else {
+                        showError('Invalid Claim Link', msg);
+                    }
+                });
+        }
+
+        function renderProfile(profile) {
+            document.getElementById('loadingState').style.display = 'none';
+
+            var name = profile.name || profile.full_name || ((profile.first_name || '') + ' ' + (profile.last_name || '')).trim() || 'CPA';
+            var firm = profile.firm_name || profile.firm || '';
+            var city = profile.city || '';
+            var province = profile.province || '';
+            var credentials = profile.credentials || profile.designation || profile.specializations || '';
+            var email = profile.email || '';
+
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileFirm').textContent = firm || 'Independent Practice';
+
+            var locationParts = [];
+            if (city) locationParts.push(city);
+            if (province) locationParts.push(province);
+            document.getElementById('profileLocation').querySelector('span').textContent = locationParts.join(', ') || 'Canada';
+
+            var badgesEl = document.getElementById('profileBadges');
+            badgesEl.innerHTML = '';
+            if (credentials) {
+                var creds = credentials.split(/[,;\/]+/);
+                for (var i = 0; i < creds.length; i++) {
+                    var c = creds[i].trim();
+                    if (c) {
+                        badgesEl.innerHTML += '<span class="badge badge-designation"><i class="fas fa-certificate"></i> ' + c + '</span>';
+                    }
+                }
+            }
+            badgesEl.innerHTML += '<span class="badge badge-status"><i class="fas fa-clock"></i> Unclaimed — Basic Listing</span>';
+
+            if (email && email.indexOf('*') === -1) {
+                document.getElementById('claimEmail').value = email;
+            }
+
+            document.getElementById('profileCard').style.display = 'block';
+            document.getElementById('claimForm').style.display = 'block';
+
+            // Funnel event 2: profile data fetched and displayed
+            gtag('event', 'claim_profile_viewed', {
+                profile_name: name,
+                profile_province: province,
+                profile_city: city
+            });
+        }
+
+        function submitClaim(e) {
+            e.preventDefault();
+            var btn = document.getElementById('claimBtn');
+            var emailVal = document.getElementById('claimEmail').value.trim();
+
+            if (!emailVal) return;
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
+
+            // Funnel event 4: form submitted
+            gtag('event', 'claim_form_submitted');
+
+            fetch(API_BASE + '/api/claim/instant', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ refToken: refToken, email: emailVal })
+            })
+            .then(function(res) {
+                if (!res.ok) {
+                    return res.json().then(function(data) { throw data; });
+                }
+                return res.json();
+            })
+            .then(function(data) {
+                // Funnel event 5: claim succeeded
+                gtag('event', 'claim_success');
+                showSuccess();
+            })
+            .catch(function(err) {
+                var msg = (err && err.message) || 'Something went wrong. Please try again.';
+                // Funnel event 6: claim failed
+                gtag('event', 'claim_error', { error_message: msg });
+                if (msg.toLowerCase().indexOf('already claimed') !== -1) {
+                    showError('Profile Already Claimed', 'This profile has already been claimed. If you own this profile, please log in to your dashboard.');
+                    document.getElementById('profileCard').style.display = 'none';
+                    document.getElementById('claimForm').style.display = 'none';
+                } else {
+                    alert(msg);
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Claim This Profile (Free)';
+                }
+            });
+        }
+
+        function showSuccess() {
+            document.getElementById('claimForm').style.display = 'none';
+            document.getElementById('successState').style.display = 'block';
+            document.getElementById('upsellBox').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('successState').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function showError(title, message) {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorTitle').textContent = title;
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorState').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
