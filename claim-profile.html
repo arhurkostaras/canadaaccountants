@@ -475,6 +475,8 @@
             // Show AI bio preview if available
             var aiBio = profile.aiBio;
             if (aiBio && aiBio.indexOf('being generated') === -1) {
+                // Strip markdown headers and formatting
+                aiBio = aiBio.replace(/^#+\s+.*\n?/gm, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1').trim();
                 document.getElementById('aiBioText').textContent = aiBio;
                 document.getElementById('aiBioPreview').style.display = 'block';
             }
