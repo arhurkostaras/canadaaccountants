@@ -129,7 +129,7 @@
         .dashboard-container {
             display: none;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             background: #0f172a;
             color: #e2e8f0;
             overflow: auto;
@@ -197,23 +197,27 @@
             font-weight: 600;
         }
 
-        .live-indicator::before {
-            content: "🔴";
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
             margin-right: 0.5rem;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.3; }
         }
 
         /* Quick Stats Bar */
         .quick-stats {
             background: #1e293b;
             padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             border-bottom: 1px solid #334155;
         }
 
@@ -237,6 +241,16 @@
             padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .dashboard-grid {
@@ -263,9 +277,15 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
             border-radius: 12px 12px 0 0;
         }
+
+        .metric-card.blue::before { background: #3b82f6; }
+        .metric-card.green::before { background: #10b981; }
+        .metric-card.amber::before { background: #f59e0b; }
+        .metric-card.red::before { background: #ef4444; }
+        .metric-card.purple::before { background: #8b5cf6; }
+        .metric-card.gradient::before { background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444); }
 
         .metric-card:hover {
             transform: translateY(-2px);
@@ -283,17 +303,17 @@
             font-size: 2rem;
         }
 
-        .metric-change {
+        .metric-badge {
             font-size: 0.75rem;
             padding: 0.25rem 0.5rem;
             border-radius: 12px;
             font-weight: 600;
         }
 
-        .metric-change.positive {
-            background: #059669;
-            color: white;
-        }
+        .badge-green { background: rgba(5, 150, 105, 0.2); color: #34d399; }
+        .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .badge-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
 
         .metric-value {
             font-size: 2.5rem;
@@ -307,24 +327,186 @@
             font-size: 0.9rem;
         }
 
+        .metric-sub {
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Campaign Cards */
+        .campaign-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .campaign-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .campaign-status {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active { background: rgba(5, 150, 105, 0.2); color: #34d399; }
+        .status-paused { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .status-completed { background: rgba(100, 116, 139, 0.2); color: #94a3b8; }
+
+        .campaign-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .campaign-stat {
+            text-align: center;
+            padding: 0.5rem;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+
+        .campaign-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .campaign-stat-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Quick Actions */
+        .actions-bar {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .action-btn.blue { background: #3b82f6; }
+        .action-btn.green { background: #10b981; }
+        .action-btn.amber { background: #f59e0b; }
+        .action-btn.red { background: #ef4444; }
+        .action-btn.purple { background: #8b5cf6; }
+
+        /* Loading */
+        .loading {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #334155;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .refresh-info {
+            font-size: 0.75rem;
+            color: #475569;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { background: #059669; }
+        .toast.error { background: #dc2626; }
+        .toast.info { background: #3b82f6; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .quick-stats {
-                flex-direction: column;
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .dashboard-content {
                 padding: 1rem;
             }
-            
+
             .dashboard-header {
                 padding: 1rem;
-            }
-            
-            .admin-controls {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .admin-controls {
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .campaign-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .metric-value {
+                font-size: 2rem;
             }
         }
     </style>
@@ -334,25 +516,25 @@
     <div class="login-container" id="loginScreen">
         <div class="logo">CanadaAccountants</div>
         <h2 class="login-title">🔐 Admin Dashboard</h2>
-        
+
         <form id="loginForm">
             <div class="form-group">
                 <label class="form-label" for="username">Username</label>
                 <input type="text" id="username" class="form-input" placeholder="Enter admin username" required>
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
                 <input type="password" id="password" class="form-input" placeholder="Enter admin password" required>
             </div>
-            
+
             <button type="submit" class="login-btn">🚀 Access Dashboard</button>
         </form>
-        
+
         <div class="error-message" id="errorMessage">
             Invalid credentials. Please try again.
         </div>
-        
+
         <div class="security-note">
             🔒 This is a secure admin area. All access is logged and monitored.
         </div>
@@ -361,111 +543,143 @@
     <!-- Dashboard (Hidden initially) -->
     <div class="dashboard-container" id="dashboardContainer">
         <header class="dashboard-header">
-            <div class="dashboard-logo">CanadaAccountants Analytics</div>
+            <div class="dashboard-logo">CanadaAccountants Admin</div>
             <div class="admin-controls">
-                <div class="admin-name">Welcome, Arthur</div>
+                <div class="admin-name" id="adminNameDisplay">Welcome, Admin</div>
                 <button class="logout-btn" onclick="logout()">Logout</button>
-                <div class="live-indicator">LIVE</div>
+                <div class="live-indicator"><div class="live-dot"></div> LIVE</div>
             </div>
         </header>
 
+        <!-- Top-level quick stats -->
         <div class="quick-stats">
             <div class="quick-stat">
-                <div class="quick-stat-value" id="quickActiveUsers">247</div>
-                <div class="quick-stat-label">Active Users</div>
+                <div class="quick-stat-value" id="qsTotalSent"><span class="spinner"></span></div>
+                <div class="quick-stat-label">Total Emails Sent</div>
             </div>
             <div class="quick-stat">
-                <div class="quick-stat-value" id="quickMatches">89</div>
-                <div class="quick-stat-label">Matches Today</div>
+                <div class="quick-stat-value" id="qsSentToday"><span class="spinner"></span></div>
+                <div class="quick-stat-label">Sent Today</div>
             </div>
             <div class="quick-stat">
-                <div class="quick-stat-value" id="quickRevenue">$12.4K</div>
-                <div class="quick-stat-label">Revenue MTD</div>
+                <div class="quick-stat-value" id="qsTotalClaims"><span class="spinner"></span></div>
+                <div class="quick-stat-label">Total Claims</div>
             </div>
             <div class="quick-stat">
-                <div class="quick-stat-value" id="quickCPAs">156</div>
-                <div class="quick-stat-label">Active CPAs</div>
+                <div class="quick-stat-value" id="qsActiveCampaigns"><span class="spinner"></span></div>
+                <div class="quick-stat-label">Active Campaigns</div>
             </div>
         </div>
 
         <main class="dashboard-content">
+
+            <!-- Email Health Section -->
+            <div class="section-title">📧 Email Health</div>
             <div class="dashboard-grid">
-                <!-- Platform Performance -->
-                <div class="metric-card">
+                <div class="metric-card green">
                     <div class="metric-header">
-                        <div class="metric-icon">📊</div>
-                        <div class="metric-change positive">+15%</div>
+                        <div class="metric-icon">📤</div>
+                        <div class="metric-badge badge-blue" id="healthQueueBadge">--</div>
                     </div>
-                    <div class="metric-value">94.2%</div>
-                    <div class="metric-label">Platform Success Rate</div>
+                    <div class="metric-value" id="healthSentToday">--</div>
+                    <div class="metric-label">Sent Today</div>
+                    <div class="metric-sub" id="healthQueueSub">Queue: loading...</div>
                 </div>
 
-                <!-- CPA Satisfaction -->
-                <div class="metric-card">
+                <div class="metric-card amber">
                     <div class="metric-header">
-                        <div class="metric-icon">⭐</div>
-                        <div class="metric-change positive">+8%</div>
+                        <div class="metric-icon">📉</div>
+                        <div class="metric-badge badge-amber" id="healthBounceBadge">--</div>
                     </div>
-                    <div class="metric-value">4.8/5</div>
-                    <div class="metric-label">CPA Satisfaction Score</div>
+                    <div class="metric-value" id="healthBounceRate">--</div>
+                    <div class="metric-label">Bounce Rate (7d)</div>
+                    <div class="metric-sub" id="healthBounceSub">loading...</div>
                 </div>
 
-                <!-- SME Retention -->
-                <div class="metric-card">
+                <div class="metric-card red">
                     <div class="metric-header">
-                        <div class="metric-icon">🔄</div>
-                        <div class="metric-change positive">+12%</div>
+                        <div class="metric-icon">🚫</div>
+                        <div class="metric-badge badge-red" id="healthUnsubBadge">--</div>
                     </div>
-                    <div class="metric-value">87%</div>
-                    <div class="metric-label">SME Retention Rate</div>
+                    <div class="metric-value" id="healthUnsubRate">--</div>
+                    <div class="metric-label">Unsubscribes (7d)</div>
+                    <div class="metric-sub" id="healthComplaintSub">loading...</div>
                 </div>
 
-                <!-- Guarantee Claims -->
-                <div class="metric-card">
+                <div class="metric-card purple">
                     <div class="metric-header">
-                        <div class="metric-icon">🛡️</div>
-                        <div class="metric-change positive">-23%</div>
+                        <div class="metric-icon">🎯</div>
+                        <div class="metric-badge badge-green" id="healthClickBadge">--</div>
                     </div>
-                    <div class="metric-value">2.1%</div>
-                    <div class="metric-label">Guarantee Claim Rate</div>
+                    <div class="metric-value" id="healthClickedNoClaim">--</div>
+                    <div class="metric-label">Clicked but Unclaimed</div>
+                    <div class="metric-sub" id="healthConversionSub">loading...</div>
                 </div>
+            </div>
 
-                <!-- Geographic Coverage -->
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <div class="metric-icon">🍁</div>
-                        <div class="metric-change positive">+5%</div>
-                    </div>
-                    <div class="metric-value">9/10</div>
-                    <div class="metric-label">Provinces Covered</div>
+            <!-- Campaigns Section -->
+            <div class="section-title">📬 Campaigns</div>
+            <div id="campaignsContainer">
+                <div class="campaign-card">
+                    <div class="campaign-name"><span class="spinner"></span> Loading campaigns...</div>
                 </div>
+            </div>
 
-                <!-- Algorithm Efficiency -->
-                <div class="metric-card">
+            <!-- Outreach Stats (auth required) -->
+            <div class="section-title" style="margin-top: 2rem;">📊 Outreach Stats</div>
+            <div class="dashboard-grid" id="outreachStatsGrid">
+                <div class="metric-card gradient">
                     <div class="metric-header">
-                        <div class="metric-icon">🧠</div>
-                        <div class="metric-change positive">+11%</div>
+                        <div class="metric-icon">📋</div>
                     </div>
-                    <div class="metric-value">0.8s</div>
-                    <div class="metric-label">Avg Match Time</div>
+                    <div class="metric-value" id="outreachTotal">--</div>
+                    <div class="metric-label">Total Outreach Records</div>
+                </div>
+                <div class="metric-card blue">
+                    <div class="metric-header">
+                        <div class="metric-icon">✉️</div>
+                    </div>
+                    <div class="metric-value" id="outreachContacted">--</div>
+                    <div class="metric-label">Total Contacted</div>
+                </div>
+                <div class="metric-card green">
+                    <div class="metric-header">
+                        <div class="metric-icon">👆</div>
+                    </div>
+                    <div class="metric-value" id="outreachEngaged">--</div>
+                    <div class="metric-label">Engaged</div>
+                </div>
+                <div class="metric-card amber">
+                    <div class="metric-header">
+                        <div class="metric-icon">✅</div>
+                    </div>
+                    <div class="metric-value" id="outreachClaimed">--</div>
+                    <div class="metric-label">Claimed</div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
-                <h3 style="color: #f1f5f9; margin-bottom: 1rem;">🚀 Quick Actions</h3>
+            <div class="actions-bar">
+                <div class="section-title" style="margin-bottom: 1rem;">🚀 Quick Actions</div>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">View Full Analytics</button>
-                    <button style="background: #10b981; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Manage CPAs</button>
-                    <button style="background: #f59e0b; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Review Matches</button>
-                    <button style="background: #8b5cf6; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer;">Export Reports</button>
+                    <button class="action-btn blue" onclick="triggerQueue()">Trigger Email Queue</button>
+                    <button class="action-btn green" onclick="refreshAllData()">Refresh All Data</button>
+                    <button class="action-btn purple" onclick="window.open('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/admin/outreach/campaigns', '_blank')">View Raw Campaigns JSON</button>
                 </div>
             </div>
+
+            <div class="refresh-info" id="lastRefresh">Last refresh: --</div>
         </main>
     </div>
 
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
     <script>
-        // Login system - authenticates via backend API
+        const API_BASE = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+        let refreshInterval = null;
+
+        // ========== LOGIN ==========
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -474,7 +688,7 @@
             const errorMessage = document.getElementById('errorMessage');
 
             try {
-                const response = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/auth/login', {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: username, password: password })
@@ -482,71 +696,295 @@
                 const data = await response.json();
 
                 if (response.ok && data.token) {
-                    // Successful login
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminUsername', username);
+
                     document.getElementById('loginScreen').style.display = 'none';
                     document.getElementById('dashboardContainer').style.display = 'block';
+                    document.getElementById('adminNameDisplay').textContent = `Welcome, ${username.split('@')[0]}`;
 
-                    // Store session
-                    sessionStorage.setItem('adminLoggedIn', 'true');
-                    sessionStorage.setItem('adminToken', data.token);
-                    sessionStorage.setItem('adminUsername', username);
-                
-                console.log('🔓 Admin logged in successfully');
-                initializeDashboard();
+                    initializeDashboard();
                 } else {
-                    // Failed login
                     errorMessage.textContent = data.error || 'Invalid credentials';
                     errorMessage.style.display = 'block';
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 3000);
+                    setTimeout(() => { errorMessage.style.display = 'none'; }, 3000);
                 }
             } catch (err) {
                 errorMessage.textContent = 'Connection error. Please try again.';
                 errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
+                setTimeout(() => { errorMessage.style.display = 'none'; }, 3000);
             }
         });
 
-        // Logout function
         function logout() {
-            sessionStorage.removeItem('adminLoggedIn');
-            sessionStorage.removeItem('adminUsername');
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUsername');
+            if (refreshInterval) clearInterval(refreshInterval);
             document.getElementById('loginScreen').style.display = 'flex';
             document.getElementById('dashboardContainer').style.display = 'none';
-            
-            // Clear form
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            
-            console.log('🔒 Admin logged out');
         }
 
-        // Check if already logged in
         function checkSession() {
-            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            if (localStorage.getItem('adminLoggedIn') === 'true' && localStorage.getItem('adminToken')) {
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('dashboardContainer').style.display = 'block';
+                const user = localStorage.getItem('adminUsername') || 'Admin';
+                document.getElementById('adminNameDisplay').textContent = `Welcome, ${user.split('@')[0]}`;
                 initializeDashboard();
             }
         }
 
-        // Initialize dashboard with real-time updates
-        function initializeDashboard() {
-            console.log('📊 Dashboard initialized');
-            
-            // Simulate real-time updates
-            setInterval(updateQuickStats, 10000); // Update every 10 seconds
+        // ========== API HELPERS ==========
+        function getToken() {
+            return localStorage.getItem('adminToken');
         }
 
-        // Update quick stats
-        function updateQuickStats() {
-            const activeUsers = document.getElementById('quickActiveUsers');
-            const currentUsers = parseInt(activeUsers.textContent);
-            const variation = Math.floor(Math.random() * 20) - 10;
-            activeUsers.textContent = Math.max(200, currentUsers + variation);
+        function authHeaders() {
+            const token = getToken();
+            return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+        }
+
+        async function apiFetch(path, options = {}) {
+            try {
+                const resp = await fetch(`${API_BASE}${path}`, options);
+                if (resp.status === 401 || resp.status === 403) {
+                    showToast('Session expired. Please log in again.', 'error');
+                    logout();
+                    return null;
+                }
+                if (!resp.ok) return null;
+                return await resp.json();
+            } catch (err) {
+                console.error(`API error ${path}:`, err);
+                return null;
+            }
+        }
+
+        function fmt(n) {
+            if (n === null || n === undefined || isNaN(n)) return '--';
+            return Number(n).toLocaleString();
+        }
+
+        function pct(num, den) {
+            if (!den || den === 0) return '0%';
+            return (num / den * 100).toFixed(1) + '%';
+        }
+
+        // ========== DATA FETCHING ==========
+        async function fetchCampaigns() {
+            const data = await apiFetch('/api/admin/outreach/campaigns');
+            if (!data) return null;
+            // Could be { campaigns: [...] } or just an array
+            return Array.isArray(data) ? data : (data.campaigns || data.data || []);
+        }
+
+        async function fetchHealth() {
+            return await apiFetch('/api/outreach/health');
+        }
+
+        async function fetchClickedNoClaim() {
+            return await apiFetch('/api/admin/clicked-no-claim');
+        }
+
+        async function fetchOutreachStats() {
+            return await apiFetch('/api/admin/outreach/stats', { headers: authHeaders() });
+        }
+
+        // ========== RENDER ==========
+        function renderQuickStats(campaigns, health) {
+            // Total sent across all campaigns
+            let totalSent = 0;
+            let activeCampaigns = 0;
+            let totalClaims = 0;
+            if (campaigns && campaigns.length) {
+                campaigns.forEach(c => {
+                    totalSent += (c.sent || c.total_sent || 0);
+                    if (c.status === 'active' || c.status === 'running') activeCampaigns++;
+                });
+            }
+
+            document.getElementById('qsTotalSent').textContent = fmt(totalSent);
+            document.getElementById('qsSentToday').textContent = health ? fmt(health.sent_today) : '--';
+            document.getElementById('qsActiveCampaigns').textContent = fmt(activeCampaigns);
+            // Claims come from outreach stats or clicked-no-claim
+            // We'll update claims separately
+        }
+
+        function renderHealth(health, clickedNoClaim) {
+            if (health) {
+                document.getElementById('healthSentToday').textContent = fmt(health.sent_today);
+                document.getElementById('healthQueueBadge').textContent = `${fmt(health.queued)} queued`;
+                document.getElementById('healthQueueSub').textContent = `Queue: ${fmt(health.queued)} pending`;
+
+                // Bounce rate
+                const bounced7d = health.bounced_7d || 0;
+                const sent7d = health.sent_7d || health.sent_today || 1;
+                const bounceRate = (bounced7d / Math.max(sent7d, 1) * 100).toFixed(1);
+                document.getElementById('healthBounceRate').textContent = bounceRate + '%';
+                document.getElementById('healthBounceBadge').textContent = `${fmt(bounced7d)} bounced`;
+                document.getElementById('healthBounceSub').textContent = `${fmt(bounced7d)} bounces in last 7 days`;
+
+                if (parseFloat(bounceRate) > 5) {
+                    document.getElementById('healthBounceBadge').className = 'metric-badge badge-red';
+                }
+
+                // Unsubscribes
+                const unsub7d = health.unsubscribed_7d || 0;
+                document.getElementById('healthUnsubRate').textContent = fmt(unsub7d);
+                document.getElementById('healthUnsubBadge').textContent = '7 day';
+                document.getElementById('healthComplaintSub').textContent = `Unsubscribes in last 7 days`;
+            }
+
+            // Clicked no claim
+            if (clickedNoClaim !== null) {
+                const count = clickedNoClaim.count !== undefined ? clickedNoClaim.count : (typeof clickedNoClaim === 'number' ? clickedNoClaim : '--');
+                document.getElementById('healthClickedNoClaim').textContent = fmt(count);
+                document.getElementById('healthClickBadge').textContent = 'funnel gap';
+                document.getElementById('healthConversionSub').textContent = 'Clicked email link but haven\'t claimed profile';
+            }
+        }
+
+        function renderCampaigns(campaigns) {
+            const container = document.getElementById('campaignsContainer');
+            if (!campaigns || !campaigns.length) {
+                container.innerHTML = '<div class="campaign-card"><div class="campaign-name">No campaigns found</div></div>';
+                return;
+            }
+
+            container.innerHTML = campaigns.map(c => {
+                const statusClass = c.status === 'active' || c.status === 'running' ? 'status-active' :
+                                    c.status === 'paused' ? 'status-paused' : 'status-completed';
+                const statusLabel = c.status || 'unknown';
+
+                const sent = c.sent || c.total_sent || 0;
+                const delivered = c.delivered || c.total_delivered || 0;
+                const bounced = c.bounced || c.total_bounced || 0;
+                const opened = c.opened || c.total_opened || 0;
+                const clicked = c.clicked || c.total_clicked || 0;
+                const complained = c.complained || c.total_complained || 0;
+                const queued = c.queued || c.queue_size || 0;
+
+                const openRate = sent > 0 ? (opened / sent * 100).toFixed(1) : '0.0';
+                const clickRate = sent > 0 ? (clicked / sent * 100).toFixed(1) : '0.0';
+
+                return `
+                <div class="campaign-card">
+                    <div class="campaign-name">
+                        ${c.name || c.campaign_name || 'Unnamed Campaign'}
+                        <span class="campaign-status ${statusClass}">${statusLabel}</span>
+                        ${queued > 0 ? `<span class="campaign-status status-paused">${fmt(queued)} queued</span>` : ''}
+                    </div>
+                    <div class="campaign-stats">
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value">${fmt(sent)}</div>
+                            <div class="campaign-stat-label">Sent</div>
+                        </div>
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value">${fmt(delivered)}</div>
+                            <div class="campaign-stat-label">Delivered</div>
+                        </div>
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value">${fmt(bounced)}</div>
+                            <div class="campaign-stat-label">Bounced</div>
+                        </div>
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value" style="color: #34d399;">${fmt(opened)}</div>
+                            <div class="campaign-stat-label">Opened (${openRate}%)</div>
+                        </div>
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value" style="color: #60a5fa;">${fmt(clicked)}</div>
+                            <div class="campaign-stat-label">Clicked (${clickRate}%)</div>
+                        </div>
+                        <div class="campaign-stat">
+                            <div class="campaign-stat-value" style="color: ${complained > 0 ? '#f87171' : '#94a3b8'};">${fmt(complained)}</div>
+                            <div class="campaign-stat-label">Complained</div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderOutreachStats(stats) {
+            if (!stats) return;
+            // Handle various response shapes
+            const total = stats.total || stats.total_records || stats.count || '--';
+            const contacted = stats.contacted || stats.total_contacted || '--';
+            const engaged = stats.engaged || stats.total_engaged || '--';
+            const claimed = stats.claimed || stats.total_claimed || '--';
+
+            document.getElementById('outreachTotal').textContent = fmt(total);
+            document.getElementById('outreachContacted').textContent = fmt(contacted);
+            document.getElementById('outreachEngaged').textContent = fmt(engaged);
+            document.getElementById('outreachClaimed').textContent = fmt(claimed);
+
+            // Update quick stats claims
+            if (claimed !== '--') {
+                document.getElementById('qsTotalClaims').textContent = fmt(claimed);
+            }
+        }
+
+        // ========== REFRESH ALL ==========
+        async function refreshAllData() {
+            showToast('Refreshing data...', 'info');
+
+            const [campaigns, health, clickedNoClaim, outreachStats] = await Promise.all([
+                fetchCampaigns(),
+                fetchHealth(),
+                fetchClickedNoClaim(),
+                fetchOutreachStats()
+            ]);
+
+            renderQuickStats(campaigns, health);
+            renderHealth(health, clickedNoClaim);
+            renderCampaigns(campaigns);
+            renderOutreachStats(outreachStats);
+
+            // Update claims in quick stats from outreach if available
+            if (!outreachStats) {
+                document.getElementById('qsTotalClaims').textContent = '--';
+            }
+
+            document.getElementById('lastRefresh').textContent = `Last refresh: ${new Date().toLocaleTimeString()}`;
+            showToast('Data refreshed', 'success');
+        }
+
+        // ========== ACTIONS ==========
+        async function triggerQueue() {
+            showToast('Triggering email queue...', 'info');
+            try {
+                const resp = await fetch(`${API_BASE}/api/admin/outreach/process-queue`, {
+                    method: 'POST',
+                    headers: authHeaders()
+                });
+                if (resp.ok) {
+                    const data = await resp.json();
+                    showToast(`Queue triggered! ${data.processed || data.sent || 0} emails processed.`, 'success');
+                    setTimeout(refreshAllData, 3000);
+                } else {
+                    showToast('Failed to trigger queue.', 'error');
+                }
+            } catch (err) {
+                showToast('Error triggering queue: ' + err.message, 'error');
+            }
+        }
+
+        // ========== TOAST ==========
+        function showToast(msg, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => { toast.className = 'toast'; }, 3000);
+        }
+
+        // ========== INIT ==========
+        function initializeDashboard() {
+            refreshAllData();
+            if (refreshInterval) clearInterval(refreshInterval);
+            refreshInterval = setInterval(refreshAllData, 60000); // auto-refresh every 60s
         }
 
         // Security: Auto-logout after inactivity
@@ -554,25 +992,20 @@
         function resetInactivityTimer() {
             clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(() => {
-                if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                if (localStorage.getItem('adminLoggedIn') === 'true') {
                     alert('Session expired due to inactivity. Please log in again.');
                     logout();
                 }
-            }, 30 * 60 * 1000); // 30 minutes
+            }, 30 * 60 * 1000);
         }
 
-        // Track user activity
         ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
             document.addEventListener(event, resetInactivityTimer, true);
         });
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             checkSession();
             resetInactivityTimer();
-            
-            console.log('🔐 Admin security system loaded');
-            console.log('🍁 CanadaAccountants Admin Panel ready');
         });
     </script>
 </body>
