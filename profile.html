@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/api-config.js"></script>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XCF2Z737');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="View this CPA's professional profile on CanadaAccountants.app — AI-generated bio, credentials, and profile score.">
+
+    <title>CPA Profile | CanadaAccountants.app</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icon-512.png">
+    <link rel="apple-touch-icon" href="/icon-512.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://canadaaccountants.app/profile">
+    <meta property="og:title" content="CPA Profile | CanadaAccountants.app">
+    <meta property="og:description" content="View this CPA's professional profile — AI-generated bio, credentials, and profile score.">
+    <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
+    <meta property="og:site_name" content="CanadaAccountants">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-navy: #1e3a8a;
+            --accent-green: #059669;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo .maple { color: var(--primary-blue); font-size: 1.5rem; }
+        .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: white; }
+        .nav-cta { background: white !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+        .nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        .nav-links.active { display: flex; }
+
+        /* Hero */
+        .profile-hero {
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-navy) 50%, #1e3a5f 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .profile-avatar {
+            width: 100px; height: 100px;
+            background: rgba(255,255,255,0.15);
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem; color: white;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .profile-firm {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 6px;
+        }
+
+        .profile-location {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+        .profile-location i { margin-right: 6px; }
+
+        .badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-designation {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-claimed {
+            background: rgba(5, 150, 105, 0.3);
+            color: #6ee7b7;
+            border: 1px solid rgba(5, 150, 105, 0.4);
+        }
+
+        .badge-unclaimed {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Content sections */
+        .profile-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            width: 40px; height: 40px;
+            background: rgba(37, 99, 235, 0.15);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .bio-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .bio-note {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .bio-loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+        }
+        .bio-loading i { margin-right: 8px; }
+
+        /* Score circle */
+        .score-section {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .score-circle-container {
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-blue) calc(var(--score) * 3.6deg), rgba(255,255,255,0.08) 0deg);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+
+        .score-circle-inner {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+
+        .score-number {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .score-grade {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .score-details { flex: 1; }
+
+        .score-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+        .recommendation-item:last-child { border-bottom: none; }
+
+        .rec-icon {
+            width: 24px; height: 24px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .rec-high { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        .rec-medium { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .rec-low { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+
+        .rec-points {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .score-cta-text {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-navy));
+            border: none;
+            text-align: center;
+            padding: 48px 32px;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--primary-navy);
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Loading & Error */
+        .page-loading, .page-error {
+            text-align: center;
+            padding: 200px 24px 100px;
+        }
+        .page-loading i { font-size: 2rem; color: var(--primary-blue); margin-bottom: 16px; }
+        .page-error i { font-size: 2rem; color: #f87171; margin-bottom: 16px; }
+        .page-error h2 { margin-bottom: 8px; }
+        .page-error p { color: var(--text-secondary); }
+        .page-error a { color: var(--primary-blue); }
+
+        /* Footer */
+        .footer { background: #111; padding: 60px 24px; border-top: 1px solid var(--border-color); }
+        .footer-inner { max-width: 1100px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid li { margin-bottom: 10px; }
+        .footer-grid a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+        .footer-grid a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 24px; text-align: center; }
+        .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .footer-logo .maple { color: var(--primary-blue); }
+        .footer-tagline { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; }
+        .footer-copy { color: #666; font-size: 0.8rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 64px; left: 0; right: 0;
+                flex-direction: column; align-items: center; gap: 0;
+                background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+                padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { padding: 14px 24px; width: 100%; text-align: center; font-size: 0.95rem; }
+            .nav-links a:hover { background: rgba(255,255,255,0.05); }
+            .nav-cta { margin: 8px 24px; width: auto; padding: 12px 24px; font-size: 0.9rem !important; text-align: center; border-radius: 8px; }
+
+            .profile-hero { padding: 100px 20px 48px; }
+            .profile-name { font-size: 1.8rem; }
+            .profile-avatar { width: 80px; height: 80px; font-size: 2rem; }
+
+            .section-card { padding: 24px 20px; }
+
+            .score-section { flex-direction: column; align-items: center; }
+            .score-details { width: 100%; }
+            .score-details h4 { text-align: center; }
+
+            .cta-section { padding: 36px 20px; }
+            .cta-section h2 { font-size: 1.4rem; }
+
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-blue)">.app</span></a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="find-cpa">Find CPA</a>
+                <a href="why-we-win">Why We Win</a>
+                <a href="pricing">Pricing</a>
+                <a href="contact">Contact</a>
+                <a href="admin">Login</a>
+                <a href="join-as-cpa" class="nav-cta">Apply to Join</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content (rendered by JS) -->
+    <div id="page-content">
+        <div class="page-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading profile...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <h4>For CPAs</h4>
+                    <ul>
+                        <li><a href="join-as-cpa">Join Network</a></li>
+                        <li><a href="pricing">Pricing &amp; Algorithm</a></li>
+                        <li><a href="cpa-revenue-calculator">Revenue Calculator</a></li>
+                        <li><a href="why-we-win">Why We Win</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>For Businesses</h4>
+                    <ul>
+                        <li><a href="find-cpa">Find a CPA</a></li>
+                        <li><a href="guarantee">Our Guarantee</a></li>
+                        <li><a href="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms-of-service">Terms of Service</a></li>
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="trust-center">Trust Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a></li>
+                        <li><a href="tel:+16479567290">(647) 956-7290</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <i class="fas fa-maple-leaf maple"></i> CanadaAccountants<span style="color: var(--primary-blue)">.app</span>
+                </div>
+                <p class="footer-tagline">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
+                <p class="footer-copy">&copy; 2026 CanadaAccountants.app | Technology platform only. Not a registered accounting firm. CPAs maintain full professional independence under their provincial CPA body.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD placeholder (injected by JS) -->
+    <script id="jsonld-script" type="application/ld+json">{}</script>
+
+    <script>
+        const API_BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG.BASE_URL)
+            ? API_CONFIG.BASE_URL
+            : 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+
+        function getProfileId() {
+            // Support /profile?id=123 and /profile/123
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('id')) return params.get('id');
+            const parts = window.location.pathname.split('/');
+            const idx = parts.indexOf('profile');
+            if (idx !== -1 && parts[idx + 1]) return parts[idx + 1];
+            return null;
+        }
+
+        function getInitials(name) {
+            return name.split(' ').filter(Boolean).map(w => w[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        function getScoreColor(score) {
+            if (score >= 80) return '#059669';
+            if (score >= 60) return '#2563eb';
+            if (score >= 40) return '#f59e0b';
+            return '#ef4444';
+        }
+
+        function renderError(msg) {
+            document.getElementById('page-content').innerHTML = `
+                <div class="page-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h2>Profile Not Found</h2>
+                    <p>${msg}</p>
+                    <p style="margin-top: 16px;"><a href="find-cpa">Find a CPA instead</a></p>
+                </div>`;
+        }
+
+        function renderProfile(data) {
+            const p = data.profile;
+            const seo = data.seo_score || { score: 0, grade: 'D', recommendations: [] };
+            const scoreColor = getScoreColor(seo.score);
+
+            // Update page title and meta
+            document.title = `${p.name} — CPA Profile | CanadaAccountants.app`;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = `View ${p.name}'s CPA profile on CanadaAccountants.app. ${p.designation || 'CPA'} in ${p.city || ''}, ${p.province || 'Canada'}.`;
+
+            // Inject JSON-LD
+            if (data.structured_data) {
+                document.getElementById('jsonld-script').textContent = JSON.stringify(data.structured_data);
+            }
+
+            // Designation badges
+            const designations = (p.designation || '').split(/[,\/]/).map(d => d.trim()).filter(Boolean);
+            const designationBadges = designations.length
+                ? designations.map(d => `<span class="badge badge-designation"><i class="fas fa-award"></i> ${d}</span>`).join('')
+                : '<span class="badge badge-designation"><i class="fas fa-user-tie"></i> CPA</span>';
+
+            // Claim badge
+            const claimBadge = p.claimed
+                ? '<span class="badge badge-claimed"><i class="fas fa-check-circle"></i> Verified Profile</span>'
+                : '<span class="badge badge-unclaimed"><i class="fas fa-info-circle"></i> Unclaimed &mdash; Basic Listing</span>';
+
+            // Firm display
+            const firmDisplay = p.firm_name || `Listed in ${p.province || 'Canadian'} CPA directory`;
+
+            // Location
+            const location = [p.city, p.province].filter(Boolean).join(', ');
+
+            // Bio section
+            let bioHtml;
+            if (p.bio) {
+                bioHtml = `<div class="bio-text">${p.bio.replace(/\n\n/g, '</p><p class="bio-text" style="margin-top:12px;">').replace(/\n/g, '<br>')}</div>
+                    <p class="bio-note"><i class="fas fa-info-circle"></i> Generated by AI from CPA directory data</p>`;
+            } else {
+                bioHtml = `<div class="bio-loading"><i class="fas fa-spinner fa-spin"></i> Bio is being generated...</div>`;
+            }
+
+            // Recommendations
+            const recHtml = seo.recommendations.slice(0, 5).map(r => {
+                const iconClass = r.impact === 'high' ? 'rec-high' : r.impact === 'medium' ? 'rec-medium' : 'rec-low';
+                return `<li class="recommendation-item">
+                    <span class="rec-icon ${iconClass}"><i class="fas fa-plus"></i></span>
+                    <span>${r.action}</span>
+                    <span class="rec-points">+${r.points} pts</span>
+                </li>`;
+            }).join('');
+
+            // CTA link
+            const claimUrl = p.ref_token
+                ? `claim-profile?ref=${p.ref_token}`
+                : `claim-profile`;
+
+            document.getElementById('page-content').innerHTML = `
+                <!-- Profile Hero -->
+                <section class="profile-hero">
+                    <div class="profile-avatar">${getInitials(p.name)}</div>
+                    <h1 class="profile-name">${p.name}</h1>
+                    <p class="profile-firm">${firmDisplay}</p>
+                    ${location ? `<p class="profile-location"><i class="fas fa-map-marker-alt"></i> ${location}</p>` : ''}
+                    <div class="badges">
+                        ${designationBadges}
+                        ${claimBadge}
+                    </div>
+                </section>
+
+                <div class="profile-content">
+                    <!-- AI Bio -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <div class="section-title">AI-Generated Professional Bio</div>
+                                <div class="section-subtitle">Created from CPA directory data</div>
+                            </div>
+                        </div>
+                        ${bioHtml}
+                    </div>
+
+                    <!-- Profile Score -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div class="section-icon"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <div class="section-title">Profile Score</div>
+                                <div class="section-subtitle">How complete and optimized this profile is</div>
+                            </div>
+                        </div>
+                        <div class="score-section">
+                            <div class="score-circle-container">
+                                <div class="score-circle" style="--score: ${seo.score}; background: conic-gradient(${scoreColor} ${seo.score * 3.6}deg, rgba(255,255,255,0.08) 0deg);">
+                                    <div class="score-circle-inner">
+                                        <div class="score-number" style="color: ${scoreColor};">${seo.score}</div>
+                                        <div class="score-label">/ 100</div>
+                                    </div>
+                                </div>
+                                <div class="score-grade">Grade ${seo.grade}</div>
+                            </div>
+                            <div class="score-details">
+                                ${seo.recommendations.length > 0 ? `
+                                    <h4>What's Missing</h4>
+                                    <ul class="recommendation-list">${recHtml}</ul>
+                                    <p class="score-cta-text">Take control of this profile to improve the score.</p>
+                                ` : `
+                                    <h4>Excellent!</h4>
+                                    <p style="color: var(--text-secondary);">This profile is fully optimized.</p>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="section-card cta-section">
+                        <h2>Take Control of Your Profile</h2>
+                        <p>Edit your bio, add specializations, and manage what clients see.</p>
+                        <a href="${claimUrl}" class="btn-cta">Take Control <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>`;
+        }
+
+        // Load profile
+        (async function() {
+            const id = getProfileId();
+            if (!id) {
+                renderError('No profile ID provided. Try visiting a profile link from the directory.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/api/profiles/${id}`);
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    renderError(err.error || 'This profile could not be found.');
+                    return;
+                }
+                const data = await res.json();
+                renderProfile(data);
+            } catch (err) {
+                renderError('Unable to load this profile. Please try again later.');
+            }
+        })();
+    </script>
+</body>
+</html>
