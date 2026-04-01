@@ -541,6 +541,7 @@
             .then(function(data) {
                 // Funnel event 5: claim succeeded
                 gtag('event', 'claim_success');
+                if (window.abTestComplete) window.abTestComplete();
                 showSuccess(data.referralLink);
             })
             .catch(function(err) {
@@ -577,6 +578,66 @@
             document.getElementById('errorMessage').textContent = message;
             document.getElementById('errorState').style.display = 'block';
         }
+    </script>
+
+    <script>
+    // A/B Test: Verify vs Claim (50/50 cookie-based)
+    (function() {
+        var AB_API = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+        var testId = null;
+
+        // Get or assign variant
+        function getVariant() {
+            var match = document.cookie.match(/ab_variant=([AB])/);
+            if (match) return match[1];
+            var variant = Math.random() < 0.5 ? 'A' : 'B';
+            document.cookie = 'ab_variant=' + variant + ';path=/;max-age=' + (14 * 86400);
+            return variant;
+        }
+
+        var variant = getVariant();
+
+        // Apply variant text to CTA button(s)
+        var ctaText = variant === 'A' ? 'Claim Your Founding Member Profile' : 'Verify Your Profile';
+
+        // Find and update CTA buttons — try multiple selectors
+        function applyVariant() {
+            var buttons = document.querySelectorAll('.claim-btn, #claimBtn, button[type="submit"], .cta-btn');
+            buttons.forEach(function(btn) {
+                if (btn.textContent.toLowerCase().includes('claim') || btn.textContent.toLowerCase().includes('verify')) {
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> ' + ctaText;
+                }
+            });
+        }
+
+        // Apply on load and after DOM updates
+        applyVariant();
+        setTimeout(applyVariant, 1000);
+        setTimeout(applyVariant, 3000);
+
+        // Track page load
+        var params = new URLSearchParams(window.location.search);
+        var profId = params.get('id') || params.get('ref') || null;
+
+        fetch(AB_API + '/api/ab-test/track-load', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ variant: variant, professional_id: profId ? parseInt(profId) : null })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) { if (d.id) testId = d.id; })
+          .catch(function() {});
+
+        // Track completion — hook into form submit
+        window.abTestComplete = function() {
+            if (testId) {
+                fetch(AB_API + '/api/ab-test/track-complete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: testId })
+                }).catch(function() {});
+            }
+        };
+    })();
     </script>
 </body>
 </html>
