@@ -860,6 +860,82 @@
         const progressSection = document.getElementById('progressSection');
         const confirmationCard = document.getElementById('confirmationCard');
 
+        // Pre-fill from URL params (used by C2 SME outreach emails so SMEs
+        // arrive with province + specialty already known — minimum friction path).
+        // Map: ?province=ON&specialty=manufacturing -> pre-set province (step 5)
+        // and try to map specialty to closest service type (step 1).
+        const provinceMap = {
+          'ON': 'Ontario', 'BC': 'British Columbia', 'AB': 'Alberta', 'QC': 'Quebec',
+          'SK': 'Saskatchewan', 'MB': 'Manitoba', 'NS': 'Nova Scotia', 'NB': 'New Brunswick',
+          'NL': 'Newfoundland and Labrador', 'PE': 'Prince Edward Island',
+          'YT': 'Yukon', 'NT': 'Northwest Territories', 'NU': 'Nunavut'
+        };
+        // Loose mapping from C2 industry slugs -> form service_type values
+        const specialtyMap = {
+          'tax': 'Tax Planning', 'taxes': 'Tax Planning', 'tax-planning': 'Tax Planning',
+          'audit': 'Audit & Assurance', 'assurance': 'Audit & Assurance',
+          'advisory': 'Advisory Services', 'consulting': 'Advisory Services',
+          'bookkeeping': 'Bookkeeping', 'books': 'Bookkeeping',
+          'forensic': 'Forensic Accounting',
+          'corporate': 'Corporate Finance', 'finance': 'Corporate Finance',
+          'estate': 'Estate Planning',
+          'non-profit': 'Non-Profit/Charity', 'nonprofit': 'Non-Profit/Charity', 'charity': 'Non-Profit/Charity',
+          'manufacturing': 'Advisory Services', 'retail': 'Advisory Services',
+          'construction': 'Advisory Services', 'real-estate': 'Advisory Services'
+        };
+        function applyUrlPrefill() {
+          const params = new URLSearchParams(window.location.search);
+          const provParam = (params.get('province') || '').trim();
+          const specParam = (params.get('specialty') || '').toLowerCase().trim();
+          let prefilled = 0;
+
+          // Pre-fill province (step 5)
+          if (provParam) {
+            const provFull = provinceMap[provParam.toUpperCase()] || provParam;
+            const sel = document.getElementById('provinceSelect');
+            if (sel) {
+              for (const opt of sel.options) {
+                if (opt.value === provFull) {
+                  sel.value = provFull;
+                  answers[5] = provFull;
+                  prefilled++;
+                  break;
+                }
+              }
+            }
+          }
+
+          // Pre-fill service type (step 1)
+          if (specParam) {
+            const matched = specialtyMap[specParam] || specialtyMap[specParam.replace(/[\s_]+/g, '-')];
+            if (matched) {
+              const card = document.querySelector('.question-card[data-step="1"] .option-card[data-value="' + matched + '"]');
+              if (card) {
+                card.classList.add('selected');
+                answers[1] = matched;
+                prefilled++;
+              }
+            }
+          }
+
+          // If both province and service type are pre-filled, skip step 1 and start at step 2
+          if (prefilled >= 2 && answers[1] && answers[5]) {
+            const banner = document.createElement('div');
+            banner.style.cssText = 'background:#eff6ff;border-left:4px solid #2563eb;padding:14px 18px;margin:16px auto;max-width:600px;border-radius:6px;font-family:Arial,sans-serif;color:#1e3a8a;';
+            banner.innerHTML = '<strong>We\'ve started your search:</strong> ' + answers[1] + ' in ' + answers[5] + '. <a href="?" style="color:#2563eb;">Reset</a>';
+            const main = document.querySelector('main') || document.querySelector('.container') || document.body;
+            main.insertBefore(banner, main.firstChild);
+            // Skip step 1 since service type is set
+            try {
+              currentStep = 2;
+              showStep(2);
+              updateProgress();
+            } catch (e) { /* showStep may not be ready yet */ }
+          }
+        }
+        // Run pre-fill after page is ready and option cards are bound
+        setTimeout(applyUrlPrefill, 50);
+
         // Initialize: attach click handlers to all option cards
         document.querySelectorAll('.option-card').forEach(card => {
             card.addEventListener('click', function() {
@@ -957,28 +1033,32 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
+            // Map wizard answers to /api/match-cpas request shape
             const payload = {
-                service_type: answers[1] || '',
-                client_type: answers[2] || '',
-                urgency: answers[3] || '',
-                fee_preference: answers[4] || '',
+                serviceType: answers[1] || '',
+                specialization: answers[1] || '',
+                businessSize: answers[2] || '',
+                budgetRange: answers[3] || '',
+                feePreference: answers[4] || '',
                 province: answers[5] || '',
-                meeting_preference: answers[6] || '',
+                meetingPreference: answers[6] || '',
                 name: document.getElementById('clientName').value.trim(),
                 email: document.getElementById('clientEmail').value.trim(),
                 phone: document.getElementById('clientPhone').value.trim(),
+                source: 'find-cpa-form',
                 submitted_at: new Date().toISOString()
             };
 
+            let response = null;
             try {
-                await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/find-cpa', {
+                const r = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/match-cpas', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
+                response = await r.json();
             } catch (e) {
-                // Silently handle — show confirmation regardless for now
-                console.log('Submission endpoint not yet configured:', e);
+                console.error('Submission error:', e);
             }
 
             // Show confirmation
