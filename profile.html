@@ -575,7 +575,7 @@
                 <!-- Profile Hero -->
                 <section class="profile-hero">
                     <div class="profile-avatar">${getInitials(p.name)}</div>
-                    <h1 class="profile-name">${p.name}</h1>
+                    <h1 class="profile-name">${p.name}${p.founding_member ? '<span style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;margin-left:8px;text-transform:uppercase;letter-spacing:0.5px;">Founding Member</span>' : ''}</h1>
                     <p class="profile-firm">${firmDisplay}</p>
                     ${location ? `<p class="profile-location"><i class="fas fa-map-marker-alt"></i> ${location}</p>` : ''}
                     <div class="badges">
