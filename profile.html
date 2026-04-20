@@ -421,6 +421,24 @@
         </div>
     </nav>
 
+    <!-- SEO: pre-render meaningful content for Googlebot before JS loads profile data -->
+    <div id="seoPrerender" style="max-width:800px;margin:40px auto;padding:0 20px;">
+        <h1 id="seoTitle" style="color:#fff;font-size:24px;">CPA Profile — CanadaAccountants.app</h1>
+        <p style="color:#ccc;font-size:15px;line-height:1.7;">This is a verified CPA profile on CanadaAccountants.app, Canada's AI-powered CPA-client matching platform. This profile includes the accountant's credentials, specializations, firm information, and an AI-generated professional bio based on their CPA directory registration.</p>
+        <p style="color:#999;font-size:14px;">CanadaAccountants connects businesses with qualified CPAs across Canada. Our directory includes over 40,000 CPAs across 10 provinces.</p>
+        <noscript><p style="color:#ccc;">Enable JavaScript to view the full interactive profile with AI bio, specializations, and contact information.</p></noscript>
+    </div>
+    <script>
+        (function() {
+            var id = new URLSearchParams(window.location.search).get('id');
+            if (id) {
+                document.title = 'CPA Profile #' + id + ' | CanadaAccountants.app';
+                var canon = document.querySelector('link[rel="canonical"]');
+                if (canon) canon.href = 'https://canadaaccountants.app/profile?id=' + id;
+            }
+        })();
+    </script>
+
     <!-- Page Content (rendered by JS) -->
     <div id="page-content">
         <div class="page-loading">
@@ -516,6 +534,7 @@
         }
 
         function renderProfile(data) {
+            var seoPre = document.getElementById('seoPrerender'); if (seoPre) seoPre.style.display = 'none';
             const p = data.profile;
             const seo = data.seo_score || { score: 0, grade: 'D', recommendations: [] };
             const scoreColor = getScoreColor(seo.score);
