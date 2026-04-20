@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About CanadaAccountants.app — the founder, mission, and story behind Canada's AI-powered CPA marketplace.">
+
+    <title>About CanadaAccountants.app | Founder & Mission</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://canadaaccountants.app/about">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canadaaccountants.app/about">
+    <meta property="og:title" content="About CanadaAccountants.app | Founder & Mission">
+    <meta property="og:description" content="Meet the founder behind CanadaAccountants.app and learn why we built Canada's AI-powered CPA marketplace.">
+    <meta property="og:site_name" content="CanadaAccountants">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Favicon -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCF2Z737"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XCF2Z737');
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://canadaaccountants.app/" },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://canadaaccountants.app/about" }
+        ]
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: white;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: "🍁";
+            margin-right: 0.5rem;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .desktop-only { display: flex; }
+        .mobile-only { display: none; }
+
+        /* Page layout */
+        .page-content { padding-top: 80px; }
+
+        /* Hero */
+        .about-hero {
+            padding: 80px 2rem 60px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards container */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-heading .overline {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Founder */
+        .founder-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 48px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .founder-avatar {
+            width: 120px;
+            height: 120px;
+            min-width: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 3px solid rgba(255,255,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        .founder-info h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
+        .founder-title { font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 20px; }
+        .founder-bio { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.8; }
+
+        /* Mission cards */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 32px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .mission-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+
+        .mission-icon { font-size: 2rem; margin-bottom: 16px; }
+        .mission-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+        .mission-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+        }
+
+        .stat-number { font-size: 2.4rem; font-weight: 900; margin-bottom: 8px; line-height: 1; }
+        .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+        /* Contact */
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-card h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+        .contact-card p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 1rem; }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 14px 28px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 380px;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .contact-link:hover { background: rgba(255,255,255,0.2); }
+        .contact-link i { font-size: 1.1rem; opacity: 0.85; }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.3);
+            padding: 60px 24px 30px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff; }
+        .footer-grid ul { list-style: none; padding: 0; margin: 0; }
+        .footer-grid li { margin-bottom: 10px; }
+        .footer-grid a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+        .footer-grid a:hover { color: white; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 24px;
+            text-align: center;
+        }
+
+        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .footer-tagline { color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 0.9rem; }
+        .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle { display: flex; }
+            .desktop-only { display: none; }
+            .mobile-only { display: flex; }
+
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 100%; height: 100vh;
+                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 0;
+            }
+
+            .nav-links.mobile-open { right: 0; }
+            .nav-links li { margin: 1.5rem 0; }
+            .nav-links a { font-size: 1.5rem; }
+            .nav-links a:hover { transform: scale(1.1); color: #ffd700; background: none; }
+
+            .about-hero h1 { font-size: 2rem; }
+            .founder-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; gap: 24px; }
+            .mission-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">CanadaAccountants</a>
+
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="find-cpa" onclick="closeMobileMenu()">Find a CPA</a></li>
+                <li><a href="why-we-win" onclick="closeMobileMenu()">Why We Win</a></li>
+                <li><a href="pricing" onclick="closeMobileMenu()">Pricing</a></li>
+                <li><a href="about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="contact" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="admin" onclick="closeMobileMenu()">Login</a></li>
+                <div class="cta-buttons mobile-only">
+                    <a href="join-as-cpa" class="btn btn-primary" onclick="closeMobileMenu()">Apply to Join</a>
+                </div>
+            </ul>
+
+            <div class="cta-buttons desktop-only">
+                <a href="join-as-cpa" class="btn btn-primary">Apply to Join</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <!-- Hero -->
+        <section class="about-hero">
+            <h1>About CanadaAccountants</h1>
+            <p>Connecting Canadian businesses with qualified CPAs through AI-powered matching and verified professional data.</p>
+        </section>
+
+        <!-- Founder Section -->
+        <div class="section">
+            <div class="section-heading">
+                <div class="overline">Our Founder</div>
+                <h2>The Person Behind the Platform</h2>
+            </div>
+            <div class="founder-card">
+                <div class="founder-avatar">AK</div>
+                <div class="founder-info">
+                    <h2>Arthur Kostaras</h2>
+                    <div class="founder-title">Founder &amp; CEO</div>
+                    <p class="founder-bio">Arthur Kostaras is the founder of CanadaAccountants. With a background in financial services and technology, Arthur built CanadaAccountants to solve a simple problem: finding the right CPA shouldn't take weeks of research and networking. The platform uses AI matching and verified professional data to connect businesses with qualified CPAs across Canada.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="section">
+            <div class="section-heading">
+                <div class="overline">Why We Exist</div>
+                <h2>The Problem We Solve</h2>
+                <p>Finding qualified accounting help in Canada is harder than it should be. We built CanadaAccountants to fix that.</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-search"></i></div>
+                    <h3>Discovery Is Broken</h3>
+                    <p>Most businesses find a CPA through referrals or directory listings that tell you nothing about fit. Neither approach surfaces who is actually qualified for your specific situation.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Does the Matching</h3>
+                    <p>Our algorithm analyses 6 key factors — industry specialization, province, firm size, service type, designation, and availability — to surface CPAs who are genuinely qualified for your needs.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-database"></i></div>
+                    <h3>Verified Data</h3>
+                    <p>Every CPA in our directory is cross-referenced against provincial CPA body records. No scraped profiles, no stale data — real, active, licensed accounting professionals only.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Professional Independence</h3>
+                    <p>CanadaAccountants is a technology platform, not a referral agency. Every CPA maintains full professional independence and all fee arrangements remain between the CPA and the client.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Numbers Section -->
+        <div class="section">
+            <div class="section-heading">
+                <div class="overline">By The Numbers</div>
+                <h2>Platform at a Glance</h2>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">40K+</div>
+                    <div class="stat-label">CPAs across 10 provinces</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Provinces covered with verified data</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">AI</div>
+                    <div class="stat-label">Professional bios generated for every listing</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section">
+            <div class="section-heading">
+                <div class="overline">Get In Touch</div>
+                <h2>Reach the Founder Directly</h2>
+                <p>Questions, feedback, or partnership inquiries — Arthur reads every message.</p>
+            </div>
+            <div class="contact-card">
+                <h2>Contact Arthur</h2>
+                <p>Reach out directly with questions about the platform, partnership opportunities, or anything else.</p>
+                <div class="contact-links">
+                    <a href="mailto:arthur@negotiateandwin.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        arthur@negotiateandwin.com
+                    </a>
+                    <a href="tel:+16479567290" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        647-956-7290
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4>For CPAs</h4>
+                <ul>
+                    <li><a href="join-as-cpa">Join Network</a></li>
+                    <li><a href="pricing">Pricing &amp; Algorithm</a></li>
+                    <li><a href="cpa-revenue-calculator">Revenue Calculator</a></li>
+                    <li><a href="why-we-win">Why We Win</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>For Businesses</h4>
+                <ul>
+                    <li><a href="find-cpa">Find a CPA</a></li>
+                    <li><a href="guarantee">Our Guarantee</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms-of-service">Terms of Service</a></li>
+                    <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="trust-center">Trust Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a></li>
+                    <li><a href="tel:+16479567290">1.647.956.7290</a></li>
+                    <li><a href="about">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">🍁 CanadaAccountants<span style="color: rgba(255,255,255,0.5)">.app</span></div>
+            <p class="footer-tagline">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
+            <p class="footer-copy">&copy; 2026 CanadaAccountants.app | Technology platform only. CPAs maintain full professional independence.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            navLinks.classList.toggle('mobile-open');
+            toggle.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            navLinks.classList.remove('mobile-open');
+            toggle.classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
