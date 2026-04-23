@@ -422,20 +422,58 @@
     </nav>
 
     <!-- SEO: pre-render meaningful content for Googlebot before JS loads profile data -->
-    <div id="seoPrerender" style="max-width:800px;margin:40px auto;padding:0 20px;">
-        <h1 id="seoTitle" style="color:#fff;font-size:24px;">CPA Profile — CanadaAccountants.app</h1>
-        <p style="color:#ccc;font-size:15px;line-height:1.7;">This is a verified CPA profile on CanadaAccountants.app, Canada's AI-powered CPA-client matching platform. This profile includes the accountant's credentials, specializations, firm information, and an AI-generated professional bio based on their CPA directory registration.</p>
-        <p style="color:#999;font-size:14px;">CanadaAccountants connects businesses with qualified CPAs across Canada. Our directory includes over 40,000 CPAs across 10 provinces.</p>
-        <noscript><p style="color:#ccc;">Enable JavaScript to view the full interactive profile with AI bio, specializations, and contact information.</p></noscript>
+    <div id="seoPrerender" style="max-width:800px;margin:100px auto 40px;padding:0 20px;">
+        <h1 id="seoH1" style="color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:12px;">CPA Profile | CanadaAccountants.app</h1>
+        <p id="seoDetails" style="color:#ccc;font-size:15px;line-height:1.7;margin-bottom:10px;"></p>
+        <p id="seoBio" style="color:#bbb;font-size:14px;line-height:1.7;margin-bottom:16px;"></p>
+        <p style="margin-top:12px;"><a href="/find-cpa" style="color:#2563eb;text-decoration:none;font-size:14px;">Browse all CPAs in our directory &rarr;</a></p>
+        <noscript>
+            <p style="color:#ccc;margin-top:16px;">This is a CPA profile on CanadaAccountants.app, Canada's AI-powered CPA-client matching platform. Enable JavaScript to view the full interactive profile with AI bio, credentials, and contact information.</p>
+            <p style="color:#999;font-size:14px;margin-top:8px;">CanadaAccountants connects businesses with qualified CPAs across Canada. Our directory includes over 40,000 CPAs across 10 provinces.</p>
+        </noscript>
     </div>
     <script>
         (function() {
             var id = new URLSearchParams(window.location.search).get('id');
-            if (id) {
-                document.title = 'CPA Profile #' + id + ' | CanadaAccountants.app';
-                var canon = document.querySelector('link[rel="canonical"]');
-                if (canon) canon.href = 'https://canadaaccountants.app/profile?id=' + id;
-            }
+            if (!id) return;
+            var API = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
+            fetch(API + '/api/profiles/' + encodeURIComponent(id))
+                .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+                .then(function(data) {
+                    var p = data.profile;
+                    if (!p || !p.name) return;
+                    var desig = p.designation || 'CPA';
+                    var title = p.name + ', ' + desig + ' | CanadaAccountants.app';
+                    var loc = [p.city, p.province].filter(Boolean).join(', ');
+                    var descParts = [p.name, desig];
+                    if (p.firm_name) descParts.push('at ' + p.firm_name);
+                    if (loc) descParts.push('in ' + loc);
+                    var desc = descParts.join(' ') + '. View credentials, AI-generated bio, and profile score on CanadaAccountants.app.';
+
+                    document.title = title;
+                    var metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) metaDesc.content = desc;
+                    var ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle) ogTitle.content = title;
+                    var ogDesc = document.querySelector('meta[property="og:description"]');
+                    if (ogDesc) ogDesc.content = desc;
+
+                    var h1 = document.getElementById('seoH1');
+                    if (h1) h1.textContent = p.name + ', ' + desig;
+                    var details = document.getElementById('seoDetails');
+                    if (details) {
+                        var parts = [];
+                        if (p.firm_name) parts.push(p.firm_name);
+                        if (loc) parts.push(loc);
+                        details.textContent = parts.join(' \u2014 ');
+                    }
+                    var bioEl = document.getElementById('seoBio');
+                    if (bioEl && p.bio) {
+                        var bioText = p.bio.length > 200 ? p.bio.substring(0, 200) + '...' : p.bio;
+                        bioEl.textContent = bioText;
+                    }
+                })
+                .catch(function() {});
         })();
     </script>
 
