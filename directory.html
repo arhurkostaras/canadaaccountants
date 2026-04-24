@@ -424,8 +424,12 @@
                 return;
             }
             professionals.forEach(function(p) {
-                var card = document.createElement('div');
+                var card = document.createElement('a');
                 card.className = 'professional-card';
+                card.href = '/profile?id=' + p.id;
+                card.style.textDecoration = 'none';
+                card.style.color = 'inherit';
+                card.style.display = 'block';
                 var html = '<h3>' + escapeHtml(p.full_name || ((p.first_name || '') + ' ' + (p.last_name || '')).trim()) + '</h3>';
                 if (p.firm_name) html += '<div class="firm"><i class="fas fa-building"></i> ' + escapeHtml(p.firm_name) + '</div>';
                 if (p.city) html += '<div class="location"><i class="fas fa-map-marker-alt"></i> ' + escapeHtml(p.city) + ', ' + escapeHtml(p.province) + '</div>';
