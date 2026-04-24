@@ -1,6 +1,6 @@
 // API Configuration for CanadaAccountants
 const API_CONFIG = {
-    BASE_URL: 'https://canadaaccountants-backend-production.up.railway.app',
+    BASE_URL: 'https://canadaaccountants-backend-production-1d8f.up.railway.app',
     ENDPOINTS: {
         HEALTH: '/api/health',
         AUTH: {
