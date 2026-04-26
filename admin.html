@@ -1106,6 +1106,16 @@
             return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
         }
 
+        function getUserType() {
+            const token = getToken();
+            if (!token) return null;
+            try {
+                return JSON.parse(atob(token.split('.')[1])).userType || null;
+            } catch (e) {
+                return null;
+            }
+        }
+
         async function apiFetch(path, options = {}) {
             try {
                 const resp = await fetch(`${API_BASE}${path}`, options);
@@ -1286,16 +1296,26 @@
         }
 
         // ========== AI PROFILE ANALYSIS / UPGRADE GATE ==========
+        // These endpoints are CPA-scoped (require user_type='CPA'). Skip for admin users
+        // — they have no profile, no SME matches, and no upgrade gate to render.
         async function fetchActivityData() {
+            if (getUserType() !== 'CPA') return null;
             return await apiFetch('/api/dashboard/activity', { headers: authHeaders() });
         }
 
         async function fetchMatches() {
+            if (getUserType() !== 'CPA') return null;
             return await apiFetch('/api/dashboard/matches', { headers: authHeaders() });
         }
 
         function renderUpgradeGate(activityData, matchesData) {
             const container = document.getElementById('upgradeContainer');
+            // Hide the upgrade gate entirely when there's no CPA context (admin users).
+            if (!activityData && !matchesData) {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = '';
             const city = (activityData && activityData.city) || (matchesData && matchesData.city) || 'your city';
             const seoScore = (activityData && activityData.seo_score) || 50;
             const grade = seoScore >= 80 ? 'A' : seoScore >= 60 ? 'B' : 'C';
