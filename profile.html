@@ -436,6 +436,16 @@
         (function() {
             var id = new URLSearchParams(window.location.search).get('id');
             if (!id) return;
+            // Inject per-ID canonical so Google doesn't consolidate all
+            // /profile?id=X URLs onto a single canonical. Same architectural
+            // fix shipped for INV and LAW on 2026-04-27.
+            var canon = document.querySelector('link[rel="canonical"]');
+            if (!canon) {
+                canon = document.createElement('link');
+                canon.rel = 'canonical';
+                document.head.appendChild(canon);
+            }
+            canon.href = 'https://canadaaccountants.app/profile?id=' + id;
             var API = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
             fetch(API + '/api/profiles/' + encodeURIComponent(id))
                 .then(function(r) { return r.ok ? r.json() : Promise.reject(); })

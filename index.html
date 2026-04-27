@@ -12,14 +12,94 @@
 <script src="js/api-config.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CanadaAccountants.app - AI-Powered CPA Marketplace | Canada's #1 CPA Directory</title>
+    <title>Find a Verified CPA in Canada | CanadaAccountants.app</title>
+    <meta name="description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified, verified accounting professionals across Canada.">
+    <meta name="keywords" content="CPA marketplace, Canadian CPAs, AI matching, accounting services, business accountants, find a CPA">
+    <link rel="canonical" href="https://canadaaccountants.app/">
+
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1e3a8a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CanadaAccountants">
-    <meta name="description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified, verified accounting professionals across Canada.">
-    <link rel="canonical" href="https://canadaaccountants.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://canadaaccountants.app/">
+    <meta property="og:title" content="Find a Verified CPA in Canada">
+    <meta property="og:description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified, verified accounting professionals across Canada.">
+    <meta property="og:image" content="https://canadaaccountants.app/icon-512.png">
+    <meta property="og:site_name" content="CanadaAccountants">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Find a Verified CPA in Canada | CanadaAccountants.app">
+    <meta name="twitter:description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified accounting professionals.">
+    <meta name="twitter:image" content="https://canadaaccountants.app/icon-512.png">
+
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CanadaAccountants",
+        "url": "https://canadaaccountants.app",
+        "logo": "https://canadaaccountants.app/icon-512.png",
+        "description": "AI-powered CPA marketplace connecting Canadian businesses with qualified, verified accounting professionals across Canada.",
+        "founder": {
+            "@type": "Organization",
+            "name": "CanadaAccountants"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-647-956-7290",
+            "contactType": "customer service",
+            "email": "support@canadaaccountants.app",
+            "areaServed": "CA",
+            "availableLanguage": ["English", "French"]
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Canada"
+        },
+        "sameAs": []
+    }
+    </script>
+
+    <!-- WebSite Schema with SearchAction (enables sitelinks search box in SERPs) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "CanadaAccountants",
+        "url": "https://canadaaccountants.app",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://canadaaccountants.app/find-cpa?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- ProfessionalService schema — explicitly tells Google this is a CPA directory for Canada -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "CanadaAccountants",
+        "url": "https://canadaaccountants.app",
+        "image": "https://canadaaccountants.app/icon-512.png",
+        "description": "Directory of verified Chartered Professional Accountants serving businesses across Canada.",
+        "telephone": "+1-647-956-7290",
+        "priceRange": "Free for clients",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Canada"
+        },
+        "serviceType": "CPA matching and directory"
+    }
+    </script>
 
     <style>
         * {
