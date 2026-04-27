@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+
+# Public pages
+Allow: /index.html
+Allow: /find-cpa.html
+Allow: /join-as-cpa.html
+Allow: /pricing.html
+Allow: /cpa-revenue-calculator.html
+Allow: /contact.html
+Allow: /guarantee.html
+Allow: /why-we-win.html
+Allow: /market-trends-report.html
+Allow: /trust-center.html
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+Allow: /about.html
+Allow: /comparison.html
+Allow: /directory.html
+Allow: /find-cpa-toronto
+Allow: /find-cpa-vancouver
+Allow: /find-cpa-calgary
+Allow: /small-business-accountant
+
+# App pages (disallow)
+Disallow: /cpa-dashboard.html
+Disallow: /admin.html
+Disallow: /admin-dashboard.html
+Disallow: /claim-profile.html
+Disallow: /cpa-verification.html
+Disallow: /register.html
+Disallow: /matched.html
+Disallow: /notifications.html
+Disallow: /data-processing-agreement.html
+
+Sitemap: https://canadaaccountants.app/sitemap.xml
+Sitemap: https://canadaaccountants.app/sitemap-directory.xml
+Sitemap: https://canadaaccountants.app/sitemap_index.xml
