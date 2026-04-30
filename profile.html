@@ -446,44 +446,51 @@
                 document.head.appendChild(canon);
             }
             canon.href = 'https://canadaaccountants.app/profile?id=' + id;
+            // Synchronous XHR — guarantees content in initial render for Googlebot
             var API = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
-            fetch(API + '/api/profiles/' + encodeURIComponent(id))
-                .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-                .then(function(data) {
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', API + '/api/profiles/' + encodeURIComponent(id), false);
+                xhr.timeout = 5000;
+                xhr.send();
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
                     var p = data.profile;
-                    if (!p || !p.name) return;
-                    var desig = p.designation || 'CPA';
-                    var title = p.name + ', ' + desig + ' | CanadaAccountants.app';
-                    var loc = [p.city, p.province].filter(Boolean).join(', ');
-                    var descParts = [p.name, desig];
-                    if (p.firm_name) descParts.push('at ' + p.firm_name);
-                    if (loc) descParts.push('in ' + loc);
-                    var desc = descParts.join(' ') + '. View credentials, AI-generated bio, and profile score on CanadaAccountants.app.';
+                    if (p && p.name) {
+                        var desig = p.designation || 'CPA';
+                        var title = p.name + ', ' + desig + ' | CanadaAccountants.app';
+                        var loc = [p.city, p.province].filter(Boolean).join(', ');
+                        var descParts = [p.name, desig];
+                        if (p.firm_name) descParts.push('at ' + p.firm_name);
+                        if (loc) descParts.push('in ' + loc);
+                        var desc = descParts.join(' ') + '. View credentials, AI-generated bio, and profile score on CanadaAccountants.app.';
 
-                    document.title = title;
-                    var metaDesc = document.querySelector('meta[name="description"]');
-                    if (metaDesc) metaDesc.content = desc;
-                    var ogTitle = document.querySelector('meta[property="og:title"]');
-                    if (ogTitle) ogTitle.content = title;
-                    var ogDesc = document.querySelector('meta[property="og:description"]');
-                    if (ogDesc) ogDesc.content = desc;
+                        document.title = title;
+                        var metaDesc = document.querySelector('meta[name="description"]');
+                        if (metaDesc) metaDesc.content = desc;
+                        var ogTitle = document.querySelector('meta[property="og:title"]');
+                        if (ogTitle) ogTitle.content = title;
+                        var ogDesc = document.querySelector('meta[property="og:description"]');
+                        if (ogDesc) ogDesc.content = desc;
+                        var ogUrl = document.querySelector('meta[property="og:url"]');
+                        if (ogUrl) ogUrl.content = 'https://canadaaccountants.app/profile?id=' + id;
 
-                    var h1 = document.getElementById('seoH1');
-                    if (h1) h1.textContent = p.name + ', ' + desig;
-                    var details = document.getElementById('seoDetails');
-                    if (details) {
-                        var parts = [];
-                        if (p.firm_name) parts.push(p.firm_name);
-                        if (loc) parts.push(loc);
-                        details.textContent = parts.join(' \u2014 ');
+                        var h1 = document.getElementById('seoH1');
+                        if (h1) h1.textContent = p.name + ', ' + desig;
+                        var details = document.getElementById('seoDetails');
+                        if (details) {
+                            var parts = [];
+                            if (p.firm_name) parts.push(p.firm_name);
+                            if (loc) parts.push(loc);
+                            details.textContent = parts.join(' — ');
+                        }
+                        var bioEl = document.getElementById('seoBio');
+                        if (bioEl && p.bio) {
+                            bioEl.textContent = p.bio.length > 200 ? p.bio.substring(0, 200) + '...' : p.bio;
+                        }
                     }
-                    var bioEl = document.getElementById('seoBio');
-                    if (bioEl && p.bio) {
-                        var bioText = p.bio.length > 200 ? p.bio.substring(0, 200) + '...' : p.bio;
-                        bioEl.textContent = bioText;
-                    }
-                })
-                .catch(function() {});
+                }
+            } catch(e) {}
         })();
     </script>
 
