@@ -1118,7 +1118,14 @@
 
         async function apiFetch(path, options = {}) {
             try {
-                const resp = await fetch(`${API_BASE}${path}`, options);
+                // 2026-05-30 APIFETCH-001: merge authHeaders() into request by default so
+                // umbrella-gated calls don't 401 and force logout. Caller-supplied headers
+                // win on conflict (preserves explicit overrides at L1162/L1303/L1308).
+                const merged = {
+                    ...options,
+                    headers: { ...authHeaders(), ...(options.headers || {}) }
+                };
+                const resp = await fetch(`${API_BASE}${path}`, merged);
                 if (resp.status === 401 || resp.status === 403) {
                     showToast('Session expired. Please log in again.', 'error');
                     logout();
