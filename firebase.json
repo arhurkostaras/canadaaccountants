@@ -1,10 +1,18 @@
 {
   "hosting": {
+    "site": "canadaaccountants",
     "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "regex": "^/(?<path>.*)$",
+        "destination": "https://canadaaccountants.app/:path",
+        "type": 301
+      }
     ],
     "rewrites": [
       {
