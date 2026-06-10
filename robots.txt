@@ -24,8 +24,6 @@ Allow: /small-business-accountant
 
 # App pages (disallow)
 Disallow: /cpa-dashboard.html
-Disallow: /admin.html
-Disallow: /admin-dashboard.html
 Disallow: /claim-profile.html
 Disallow: /cpa-verification.html
 Disallow: /register.html
@@ -35,6 +33,4 @@ Disallow: /data-processing-agreement.html
 
 Sitemap: https://canadaaccountants.app/sitemap.xml
 Sitemap: https://canadaaccountants.app/sitemap-directory.xml
-Sitemap: https://canadaaccountants.app/sitemap-profiles-1.xml
-Sitemap: https://canadaaccountants.app/sitemap-profiles-2.xml
 Sitemap: https://canadaaccountants.app/sitemap_index.xml
