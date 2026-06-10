@@ -708,8 +708,39 @@
                         <h2>Take Control of Your Profile</h2>
                         <p>Edit your bio, add specializations, and manage what clients see.</p>
                         <a href="${claimUrl}" class="btn-cta">Take Control <i class="fas fa-arrow-right"></i></a>
+                        ${!p.claimed ? `<div style="margin-top:14px;"><button id="organicClaimBtn" data-pid="${p.id || getProfileId() || ''}" class="btn-cta" style="background:transparent;border:1px solid var(--primary-blue,#2563eb);color:var(--primary-blue,#2563eb);cursor:pointer;">Is this you? Claim this profile</button><div id="organicClaimMsg" style="display:none;margin-top:10px;font-size:14px;color:#10b981;"></div></div>` : ''}
                     </div>
                 </div>`;
+
+            // Organic claim-capture: record the intent (and alert admin) via /api/claim/attempt,
+            // then continue to the claim/verify flow. Capture is gated on HTTP 2xx; on failure the
+            // visitor is still pointed at the Take Control link, never a false "recorded" state.
+            const organicBtn = document.getElementById('organicClaimBtn');
+            if (organicBtn) {
+                organicBtn.addEventListener('click', async function() {
+                    const pid = organicBtn.getAttribute('data-pid') || getProfileId();
+                    const msg = document.getElementById('organicClaimMsg');
+                    organicBtn.disabled = true;
+                    let ok = false;
+                    try {
+                        const r = await fetch('https://canadaaccountants-backend-production-1d8f.up.railway.app/api/claim/attempt', {
+                            method: 'POST', headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ pid: pid, source_page: 'profile' })
+                        });
+                        ok = r.ok;
+                        if (!ok) console.error('claim attempt failed with status', r.status);
+                    } catch (e) {
+                        console.error('claim attempt error', e);
+                        ok = false;
+                    }
+                    if (ok) {
+                        window.location.href = claimUrl;
+                    } else {
+                        organicBtn.disabled = false;
+                        if (msg) { msg.textContent = 'Could not record that. Use the Take Control button above to claim your profile.'; msg.style.color = '#f59e0b'; msg.style.display = 'block'; }
+                    }
+                });
+            }
         }
 
         // Load profile

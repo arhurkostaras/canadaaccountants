@@ -195,10 +195,39 @@
         </div>
     </div>
 
-    <div class="cta-section">
+    <div class="cta-section" id="match-request">
         <h2>Get Matched with a Calgary CPA</h2>
-        <p>Tell us what you need and we'll connect you with the right CPA in Calgary in 90 seconds.</p>
-        <a href="/find-cpa?province=AB" class="cta-button"><i class="fas fa-bolt"></i> Find My CPA</a>
+        <p>Tell us what you need. I personally review every request and introduce you to the right CPA in Calgary. This service is free for clients.</p>
+        <form id="matchForm" style="max-width:560px;margin:22px auto 0;text-align:left;">
+            <div style="display:grid;gap:12px;">
+                <input id="mf-name" type="text" placeholder="Your name" required style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;">
+                <input id="mf-email" type="email" placeholder="Email address" required style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;">
+                <input id="mf-phone" type="tel" placeholder="Phone (optional)" style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;">
+                <select id="mf-service" required style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;background:#fff;">
+                    <option value="">What do you need help with?</option>
+                    <option>Personal tax</option>
+                    <option>Corporate tax</option>
+                    <option>Bookkeeping</option>
+                    <option>Audit &amp; assurance</option>
+                    <option>Advisory / CFO</option>
+                    <option>Other</option>
+                </select>
+                <select id="mf-urgency" style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;background:#fff;">
+                    <option value="urgent">Timing: As soon as possible</option>
+                    <option value="standard">Timing: Within a few weeks</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+                <textarea id="mf-message" rows="3" placeholder="Briefly, what is your situation? (optional)" style="padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px;font-family:inherit;"></textarea>
+                <button type="submit" id="mf-submit" class="cta-button" style="border:none;cursor:pointer;"><i class="fas fa-bolt"></i> Request My Match</button>
+            </div>
+            <p style="font-size:12px;color:#8a8f98;margin-top:13px;line-height:1.6;">By submitting, you agree to our <a href="/privacy-policy">Privacy Policy</a> and consent to being contacted by CanadaAccountants about your CPA match. We use your details only to match you and follow up. You can reply "unsubscribe" at any time. This service is free for clients.</p>
+        </form>
+        <div id="mf-thanks" style="display:none;max-width:560px;margin:22px auto 0;padding:24px;background:#ecfdf5;border:1px solid #059669;border-radius:12px;text-align:center;">
+            <div style="font-size:34px;line-height:1;">&#10003;</div>
+            <h3 style="color:#065f46;margin:8px 0;">Request received</h3>
+            <p style="color:#065f46;margin:0;">Thanks <span id="mf-thanks-name"></span>, I review every request personally and you will hear back within 24 hours. A confirmation is on its way to your inbox.</p>
+        </div>
+        <div id="mf-error" style="display:none;max-width:560px;margin:14px auto 0;padding:13px;background:#fef2f2;border:1px solid #dc2626;border-radius:8px;color:#991b1b;text-align:center;font-size:14px;"></div>
     </div>
 
     <div class="faq-section">
@@ -317,6 +346,57 @@ function escHtml(str) {
     if (!str) return '';
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+
+(function(){
+    var CITY = "Calgary", PROVINCE = "AB";
+    var ENDPOINT = "https://canadaaccountants-backend-production-1d8f.up.railway.app/api/friction/sme-match-request";
+    var form = document.getElementById("matchForm");
+    if (!form) return;
+    form.addEventListener("submit", async function(e){
+        e.preventDefault();
+        var btn = document.getElementById("mf-submit");
+        var errBox = document.getElementById("mf-error");
+        errBox.style.display = "none";
+        var name = document.getElementById("mf-name").value.trim();
+        var email = document.getElementById("mf-email").value.trim();
+        var phone = document.getElementById("mf-phone").value.trim();
+        var service = document.getElementById("mf-service").value;
+        var urgency = document.getElementById("mf-urgency").value;
+        var message = document.getElementById("mf-message").value.trim();
+        if (!name || !email || !service) {
+            errBox.textContent = "Please add your name, email, and what you need help with.";
+            errBox.style.display = "block"; return;
+        }
+        btn.disabled = true; var orig = btn.innerHTML; btn.innerHTML = "Sending...";
+        var payload = {
+            painPoint: service,
+            servicesNeeded: [service],
+            urgencyLevel: urgency || "standard",
+            additionalContext: message,
+            contactInfo: { name: name, email: email, phone: phone, city: CITY, province: PROVINCE, location: CITY + ", " + PROVINCE }
+        };
+        var ok = false;
+        try {
+            var r = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+            ok = r.ok;
+            if (!ok) console.error("match request failed:", r.status);
+        } catch (err) {
+            console.error("match request error:", err);
+            ok = false;
+        }
+        // Success is gated on HTTP 2xx ONLY. A thrown fetch or non-2xx shows the error state.
+        if (ok) {
+            form.style.display = "none";
+            document.getElementById("mf-thanks-name").textContent = name.split(" ")[0];
+            document.getElementById("mf-thanks").style.display = "block";
+        } else {
+            btn.disabled = false; btn.innerHTML = orig;
+            errBox.textContent = "Something went wrong sending your request. Please try again, or email arthur@negotiateandwin.com directly.";
+            errBox.style.display = "block";
+        }
+    });
+})();
 
 loadProfessionals();
 </script>
