@@ -601,7 +601,7 @@
             // Update page title and meta
             document.title = `${p.name} — CPA Profile | CanadaAccountants.app`;
             const metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) metaDesc.content = `View ${p.name}'s CPA profile on CanadaAccountants.app. ${p.designation || 'CPA'} in ${p.city || ''}, ${p.province || 'Canada'}.`;
+            if (metaDesc) metaDesc.content = `View ${p.name}'s CPA profile on CanadaAccountants.app. ${p.designation || 'CPA'} in ${[p.city, p.province].filter(Boolean).join(', ') || 'Canada'}.`;
 
             // Inject JSON-LD
             if (data.structured_data) {
