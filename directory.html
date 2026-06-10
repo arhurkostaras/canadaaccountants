@@ -352,8 +352,13 @@
             document.getElementById('directory-subtitle').textContent = desc;
             document.getElementById('og-title').setAttribute('content', title);
             document.getElementById('og-description').setAttribute('content', desc);
-            var canonicalPath = SITE_URL + '/directory.html?province=' + province;
-            if (desig) canonicalPath += '&designation=' + desig;
+            // P1-D2(a3): consolidate the dynamic directory view onto the static province
+            // aggregation page (the indexable surface, /{province-slug}/). The designation-filtered
+            // dynamic view consolidates to the province page rather than minting a duplicate. Falls
+            // back to the dynamic URL for provinces without a static page.
+            var PROV_SLUG = {ON:'ontario',BC:'british-columbia',AB:'alberta',MB:'manitoba',NB:'new-brunswick',NS:'nova-scotia',QC:'quebec',SK:'saskatchewan'};
+            var slug = province && PROV_SLUG[province];
+            var canonicalPath = slug ? (SITE_URL + '/' + slug + '/') : (SITE_URL + '/directory.html' + (province ? '?province=' + province : ''));
             document.getElementById('canonical-url').setAttribute('href', canonicalPath);
             document.getElementById('og-url').setAttribute('content', canonicalPath);
         }
