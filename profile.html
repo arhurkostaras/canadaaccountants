@@ -409,6 +409,25 @@
     </style>
 </head>
 <body>
+    <script>
+    // Tier-1 consolidation: the legacy /profile?id=N form redirects to the static /profile/{id}/ page
+    // WHEN it exists (HEAD 200). Guarded to the query form only (pathname === '/profile'|'/profile.html')
+    // so the static path-form pages never re-probe or re-redirect (the one loop this design could hide).
+    // Held ids (no static page) HEAD 404 -> stay in-SPA, self-canonical. Auto-scopes to the generated set.
+    (function () {
+      try {
+        var pth = location.pathname.replace(/\/+$/, '');
+        if (pth === '/profile' || pth === '/profile.html') {
+          var id = new URLSearchParams(location.search).get('id');
+          if (id && /^[0-9]+$/.test(id)) {
+            fetch('/profile/' + id + '/', { method: 'HEAD' }).then(function (r) {
+              if (r.ok) location.replace('/profile/' + id + '/');
+            }).catch(function () {});
+          }
+        }
+      } catch (e) {}
+    })();
+    </script>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
