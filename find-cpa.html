@@ -1038,7 +1038,8 @@
                 serviceType: answers[1] || '',
                 specialization: answers[1] || '',
                 businessSize: answers[2] || '',
-                budgetRange: answers[3] || '',
+                budgetRange: '',                  // SEV3-A: questionnaire has no budget question
+                timeline: answers[3] || '',       // step 3 "How soon" (was misfiled into budgetRange)
                 feePreference: answers[4] || '',
                 province: answers[5] || '',
                 meetingPreference: answers[6] || '',
