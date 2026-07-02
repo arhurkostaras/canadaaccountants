@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CanadaAccountants</title>
+    <!-- Welcome emails sent before 2026-07-02 linked /dashboard, which never
+         existed. This page catches those clicks and routes members correctly:
+         logged-in members to their dashboard, everyone else to login. -->
+    <meta name="robots" content="noindex">
+    <script>
+        window.location.replace(localStorage.getItem('token') ? '/cpa-dashboard' : '/cpa-login');
+    </script>
+    <meta http-equiv="refresh" content="1;url=/cpa-login">
+</head>
+<body>
+    <p style="font-family:Arial,sans-serif;padding:40px;text-align:center;">
+        Redirecting to your dashboard... <a href="/cpa-login">Continue to login</a>
+    </p>
+</body>
+</html>

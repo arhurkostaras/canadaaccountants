@@ -174,7 +174,7 @@
         (function() {
             const token = localStorage.getItem('token');
             if (!token) {
-                window.location.href = '/admin.html';
+                window.location.href = '/cpa-login';
             }
         })();
     </script>
@@ -472,7 +472,7 @@
         function logout() {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            window.location.href = '/admin.html';
+            window.location.href = '/cpa-login';
         }
 
         function fmtDate(d) {
