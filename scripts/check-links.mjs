@@ -41,7 +41,7 @@ for (const f of htmlFiles) {
     const href = m[1].trim();
     if (href === '#' || href === '') { failures.push(`${f.replace(ROOT + '/', '')}: dead placeholder href="${href}"`); continue; }
     if (/^(https?:|mailto:|tel:|javascript:|#)/i.test(href)) continue;
-    if (href.includes('${')) continue; // JS-templated href inside inline scripts
+    if (href.includes('${') || href.includes('{{')) continue; // JS/email-templated href
     const clean = href.split('#')[0].split('?')[0];
     if (!clean) continue; // pure query/fragment link, same page
     const target = (clean.startsWith('/') || baseToRoot) ? join(ROOT, clean.replace(/^\//, '')) : resolve(dirname(f), clean);
