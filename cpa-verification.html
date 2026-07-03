@@ -760,7 +760,7 @@
                 
                 return `
                     <div class="detail-card">
-                        <div class="detail-title">👤 CPA Information</div>
+                        <div class="detail-title">CPA Information</div>
                         <div class="detail-value">
                             <strong>Name:</strong> ${cpaData.name}<br>
                             <strong>License:</strong> ${cpaData.licenseNumber}<br>
@@ -770,7 +770,7 @@
                     </div>
                     
                     <div class="detail-card">
-                        <div class="detail-title">📋 License Status</div>
+                        <div class="detail-title">License Status</div>
                         <div class="detail-value ${details.licenseStatus === 'Active' ? 'success' : 'warning'}">
                             <strong>Status:</strong> ${details.licenseStatus}<br>
                             ${details.memberSince ? `<strong>Member Since:</strong> ${details.memberSince}<br>` : ''}
@@ -779,7 +779,7 @@
                     </div>
                     
                     <div class="detail-card">
-                        <div class="detail-title">🎯 Specializations</div>
+                        <div class="detail-title">Specializations</div>
                         <div class="detail-value">
                             ${details.specializations ? 
                                 details.specializations.map(spec => `• ${spec}`).join('<br>') :
@@ -789,7 +789,7 @@
                     </div>
                     
                     <div class="detail-card">
-                        <div class="detail-title">📚 Professional Status</div>
+                        <div class="detail-title">Professional Status</div>
                         <div class="detail-value">
                             ${details.continuingEducation ? `<strong>Education:</strong> ${details.continuingEducation}<br>` : ''}
                             ${details.disciplinaryActions ? `<strong>Disciplinary:</strong> ${details.disciplinaryActions}<br>` : ''}
@@ -798,7 +798,7 @@
                     </div>
                     
                     <div class="detail-card">
-                        <div class="detail-title">🔍 Verification Details</div>
+                        <div class="detail-title">Verification Details</div>
                         <div class="detail-value">
                             <strong>ID:</strong> ${verificationId}<br>
                             <strong>Verified:</strong> ${new Date(timestamp).toLocaleString()}<br>
@@ -828,7 +828,7 @@
 
                 detailsDiv.innerHTML = `
                     <div class="detail-card">
-                        <div class="detail-title">❌ Error</div>
+                        <div class="detail-title">Error</div>
                         <div class="detail-value error">${message}</div>
                     </div>
                 `;

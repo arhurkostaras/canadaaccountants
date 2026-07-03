@@ -74,7 +74,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-body)'Segoe UI', sans-serif;
+            font-family: var(--font-body), sans-serif;
             background: var(--dark-bg);
             color: var(--text-primary);
             line-height: 1.6;
@@ -82,7 +82,7 @@
         }
 
         /* Navigation */
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(241,234,220,0.1); }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(241,234,220,0.1); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
         .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--cream); font-weight: 700; font-size: 1.25rem; }
         .nav-logo .maple { color: var(--primary-blue); font-size: 1.5rem; }
@@ -90,7 +90,7 @@
         .nav-links a { color: rgba(241,234,220,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--cream); }
         .nav-links a.active { color: var(--cream); }
-        .nav-cta { background: var(--cream) !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
+        .nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(201,168,106,0.3); }
         .nav-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; padding: 4px; }
         .nav-links.active { display: flex; }

@@ -128,6 +128,7 @@
    light component tokens. Remove when pages stop using legacy names. */
 .mode-light {
   --dark-bg: var(--bg);
+  --primary-blue: var(--gold-deep);   /* small gold accents must deepen on cream */
   --card-bg: var(--bg-raised);
   --text-primary: var(--text);
   --text-secondary: var(--text-2);

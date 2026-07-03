@@ -83,14 +83,14 @@
     <style>
         :root { --primary-blue: var(--gold); --primary-navy: var(--gold-deep); --accent-green: var(--success); --dark-bg: var(--bg); --card-bg: var(--bg-raised); --text-primary: var(--text); --text-secondary: var(--text-2); --border-color: var(--border); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-body)'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(241,234,220,0.1); }
+        body { font-family: var(--font-body), sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(241,234,220,0.1); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
         .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--cream); font-weight: 700; font-size: 1.25rem; }
         .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
         .nav-links a { color: rgba(241,234,220,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--cream); }
-        .nav-cta { background: var(--cream) !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; }
+        .nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; }
         .nav-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; padding: 4px; }
         .page-header { padding: 120px 24px 60px; background: var(--bg-raised); text-align: center; position: relative; }
         .page-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 20%, rgba(241,234,220,0.1) 0%, transparent 60%); pointer-events: none; }
@@ -120,7 +120,7 @@
         .claimed-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(201,168,106,0.15); color: var(--primary-blue); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; margin-left: 8px; }
         .loading-state { text-align: center; padding: 48px; color: var(--text-secondary); }
         .loading-state i { font-size: 2rem; margin-bottom: 12px; display: block; }
-        .cta-section { background: var(--gold); border-radius: 20px; padding: 48px; text-align: center; margin: 40px 0; }
+        .cta-section { background: var(--bg-raised); border: 1px solid var(--border-strong); border-radius: 20px; padding: 48px; text-align: center; margin: 40px 0; }
         .cta-section h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 12px; }
         .cta-section p { opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
         .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-primary-bg); color: var(--btn-primary-text); padding: 14px 36px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; font-size: 1rem; }

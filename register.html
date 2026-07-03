@@ -60,16 +60,17 @@
         }
 
         .user-type-selector {
-            background: var(--cream);
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
         }
 
         .user-type-selector h2 {
             text-align: center;
-            color: var(--bg-raised);
+            color: var(--text);
             margin-bottom: 2rem;
             font-size: 1.8rem;
         }
@@ -83,23 +84,24 @@
 
         .type-button {
             padding: 1.5rem;
-            border: 2px solid var(--text-2);
+            border: 2px solid var(--border-strong);
             border-radius: 15px;
-            background: var(--cream);
+            background: var(--bg-raised);
+            color: var(--text);
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
         }
 
         .type-button:hover {
-            border-color: var(--gold);
-            background: var(--text);
+            border-color: var(--card-selected-border);
+            background: var(--card-selected-bg);
         }
 
         .type-button.active {
-            border-color: var(--gold);
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold) 100%);
-            color: var(--ink);
+            border-color: var(--card-selected-border);
+            background: var(--card-selected-bg);
+            color: var(--text);
         }
 
         .type-button h3 {
