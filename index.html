@@ -455,17 +455,20 @@
         }
 
         .badge-cert.active {
-            background: var(--success);
+            background: rgba(111,143,106,0.15);
+            border: 1px solid rgba(111,143,106,0.5);
             color: var(--cream);
         }
 
         .badge-cert.progress {
-            background: var(--gold);
-            color: var(--ink);
+            background: rgba(201,168,106,0.15);
+            border: 1px solid rgba(201,168,106,0.5);
+            color: var(--cream);
         }
 
         .badge-cert.rigorous {
-            background: var(--danger);
+            background: rgba(168,86,56,0.2);
+            border: 1px solid rgba(168,86,56,0.6);
             color: var(--cream);
         }
 
@@ -1037,9 +1040,9 @@
                 <li><a href="cpa-login" onclick="closeMobileMenu()">Login</a></li>
 
                 <!-- Mobile CTA Buttons -->
-                <div class="cta-buttons mobile-only">
+                <li class="cta-buttons mobile-only">
                     <a href="join-as-cpa" class="btn btn-primary" onclick="closeMobileMenu()">Apply to Join</a>
-                </div>
+                </li>
             </ul>
 
             <!-- Desktop CTA Buttons -->
@@ -1314,7 +1317,7 @@
         <div style="max-width: 1100px; margin: 0 auto;">
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 40px;">
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For CPAs</h4>
+                    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For CPAs</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="margin-bottom: 10px;"><a href="join-as-cpa" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Join Network</a></li>
                         <li style="margin-bottom: 10px;"><a href="pricing" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Pricing & Algorithm</a></li>
@@ -1323,7 +1326,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For Businesses</h4>
+                    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For Businesses</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="margin-bottom: 10px;"><a href="find-cpa" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Find a CPA</a></li>
                         <li style="margin-bottom: 10px;"><a href="/directory/" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Browse CPA Directory</a></li>
@@ -1332,7 +1335,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Legal</h4>
+                    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Legal</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="margin-bottom: 10px;"><a href="terms-of-service" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Terms of Service</a></li>
                         <li style="margin-bottom: 10px;"><a href="privacy-policy" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a></li>
@@ -1340,7 +1343,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Contact</h4>
+                    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Contact</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="margin-bottom: 10px;"><a href="mailto:support@canadaaccountants.app" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">support@canadaaccountants.app</a></li>
                         <li style="margin-bottom: 10px;"><a href="tel:+16479567290" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">1.647.956.7290</a></li>
