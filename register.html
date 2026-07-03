@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Join CanadaAccountants and connect with clients looking for top CPAs across Canada. Register your accounting practice today.">
-    <title>🍁 Join CanadaAccountants</title>
+    <title> Join CanadaAccountants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <style>
         * {
             margin: 0;
@@ -13,9 +17,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: #333;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--border-strong);
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -29,7 +33,7 @@
         .header {
             text-align: center;
             margin-bottom: 3rem;
-            color: white;
+            color: var(--text);
         }
 
         .header h1 {
@@ -45,27 +49,28 @@
         }
 
         .guarantee-badge {
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            color: white;
+            background: rgba(201,168,106,0.15);
+            color: var(--gold-deep);
+            border: 1px solid rgba(201,168,106,0.4);
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
             display: inline-block;
             margin: 1rem 0;
-            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
 
         .user-type-selector {
-            background: white;
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
         }
 
         .user-type-selector h2 {
             text-align: center;
-            color: #1e3a8a;
+            color: var(--text);
             margin-bottom: 2rem;
             font-size: 1.8rem;
         }
@@ -79,23 +84,24 @@
 
         .type-button {
             padding: 1.5rem;
-            border: 2px solid #e5e7eb;
+            border: 2px solid var(--border-strong);
             border-radius: 15px;
-            background: white;
+            background: var(--bg-raised);
+            color: var(--text);
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
         }
 
         .type-button:hover {
-            border-color: #3b82f6;
-            background: #f8fafc;
+            border-color: var(--card-selected-border);
+            background: var(--card-selected-bg);
         }
 
         .type-button.active {
-            border-color: #3b82f6;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
+            border-color: var(--card-selected-border);
+            background: var(--card-selected-bg);
+            color: var(--text);
         }
 
         .type-button h3 {
@@ -115,7 +121,7 @@
         /* CPA Pricing Styles */
         .cpa-pricing {
             display: none;
-            background: white;
+            background: var(--cream);
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
@@ -128,7 +134,7 @@
         }
 
         .pricing-header h3 {
-            color: #1e3a8a;
+            color: var(--bg-raised);
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
@@ -141,7 +147,7 @@
         }
 
         .pricing-card {
-            border: 2px solid #e5e7eb;
+            border: 2px solid var(--text-2);
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
@@ -150,13 +156,13 @@
         }
 
         .pricing-card:hover {
-            border-color: #3b82f6;
+            border-color: var(--gold);
             transform: translateY(-2px);
         }
 
         .pricing-card.featured {
-            border-color: #3b82f6;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            border-color: var(--gold);
+            background: var(--bg-high);
         }
 
         .pricing-card.featured::before {
@@ -165,8 +171,8 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: #3b82f6;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
             padding: 0.3rem 1rem;
             border-radius: 15px;
             font-size: 0.7rem;
@@ -176,18 +182,18 @@
         .price {
             font-size: 2rem;
             font-weight: 800;
-            color: #1e3a8a;
+            color: var(--bg-raised);
             margin: 1rem 0;
         }
 
         .price-period {
             font-size: 0.8rem;
-            color: #6b7280;
+            color: var(--text-3);
         }
 
         .price-note {
             font-size: 0.7rem;
-            color: #059669;
+            color: var(--success);
             font-weight: 600;
             margin-top: 0.5rem;
         }
@@ -204,22 +210,22 @@
         }
 
         .pricing-features li::before {
-            content: "✓";
-            color: #059669;
+            content: "\2713";
+            color: var(--success);
             font-weight: bold;
             margin-right: 0.5rem;
         }
 
         .revenue-example {
-            background: #f8fafc;
+            background: var(--text);
             border-radius: 12px;
             padding: 1.5rem;
             margin: 1rem 0;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid var(--gold);
         }
 
         .revenue-example h4 {
-            color: #1e3a8a;
+            color: var(--bg-raised);
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
@@ -229,21 +235,21 @@
             justify-content: space-between;
             margin: 0.5rem 0;
             padding: 0.3rem 0;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid var(--text-2);
             font-size: 0.9rem;
         }
 
         .calculation:last-child {
             border-bottom: none;
             font-weight: 600;
-            color: #059669;
+            color: var(--success);
             font-size: 1rem;
         }
 
         /* Registration Form Styles */
         .registration-form {
             display: none;
-            background: white;
+            background: var(--cream);
             border-radius: 20px;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -257,7 +263,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #1e3a8a;
+            color: var(--bg-raised);
         }
 
         .form-group input,
@@ -265,7 +271,7 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e5e7eb;
+            border: 2px solid var(--text-2);
             border-radius: 10px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
@@ -275,7 +281,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: var(--gold);
         }
 
         .form-row {
@@ -287,8 +293,8 @@
         .submit-button {
             width: 100%;
             padding: 1rem 2rem;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            color: white;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
@@ -298,15 +304,15 @@
         }
 
         .submit-button:hover {
-            background: linear-gradient(45deg, #b91c1c, #dc2626);
+            background: var(--btn-primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .back-button {
-            background: #6b7280;
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--text-2);
+            border: 1px solid var(--border-strong);
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
             cursor: pointer;
@@ -315,7 +321,7 @@
         }
 
         .back-button:hover {
-            background: #4b5563;
+            background: var(--text-3);
         }
 
         @media (max-width: 768px) {
@@ -340,14 +346,16 @@
             }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}</style>
 </head>
-<body>
+<body class="mode-light">
     <div class="container">
         <div class="header">
-            <h1>🍁 Join CanadaAccountants</h1>
+            <h1> Join CanadaAccountants</h1>
             <p>Canada's Premier CPA Matching Platform</p>
             <div class="guarantee-badge">
-                🎯 3 qualified business leads in 3 months or 100% money back
+                 3 qualified business leads in 3 months or 100% money back
             </div>
         </div>
 
@@ -356,11 +364,11 @@
             <h2>Choose Your Registration Type</h2>
             <div class="type-buttons">
                 <div class="type-button" onclick="selectUserType('cpa')">
-                    <h3>🏢 I'm a CPA</h3>
+                    <h3> I'm a CPA</h3>
                     <p>Join our exclusive network and get qualified leads</p>
                 </div>
                 <div class="type-button" onclick="selectUserType('business')">
-                    <h3>💼 I'm a Business</h3>
+                    <h3> I'm a Business</h3>
                     <p>Find pre-screened CPAs within 24 hours - Completely FREE</p>
                 </div>
             </div>
@@ -417,7 +425,7 @@
             </div>
 
             <div class="revenue-example">
-                <h4>💰 Revenue Example: Standard Member (3 clients/month)</h4>
+                <h4> Revenue Example: Standard Member (3 clients/month)</h4>
                 <div class="calculation">
                     <span>Monthly subscription:</span>
                     <span>-$199</span>

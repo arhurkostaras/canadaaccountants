@@ -19,6 +19,10 @@
     <meta name="description" content="View this CPA's professional profile on CanadaAccountants.app — AI-generated bio, credentials, and profile score.">
 
     <title>CPA Profile | CanadaAccountants.app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
 
     <!-- Favicon -->
 
@@ -30,29 +34,28 @@
     <meta property="og:site_name" content="CanadaAccountants">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#0B0E12">
 
     <style>
         :root {
-            --primary-blue: #2563eb;
-            --primary-navy: #1e3a8a;
-            --accent-green: #059669;
-            --dark-bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --border-color: #333333;
+            --primary-blue: var(--gold);
+            --primary-navy: var(--gold-deep);
+            --accent-green: var(--success);
+            --dark-bg: var(--bg);
+            --card-bg: var(--bg-raised);
+            --text-primary: var(--text);
+            --text-secondary: var(--text-2);
+            --border-color: var(--border);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: var(--font-body), sans-serif;
             background: var(--dark-bg);
             color: var(--text-primary);
             line-height: 1.6;
@@ -60,22 +63,22 @@
         }
 
         /* Navigation */
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(241,234,220,0.1); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
-        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 700; font-size: 1.25rem; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--cream); font-weight: 700; font-size: 1.25rem; }
         .nav-logo .maple { color: var(--primary-blue); font-size: 1.5rem; }
         .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
-        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: white; }
-        .nav-cta { background: white !important; color: var(--primary-blue) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
-        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
-        .nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        .nav-links a { color: rgba(241,234,220,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700 !important; transition: transform 0.3s, box-shadow 0.3s; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(201,168,106,0.3); }
+        .nav-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; padding: 4px; }
         .nav-links.active { display: flex; }
 
         /* Hero */
         .profile-hero {
             padding: 120px 24px 60px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-navy) 50%, #1e3a5f 100%);
+            background: var(--bg-raised);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -83,37 +86,37 @@
         .profile-hero::before {
             content: '';
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 30% 20%, rgba(241,234,220,0.1) 0%, transparent 60%);
             pointer-events: none;
         }
 
         .profile-avatar {
             width: 100px; height: 100px;
-            background: rgba(255,255,255,0.15);
-            border: 3px solid rgba(255,255,255,0.3);
+            background: rgba(241,234,220,0.15);
+            border: 3px solid rgba(241,234,220,0.3);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 20px;
-            font-size: 2.5rem; color: white;
+            font-size: 2.5rem; color: var(--cream);
         }
 
         .profile-name {
             font-size: 2.5rem;
             font-weight: 900;
-            color: white;
+            color: var(--cream);
             margin-bottom: 8px;
             position: relative;
         }
 
         .profile-firm {
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(241,234,220,0.8);
             margin-bottom: 6px;
         }
 
         .profile-location {
             font-size: 1rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(241,234,220,0.7);
             margin-bottom: 20px;
         }
         .profile-location i { margin-right: 6px; }
@@ -135,21 +138,21 @@
         }
 
         .badge-designation {
-            background: rgba(255,255,255,0.2);
-            color: white;
+            background: rgba(241,234,220,0.2);
+            color: var(--cream);
             backdrop-filter: blur(10px);
         }
 
         .badge-claimed {
-            background: rgba(5, 150, 105, 0.3);
-            color: #6ee7b7;
-            border: 1px solid rgba(5, 150, 105, 0.4);
+            background: rgba(111,143,106, 0.3);
+            color: var(--success);
+            border: 1px solid rgba(111,143,106, 0.4);
         }
 
         .badge-unclaimed {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255,255,255,0.6);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(241,234,220,0.1);
+            color: rgba(241,234,220,0.6);
+            border: 1px solid rgba(241,234,220,0.15);
         }
 
         /* Content sections */
@@ -176,7 +179,7 @@
 
         .section-icon {
             width: 40px; height: 40px;
-            background: rgba(37, 99, 235, 0.15);
+            background: rgba(201,168,106, 0.15);
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             color: var(--primary-blue);
@@ -196,7 +199,7 @@
         .bio-text {
             font-size: 1.05rem;
             line-height: 1.8;
-            color: rgba(255,255,255,0.9);
+            color: rgba(241,234,220,0.9);
         }
 
         .bio-note {
@@ -228,7 +231,7 @@
         .score-circle {
             width: 120px; height: 120px;
             border-radius: 50%;
-            background: conic-gradient(var(--primary-blue) calc(var(--score) * 3.6deg), rgba(255,255,255,0.08) 0deg);
+            background: conic-gradient(var(--primary-blue) calc(var(--score) * 3.6deg), rgba(241,234,220,0.08) 0deg);
             display: flex; align-items: center; justify-content: center;
             position: relative;
         }
@@ -277,7 +280,7 @@
             align-items: center;
             gap: 10px;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(241,234,220,0.05);
             font-size: 0.9rem;
         }
         .recommendation-item:last-child { border-bottom: none; }
@@ -290,9 +293,9 @@
             flex-shrink: 0;
         }
 
-        .rec-high { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-        .rec-medium { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
-        .rec-low { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+        .rec-high { background: rgba(168,86,56, 0.15); color: var(--danger); }
+        .rec-medium { background: rgba(201,168,106, 0.15); color: var(--gold-bright); }
+        .rec-low { background: rgba(224,190,126, 0.15); color: var(--gold-bright); }
 
         .rec-points {
             margin-left: auto;
@@ -310,7 +313,7 @@
 
         /* CTA section */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-navy));
+            background: var(--gold);
             border: none;
             text-align: center;
             padding: 48px 32px;
@@ -323,7 +326,7 @@
         }
 
         .cta-section p {
-            color: rgba(255,255,255,0.85);
+            color: rgba(241,234,220,0.85);
             margin-bottom: 24px;
             font-size: 1.05rem;
         }
@@ -332,7 +335,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: white;
+            background: var(--cream);
             color: var(--primary-navy);
             padding: 14px 36px;
             border-radius: 10px;
@@ -353,25 +356,25 @@
             padding: 200px 24px 100px;
         }
         .page-loading i { font-size: 2rem; color: var(--primary-blue); margin-bottom: 16px; }
-        .page-error i { font-size: 2rem; color: #f87171; margin-bottom: 16px; }
+        .page-error i { font-size: 2rem; color: var(--danger); margin-bottom: 16px; }
         .page-error h2 { margin-bottom: 8px; }
         .page-error p { color: var(--text-secondary); }
         .page-error a { color: var(--primary-blue); }
 
         /* Footer */
-        .footer { background: #111; padding: 60px 24px; border-top: 1px solid var(--border-color); }
+        .footer { background: var(--bg); padding: 60px 24px; border-top: 1px solid var(--border-color); }
         .footer-inner { max-width: 1100px; margin: 0 auto; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
-        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
+        .footer-grid h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
         .footer-grid ul { list-style: none; }
         .footer-grid li { margin-bottom: 10px; }
         .footer-grid a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
-        .footer-grid a:hover { color: white; }
+        .footer-grid a:hover { color: var(--cream); }
         .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 24px; text-align: center; }
         .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
         .footer-logo .maple { color: var(--primary-blue); }
         .footer-tagline { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; }
-        .footer-copy { color: #666; font-size: 0.8rem; }
+        .footer-copy { color: var(--text-3); font-size: 0.8rem; }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -381,11 +384,11 @@
                 position: absolute; top: 64px; left: 0; right: 0;
                 flex-direction: column; align-items: center; gap: 0;
                 background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-                padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 12px 0; border-bottom: 1px solid rgba(241,234,220,0.1);
             }
             .nav-links.active { display: flex; }
             .nav-links a { padding: 14px 24px; width: 100%; text-align: center; font-size: 0.95rem; }
-            .nav-links a:hover { background: rgba(255,255,255,0.05); }
+            .nav-links a:hover { background: rgba(241,234,220,0.05); }
             .nav-cta { margin: 8px 24px; width: auto; padding: 12px 24px; font-size: 0.9rem !important; text-align: center; border-radius: 8px; }
 
             .profile-hero { padding: 100px 20px 48px; }
@@ -404,6 +407,8 @@
             .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}h1,h2,h3,.section-title{font-family:var(--font-display)}</style>
 </head>
 <body>
     <script>
@@ -443,13 +448,13 @@
 
     <!-- SEO: pre-render meaningful content for Googlebot before JS loads profile data -->
     <div id="seoPrerender" style="max-width:800px;margin:100px auto 40px;padding:0 20px;">
-        <h1 id="seoH1" style="color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:12px;">CPA Profile | CanadaAccountants.app</h1>
-        <p id="seoDetails" style="color:#ccc;font-size:15px;line-height:1.7;margin-bottom:10px;"></p>
-        <p id="seoBio" style="color:#bbb;font-size:14px;line-height:1.7;margin-bottom:16px;"></p>
-        <p style="margin-top:12px;"><a href="/find-cpa" style="color:#2563eb;text-decoration:none;font-size:14px;">Browse all CPAs in our directory &rarr;</a></p>
+        <h1 id="seoH1" style="color:var(--text);font-size:1.8rem;font-weight:700;margin-bottom:12px;">CPA Profile | CanadaAccountants.app</h1>
+        <p id="seoDetails" style="color:var(--text-2);font-size:15px;line-height:1.7;margin-bottom:10px;"></p>
+        <p id="seoBio" style="color:var(--text-2);font-size:14px;line-height:1.7;margin-bottom:16px;"></p>
+        <p style="margin-top:12px;"><a href="/find-cpa" style="color:var(--gold);text-decoration:none;font-size:14px;">Browse all CPAs in our directory &rarr;</a></p>
         <noscript>
-            <p style="color:#ccc;margin-top:16px;">This is a CPA profile on CanadaAccountants.app, Canada's AI-powered CPA-client matching platform. Enable JavaScript to view the full interactive profile with AI bio, credentials, and contact information.</p>
-            <p style="color:#999;font-size:14px;margin-top:8px;">CanadaAccountants connects businesses with qualified CPAs across Canada. Our directory includes over 40,000 CPAs across 10 provinces.</p>
+            <p style="color:var(--text-2);margin-top:16px;">This is a CPA profile on CanadaAccountants.app, Canada's AI-powered CPA-client matching platform. Enable JavaScript to view the full interactive profile with AI bio, credentials, and contact information.</p>
+            <p style="color:var(--text-3);font-size:14px;margin-top:8px;">CanadaAccountants connects businesses with qualified CPAs across Canada. Our directory includes over 40,000 CPAs across 10 provinces.</p>
         </noscript>
     </div>
     <script>
@@ -527,7 +532,7 @@
         <div class="footer-inner">
             <div class="footer-grid">
                 <div>
-                    <h4>For CPAs</h4>
+                    <h3>For CPAs</h3>
                     <ul>
                         <li><a href="join-as-cpa">Join Network</a></li>
                         <li><a href="pricing">Pricing &amp; Algorithm</a></li>
@@ -536,7 +541,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>For Businesses</h4>
+                    <h3>For Businesses</h3>
                     <ul>
                         <li><a href="find-cpa">Find a CPA</a></li>
                         <li><a href="guarantee">Our Guarantee</a></li>
@@ -544,7 +549,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Legal</h4>
+                    <h3>Legal</h3>
                     <ul>
                         <li><a href="terms-of-service">Terms of Service</a></li>
                         <li><a href="privacy-policy">Privacy Policy</a></li>
@@ -552,7 +557,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Contact</h4>
+                    <h3>Contact</h3>
                     <ul>
                         <li><a href="mailto:support@canadaaccountants.app">support@canadaaccountants.app</a></li>
                         <li><a href="tel:+16479567290">(647) 956-7290</a></li>
@@ -592,10 +597,10 @@
         }
 
         function getScoreColor(score) {
-            if (score >= 80) return '#059669';
-            if (score >= 60) return '#2563eb';
-            if (score >= 40) return '#f59e0b';
-            return '#ef4444';
+            if (score >= 80) return 'var(--success)';
+            if (score >= 60) return 'var(--gold)';
+            if (score >= 40) return 'var(--gold)';
+            return 'var(--danger)';
         }
 
         function renderError(msg) {
@@ -669,7 +674,7 @@
                 <!-- Profile Hero -->
                 <section class="profile-hero">
                     <div class="profile-avatar">${getInitials(p.name)}</div>
-                    <h1 class="profile-name">${p.name}${p.founding_member ? '<span style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;margin-left:8px;text-transform:uppercase;letter-spacing:0.5px;">Founding Member</span>' : ''}</h1>
+                    <h1 class="profile-name">${p.name}${p.founding_member ? '<span style="display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold));color:var(--text);font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;margin-left:8px;text-transform:uppercase;letter-spacing:0.5px;">Founding Member</span>' : ''}</h1>
                     <p class="profile-firm">${firmDisplay}</p>
                     ${location ? `<p class="profile-location"><i class="fas fa-map-marker-alt"></i> ${location}</p>` : ''}
                     <div class="badges">
@@ -702,7 +707,7 @@
                         </div>
                         <div class="score-section">
                             <div class="score-circle-container">
-                                <div class="score-circle" style="--score: ${seo.score}; background: conic-gradient(${scoreColor} ${seo.score * 3.6}deg, rgba(255,255,255,0.08) 0deg);">
+                                <div class="score-circle" style="--score: ${seo.score}; background: conic-gradient(${scoreColor} ${seo.score * 3.6}deg, rgba(241,234,220,0.08) 0deg);">
                                     <div class="score-circle-inner">
                                         <div class="score-number" style="color: ${scoreColor};">${seo.score}</div>
                                         <div class="score-label">/ 100</div>
@@ -728,7 +733,7 @@
                         <h2>Take Control of Your Profile</h2>
                         <p>Edit your bio, add specializations, and manage what clients see.</p>
                         <a href="${claimUrl}" class="btn-cta">Take Control <i class="fas fa-arrow-right"></i></a>
-                        ${!p.claimed ? `<div style="margin-top:14px;"><button id="organicClaimBtn" data-pid="${p.id || getProfileId() || ''}" class="btn-cta" style="background:transparent;border:1px solid var(--primary-blue,#2563eb);color:var(--primary-blue,#2563eb);cursor:pointer;">Is this you? Claim this profile</button><div id="organicClaimMsg" style="display:none;margin-top:10px;font-size:14px;color:#10b981;"></div></div>` : ''}
+                        ${!p.claimed ? `<div style="margin-top:14px;"><button id="organicClaimBtn" data-pid="${p.id || getProfileId() || ''}" class="btn-cta" style="background:transparent;border:1px solid var(--primary-blue,var(--gold));color:var(--primary-blue,var(--gold));cursor:pointer;">Is this you? Claim this profile</button><div id="organicClaimMsg" style="display:none;margin-top:10px;font-size:14px;color:var(--success);"></div></div>` : ''}
                     </div>
                 </div>`;
 
@@ -757,7 +762,7 @@
                         window.location.href = claimUrl;
                     } else {
                         organicBtn.disabled = false;
-                        if (msg) { msg.textContent = 'Could not record that. Use the Take Control button above to claim your profile.'; msg.style.color = '#f59e0b'; msg.style.display = 'block'; }
+                        if (msg) { msg.textContent = 'Could not record that. Use the Take Control button above to claim your profile.'; msg.style.color = 'var(--gold)'; msg.style.display = 'block'; }
                     }
                 });
             }
@@ -785,10 +790,10 @@
                 if (data.related && data.related.length > 0) {
                     const province = data.profile.province || '';
                     const relatedHtml = data.related.map(r => `
-                        <a href="/profile?id=${r.id}" style="display:block;padding:16px;margin:8px 0;background:rgba(255,255,255,0.03);border:1px solid #333;border-radius:8px;text-decoration:none;color:#fff;transition:border-color 0.3s;">
-                            <strong style="color:#2563eb;">${r.name}</strong>
-                            ${r.firm ? `<span style="color:#999;margin-left:8px;">${r.firm}</span>` : ''}
-                            <br><span style="color:#888;font-size:13px;">${r.designation || ''} ${r.city ? '— ' + r.city + ', ' + r.province : r.province || ''}</span>
+                        <a href="/profile?id=${r.id}" style="display:block;padding:16px;margin:8px 0;background:rgba(241,234,220,0.03);border:1px solid var(--border-strong);border-radius:8px;text-decoration:none;color:var(--text);transition:border-color 0.3s;">
+                            <strong style="color:var(--gold);">${r.name}</strong>
+                            ${r.firm ? `<span style="color:var(--text-3);margin-left:8px;">${r.firm}</span>` : ''}
+                            <br><span style="color:var(--text-3);font-size:13px;">${r.designation || ''} ${r.city ? '— ' + r.city + ', ' + r.province : r.province || ''}</span>
                         </a>
                     `).join('');
 
@@ -797,7 +802,7 @@
                         const section = document.createElement('div');
                         section.style.cssText = 'max-width:800px;margin:40px auto;padding:0 20px;';
                         section.innerHTML = `
-                            <h3 style="color:#fff;font-size:18px;margin:0 0 16px;font-weight:600;">Other Accountants in ${province}</h3>
+                            <h3 style="color:var(--text);font-size:18px;margin:0 0 16px;font-weight:600;">Other Accountants in ${province}</h3>
                             ${relatedHtml}
                         `;
                         container.appendChild(section);

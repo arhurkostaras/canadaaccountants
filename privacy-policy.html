@@ -12,6 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - CanadaAccountants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <!-- Favicon -->
     <meta name="description" content="CanadaAccountants Privacy Policy - PIPEDA compliant data protection practices for Canadian businesses and CPAs. Learn how we protect your personal information.">
 
@@ -47,17 +51,17 @@
 
     <style>
         :root {
-            --brand-primary: #dc2626;
-            --brand-secondary: #1e40af;
-            --brand-accent: #059669;
+            --brand-primary: var(--gold);
+            --brand-secondary: var(--gold-deep);
+            --brand-accent: var(--success);
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
+            background: var(--ink);
         }
 
         .section-card {
-            background: white;
+            background: var(--bg-raised);
             border-radius: 12px;
             padding: 30px;
             margin: 20px 0;
@@ -66,16 +70,16 @@
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 2px solid #0ea5e9;
+            background: var(--bg-high);
+            border: 2px solid var(--gold-deep);
             border-radius: 12px;
             padding: 20px;
             margin: 20px 0;
         }
 
         .contact-box {
-            background: linear-gradient(135deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
             border-radius: 12px;
             padding: 25px;
             text-align: center;
@@ -83,13 +87,13 @@
         }
 
         .contact-box a {
-            color: #fbbf24;
+            color: var(--ink);
             text-decoration: none;
             font-weight: 600;
         }
 
         .contact-box a:hover {
-            color: #f59e0b;
+            color: var(--gold-deep);
             text-decoration: underline;
         }
 
@@ -105,15 +109,15 @@
 
         .privacy-table th,
         .privacy-table td {
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--border);
             padding: 12px;
             text-align: left;
         }
 
         .privacy-table th {
-            background: #f9fafb;
+            background: var(--bg-high);
             font-weight: 600;
-            color: #374151;
+            color: var(--text-2);
         }
 
         .rights-grid {
@@ -124,8 +128,8 @@
         }
 
         .right-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: var(--bg-high);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 20px;
         }
@@ -135,7 +139,7 @@
             font-weight: 700;
             margin-bottom: 10px;
         }
-        .nav-toggle { display: none; background: none; border: none; color: #374151; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+        .nav-toggle { display: none; background: none; border: none; color: var(--text-2); font-size: 1.5rem; cursor: pointer; padding: 4px; }
         .pp-nav-links.active { display: flex !important; }
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
@@ -143,16 +147,18 @@
                 display: none !important;
                 position: absolute; top: 100%; left: 0; right: 0;
                 flex-direction: column; align-items: center; gap: 0;
-                background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                padding: 12px 0; border-bottom: 1px solid #e5e7eb;
+                background: var(--bg-raised); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                padding: 12px 0; border-bottom: 1px solid var(--border);
             }
             .pp-nav-links.active { display: flex !important; }
             .pp-nav-links a { display: block; padding: 14px 24px; text-align: center; font-size: 15px; width: 100%; }
-            .pp-nav-links a:hover { background: #f3f4f6; }
+            .pp-nav-links a:hover { background: var(--bg-high); }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}</style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 mode-light">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg border-b-4 border-red-600" style="position: relative;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
