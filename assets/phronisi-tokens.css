@@ -118,3 +118,19 @@
    rust   on ink      :  3.2:1  ✗ text — pair with cream text on
                                    rust-tinted bg for dark-mode errors
 */
+
+/* --- ACC implementation extension (not from the handoff palette) ---
+   Legacy alias re-resolution. Page :root blocks alias their old variable
+   names to component tokens (--dark-bg: var(--bg), etc.). Custom properties
+   substitute var() where the property is DEFINED, so aliases declared at
+   :root freeze to dark values before body.mode-light can flip them.
+   Re-declaring the aliases under .mode-light makes them resolve against the
+   light component tokens. Remove when pages stop using legacy names. */
+.mode-light {
+  --dark-bg: var(--bg);
+  --card-bg: var(--bg-raised);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-2);
+  --text-muted: var(--text-3);
+  --border-color: var(--border);
+}

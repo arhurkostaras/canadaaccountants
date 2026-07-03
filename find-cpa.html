@@ -35,7 +35,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    $1#0B0E12$2>
+    <meta name="theme-color" content="#0B0E12">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q289QTZ71B"></script>
@@ -922,7 +922,7 @@
           // If both province and service type are pre-filled, skip step 1 and start at step 2
           if (prefilled >= 2 && answers[1] && answers[5]) {
             const banner = document.createElement('div');
-            banner.style.cssText = 'background:rgba(201,168,106,0.08);border-left:4px solid var(--gold);padding:14px 18px;margin:16px auto;max-width:600px;border-radius:6px;font-family:Arial,sans-serif;color:var(--bg-raised);';
+            banner.style.cssText = 'background:rgba(201,168,106,0.08);border-left:4px solid var(--gold);padding:14px 18px;margin:16px auto;max-width:600px;border-radius:6px;font-family:var(--font-body);color:var(--text);';
             banner.innerHTML = '<strong>We\'ve started your search:</strong> ' + answers[1] + ' in ' + answers[5] + '. <a href="?" style="color:var(--gold);">Reset</a>';
             const main = document.querySelector('main') || document.querySelector('.container') || document.body;
             main.insertBefore(banner, main.firstChild);

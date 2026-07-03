@@ -22,7 +22,7 @@
     <link rel="canonical" href="https://canadaaccountants.app/">
 
     <link rel="manifest" href="/manifest.json">
-    $1#0B0E12$2>
+    <meta name="theme-color" content="#0B0E12">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CanadaAccountants">
@@ -113,7 +113,7 @@
         body {
             font-family: var(--font-body);
             line-height: 1.6;
-            color: var(--border-strong);
+            color: var(--text);
             background: var(--bg);
             min-height: 100vh;
         }
@@ -221,13 +221,18 @@
         }
 
         .btn-primary {
-            background: var(--cream);
-            color: var(--bg-raised);
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-primary:hover {
+            background: var(--btn-primary-hover);
         }
 
         .btn-secondary {
-            background: var(--success);
-            color: var(--cream);
+            background: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--btn-secondary-border);
         }
 
         .btn:hover {
@@ -323,16 +328,17 @@
         }
 
         .match-card {
-            background: rgba(241,234,220,0.9);
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 1.5rem;
             margin: 1rem 0;
             text-align: left;
-            color: var(--border-strong);
+            color: var(--text);
         }
 
         .match-score {
-            background: linear-gradient(45deg, var(--bg-raised), var(--gold));
+            background: var(--gold);
             color: var(--ink);
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -381,7 +387,8 @@
 
         /* Security & Trust Badges Section */
         .security-badges {
-            background: var(--text);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
             padding: 4rem 0;
             text-align: center;
         }
@@ -393,14 +400,14 @@
         }
 
         .security-badges h3 {
-            color: var(--bg-raised);
+            color: var(--text);
             font-size: 2rem;
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .security-badges p {
-            color: var(--text-3);
+            color: var(--text-2);
             font-size: 1.1rem;
             margin-bottom: 3rem;
             max-width: 600px;
@@ -416,26 +423,26 @@
         }
 
         .security-badge {
-            background: var(--cream);
+            background: var(--bg-raised);
+            border: 1px solid var(--border);
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
         .security-badge:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--border-strong);
         }
 
         .security-badge h4 {
-            color: var(--bg-raised);
+            color: var(--text);
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .security-badge p {
-            color: var(--text-3);
+            color: var(--text-2);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
@@ -872,7 +879,7 @@
         }
 
         .benefit-item::before {
-            content: "<svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg>";
+            content: "\2713";
             margin-right: 0.5rem;
             flex-shrink: 0;
         }
@@ -1107,7 +1114,7 @@
                 <div class="badges-grid">
                     <!-- Bank-Level Encryption -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
                         <h4>Bank-Level Encryption</h4>
                         <p>256-bit SSL encryption protects all data in transit</p>
                         <div class="badge-cert active">ACTIVE</div>
@@ -1115,7 +1122,7 @@
 
                     <!-- PIPEDA Compliance -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
                         <h4>PIPEDA Compliant</h4>
                         <p>Full compliance with Canadian privacy laws</p>
                         <div class="badge-cert active">CERTIFIED</div>
@@ -1123,7 +1130,7 @@
 
                     <!-- Canadian Data Residency -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></div>
                         <h4>Canadian Data Residency</h4>
                         <p>All data stored exclusively in Canadian data centers</p>
                         <div class="badge-cert active">GUARANTEED</div>
@@ -1131,7 +1138,7 @@
 
                     <!-- SOC 2 In Progress -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg></div>
                         <h4>SOC 2 Type II</h4>
                         <p>Enterprise security audit in progress</p>
                         <div class="badge-cert progress">IN PROGRESS</div>
@@ -1139,7 +1146,7 @@
 
                     <!-- CPA License Verification -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg></div>
                         <h4>CPA License Verification</h4>
                         <p>Direct integration with provincial CPA societies</p>
                         <div class="badge-cert active">INTEGRATED</div>
@@ -1147,7 +1154,7 @@
 
                     <!-- Background Screening -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
+                        <div style="font-size: 2.4rem; margin-bottom: 1rem; color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M2 21a8 8 0 0 1 13.292-6"/><circle cx="10" cy="8" r="5"/><path d="m16 19 2 2 4-4"/></svg></div>
                         <h4>Background Screening</h4>
                         <p>15% CPA acceptance rate ensures quality</p>
                         <div class="badge-cert rigorous">RIGOROUS</div>
@@ -1166,37 +1173,37 @@
             <h2> Platform Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                     <h3>Industry Expertise Matching</h3>
                     <p>Advanced algorithm matches CPAs with proven experience in your specific industry sector</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
                     <h3>Business Size Compatibility</h3>
                     <p>Perfect matches based on your company size, from micro businesses to large enterprises</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></div>
                     <h3>Service Needs Alignment</h3>
                     <p>Precise matching for your specific needs: bookkeeping, tax, audit, or strategic advisory</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
                     <h3>Geographic Proximity</h3>
                     <p>Smart location-based matching considering city, province, and regional accessibility</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <h3>Real-Time Availability</h3>
                     <p>Connect with CPAs who have current capacity and match your timeline requirements</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"></div>
+                    <div class="feature-icon" style="color: var(--gold);"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
                     <h3>Success Rate Optimization</h3>
                     <p>Prioritizes CPAs with outstanding track records and high client satisfaction scores</p>
                 </div>
@@ -1214,7 +1221,7 @@
             <div class="ai-tools-grid">
                 <!-- AI Bio Generator -->
                 <div class="ai-tool-card">
-                    <div class="ai-tool-icon bio">&#9998;</div>
+                    <div class="ai-tool-icon bio"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg></div>
                     <h3>AI Bio Generator</h3>
                     <p>Turn your credentials into a polished, client-ready professional bio in seconds. No writer needed.</p>
                     <div class="ai-tool-preview">
@@ -1225,7 +1232,7 @@
 
                 <!-- Profile SEO Score -->
                 <div class="ai-tool-card">
-                    <div class="ai-tool-icon seo"></div>
+                    <div class="ai-tool-icon seo"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
                     <h3>Profile SEO Score</h3>
                     <p>See exactly how visible you are to potential clients searching for a CPA, with clear steps to improve.</p>
                     <div class="ai-tool-preview">
@@ -1242,7 +1249,7 @@
 
                 <!-- Outreach Email Template -->
                 <div class="ai-tool-card">
-                    <div class="ai-tool-icon email">&#9993;</div>
+                    <div class="ai-tool-icon email"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
                     <h3>Outreach Email Template</h3>
                     <p>Generate a personalized announcement email to let your network know you are accepting new clients.</p>
                     <div class="ai-tool-preview">

@@ -78,7 +78,7 @@ class EmailNotificationService {
                         <li>Verify CPA license with provincial society</li>
                         <li>Schedule interview if qualified</li>
                     </ul>
-                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #3b82f6; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">Review Application</a></p>
+                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #C9A86A; color: #0B0E12; padding: 10px 20px; text-decoration: none; border-radius: 6px;">Review Application</a></p>
                 `,
                 priority: 'high'
             }),
@@ -101,7 +101,7 @@ class EmailNotificationService {
                         <li>Location match: ${data.locationMatches} CPAs in region</li>
                         <li>Service match: ${data.serviceMatches} CPAs with expertise</li>
                     </ul>
-                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #10b981; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">Find Matches</a></p>
+                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #6F8F6A; color: #F1EADC; padding: 10px 20px; text-decoration: none; border-radius: 6px;">Find Matches</a></p>
                 `,
                 priority: 'medium'
             }),
@@ -122,7 +122,7 @@ class EmailNotificationService {
                         <li>Availability match: ${data.availabilityScore}%</li>
                     </ul>
                     <p><strong>Revenue Potential:</strong> ${data.projectedRevenue}</p>
-                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #f59e0b; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">View Match Details</a></p>
+                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #C9A86A; color: #0B0E12; padding: 10px 20px; text-decoration: none; border-radius: 6px;">View Match Details</a></p>
                 `,
                 priority: 'medium'
             }),
@@ -167,7 +167,7 @@ class EmailNotificationService {
                         <li>✅ Document resolution process</li>
                     </ul>
                     <p><strong>SLA:</strong> Respond within 2 hours, resolve within 24 hours</p>
-                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #ef4444; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">HANDLE CLAIM NOW</a></p>
+                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #C9A86A; color: #0B0E12; padding: 10px 20px; text-decoration: none; border-radius: 6px;">HANDLE CLAIM NOW</a></p>
                 `,
                 priority: 'urgent'
             }),
@@ -188,7 +188,7 @@ class EmailNotificationService {
                         <li>Response time: ${data.responseTime}ms</li>
                         <li>Error rate: ${data.errorRate}%</li>
                     </ul>
-                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #8b5cf6; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px;">View System Status</a></p>
+                    <p><a href="https://canadaaccountants.app/admin.html" style="background: #C9A86A; color: #0B0E12; padding: 10px 20px; text-decoration: none; border-radius: 6px;">View System Status</a></p>
                 `,
                 priority: 'high'
             })

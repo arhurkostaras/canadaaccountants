@@ -41,7 +41,7 @@
         .logo {
             font-size: 2rem;
             font-weight: bold;
-            color: var(--cream);
+            color: var(--text);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -77,9 +77,9 @@
             padding: 0.75rem 1rem;
             border: 1px solid var(--border);
             border-radius: 10px;
-            background: var(--border);
+            background: var(--bg-raised);
             backdrop-filter: blur(10px);
-            color: var(--cream);
+            color: var(--text);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -426,11 +426,11 @@
             transform: none;
         }
 
-        .action-btn.blue { background: var(--gold); }
+        .action-btn.blue { background: var(--gold); color: var(--ink); }
         .action-btn.green { background: var(--success); }
-        .action-btn.amber { background: var(--gold); }
+        .action-btn.amber { background: var(--gold); color: var(--ink); }
         .action-btn.red { background: var(--danger); }
-        .action-btn.purple { background: var(--gold); }
+        .action-btn.purple { background: var(--gold); color: var(--ink); }
 
         /* Loading */
         .loading {
@@ -773,9 +773,9 @@
             transform: none;
         }
 
-        .tier-btn.associate { background: var(--gold); }
-        .tier-btn.professional { background: var(--gold); }
-        .tier-btn.enterprise { background: linear-gradient(45deg, var(--gold), var(--danger)); }
+        .tier-btn.associate { background: var(--gold); color: var(--ink); }
+        .tier-btn.professional { background: var(--gold); color: var(--ink); }
+        .tier-btn.enterprise { background: var(--gold-deep); color: var(--cream); }
 
         /* Subscribed state */
         .subscribed-badge {
