@@ -4,7 +4,11 @@
     <meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 CanadaAccountants Analytics Dashboard</title>
+    <title> CanadaAccountants Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <style>
         * {
             margin: 0;
@@ -13,18 +17,18 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-2);
             min-height: 100vh;
             overflow-x: auto;
         }
 
         /* Header */
         .header {
-            background: #1e293b;
+            background: var(--bg-raised);
             padding: 1rem 2rem;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -38,18 +42,18 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .logo::before {
-            content: "🍁";
+            content: "";
             margin-right: 0.5rem;
         }
 
         .live-indicator {
             display: flex;
             align-items: center;
-            background: #059669;
+            background: var(--success);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
@@ -57,7 +61,7 @@
         }
 
         .live-indicator::before {
-            content: "🔴";
+            content: "";
             margin-right: 0.5rem;
             animation: pulse 2s infinite;
         }
@@ -83,8 +87,8 @@
 
         /* Metric Cards */
         .metric-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -99,7 +103,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444);
+            background: linear-gradient(90deg, var(--gold), var(--gold-bright));
             border-radius: 12px 12px 0 0;
         }
 
@@ -127,31 +131,31 @@
         }
 
         .metric-change.positive {
-            background: #059669;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .metric-change.negative {
-            background: #dc2626;
-            color: white;
+            background: var(--danger);
+            color: var(--cream);
         }
 
         .metric-value {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
 
         .metric-label {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
 
         .metric-trend {
             height: 40px;
-            background: #334155;
+            background: var(--bg-high);
             border-radius: 6px;
             position: relative;
             overflow: hidden;
@@ -162,7 +166,7 @@
             bottom: 0;
             left: 0;
             height: 100%;
-            background: linear-gradient(45deg, #3b82f6, #10b981);
+            background: linear-gradient(45deg, var(--gold), var(--success));
             border-radius: 6px;
             transition: width 0.5s ease;
         }
@@ -176,8 +180,8 @@
         }
 
         .chart-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.5rem;
         }
@@ -192,7 +196,7 @@
         .chart-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .chart-controls {
@@ -202,23 +206,23 @@
 
         .chart-btn {
             padding: 0.25rem 0.75rem;
-            background: #334155;
+            background: var(--bg-high);
             border: none;
             border-radius: 6px;
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .chart-btn.active {
-            background: #3b82f6;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .chart-container {
             height: 300px;
-            background: #334155;
+            background: var(--bg-high);
             border-radius: 8px;
             position: relative;
             overflow: hidden;
@@ -234,7 +238,7 @@
             display: flex;
             align-items: center;
             padding: 0.75rem 0;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
         }
 
         .activity-icon {
@@ -249,15 +253,15 @@
         }
 
         .activity-icon.registration {
-            background: #3b82f6;
+            background: var(--gold);
         }
 
         .activity-icon.match {
-            background: #10b981;
+            background: var(--success);
         }
 
         .activity-icon.payment {
-            background: #f59e0b;
+            background: var(--gold);
         }
 
         .activity-content {
@@ -265,13 +269,13 @@
         }
 
         .activity-text {
-            color: #e2e8f0;
+            color: var(--text-2);
             font-size: 0.9rem;
             margin-bottom: 0.25rem;
         }
 
         .activity-time {
-            color: #64748b;
+            color: var(--text-3);
             font-size: 0.75rem;
         }
 
@@ -286,32 +290,32 @@
         .data-table td {
             padding: 0.75rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
         }
 
         .data-table th {
-            background: #334155;
-            color: #f1f5f9;
+            background: var(--bg-high);
+            color: var(--text);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         .data-table td {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
         }
 
         /* Status Indicators */
         .status-online {
-            color: #10b981;
+            color: var(--success);
         }
 
         .status-offline {
-            color: #64748b;
+            color: var(--text-3);
         }
 
         .status-busy {
-            color: #f59e0b;
+            color: var(--gold);
         }
 
         /* Responsive */
@@ -339,8 +343,8 @@
         }
 
         @keyframes glow {
-            from { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
-            to { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+            from { box-shadow: 0 0 5px rgba(201,168,106, 0.5); }
+            to { box-shadow: 0 0 20px rgba(201,168,106, 0.8); }
         }
 
         .new-data {
@@ -358,8 +362,10 @@
             }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}</style>
 </head>
-<body>
+<body class="mode-light">
     <header class="header">
         <div class="logo">CanadaAccountants Analytics</div>
         <div class="live-indicator">LIVE</div>
@@ -371,7 +377,7 @@
             <!-- Active Users -->
             <div class="metric-card updating">
                 <div class="metric-header">
-                    <div class="metric-icon">👥</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+12%</div>
                 </div>
                 <div class="metric-value" id="activeUsers">247</div>
@@ -384,7 +390,7 @@
             <!-- New Registrations -->
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon">📝</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+8%</div>
                 </div>
                 <div class="metric-value" id="newRegistrations">34</div>
@@ -397,7 +403,7 @@
             <!-- Successful Matches -->
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon">🎯</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+15%</div>
                 </div>
                 <div class="metric-value" id="successfulMatches">89</div>
@@ -410,7 +416,7 @@
             <!-- Revenue -->
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon">💰</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+23%</div>
                 </div>
                 <div class="metric-value" id="revenue">$12,450</div>
@@ -423,7 +429,7 @@
             <!-- Algorithm Performance -->
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon">🧠</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+5%</div>
                 </div>
                 <div class="metric-value" id="algorithmSuccess">94.2%</div>
@@ -436,7 +442,7 @@
             <!-- CPA Utilization -->
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon">⚡</div>
+                    <div class="metric-icon"></div>
                     <div class="metric-change positive">+7%</div>
                 </div>
                 <div class="metric-value" id="cpaUtilization">76%</div>
@@ -452,7 +458,7 @@
             <!-- Main Chart -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <div class="chart-title">📈 Platform Activity (Real-time)</div>
+                    <div class="chart-title"> Platform Activity (Real-time)</div>
                     <div class="chart-controls">
                         <button class="chart-btn active">1H</button>
                         <button class="chart-btn">24H</button>
@@ -468,39 +474,39 @@
             <!-- Live Activity Feed -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <div class="chart-title">🔔 Live Activity Feed</div>
+                    <div class="chart-title"> Live Activity Feed</div>
                 </div>
                 <div class="activity-feed" id="activityFeed">
                     <div class="activity-item new-data">
-                        <div class="activity-icon registration">👤</div>
+                        <div class="activity-icon registration"></div>
                         <div class="activity-content">
                             <div class="activity-text">New SME registered: TechStart Solutions</div>
                             <div class="activity-time">2 minutes ago</div>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon match">🎯</div>
+                        <div class="activity-icon match"></div>
                         <div class="activity-content">
                             <div class="activity-text">Match created: Sarah Chen, CPA ↔ Manufacturing Co.</div>
                             <div class="activity-time">5 minutes ago</div>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon payment">💳</div>
+                        <div class="activity-icon payment"></div>
                         <div class="activity-content">
                             <div class="activity-text">Payment received: CPA Premium subscription</div>
                             <div class="activity-time">8 minutes ago</div>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon registration">👤</div>
+                        <div class="activity-icon registration"></div>
                         <div class="activity-content">
                             <div class="activity-text">New CPA application: Michael Thompson</div>
                             <div class="activity-time">12 minutes ago</div>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon match">🎯</div>
+                        <div class="activity-icon match"></div>
                         <div class="activity-content">
                             <div class="activity-text">Algorithm demo completed: 93% match success</div>
                             <div class="activity-time">15 minutes ago</div>
@@ -515,7 +521,7 @@
             <!-- Top Performing CPAs -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <div class="chart-title">🏆 Top Performing CPAs</div>
+                    <div class="chart-title"> Top Performing CPAs</div>
                 </div>
                 <table class="data-table">
                     <thead>
@@ -558,7 +564,7 @@
             <!-- Recent SME Activity -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <div class="chart-title">🏢 Recent SME Activity</div>
+                    <div class="chart-title"> Recent SME Activity</div>
                 </div>
                 <table class="data-table">
                     <thead>
@@ -574,25 +580,25 @@
                             <td>TechStart Solutions</td>
                             <td>Technology</td>
                             <td>Profile Setup</td>
-                            <td><span style="color: #f59e0b;">●</span> High</td>
+                            <td><span style="color: var(--gold);">●</span> High</td>
                         </tr>
                         <tr>
                             <td>Maple Manufacturing</td>
                             <td>Manufacturing</td>
                             <td>Matched</td>
-                            <td><span style="color: #10b981;">●</span> Normal</td>
+                            <td><span style="color: var(--success);">●</span> Normal</td>
                         </tr>
                         <tr>
                             <td>Northern Retail Corp</td>
                             <td>Retail</td>
                             <td>Under Review</td>
-                            <td><span style="color: #ef4444;">●</span> Urgent</td>
+                            <td><span style="color: var(--danger);">●</span> Urgent</td>
                         </tr>
                         <tr>
                             <td>Green Energy Ltd</td>
                             <td>Energy</td>
                             <td>Connected</td>
-                            <td><span style="color: #10b981;">●</span> Normal</td>
+                            <td><span style="color: var(--success);">●</span> Normal</td>
                         </tr>
                     </tbody>
                 </table>
@@ -677,7 +683,7 @@
             const ctx = canvas.getContext('2d');
             
             // Simple line chart simulation
-            ctx.strokeStyle = '#3b82f6';
+            ctx.strokeStyle = 'var(--gold)';
             ctx.lineWidth = 2;
             ctx.beginPath();
             
@@ -698,8 +704,8 @@
             // Add gradient fill
             ctx.globalCompositeOperation = 'destination-over';
             const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
-            gradient.addColorStop(1, 'rgba(59, 130, 246, 0.05)');
+            gradient.addColorStop(0, 'rgba(201,168,106, 0.3)');
+            gradient.addColorStop(1, 'rgba(201,168,106, 0.05)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }

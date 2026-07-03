@@ -13,12 +13,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Verified CPA in Canada | CanadaAccountants.app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <meta name="description" content="AI-powered CPA marketplace connecting Canadian businesses with qualified, verified accounting professionals across Canada.">
     <meta name="keywords" content="CPA marketplace, Canadian CPAs, AI matching, accounting services, business accountants, find a CPA">
     <link rel="canonical" href="https://canadaaccountants.app/">
 
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#1e3a8a">
+    $1#0B0E12$2>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CanadaAccountants">
@@ -107,23 +111,23 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: var(--border-strong);
+            background: var(--bg);
             min-height: 100vh;
         }
 
         /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        nav{
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(241,234,220,0.2);
         }
 
         .nav-container {
@@ -141,12 +145,12 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: white;
+            color: var(--cream);
             text-decoration: none;
         }
 
         .logo::before {
-            content: "🍁";
+            content: "";
             margin-right: 0.5rem;
         }
 
@@ -162,7 +166,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: white;
+            background: var(--cream);
             margin: 3px 0;
             transition: 0.3s;
             border-radius: 2px;
@@ -187,7 +191,7 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--cream);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -196,7 +200,7 @@
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(241,234,220,0.2);
             transform: translateY(-2px);
         }
 
@@ -217,13 +221,13 @@
         }
 
         .btn-primary {
-            background: white;
-            color: #1e3a8a;
+            background: var(--cream);
+            color: var(--bg-raised);
         }
 
         .btn-secondary {
-            background: #28a745;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .btn:hover {
@@ -250,14 +254,14 @@
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            color: white;
+            color: var(--cream);
             margin-bottom: 1.5rem;
             line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(241,234,220,0.9);
             margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
@@ -273,7 +277,7 @@
         }
 
         .matching-demo h2 {
-            color: white;
+            color: var(--cream);
             font-size: 2.5rem;
             margin-bottom: 2rem;
             display: flex;
@@ -283,12 +287,12 @@
         }
 
         .matching-demo h2::before {
-            content: "🎯";
+            content: "";
         }
 
         .demo-button {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
             padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
@@ -305,12 +309,12 @@
         }
 
         .demo-button::before {
-            content: "🚀 ";
+            content: " ";
         }
 
         /* Demo Results */
         .demo-results {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
@@ -319,17 +323,17 @@
         }
 
         .match-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(241,234,220,0.9);
             border-radius: 10px;
             padding: 1.5rem;
             margin: 1rem 0;
             text-align: left;
-            color: #333;
+            color: var(--border-strong);
         }
 
         .match-score {
-            background: linear-gradient(45deg, #1e3a8a, #2563eb);
-            color: white;
+            background: linear-gradient(45deg, var(--bg-raised), var(--gold));
+            color: var(--ink);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             display: inline-block;
@@ -348,36 +352,36 @@
         }
 
         .metric-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             transition: all 0.3s ease;
         }
 
         .metric-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(241,234,220,0.2);
         }
 
         .metric-value {
             font-size: 3rem;
             font-weight: 800;
-            color: white;
+            color: var(--cream);
             margin-bottom: 0.5rem;
         }
 
         .metric-label {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(241,234,220,0.9);
             font-size: 1.1rem;
             font-weight: 500;
         }
 
         /* Security & Trust Badges Section */
         .security-badges {
-            background: #f8fafc;
+            background: var(--text);
             padding: 4rem 0;
             text-align: center;
         }
@@ -389,14 +393,14 @@
         }
 
         .security-badges h3 {
-            color: #1e3a8a;
+            color: var(--bg-raised);
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .security-badges p {
-            color: #6b7280;
+            color: var(--text-3);
             font-size: 1.1rem;
             margin-bottom: 3rem;
             max-width: 600px;
@@ -412,7 +416,7 @@
         }
 
         .security-badge {
-            background: white;
+            background: var(--cream);
             padding: 2rem;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -425,13 +429,13 @@
         }
 
         .security-badge h4 {
-            color: #1e3a8a;
+            color: var(--bg-raised);
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .security-badge p {
-            color: #6b7280;
+            color: var(--text-3);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
@@ -444,26 +448,26 @@
         }
 
         .badge-cert.active {
-            background: #059669;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .badge-cert.progress {
-            background: #3b82f6;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .badge-cert.rigorous {
-            background: #dc2626;
-            color: white;
+            background: var(--danger);
+            color: var(--cream);
         }
 
         .trust-statement {
             margin-top: 3rem;
             padding: 2rem;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: var(--bg);
             border-radius: 15px;
-            color: white;
+            color: var(--cream);
         }
 
         .trust-statement h4 {
@@ -482,16 +486,16 @@
         /* Features Section */
         .features {
             padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             margin: 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
         }
 
         .features h2 {
             text-align: center;
-            color: white;
+            color: var(--cream);
             font-size: 2.5rem;
             margin-bottom: 3rem;
         }
@@ -505,17 +509,17 @@
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(241,234,220,0.2);
         }
 
         .feature-icon {
@@ -524,19 +528,19 @@
         }
 
         .feature-card h3 {
-            color: white;
+            color: var(--cream);
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
 
         .feature-card p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(241,234,220,0.8);
             line-height: 1.6;
         }
 
         /* AI Tools Showcase Section */
         .ai-tools-section {
-            background: #0a0a0a;
+            background: var(--bg);
             padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
@@ -550,7 +554,7 @@
             transform: translateX(-50%);
             width: 80%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, #2563eb, transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .ai-tools-header {
@@ -561,8 +565,8 @@
 
         .ai-tools-header .section-badge {
             display: inline-block;
-            background: rgba(37, 99, 235, 0.15);
-            color: #2563eb;
+            background: rgba(201,168,106, 0.15);
+            color: var(--gold);
             padding: 0.4rem 1.2rem;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -570,12 +574,12 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             margin-bottom: 1rem;
-            border: 1px solid rgba(37, 99, 235, 0.3);
+            border: 1px solid rgba(201,168,106, 0.3);
         }
 
         .ai-tools-header h2 {
-            font-family: 'Roboto', sans-serif;
-            color: #ffffff;
+            font-family: var(--font-body);
+            color: var(--text);
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
@@ -583,20 +587,20 @@
         }
 
         .ai-tools-header h2 span {
-            background: linear-gradient(135deg, #2563eb, #059669);
+            background: linear-gradient(135deg, var(--gold), var(--success));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .ai-tools-header p {
-            color: #9ca3af;
+            color: var(--text-3);
             font-size: 1.1rem;
             line-height: 1.7;
         }
 
         .ai-tools-header p strong {
-            color: #059669;
+            color: var(--success);
         }
 
         .ai-tools-grid {
@@ -608,8 +612,8 @@
         }
 
         .ai-tool-card {
-            background: #1a1a1a;
-            border: 1px solid #333333;
+            background: var(--bg-raised);
+            border: 1px solid var(--border-strong);
             border-radius: 16px;
             padding: 2rem;
             position: relative;
@@ -624,15 +628,15 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            background: linear-gradient(90deg, var(--bg-raised), var(--gold));
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
         .ai-tool-card:hover {
             transform: translateY(-6px);
-            border-color: #2563eb;
-            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15), 0 0 30px rgba(37, 99, 235, 0.05);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(201,168,106, 0.15), 0 0 30px rgba(201,168,106, 0.05);
         }
 
         .ai-tool-card:hover::before {
@@ -651,38 +655,38 @@
         }
 
         .ai-tool-icon.bio {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(30, 58, 138, 0.2));
-            border: 1px solid rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, rgba(201,168,106, 0.2), rgba(201,168,106, 0.2));
+            border: 1px solid rgba(201,168,106, 0.3);
         }
 
         .ai-tool-icon.seo {
-            background: linear-gradient(135deg, rgba(5, 150, 105, 0.2), rgba(4, 120, 87, 0.2));
-            border: 1px solid rgba(5, 150, 105, 0.3);
+            background: linear-gradient(135deg, rgba(111,143,106, 0.2), rgba(4, 120, 87, 0.2));
+            border: 1px solid rgba(111,143,106, 0.3);
         }
 
         .ai-tool-icon.email {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(5, 150, 105, 0.2));
-            border: 1px solid rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, rgba(201,168,106, 0.2), rgba(111,143,106, 0.2));
+            border: 1px solid rgba(201,168,106, 0.3);
         }
 
         .ai-tool-card h3 {
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            font-family: var(--font-body);
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
         .ai-tool-card > p {
-            color: #9ca3af;
+            color: var(--text-3);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
         .ai-tool-preview {
-            background: #111111;
-            border: 1px solid #292929;
+            background: var(--bg);
+            border: 1px solid var(--bg-high);
             border-radius: 10px;
             padding: 1.25rem;
             position: relative;
@@ -692,8 +696,8 @@
             position: absolute;
             top: -10px;
             left: 12px;
-            background: #1a1a1a;
-            color: #6b7280;
+            background: var(--bg-raised);
+            color: var(--text-3);
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -702,14 +706,14 @@
         }
 
         .ai-tool-preview p {
-            color: #d1d5db;
+            color: var(--text-2);
             font-size: 0.85rem;
             line-height: 1.6;
             font-style: italic;
         }
 
         .ai-tool-preview .highlight {
-            color: #2563eb;
+            color: var(--gold);
             font-weight: 600;
             font-style: normal;
         }
@@ -724,7 +728,7 @@
         .ai-tool-preview .score-track {
             flex: 1;
             height: 8px;
-            background: #292929;
+            background: var(--bg-high);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -732,13 +736,13 @@
         .ai-tool-preview .score-fill {
             height: 100%;
             border-radius: 4px;
-            background: linear-gradient(90deg, #dc2626, #f59e0b, #059669);
+            background: linear-gradient(90deg, var(--danger), var(--gold), var(--success));
             width: 72%;
             transition: width 1s ease;
         }
 
         .ai-tool-preview .score-value {
-            color: #f59e0b;
+            color: var(--gold);
             font-weight: 700;
             font-size: 1.1rem;
             font-style: normal;
@@ -749,7 +753,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #9ca3af;
+            color: var(--text-3);
             font-size: 0.8rem;
             margin-top: 0.4rem;
             font-style: normal;
@@ -759,27 +763,27 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #059669;
+            background: var(--success);
             flex-shrink: 0;
         }
 
         .ai-tool-preview .email-subject {
-            color: #d1d5db;
+            color: var(--text-2);
             font-size: 0.85rem;
             font-style: normal;
             margin-bottom: 0.5rem;
         }
 
         .ai-tool-preview .email-subject strong {
-            color: #2563eb;
+            color: var(--gold);
         }
 
         .ai-tool-preview .email-body {
-            color: #9ca3af;
+            color: var(--text-3);
             font-size: 0.8rem;
             line-height: 1.5;
             font-style: normal;
-            border-left: 2px solid #333;
+            border-left: 2px solid var(--border-strong);
             padding-left: 0.75rem;
         }
 
@@ -789,8 +793,8 @@
 
         .ai-tools-cta .btn-ai-cta {
             display: inline-block;
-            background: linear-gradient(135deg, #2563eb, #1e3a8a);
-            color: #ffffff;
+            background: var(--gold);
+            color: var(--ink);
             padding: 1rem 2.5rem;
             border-radius: 50px;
             font-size: 1.05rem;
@@ -799,16 +803,16 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 20px rgba(201,168,106, 0.3);
         }
 
         .ai-tools-cta .btn-ai-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.45);
+            box-shadow: 0 8px 30px rgba(201,168,106, 0.45);
         }
 
         .ai-tools-cta p {
-            color: #6b7280;
+            color: var(--text-3);
             font-size: 0.85rem;
             margin-top: 0.75rem;
         }
@@ -833,7 +837,7 @@
 
         .benefits h2 {
             text-align: center;
-            color: white;
+            color: var(--cream);
             font-size: 2.5rem;
             margin-bottom: 3rem;
         }
@@ -845,15 +849,15 @@
         }
 
         .benefit-list {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
         }
 
         .benefit-list h3 {
-            color: white;
+            color: var(--cream);
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-align: center;
@@ -863,12 +867,12 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(241,234,220,0.9);
             font-size: 1rem;
         }
 
         .benefit-item::before {
-            content: "✅";
+            content: "<svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg>";
             margin-right: 0.5rem;
             flex-shrink: 0;
         }
@@ -877,21 +881,21 @@
         .guarantee {
             text-align: center;
             padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             margin: 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
         }
 
         .guarantee h2 {
-            color: white;
+            color: var(--cream);
             font-size: 2rem;
             margin-bottom: 1rem;
         }
 
         .guarantee p {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(241,234,220,0.9);
             font-size: 1.2rem;
         }
 
@@ -899,21 +903,21 @@
         .contact {
             text-align: center;
             padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
             margin: 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(241,234,220,0.2);
         }
 
         .contact h2 {
-            color: white;
+            color: var(--cream);
             font-size: 2.5rem;
             margin-bottom: 2rem;
         }
 
         .contact-info {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(241,234,220,0.9);
             font-size: 1.1rem;
             margin-bottom: 2rem;
         }
@@ -930,7 +934,7 @@
                 right: -100%;
                 width: 100%;
                 height: 100vh;
-                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+                background: var(--bg);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -948,14 +952,14 @@
 
             .nav-links a {
                 font-size: 1.5rem;
-                color: white;
+                color: var(--cream);
                 text-decoration: none;
                 transition: all 0.3s ease;
             }
 
             .nav-links a:hover {
                 transform: scale(1.1);
-                color: #ffd700;
+                color: var(--gold-bright);
             }
 
             .cta-buttons {
@@ -1002,6 +1006,8 @@
             }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}h1,h2,h3,.section-title{font-family:var(--font-display)}</style>
 </head>
 <body>
     <nav>
@@ -1050,16 +1056,16 @@
 <!-- Vision Section -->
 <section id="vision" class="vision-section">
     <div class="container">
-        <h2 style="color: white; font-weight: bold; font-size: 2.5rem;">Our Vision</h2>
+        <h2 style="color: var(--cream); font-weight: bold; font-size: 2.5rem;">Our Vision</h2>
         <div class="vision-content">
-            <p style="color: white; font-weight: bold; font-size: 1.2rem; line-height: 1.6;">To revolutionize how Canadian businesses connect with qualified CPAs through innovative matching technology, creating seamless partnerships that drive growth and success across the nation.</p>
-            <p style="color: white; font-weight: bold; font-size: 1.2rem; line-height: 1.6;">We envision a future where every SME has access to the perfect CPA match, fostering stronger business relationships and contributing to Canada's economic prosperity.</p>
+            <p style="color: var(--cream); font-weight: bold; font-size: 1.2rem; line-height: 1.6;">To revolutionize how Canadian businesses connect with qualified CPAs through innovative matching technology, creating seamless partnerships that drive growth and success across the nation.</p>
+            <p style="color: var(--cream); font-weight: bold; font-size: 1.2rem; line-height: 1.6;">We envision a future where every SME has access to the perfect CPA match, fostering stronger business relationships and contributing to Canada's economic prosperity.</p>
         </div>
     </div>
 </section>
         <section class="matching-demo" id="matching">
             <h2>Enhanced Matching Algorithm Demo</h2>
-            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">
+            <p style="color: rgba(241,234,220,0.9); margin-bottom: 2rem;">
                 Our AI-powered matching system analyzes 6 key factors to find perfect CPA-SME matches
             </p>
             
@@ -1068,7 +1074,7 @@
             </button>
             
             <div class="demo-results" id="demoResults">
-                <h3 style="color: white; margin-bottom: 1rem;">🎉 Top CPA Matches Found!</h3>
+                <h3 style="color: var(--cream); margin-bottom: 1rem;"> Top CPA Matches Found!</h3>
                 <div id="matchResults"></div>
             </div>
         </section>
@@ -1095,13 +1101,13 @@
         <!-- Security & Trust Badges Section -->
         <section class="security-badges">
             <div class="container">
-                <h3>🔒 Enterprise-Grade Security & Compliance</h3>
+                <h3> Enterprise-Grade Security & Compliance</h3>
                 <p>Your data is protected by the same security standards trusted by Canada's largest financial institutions</p>
                 
                 <div class="badges-grid">
                     <!-- Bank-Level Encryption -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
                         <h4>Bank-Level Encryption</h4>
                         <p>256-bit SSL encryption protects all data in transit</p>
                         <div class="badge-cert active">ACTIVE</div>
@@ -1109,7 +1115,7 @@
 
                     <!-- PIPEDA Compliance -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🍁</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
                         <h4>PIPEDA Compliant</h4>
                         <p>Full compliance with Canadian privacy laws</p>
                         <div class="badge-cert active">CERTIFIED</div>
@@ -1117,7 +1123,7 @@
 
                     <!-- Canadian Data Residency -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🏢</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
                         <h4>Canadian Data Residency</h4>
                         <p>All data stored exclusively in Canadian data centers</p>
                         <div class="badge-cert active">GUARANTEED</div>
@@ -1125,7 +1131,7 @@
 
                     <!-- SOC 2 In Progress -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
                         <h4>SOC 2 Type II</h4>
                         <p>Enterprise security audit in progress</p>
                         <div class="badge-cert progress">IN PROGRESS</div>
@@ -1133,7 +1139,7 @@
 
                     <!-- CPA License Verification -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg></div>
                         <h4>CPA License Verification</h4>
                         <p>Direct integration with provincial CPA societies</p>
                         <div class="badge-cert active">INTEGRATED</div>
@@ -1141,7 +1147,7 @@
 
                     <!-- Background Screening -->
                     <div class="security-badge">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;"></div>
                         <h4>Background Screening</h4>
                         <p>15% CPA acceptance rate ensures quality</p>
                         <div class="badge-cert rigorous">RIGOROUS</div>
@@ -1150,47 +1156,47 @@
 
                 <!-- Trust Statement -->
                 <div class="trust-statement">
-                    <h4>🛡️ Your Trust is Our Foundation</h4>
+                    <h4> Your Trust is Our Foundation</h4>
                     <p>We understand you're trusting us with sensitive financial information. That's why we've implemented enterprise-grade security measures typically reserved for Canada's largest banks and financial institutions.</p>
                 </div>
             </div>
         </section>
 
         <section class="features" id="features">
-            <h2>🚀 Platform Features</h2>
+            <h2> Platform Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
+                    <div class="feature-icon"></div>
                     <h3>Industry Expertise Matching</h3>
                     <p>Advanced algorithm matches CPAs with proven experience in your specific industry sector</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
+                    <div class="feature-icon"></div>
                     <h3>Business Size Compatibility</h3>
                     <p>Perfect matches based on your company size, from micro businesses to large enterprises</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
+                    <div class="feature-icon"></div>
                     <h3>Service Needs Alignment</h3>
                     <p>Precise matching for your specific needs: bookkeeping, tax, audit, or strategic advisory</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📍</div>
+                    <div class="feature-icon"></div>
                     <h3>Geographic Proximity</h3>
                     <p>Smart location-based matching considering city, province, and regional accessibility</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
+                    <div class="feature-icon"></div>
                     <h3>Real-Time Availability</h3>
                     <p>Connect with CPAs who have current capacity and match your timeline requirements</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
+                    <div class="feature-icon"></div>
                     <h3>Success Rate Optimization</h3>
                     <p>Prioritizes CPAs with outstanding track records and high client satisfaction scores</p>
                 </div>
@@ -1219,7 +1225,7 @@
 
                 <!-- Profile SEO Score -->
                 <div class="ai-tool-card">
-                    <div class="ai-tool-icon seo">&#128200;</div>
+                    <div class="ai-tool-icon seo"></div>
                     <h3>Profile SEO Score</h3>
                     <p>See exactly how visible you are to potential clients searching for a CPA, with clear steps to improve.</p>
                     <div class="ai-tool-preview">
@@ -1254,10 +1260,10 @@
         </section>
 
         <section class="benefits" id="benefits">
-            <h2>💼 Why Choose CanadaAccountants</h2>
+            <h2> Why Choose CanadaAccountants</h2>
             <div class="benefits-grid">
                 <div class="benefit-list">
-                    <h3>🏆 For SMEs</h3>
+                    <h3> For SMEs</h3>
                     <div class="benefit-item">Pre-qualified leads only - no time wasted</div>
                     <div class="benefit-item">24-hour average connection time</div>
                     <div class="benefit-item">Industry-specialized CPA matching</div>
@@ -1266,7 +1272,7 @@
                 </div>
                 
                 <div class="benefit-list">
-                    <h3>💰 For CPAs</h3>
+                    <h3> For CPAs</h3>
                     <div class="benefit-item">$47K+ additional annual revenue potential</div>
                     <div class="benefit-item">Exclusive territory protection and rigorous screening (15% acceptance rate)</div>
                     <div class="benefit-item">High-quality SME clients pre-matched to your expertise</div>
@@ -1277,17 +1283,17 @@
         </section>
 
         <section class="guarantee" id="guarantee">
-            <h2>🎯 Our Guarantee</h2>
+            <h2> Our Guarantee</h2>
             <p>3 qualified leads in 3 months or 100% money back</p>
         </section>
 
         <section class="contact" id="contact">
-            <h2>📞 Ready to Get Started?</h2>
+            <h2> Ready to Get Started?</h2>
             <div class="contact-info">
                 <p><strong>Arthur Kostaras, CPA, CMA, CF</strong></p>
-                <p>📧 support@canadaaccountants.app</p>
-                <p>📱 (647) 956-7290</p>
-                <p>🏢 Toronto, Ontario, Canada</p>
+                <p> support@canadaaccountants.app</p>
+                <p> (647) 956-7290</p>
+                <p> Toronto, Ontario, Canada</p>
             </div>
             <div class="cta-buttons">
                 <a href="join-as-cpa" class="btn btn-primary">Apply to Join</a>
@@ -1297,49 +1303,49 @@
     </main>
 
     <!-- Footer -->
-    <footer style="background: #111; padding: 60px 24px; border-top: 1px solid #333;">
+    <footer style="background: var(--bg); padding: 60px 24px; border-top: 1px solid var(--border-strong);">
         <div style="max-width: 1100px; margin: 0 auto;">
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-bottom: 40px;">
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff;">For CPAs</h4>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For CPAs</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;"><a href="join-as-cpa" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Join Network</a></li>
-                        <li style="margin-bottom: 10px;"><a href="pricing" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Pricing & Algorithm</a></li>
-                        <li style="margin-bottom: 10px;"><a href="cpa-revenue-calculator" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Revenue Calculator</a></li>
-                        <li style="margin-bottom: 10px;"><a href="why-we-win" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Why We Win</a></li>
+                        <li style="margin-bottom: 10px;"><a href="join-as-cpa" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Join Network</a></li>
+                        <li style="margin-bottom: 10px;"><a href="pricing" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Pricing & Algorithm</a></li>
+                        <li style="margin-bottom: 10px;"><a href="cpa-revenue-calculator" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Revenue Calculator</a></li>
+                        <li style="margin-bottom: 10px;"><a href="why-we-win" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Why We Win</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff;">For Businesses</h4>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">For Businesses</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;"><a href="find-cpa" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Find a CPA</a></li>
-                        <li style="margin-bottom: 10px;"><a href="/directory/" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Browse CPA Directory</a></li>
-                        <li style="margin-bottom: 10px;"><a href="guarantee" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Our Guarantee</a></li>
-                        <li style="margin-bottom: 10px;"><a href="contact" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Contact Us</a></li>
+                        <li style="margin-bottom: 10px;"><a href="find-cpa" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Find a CPA</a></li>
+                        <li style="margin-bottom: 10px;"><a href="/directory/" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Browse CPA Directory</a></li>
+                        <li style="margin-bottom: 10px;"><a href="guarantee" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Our Guarantee</a></li>
+                        <li style="margin-bottom: 10px;"><a href="contact" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff;">Legal</h4>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Legal</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;"><a href="terms-of-service" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Terms of Service</a></li>
-                        <li style="margin-bottom: 10px;"><a href="privacy-policy" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a></li>
-                        <li style="margin-bottom: 10px;"><a href="trust-center" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">Trust Center</a></li>
+                        <li style="margin-bottom: 10px;"><a href="terms-of-service" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Terms of Service</a></li>
+                        <li style="margin-bottom: 10px;"><a href="privacy-policy" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Privacy Policy</a></li>
+                        <li style="margin-bottom: 10px;"><a href="trust-center" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">Trust Center</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff;">Contact</h4>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">Contact</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;"><a href="mailto:support@canadaaccountants.app" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">support@canadaaccountants.app</a></li>
-                        <li style="margin-bottom: 10px;"><a href="tel:+16479567290" style="color: #a0a0a0; text-decoration: none; font-size: 0.85rem;">1.647.956.7290</a></li>
+                        <li style="margin-bottom: 10px;"><a href="mailto:support@canadaaccountants.app" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">support@canadaaccountants.app</a></li>
+                        <li style="margin-bottom: 10px;"><a href="tel:+16479567290" style="color: var(--text-2); text-decoration: none; font-size: 0.85rem;">1.647.956.7290</a></li>
                     </ul>
                 </div>
             </div>
-            <div style="border-top: 1px solid #333; padding-top: 24px; text-align: center;">
-                <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: #fff;">
-                    <i class="fas fa-maple-leaf" style="color: #2563eb;"></i> CanadaAccountants<span style="color: #2563eb;">.app</span>
+            <div style="border-top: 1px solid var(--border-strong); padding-top: 24px; text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--text);">
+                    <i class="fas fa-maple-leaf" style="color: var(--gold);"></i> CanadaAccountants<span style="color: var(--gold);">.app</span>
                 </div>
-                <p style="color: #a0a0a0; margin-bottom: 16px; font-size: 0.9rem;">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
-                <p style="color: #666; font-size: 0.8rem;">&copy; 2026 CanadaAccountants.app | Technology platform only. CPAs maintain full professional independence.</p>
+                <p style="color: var(--text-2); margin-bottom: 16px; font-size: 0.9rem;">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
+                <p style="color: var(--text-3); font-size: 0.8rem;">&copy; 2026 CanadaAccountants.app | Technology platform only. CPAs maintain full professional independence.</p>
             </div>
         </div>
     </footer>
@@ -1352,7 +1358,7 @@
             
             // Show loading
             demoResults.style.display = 'block';
-            matchResults.innerHTML = '<p style="text-align: center; color: white;">🔄 Analyzing perfect matches...</p>';
+            matchResults.innerHTML = '<p style="text-align: center; color: var(--cream);">🔄 Analyzing perfect matches...</p>';
             
             setTimeout(() => {
                 // Sample demo results

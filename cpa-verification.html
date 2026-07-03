@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Verify your CPA designation with CanadaAccountants. Our verification system confirms your credentials across all Canadian provincial CPA bodies.">
-    <title>🛡️ CPA Verification System - CanadaAccountants</title>
+    <title> CPA Verification System - CanadaAccountants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <style>
         * {
             margin: 0;
@@ -13,9 +17,9 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-2);
             min-height: 100vh;
             padding: 2rem;
         }
@@ -26,8 +30,8 @@
         }
 
         .header {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -36,7 +40,7 @@
 
         .header h1 {
             font-size: 2.5rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -45,11 +49,11 @@
         }
 
         .header h1::before {
-            content: "🛡️";
+            content: "";
         }
 
         .header p {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
@@ -57,8 +61,8 @@
 
         /* Verification Form */
         .verification-form {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -66,7 +70,7 @@
 
         .form-title {
             font-size: 1.5rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -74,7 +78,7 @@
         }
 
         .form-title::before {
-            content: "🔍";
+            content: "";
         }
 
         .form-grid {
@@ -90,7 +94,7 @@
         }
 
         .form-label {
-            color: #f1f5f9;
+            color: var(--text);
             font-weight: 600;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
@@ -98,23 +102,23 @@
 
         .form-input, .form-select {
             padding: 0.75rem 1rem;
-            background: #374151;
-            border: 1px solid #4b5563;
+            background: var(--bg-high);
+            border: 1px solid var(--text-3);
             border-radius: 8px;
-            color: #f9fafb;
+            color: var(--text);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-input:focus, .form-select:focus {
             outline: none;
-            border-color: #3b82f6;
-            background: #1f2937;
+            border-color: var(--gold);
+            background: var(--bg-raised);
         }
 
         .verify-btn {
-            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
             padding: 1rem 2rem;
             border: none;
             border-radius: 8px;
@@ -131,7 +135,7 @@
 
         .verify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(201,168,106, 0.4);
         }
 
         .verify-btn:disabled {
@@ -141,13 +145,13 @@
         }
 
         .verify-btn::before {
-            content: "🔍";
+            content: "";
         }
 
         /* Verification Results */
         .verification-results {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -188,30 +192,30 @@
         }
 
         .result-status.verified {
-            background: #059669;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .result-status.pending {
-            background: #f59e0b;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .result-status.failed {
-            background: #dc2626;
-            color: white;
+            background: var(--danger);
+            color: var(--cream);
         }
 
         .result-status.verified::before {
-            content: "✅";
+            content: "<svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg>";
         }
 
         .result-status.pending::before {
-            content: "⏳";
+            content: "";
         }
 
         .result-status.failed::before {
-            content: "❌";
+            content: "<svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>";
         }
 
         .verification-details {
@@ -221,13 +225,13 @@
         }
 
         .detail-card {
-            background: #374151;
+            background: var(--bg-high);
             border-radius: 8px;
             padding: 1.5rem;
         }
 
         .detail-title {
-            color: #f1f5f9;
+            color: var(--text);
             font-weight: 600;
             margin-bottom: 0.75rem;
             display: flex;
@@ -236,27 +240,27 @@
         }
 
         .detail-value {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
             line-height: 1.5;
         }
 
         .detail-value.success {
-            color: #10b981;
+            color: var(--success);
         }
 
         .detail-value.warning {
-            color: #f59e0b;
+            color: var(--gold);
         }
 
         .detail-value.error {
-            color: #ef4444;
+            color: var(--danger);
         }
 
         /* Provincial CPA Society Integration */
         .society-info {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -264,7 +268,7 @@
 
         .society-title {
             font-size: 1.5rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -272,7 +276,7 @@
         }
 
         .society-title::before {
-            content: "🍁";
+            content: "";
         }
 
         .society-grid {
@@ -282,7 +286,7 @@
         }
 
         .society-card {
-            background: #374151;
+            background: var(--bg-high);
             border-radius: 8px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -290,17 +294,17 @@
 
         .society-card:hover {
             transform: translateY(-2px);
-            background: #4b5563;
+            background: var(--text-3);
         }
 
         .society-name {
             font-weight: 600;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
 
         .society-details {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
             line-height: 1.5;
         }
@@ -317,31 +321,31 @@
         }
 
         .integration-status.active {
-            background: #059669;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .integration-status.development {
-            background: #3b82f6;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .integration-status.planned {
-            background: #6b7280;
-            color: white;
+            background: var(--text-3);
+            color: var(--cream);
         }
 
         /* Verification Queue */
         .verification-queue {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 2rem;
         }
 
         .queue-title {
             font-size: 1.5rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -349,11 +353,11 @@
         }
 
         .queue-title::before {
-            content: "📋";
+            content: "";
         }
 
         .queue-item {
-            background: #374151;
+            background: var(--bg-high);
             border-radius: 8px;
             padding: 1rem;
             margin-bottom: 1rem;
@@ -368,12 +372,12 @@
 
         .queue-name {
             font-weight: 600;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.25rem;
         }
 
         .queue-details {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.85rem;
         }
 
@@ -392,18 +396,18 @@
         }
 
         .queue-btn.approve {
-            background: #059669;
-            color: white;
+            background: var(--success);
+            color: var(--cream);
         }
 
         .queue-btn.reject {
-            background: #dc2626;
-            color: white;
+            background: var(--danger);
+            color: var(--cream);
         }
 
         .queue-btn.review {
-            background: #3b82f6;
-            color: white;
+            background: var(--gold);
+            color: var(--ink);
         }
 
         .queue-btn:hover {
@@ -415,9 +419,9 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid #374151;
+            border: 3px solid var(--bg-high);
             border-radius: 50%;
-            border-top-color: #3b82f6;
+            border-top-color: var(--gold);
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -448,8 +452,10 @@
             }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}</style>
 </head>
-<body>
+<body class="mode-light">
     <div class="verification-container">
         <!-- Header -->
         <div class="header">
@@ -527,7 +533,7 @@
                         Professional standing checks<br>
                         Continuing education status
                     </div>
-                    <div class="integration-status active">✅ Active Integration</div>
+                    <div class="integration-status active"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg> Active Integration</div>
                 </div>
                 
                 <div class="society-card">
@@ -537,7 +543,7 @@
                         Disciplinary action checks<br>
                         Practice permit verification
                     </div>
-                    <div class="integration-status active">✅ Active Integration</div>
+                    <div class="integration-status active"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg> Active Integration</div>
                 </div>
                 
                 <div class="society-card">
@@ -547,7 +553,7 @@
                         Professional credentials<br>
                         Specialization verification
                     </div>
-                    <div class="integration-status development">🔧 In Development</div>
+                    <div class="integration-status development"> In Development</div>
                 </div>
                 
                 <div class="society-card">
@@ -557,7 +563,7 @@
                         Quebec-specific regulations<br>
                         Professional code compliance
                     </div>
-                    <div class="integration-status development">🔧 In Development</div>
+                    <div class="integration-status development"> In Development</div>
                 </div>
                 
                 <div class="society-card">
@@ -567,7 +573,7 @@
                         Manual verification process<br>
                         24-hour processing time
                     </div>
-                    <div class="integration-status planned">📋 Planned Integration</div>
+                    <div class="integration-status planned"> Planned Integration</div>
                 </div>
             </div>
         </div>
@@ -582,9 +588,9 @@
                     <div class="queue-details">License: ON-12345 • Toronto, ON • Technology Specialist</div>
                 </div>
                 <div class="queue-actions">
-                    <button class="queue-btn approve">✅ Approve</button>
-                    <button class="queue-btn review">📋 Review</button>
-                    <button class="queue-btn reject">❌ Reject</button>
+                    <button class="queue-btn approve"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg> Approve</button>
+                    <button class="queue-btn review"> Review</button>
+                    <button class="queue-btn reject"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Reject</button>
                 </div>
             </div>
             
@@ -594,9 +600,9 @@
                     <div class="queue-details">License: BC-67890 • Vancouver, BC • Manufacturing Expert</div>
                 </div>
                 <div class="queue-actions">
-                    <button class="queue-btn approve">✅ Approve</button>
-                    <button class="queue-btn review">📋 Review</button>
-                    <button class="queue-btn reject">❌ Reject</button>
+                    <button class="queue-btn approve"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg> Approve</button>
+                    <button class="queue-btn review"> Review</button>
+                    <button class="queue-btn reject"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Reject</button>
                 </div>
             </div>
             
@@ -606,9 +612,9 @@
                     <div class="queue-details">License: AB-54321 • Calgary, AB • Startup Advisory</div>
                 </div>
                 <div class="queue-actions">
-                    <button class="queue-btn approve">✅ Approve</button>
-                    <button class="queue-btn review">📋 Review</button>
-                    <button class="queue-btn reject">❌ Reject</button>
+                    <button class="queue-btn approve"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg> Approve</button>
+                    <button class="queue-btn review"> Review</button>
+                    <button class="queue-btn reject"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Reject</button>
                 </div>
             </div>
         </div>

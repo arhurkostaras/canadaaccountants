@@ -6,6 +6,10 @@
     <meta name="description" content="About CanadaAccountants.app — the founder, mission, and story behind Canada's AI-powered CPA marketplace.">
 
     <title>About CanadaAccountants.app | Founder & Mission</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://canadaaccountants.app/about">
@@ -20,7 +24,7 @@
 
     <!-- Favicon -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#1e3a8a">
+    $1#0B0E12$2>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,24 +58,24 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
-            color: white;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: var(--cream);
+            background: var(--bg);
             min-height: 100vh;
         }
 
         /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        nav{
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(241,234,220,0.2);
         }
 
         .nav-container {
@@ -89,12 +93,12 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: white;
+            color: var(--cream);
             text-decoration: none;
         }
 
         .logo::before {
-            content: "🍁";
+            content: "";
             margin-right: 0.5rem;
         }
 
@@ -109,7 +113,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: white;
+            background: var(--cream);
             margin: 3px 0;
             transition: 0.3s;
             border-radius: 2px;
@@ -122,7 +126,7 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--cream);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -131,7 +135,7 @@
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(241,234,220,0.2);
             transform: translateY(-2px);
         }
 
@@ -152,8 +156,8 @@
         }
 
         .btn-primary {
-            background: white;
-            color: #1e3a8a;
+            background: var(--cream);
+            color: var(--bg-raised);
         }
 
         .btn:hover {
@@ -184,7 +188,7 @@
 
         .about-hero p {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(241,234,220,0.9);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -207,7 +211,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(241,234,220,0.6);
             margin-bottom: 12px;
         }
 
@@ -219,7 +223,7 @@
 
         .section-heading p {
             font-size: 1rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(241,234,220,0.8);
             max-width: 560px;
             margin: 0 auto;
         }
@@ -229,9 +233,9 @@
             display: flex;
             align-items: flex-start;
             gap: 48px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             border-radius: 20px;
             padding: 48px;
             max-width: 900px;
@@ -243,19 +247,19 @@
             height: 120px;
             min-width: 120px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            border: 3px solid rgba(255,255,255,0.4);
+            background: rgba(241,234,220,0.2);
+            border: 3px solid rgba(241,234,220,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
             font-weight: 900;
-            color: white;
+            color: var(--cream);
         }
 
         .founder-info h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
-        .founder-title { font-size: 1rem; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 20px; }
-        .founder-bio { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.8; }
+        .founder-title { font-size: 1rem; color: rgba(241,234,220,0.7); font-weight: 600; margin-bottom: 20px; }
+        .founder-bio { font-size: 1rem; color: rgba(241,234,220,0.9); line-height: 1.8; }
 
         /* Mission cards */
         .mission-grid {
@@ -267,22 +271,22 @@
         }
 
         .mission-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             border-radius: 16px;
             padding: 32px;
             transition: background 0.3s, transform 0.3s;
         }
 
         .mission-card:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(241,234,220,0.15);
             transform: translateY(-4px);
         }
 
         .mission-icon { font-size: 2rem; margin-bottom: 16px; }
         .mission-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-        .mission-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+        .mission-card p { font-size: 0.95rem; color: rgba(241,234,220,0.8); line-height: 1.7; }
 
         /* Stats */
         .stats-row {
@@ -296,20 +300,20 @@
         .stat-item {
             text-align: center;
             padding: 32px 24px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             border-radius: 16px;
         }
 
         .stat-number { font-size: 2.4rem; font-weight: 900; margin-bottom: 8px; line-height: 1; }
-        .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+        .stat-label { font-size: 0.9rem; color: rgba(241,234,220,0.75); line-height: 1.5; }
 
         /* Contact */
         .contact-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(241,234,220,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(241,234,220,0.2);
             border-radius: 20px;
             padding: 48px;
             max-width: 700px;
@@ -318,7 +322,7 @@
         }
 
         .contact-card h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
-        .contact-card p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 1rem; }
+        .contact-card p { color: rgba(241,234,220,0.8); margin-bottom: 32px; font-size: 1rem; }
 
         .contact-links {
             display: flex;
@@ -331,13 +335,13 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: white;
+            color: var(--cream);
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
             padding: 14px 28px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(241,234,220,0.1);
+            border: 1px solid rgba(241,234,220,0.3);
             border-radius: 10px;
             width: 100%;
             max-width: 380px;
@@ -345,7 +349,7 @@
             transition: background 0.3s;
         }
 
-        .contact-link:hover { background: rgba(255,255,255,0.2); }
+        .contact-link:hover { background: rgba(241,234,220,0.2); }
         .contact-link i { font-size: 1.1rem; opacity: 0.85; }
 
         /* Footer */
@@ -353,7 +357,7 @@
             background: rgba(0,0,0,0.3);
             padding: 60px 24px 30px;
             margin-top: 60px;
-            border-top: 1px solid rgba(255,255,255,0.15);
+            border-top: 1px solid rgba(241,234,220,0.15);
         }
 
         .footer-grid {
@@ -365,23 +369,23 @@
             margin-bottom: 40px;
         }
 
-        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: #fff; }
+        .footer-grid h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
         .footer-grid ul { list-style: none; padding: 0; margin: 0; }
         .footer-grid li { margin-bottom: 10px; }
-        .footer-grid a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
-        .footer-grid a:hover { color: white; }
+        .footer-grid a { color: rgba(241,234,220,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+        .footer-grid a:hover { color: var(--cream); }
 
         .footer-bottom {
             max-width: 1100px;
             margin: 0 auto;
-            border-top: 1px solid rgba(255,255,255,0.15);
+            border-top: 1px solid rgba(241,234,220,0.15);
             padding-top: 24px;
             text-align: center;
         }
 
         .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-        .footer-tagline { color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 0.9rem; }
-        .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+        .footer-tagline { color: rgba(241,234,220,0.6); margin-bottom: 16px; font-size: 0.9rem; }
+        .footer-copy { color: rgba(241,234,220,0.4); font-size: 0.8rem; }
 
         /* Mobile */
         @media (max-width: 768px) {
@@ -393,7 +397,7 @@
                 position: fixed;
                 top: 0; right: -100%;
                 width: 100%; height: 100vh;
-                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+                background: var(--bg);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -405,7 +409,7 @@
             .nav-links.mobile-open { right: 0; }
             .nav-links li { margin: 1.5rem 0; }
             .nav-links a { font-size: 1.5rem; }
-            .nav-links a:hover { transform: scale(1.1); color: #ffd700; background: none; }
+            .nav-links a:hover { transform: scale(1.1); color: var(--gold-bright); background: none; }
 
             .about-hero h1 { font-size: 2rem; }
             .founder-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; gap: 24px; }
@@ -414,6 +418,8 @@
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}h1,h2,h3,.section-title{font-family:var(--font-display)}</style>
 </head>
 <body>
 
@@ -585,7 +591,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-logo">🍁 CanadaAccountants<span style="color: rgba(255,255,255,0.5)">.app</span></div>
+            <div class="footer-logo"> CanadaAccountants<span style="color: rgba(241,234,220,0.5)">.app</span></div>
             <p class="footer-tagline">AI-powered CPA marketplace built for Canadian accounting professionals.</p>
             <p class="footer-copy">&copy; 2026 CanadaAccountants.app | Technology platform only. CPAs maintain full professional independence.</p>
         </div>

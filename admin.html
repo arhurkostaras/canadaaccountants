@@ -4,7 +4,11 @@
     <meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔐 CanadaAccountants Admin</title>
+    <title> CanadaAccountants Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/phronisi-tokens.css">
     <style>
         * {
             margin: 0;
@@ -13,8 +17,8 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: var(--font-body);
+            background: var(--bg);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -23,9 +27,9 @@
 
         /* Login Screen */
         .login-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--border);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 3rem;
             max-width: 400px;
@@ -37,7 +41,7 @@
         .logo {
             font-size: 2rem;
             font-weight: bold;
-            color: white;
+            color: var(--cream);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -45,12 +49,12 @@
         }
 
         .logo::before {
-            content: "🍁";
+            content: "";
             margin-right: 0.5rem;
         }
 
         .login-title {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-2);
             font-size: 1.5rem;
             margin-bottom: 2rem;
             font-weight: 600;
@@ -63,7 +67,7 @@
 
         .form-label {
             display: block;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-2);
             font-weight: 500;
             margin-bottom: 0.5rem;
         }
@@ -71,32 +75,32 @@
         .form-input {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--border);
             backdrop-filter: blur(10px);
-            color: white;
+            color: var(--cream);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-2);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--text-2);
+            background: var(--border);
         }
 
         .login-btn {
             width: 100%;
             padding: 0.75rem;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            background: var(--gold);
             border: none;
             border-radius: 10px;
-            color: white;
+            color: var(--ink);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -110,7 +114,7 @@
         }
 
         .error-message {
-            color: #ff6b6b;
+            color: var(--danger);
             background: rgba(255, 107, 107, 0.1);
             border: 1px solid rgba(255, 107, 107, 0.3);
             border-radius: 8px;
@@ -120,7 +124,7 @@
         }
 
         .security-note {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-2);
             font-size: 0.8rem;
             margin-top: 1rem;
             line-height: 1.4;
@@ -131,16 +135,16 @@
             display: none;
             width: 100vw;
             min-height: 100vh;
-            background: #0f172a;
-            color: #e2e8f0;
+            background: var(--bg);
+            color: var(--text-2);
             overflow: auto;
         }
 
         /* Dashboard Header */
         .dashboard-header {
-            background: #1e293b;
+            background: var(--bg-raised);
             padding: 1rem 2rem;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -154,11 +158,11 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .dashboard-logo::before {
-            content: "🍁";
+            content: "";
             margin-right: 0.5rem;
         }
 
@@ -169,13 +173,13 @@
         }
 
         .admin-name {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
         }
 
         .logout-btn {
-            background: #dc2626;
-            color: white;
+            background: var(--danger);
+            color: var(--cream);
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 6px;
@@ -185,13 +189,13 @@
         }
 
         .logout-btn:hover {
-            background: #b91c1c;
+            background: var(--danger);
         }
 
         .live-indicator {
             display: flex;
             align-items: center;
-            background: #059669;
+            background: var(--success);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
@@ -201,7 +205,7 @@
         .live-dot {
             width: 8px;
             height: 8px;
-            background: #fff;
+            background: var(--text);
             border-radius: 50%;
             margin-right: 0.5rem;
             animation: pulse 2s infinite;
@@ -214,12 +218,12 @@
 
         /* Quick Stats Bar */
         .quick-stats {
-            background: #1e293b;
+            background: var(--bg-raised);
             padding: 1rem 2rem;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
         }
 
         .quick-stat {
@@ -229,12 +233,12 @@
         .quick-stat-value {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .quick-stat-label {
             font-size: 0.8rem;
-            color: #94a3b8;
+            color: var(--text-3);
         }
 
         /* Dashboard Content */
@@ -247,7 +251,7 @@
         .section-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -262,8 +266,8 @@
         }
 
         .metric-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -281,12 +285,12 @@
             border-radius: 12px 12px 0 0;
         }
 
-        .metric-card.blue::before { background: #3b82f6; }
-        .metric-card.green::before { background: #10b981; }
-        .metric-card.amber::before { background: #f59e0b; }
-        .metric-card.red::before { background: #ef4444; }
-        .metric-card.purple::before { background: #8b5cf6; }
-        .metric-card.gradient::before { background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #ef4444); }
+        .metric-card.blue::before { background: var(--gold); }
+        .metric-card.green::before { background: var(--success); }
+        .metric-card.amber::before { background: var(--gold); }
+        .metric-card.red::before { background: var(--danger); }
+        .metric-card.purple::before { background: var(--gold); }
+        .metric-card.gradient::before { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
 
         .metric-card:hover {
             transform: translateY(-2px);
@@ -311,33 +315,33 @@
             font-weight: 600;
         }
 
-        .badge-green { background: rgba(5, 150, 105, 0.2); color: #34d399; }
-        .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-        .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-        .badge-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .badge-green { background: rgba(111,143,106, 0.2); color: var(--success); }
+        .badge-red { background: rgba(168,86,56, 0.2); color: var(--danger); }
+        .badge-blue { background: rgba(201,168,106, 0.2); color: var(--gold-bright); }
+        .badge-amber { background: rgba(201,168,106, 0.2); color: var(--gold-bright); }
 
         .metric-value {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
 
         .metric-label {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.9rem;
         }
 
         .metric-sub {
-            color: #64748b;
+            color: var(--text-3);
             font-size: 0.8rem;
             margin-top: 0.25rem;
         }
 
         /* Campaign Cards */
         .campaign-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1rem;
@@ -346,7 +350,7 @@
         .campaign-name {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
@@ -361,9 +365,9 @@
             text-transform: uppercase;
         }
 
-        .status-active { background: rgba(5, 150, 105, 0.2); color: #34d399; }
-        .status-paused { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-        .status-completed { background: rgba(100, 116, 139, 0.2); color: #94a3b8; }
+        .status-active { background: rgba(111,143,106, 0.2); color: var(--success); }
+        .status-paused { background: rgba(201,168,106, 0.2); color: var(--gold-bright); }
+        .status-completed { background: rgba(100, 116, 139, 0.2); color: var(--text-3); }
 
         .campaign-stats {
             display: grid;
@@ -374,27 +378,27 @@
         .campaign-stat {
             text-align: center;
             padding: 0.5rem;
-            background: #0f172a;
+            background: var(--bg);
             border-radius: 8px;
         }
 
         .campaign-stat-value {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .campaign-stat-label {
             font-size: 0.7rem;
-            color: #64748b;
+            color: var(--text-3);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         /* Quick Actions */
         .actions-bar {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 2rem;
@@ -407,7 +411,7 @@
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
-            color: white;
+            color: var(--cream);
             transition: all 0.3s ease;
         }
 
@@ -422,15 +426,15 @@
             transform: none;
         }
 
-        .action-btn.blue { background: #3b82f6; }
-        .action-btn.green { background: #10b981; }
-        .action-btn.amber { background: #f59e0b; }
-        .action-btn.red { background: #ef4444; }
-        .action-btn.purple { background: #8b5cf6; }
+        .action-btn.blue { background: var(--gold); }
+        .action-btn.green { background: var(--success); }
+        .action-btn.amber { background: var(--gold); }
+        .action-btn.red { background: var(--danger); }
+        .action-btn.purple { background: var(--gold); }
 
         /* Loading */
         .loading {
-            color: #64748b;
+            color: var(--text-3);
             font-style: italic;
         }
 
@@ -438,8 +442,8 @@
             display: inline-block;
             width: 14px;
             height: 14px;
-            border: 2px solid #334155;
-            border-top-color: #3b82f6;
+            border: 2px solid var(--bg-high);
+            border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-right: 0.5rem;
@@ -452,7 +456,7 @@
 
         .refresh-info {
             font-size: 0.75rem;
-            color: #475569;
+            color: var(--text-3);
             text-align: right;
             margin-top: 1rem;
         }
@@ -464,7 +468,7 @@
             right: 2rem;
             padding: 1rem 1.5rem;
             border-radius: 8px;
-            color: white;
+            color: var(--cream);
             font-weight: 600;
             z-index: 1000;
             transform: translateY(100px);
@@ -477,15 +481,15 @@
             opacity: 1;
         }
 
-        .toast.success { background: #059669; }
-        .toast.error { background: #dc2626; }
-        .toast.info { background: #3b82f6; }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+        .toast.info { background: var(--gold); }
 
         /* AI Profile Analysis */
         .ai-analysis-box {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-left: 4px solid #3b82f6;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
+            border-left: 4px solid var(--gold);
             border-radius: 12px;
             padding: 1.75rem;
             margin-bottom: 1.5rem;
@@ -501,13 +505,13 @@
         .ai-analysis-header h3 {
             font-size: 1.15rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin: 0;
         }
 
         .ai-badge {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
+            background: linear-gradient(135deg, var(--gold), var(--gold));
+            color: var(--ink);
             font-size: 0.65rem;
             font-weight: 700;
             padding: 0.2rem 0.6rem;
@@ -517,7 +521,7 @@
         }
 
         .seo-score-bar {
-            background: #0f172a;
+            background: var(--bg);
             border-radius: 10px;
             padding: 1rem 1.25rem;
             margin-bottom: 1.25rem;
@@ -535,13 +539,13 @@
             justify-content: center;
             font-size: 1.25rem;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text);
             flex-shrink: 0;
         }
 
-        .seo-score-circle.grade-c { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .seo-score-circle.grade-b { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-        .seo-score-circle.grade-a { background: linear-gradient(135deg, #10b981, #059669); }
+        .seo-score-circle.grade-c { background: linear-gradient(135deg, var(--gold), var(--gold)); }
+        .seo-score-circle.grade-b { background: linear-gradient(135deg, var(--gold), var(--gold)); }
+        .seo-score-circle.grade-a { background: linear-gradient(135deg, var(--success), var(--success)); }
 
         .seo-score-details {
             flex: 1;
@@ -550,19 +554,19 @@
         .seo-score-label {
             font-size: 0.95rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.25rem;
         }
 
         .seo-score-sublabel {
             font-size: 0.8rem;
-            color: #f59e0b;
+            color: var(--gold);
         }
 
         .seo-progress {
             width: 100%;
             height: 6px;
-            background: #334155;
+            background: var(--bg-high);
             border-radius: 3px;
             margin-top: 0.5rem;
             overflow: hidden;
@@ -585,9 +589,9 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.6rem 0;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
             font-size: 0.9rem;
-            color: #cbd5e1;
+            color: var(--text-2);
         }
 
         .diagnostic-item:last-child {
@@ -595,7 +599,7 @@
         }
 
         .diagnostic-x {
-            color: #ef4444;
+            color: var(--danger);
             font-size: 1rem;
             font-weight: 700;
             flex-shrink: 0;
@@ -603,8 +607,8 @@
 
         /* AI Upgrade CTA */
         .ai-cta-box {
-            background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 50%, #2d1b4e 100%);
-            border: 1px solid #3b82f680;
+            background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-raised) 50%, var(--bg-raised) 100%);
+            border: 1px solid rgba(201,168,106,0.5);
             border-radius: 12px;
             padding: 2rem;
             text-align: center;
@@ -620,7 +624,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(201,168,106,0.08) 0%, transparent 70%);
             animation: pulse-glow 4s ease-in-out infinite;
         }
 
@@ -632,13 +636,13 @@
         .ai-cta-box h3 {
             font-size: 1.4rem;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.75rem;
             position: relative;
         }
 
         .ai-cta-box p {
-            color: #94a3b8;
+            color: var(--text-3);
             font-size: 0.95rem;
             line-height: 1.6;
             max-width: 600px;
@@ -655,8 +659,8 @@
         }
 
         .tier-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.75rem;
             position: relative;
@@ -671,8 +675,8 @@
         }
 
         .tier-card.highlighted {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(201,168,106, 0.15);
         }
 
         .tier-popular-badge {
@@ -680,8 +684,8 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
+            background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+            color: var(--ink);
             font-size: 0.7rem;
             font-weight: 700;
             padding: 0.2rem 0.75rem;
@@ -694,19 +698,19 @@
             text-align: center;
             margin-bottom: 1.25rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--bg-high);
         }
 
         .tier-card-name {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.25rem;
         }
 
         .tier-card-tagline {
             font-size: 0.8rem;
-            color: #60a5fa;
+            color: var(--gold-bright);
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
@@ -714,13 +718,13 @@
         .tier-card-price {
             font-size: 2rem;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .tier-card-price span {
             font-size: 0.85rem;
             font-weight: 400;
-            color: #94a3b8;
+            color: var(--text-3);
         }
 
         .tier-features {
@@ -732,7 +736,7 @@
 
         .tier-features li {
             font-size: 0.85rem;
-            color: #cbd5e1;
+            color: var(--text-2);
             padding: 0.4rem 0;
             display: flex;
             align-items: flex-start;
@@ -741,7 +745,7 @@
 
         .tier-features li::before {
             content: '\2713';
-            color: #34d399;
+            color: var(--success);
             font-weight: 700;
             flex-shrink: 0;
         }
@@ -754,7 +758,7 @@
             cursor: pointer;
             font-size: 0.95rem;
             font-weight: 700;
-            color: white;
+            color: var(--cream);
             transition: all 0.3s ease;
         }
 
@@ -769,17 +773,17 @@
             transform: none;
         }
 
-        .tier-btn.associate { background: #3b82f6; }
-        .tier-btn.professional { background: #8b5cf6; }
-        .tier-btn.enterprise { background: linear-gradient(45deg, #f59e0b, #ef4444); }
+        .tier-btn.associate { background: var(--gold); }
+        .tier-btn.professional { background: var(--gold); }
+        .tier-btn.enterprise { background: linear-gradient(45deg, var(--gold), var(--danger)); }
 
         /* Subscribed state */
         .subscribed-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(5, 150, 105, 0.2);
-            color: #34d399;
+            background: rgba(111,143,106, 0.2);
+            color: var(--success);
             padding: 0.5rem 1rem;
             border-radius: 12px;
             font-size: 0.9rem;
@@ -800,8 +804,8 @@
         }
 
         .match-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: var(--bg-raised);
+            border: 1px solid var(--bg-high);
             border-radius: 12px;
             padding: 1.25rem;
             transition: all 0.3s ease;
@@ -815,19 +819,19 @@
         .match-card .match-business {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
 
         .match-card .match-detail {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: var(--text-3);
             margin-bottom: 0.25rem;
         }
 
         .match-card .match-contact {
             font-size: 0.85rem;
-            color: #34d399;
+            color: var(--success);
             margin-top: 0.5rem;
         }
 
@@ -861,12 +865,14 @@
             }
         }
     </style>
+
+<style id="phronisi-type">body{font-family:var(--font-body)}</style>
 </head>
-<body>
+<body class="mode-light">
     <!-- Login Screen -->
     <div class="login-container" id="loginScreen">
         <div class="logo">CanadaAccountants</div>
-        <h2 class="login-title">🔐 Admin Dashboard</h2>
+        <h2 class="login-title"> Admin Dashboard</h2>
 
         <form id="loginForm">
             <div class="form-group">
@@ -879,7 +885,7 @@
                 <input type="password" id="password" class="form-input" placeholder="Enter admin password" required>
             </div>
 
-            <button type="submit" class="login-btn">🚀 Access Dashboard</button>
+            <button type="submit" class="login-btn"> Access Dashboard</button>
         </form>
 
         <div class="error-message" id="errorMessage">
@@ -887,7 +893,7 @@
         </div>
 
         <div class="security-note">
-            🔒 This is a secure admin area. All access is logged and monitored.
+             This is a secure admin area. All access is logged and monitored.
         </div>
     </div>
 
@@ -925,11 +931,11 @@
         <main class="dashboard-content">
 
             <!-- Email Health Section -->
-            <div class="section-title">📧 Email Health</div>
+            <div class="section-title"> Email Health</div>
             <div class="dashboard-grid">
                 <div class="metric-card green">
                     <div class="metric-header">
-                        <div class="metric-icon">📤</div>
+                        <div class="metric-icon"></div>
                         <div class="metric-badge badge-blue" id="healthQueueBadge">--</div>
                     </div>
                     <div class="metric-value" id="healthSentToday">--</div>
@@ -939,7 +945,7 @@
 
                 <div class="metric-card amber">
                     <div class="metric-header">
-                        <div class="metric-icon">📉</div>
+                        <div class="metric-icon"></div>
                         <div class="metric-badge badge-amber" id="healthBounceBadge">--</div>
                     </div>
                     <div class="metric-value" id="healthBounceRate">--</div>
@@ -949,7 +955,7 @@
 
                 <div class="metric-card red">
                     <div class="metric-header">
-                        <div class="metric-icon">🚫</div>
+                        <div class="metric-icon"></div>
                         <div class="metric-badge badge-red" id="healthUnsubBadge">--</div>
                     </div>
                     <div class="metric-value" id="healthUnsubRate">--</div>
@@ -959,7 +965,7 @@
 
                 <div class="metric-card purple">
                     <div class="metric-header">
-                        <div class="metric-icon">🎯</div>
+                        <div class="metric-icon"></div>
                         <div class="metric-badge badge-green" id="healthClickBadge">--</div>
                     </div>
                     <div class="metric-value" id="healthClickedNoClaim">--</div>
@@ -969,7 +975,7 @@
             </div>
 
             <!-- Campaigns Section -->
-            <div class="section-title">📬 Campaigns</div>
+            <div class="section-title"> Campaigns</div>
             <div id="campaignsContainer">
                 <div class="campaign-card">
                     <div class="campaign-name"><span class="spinner"></span> Loading campaigns...</div>
@@ -977,32 +983,32 @@
             </div>
 
             <!-- Outreach Stats (auth required) -->
-            <div class="section-title" style="margin-top: 2rem;">📊 Outreach Stats</div>
+            <div class="section-title" style="margin-top: 2rem;"> Outreach Stats</div>
             <div class="dashboard-grid" id="outreachStatsGrid">
                 <div class="metric-card gradient">
                     <div class="metric-header">
-                        <div class="metric-icon">📋</div>
+                        <div class="metric-icon"></div>
                     </div>
                     <div class="metric-value" id="outreachTotal">--</div>
                     <div class="metric-label">Total Outreach Records</div>
                 </div>
                 <div class="metric-card blue">
                     <div class="metric-header">
-                        <div class="metric-icon">✉️</div>
+                        <div class="metric-icon"></div>
                     </div>
                     <div class="metric-value" id="outreachContacted">--</div>
                     <div class="metric-label">Total Contacted</div>
                 </div>
                 <div class="metric-card green">
                     <div class="metric-header">
-                        <div class="metric-icon">👆</div>
+                        <div class="metric-icon"></div>
                     </div>
                     <div class="metric-value" id="outreachEngaged">--</div>
                     <div class="metric-label">Engaged</div>
                 </div>
                 <div class="metric-card amber">
                     <div class="metric-header">
-                        <div class="metric-icon">✅</div>
+                        <div class="metric-icon"><svg class="ph-ic" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em"><path d="M20 6 9 17l-5-5"/></svg></div>
                     </div>
                     <div class="metric-value" id="outreachClaimed">--</div>
                     <div class="metric-label">Claimed</div>
@@ -1010,7 +1016,7 @@
             </div>
 
             <!-- AI Profile Analysis / Upgrade Gate -->
-            <div class="section-title" style="margin-top: 2rem;">🤖 AI Profile Intelligence</div>
+            <div class="section-title" style="margin-top: 2rem;"> AI Profile Intelligence</div>
             <div id="upgradeContainer">
                 <div class="campaign-card">
                     <div class="campaign-name"><span class="spinner"></span> Running AI analysis...</div>
@@ -1019,7 +1025,7 @@
 
             <!-- Quick Actions -->
             <div class="actions-bar">
-                <div class="section-title" style="margin-bottom: 1rem;">🚀 Quick Actions</div>
+                <div class="section-title" style="margin-bottom: 1rem;"> Quick Actions</div>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <button class="action-btn blue" onclick="triggerQueue()">Trigger Email Queue</button>
                     <button class="action-btn green" onclick="refreshAllData()">Refresh All Data</button>
@@ -1268,15 +1274,15 @@
                             <div class="campaign-stat-label">Bounced</div>
                         </div>
                         <div class="campaign-stat">
-                            <div class="campaign-stat-value" style="color: #34d399;">${fmt(opened)}</div>
+                            <div class="campaign-stat-value" style="color: var(--success);">${fmt(opened)}</div>
                             <div class="campaign-stat-label">Opened (${openRate}%)</div>
                         </div>
                         <div class="campaign-stat">
-                            <div class="campaign-stat-value" style="color: #60a5fa;">${fmt(clicked)}</div>
+                            <div class="campaign-stat-value" style="color: var(--gold-bright);">${fmt(clicked)}</div>
                             <div class="campaign-stat-label">Clicked (${clickRate}%)</div>
                         </div>
                         <div class="campaign-stat">
-                            <div class="campaign-stat-value" style="color: ${complained > 0 ? '#f87171' : '#94a3b8'};">${fmt(complained)}</div>
+                            <div class="campaign-stat-value" style="color: ${complained > 0 ? 'var(--danger)' : 'var(--text-3)'};">${fmt(complained)}</div>
                             <div class="campaign-stat-label">Complained</div>
                         </div>
                     </div>
@@ -1328,12 +1334,12 @@
             const seoScore = (activityData && activityData.seo_score) || 50;
             const grade = seoScore >= 80 ? 'A' : seoScore >= 60 ? 'B' : 'C';
             const gradeClass = grade === 'A' ? 'grade-a' : grade === 'B' ? 'grade-b' : 'grade-c';
-            const progressColor = grade === 'A' ? '#10b981' : grade === 'B' ? '#3b82f6' : '#f59e0b';
+            const progressColor = grade === 'A' ? 'var(--success)' : grade === 'B' ? 'var(--gold)' : 'var(--gold)';
 
             // Check if user is subscribed
             if (matchesData && matchesData.subscribed) {
                 let html = `<div style="margin-bottom:1rem;"><span class="subscribed-badge">Active Subscriber &mdash; ${matchesData.tier || 'Professional'}</span></div>`;
-                html += `<div class="ai-analysis-box" style="border-left-color: #10b981;">
+                html += `<div class="ai-analysis-box" style="border-left-color: var(--success);">
                     <div class="ai-analysis-header">
                         <h3>Your AI Profile Analysis</h3>
                         <span class="ai-badge">AI Active</span>
@@ -1342,7 +1348,7 @@
                         <div class="seo-score-circle ${gradeClass}">${seoScore}</div>
                         <div class="seo-score-details">
                             <div class="seo-score-label">SEO Score: ${seoScore}/100 (Grade ${grade})</div>
-                            <div class="seo-score-sublabel" style="color: #34d399;">AI is optimizing your profile weekly</div>
+                            <div class="seo-score-sublabel" style="color: var(--success);">AI is optimizing your profile weekly</div>
                             <div class="seo-progress"><div class="seo-progress-fill" style="width: ${seoScore}%; background: ${progressColor};"></div></div>
                         </div>
                     </div>
