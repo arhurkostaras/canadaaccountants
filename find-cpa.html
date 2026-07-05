@@ -1067,10 +1067,19 @@
             const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
             // On narrow screens the progress bar sits above the fold but the
             // question does not; scroll the question itself into view there.
-            if (window.matchMedia('(max-width: 768px)').matches && target) {
-                target.scrollIntoView({ behavior, block: 'start' });
-            } else {
-                progressSection.scrollIntoView({ behavior, block: 'start' });
+            const anchor = (window.matchMedia('(max-width: 768px)').matches && target) ? target : progressSection;
+            anchor.scrollIntoView({ behavior, block: 'start' });
+            if (behavior === 'smooth') {
+                // Observed during the production walk: some Chrome configs
+                // silently drop smooth programmatic scrolls (scrollY never
+                // moves). The mechanic is "the question is visible after a
+                // step change", so settle instantly if smooth didn't take.
+                setTimeout(() => {
+                    const r = anchor.getBoundingClientRect();
+                    if (r.top < -20 || r.top > 200) {
+                        anchor.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    }
+                }, 450);
             }
         }
 
