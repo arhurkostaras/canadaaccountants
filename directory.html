@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" id="meta-description" content="Find verified CPAs and accounting professionals across Canada. Browse by province and designation.">
+    <meta name="description" id="meta-description" content="Find CPAs and accounting professionals across Canada. Profiles built from provincial CPA registry data. Browse by province and designation.">
     <meta name="keywords" content="CPA directory, Canadian accountants, chartered professional accountant, accounting services">
 
     <title id="page-title">CPA Directory | CanadaAccountants.app</title>
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" id="og-url" content="https://canadaaccountants.app/directory.html">
     <meta property="og:title" id="og-title" content="CPA Directory | CanadaAccountants.app">
-    <meta property="og:description" id="og-description" content="Find verified CPAs and accounting professionals across Canada.">
+    <meta property="og:description" id="og-description" content="Find CPAs and accounting professionals across Canada. Profiles built from provincial CPA registry data.">
     <meta property="og:site_name" content="CanadaAccountants">
     <meta property="og:locale" content="en_CA">
 
@@ -214,7 +214,8 @@
 
     <header class="page-header">
         <h1 id="directory-title">CPA Directory</h1>
-        <p id="directory-subtitle">Browse verified CPAs and accounting professionals across Canada</p>
+        <p id="directory-subtitle">Browse CPAs and accounting professionals across Canada</p>
+        <p style="font-size: 0.85rem; color: var(--text-3, #888); margin-top: 8px;">Professionals subscribe to be listed; subscription tier is one of the ranking factors.</p>
     </header>
 
     <div class="breadcrumbs" id="breadcrumbs">
@@ -342,10 +343,10 @@
             var title, desc;
             if (desig) {
                 title = desig.toUpperCase() + ' ' + PROFESSIONAL_LABEL_PLURAL + ' in ' + provinceName;
-                desc = 'Browse ' + total + ' verified ' + desig.toUpperCase() + ' professionals in ' + provinceName + '. Find qualified accountants on ' + SITE_NAME + '.';
+                desc = 'Browse ' + total + ' ' + desig.toUpperCase() + ' professionals in ' + provinceName + '. Find qualified accountants on ' + SITE_NAME + '.';
             } else {
                 title = PROFESSIONAL_LABEL_PLURAL + ' in ' + provinceName;
-                desc = 'Browse ' + total + ' verified ' + PROFESSIONAL_LABEL_PLURAL.toLowerCase() + ' in ' + provinceName + '. Find qualified accountants on ' + SITE_NAME + '.';
+                desc = 'Browse ' + total + ' ' + PROFESSIONAL_LABEL_PLURAL.toLowerCase() + ' in ' + provinceName + '. Find qualified accountants on ' + SITE_NAME + '.';
             }
             document.title = title + ' | ' + SITE_NAME;
             document.getElementById('meta-description').setAttribute('content', desc);
@@ -399,7 +400,7 @@
             var badgeLabel = desig ? desig.toUpperCase() + ' professionals' : PROFESSIONAL_LABEL_PLURAL.toLowerCase();
             document.getElementById('count-badge-container').innerHTML =
                 '<div class="count-badge"><i class="fas fa-check-circle"></i> ' +
-                data.total.toLocaleString() + ' verified ' + badgeLabel + ' in ' + provinceName + '</div>';
+                data.total.toLocaleString() + ' ' + badgeLabel + ' in ' + provinceName + '</div>';
 
             if (data.designation_counts && data.designation_counts.length > 0) {
                 var pills = document.getElementById('designation-pills');
