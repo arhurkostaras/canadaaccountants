@@ -37,6 +37,50 @@ jobs:
           fi
           echo "PASS: zero raw color hex outside the tokens file."
 
+  copy-ban:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No copy retired by the 2026-07-05 adjudication
+        run: |
+          # Rule: phrases retired by the 2026-07-05 honest-copy adjudication
+          # may not return to any repo-root page. Generated province and
+          # directory/profile output plus public/ are out of scope.
+          set -euo pipefail
+          phrases=(
+            "guaranteed top"
+            "bank-level"
+            "Canada's Premier"
+            "reject 85%"
+            "15% acceptance"
+            "24-hour average"
+            "24hrs Average"
+            "3 qualified leads"
+            "measurable value"
+            "first year contracts"
+            "Founding 500"
+            "of 25 Founding"
+            "priority search placement"
+            "compounds over time"
+            "First AI-Powered"
+            "perfect match"
+            "real-time license verification"
+          )
+          fail=0
+          for phrase in "${phrases[@]}"; do
+            hits=$(grep -rniF "$phrase" --include='*.html' . \
+              | sed 's|^\./||' \
+              | grep -viE '^(alberta|british-columbia|manitoba|new-brunswick|newfoundland-and-labrador|nova-scotia|ontario|prince-edward-island|quebec|saskatchewan|directory|profile|public|node_modules)/' \
+              || true)
+            if [ -n "$hits" ]; then
+              echo "Copy gate: '$phrase' was retired by the 2026-07-05 adjudication (see ~/phronisi-ops/docs/ADJUDICATION-RULINGS-2026-07-05.md); the guarantee page is the single source of truth."
+              echo "$hits" | head -10
+              fail=1
+            fi
+          done
+          if [ "$fail" -eq 1 ]; then exit 1; fi
+          echo "PASS: zero retired copy phrases on repo-root pages."
+
   lighthouse-a11y:
     runs-on: ubuntu-latest
     steps:
