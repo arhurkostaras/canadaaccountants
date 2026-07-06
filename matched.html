@@ -85,7 +85,8 @@
                 const info = document.getElementById('matchInfo');
                 info.style.display = 'block';
                 const specText = specialty ? specialty + ' ' : '';
-                info.innerHTML = '<p><strong>' + data.professionals.length + ' ' + specText + 'CPAs matched</strong> in ' + province + ' based on your search criteria</p>';
+                info.innerHTML = '<p><strong>' + data.professionals.length + ' ' + specText + 'CPAs matched</strong> in ' + province + ' based on your search criteria</p>' +
+                    '<p style="font-size:12px;color:var(--text-3);margin-top:6px;">Professionals subscribe to be listed; subscription tier is one of the ranking factors.</p>';
 
                 const container = document.getElementById('results');
                 data.professionals.forEach(function(p, i) {
