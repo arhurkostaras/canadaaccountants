@@ -471,7 +471,8 @@
     <section class="hero">
         <div class="hero-badge"><i class="fas fa-calculator"></i> Interactive Revenue Modeler</div>
         <h1>Calculate Your Revenue Potential</h1>
-        <p>See exactly how much new annual billing you could generate by joining CanadaAccountants.app. Adjust the sliders to match your practice and watch the numbers update in real time.</p>
+        <p>Model how much new annual billing you could generate by joining CanadaAccountants.app. Adjust the sliders to match your practice and watch the numbers update in real time.</p>
+        <p style="font-size: 0.85rem; opacity: 0.85; margin-top: 10px;"><i class="fas fa-circle-info"></i> Hypothetical illustration based on your inputs. Not a prediction or guarantee of results.</p>
     </section>
 
     <!-- Calculator -->
@@ -486,45 +487,45 @@
                 <div class="slider-group">
                     <div class="slider-label">
                         <span>Monthly Subscription (Platform)</span>
-                        <div class="slider-value" id="subDisplay">$299</div>
+                        <div class="slider-value" id="subDisplay">$199</div>
                     </div>
-                    <input type="range" id="subSlider" min="199" max="599" value="299" step="100">
+                    <input type="range" id="subSlider" min="199" max="599" value="199" step="100">
                 </div>
 
                 <!-- Average Client Value -->
                 <div class="slider-group">
                     <div class="slider-label">
                         <span>Average Annual Client Value</span>
-                        <div class="slider-value" id="clientValueDisplay">$6,000</div>
+                        <div class="slider-value" id="clientValueDisplay">$4,000</div>
                     </div>
-                    <input type="range" id="clientValueSlider" min="2000" max="20000" value="6000" step="500">
+                    <input type="range" id="clientValueSlider" min="2000" max="20000" value="4000" step="500">
                 </div>
 
                 <!-- Annual Revenue (derived) -->
                 <div class="derived-field">
                     <div class="label"><i class="fas fa-file-invoice-dollar" style="color: var(--primary-blue); margin-right: 8px;"></i> Platform Cost (Annual)</div>
-                    <div class="value" id="annualSubDisplay">$3,588</div>
+                    <div class="value" id="annualSubDisplay">$2,388</div>
                 </div>
 
                 <!-- New Clients Per Month -->
                 <div class="slider-group">
                     <div class="slider-label">
                         <span>Expected New Clients / Month</span>
-                        <div class="slider-value" id="newClientsDisplay">7</div>
+                        <div class="slider-value" id="newClientsDisplay">2</div>
                     </div>
-                    <input type="range" id="newClientsSlider" min="1" max="15" value="7" step="1">
+                    <input type="range" id="newClientsSlider" min="1" max="15" value="2" step="1">
                 </div>
 
                 <!-- Tier Selector -->
                 <div class="tier-selector">
                     <div class="tier-selector-label">Subscription Tier</div>
                     <div class="tier-options">
-                        <div class="tier-option" data-tier="associate" data-price="199" data-clients="3" onclick="selectTier(this)">
+                        <div class="tier-option selected" data-tier="associate" data-price="199" data-clients="3" onclick="selectTier(this)">
                             <div class="tier-name">Associate</div>
                             <div class="tier-price">$199</div>
                             <div class="tier-clients">Up to 3/mo</div>
                         </div>
-                        <div class="tier-option selected" data-tier="professional" data-price="299" data-clients="7" onclick="selectTier(this)">
+                        <div class="tier-option" data-tier="professional" data-price="299" data-clients="7" onclick="selectTier(this)">
                             <div class="tier-popular">Popular</div>
                             <div class="tier-name">Professional</div>
                             <div class="tier-price">$299</div>
@@ -543,33 +544,33 @@
             <div class="calc-results">
                 <div class="results-card">
                     <h3>Your Revenue Impact</h3>
-                    <p class="subtitle">Based on your inputs, here is your projected annual return from the platform.</p>
+                    <p class="subtitle">Based on your inputs, here is your modeled first-year return from the platform. Hypothetical illustration based on your inputs. Not a prediction or guarantee of results.</p>
 
                     <div class="result-row">
                         <div class="result-label"><i class="fas fa-user-plus"></i> New Clients (Year 1)</div>
-                        <div class="result-number highlight" id="resultNewClients">84</div>
+                        <div class="result-number highlight" id="resultNewClients">24</div>
                     </div>
                     <div class="result-row">
                         <div class="result-label"><i class="fas fa-chart-line"></i> New Annual Billings</div>
-                        <div class="result-number highlight" id="resultNewRevenue">$504,000</div>
+                        <div class="result-number highlight" id="resultNewRevenue">$96,000</div>
                     </div>
                     <div class="result-row">
                         <div class="result-label"><i class="fas fa-receipt"></i> Platform Cost (Annual)</div>
-                        <div class="result-number negative" id="resultPlatformCost">-$3,588</div>
+                        <div class="result-number negative" id="resultPlatformCost">-$2,388</div>
                     </div>
                     <div class="result-row">
                         <div class="result-label"><i class="fas fa-piggy-bank"></i> Net Revenue Gain</div>
-                        <div class="result-number positive" id="resultNetRevenue">$500,412</div>
+                        <div class="result-number positive" id="resultNetRevenue">$93,612</div>
                     </div>
                     <div class="result-row">
                         <div class="result-label"><i class="fas fa-clock"></i> Break-Even Time</div>
-                        <div class="result-number highlight" id="resultBreakeven">3 days</div>
+                        <div class="result-number highlight" id="resultBreakeven">8 days</div>
                     </div>
 
                     <div class="roi-highlight">
                         <div class="roi-label">Return on Investment</div>
-                        <div class="roi-value" id="resultROI">13,948%</div>
-                        <div class="roi-sub" id="resultROISub">For every $1 spent, you earn $140 back</div>
+                        <div class="roi-value" id="resultROI">3,921%</div>
+                        <div class="roi-sub" id="resultROISub">For every $1 spent, you earn $39 back</div>
                     </div>
                 </div>
             </div>
@@ -581,7 +582,7 @@
         <div class="section-header" style="padding-top: 0;">
             <div class="overline">Growth Projections</div>
             <h2>Conservative, Moderate &amp; Aggressive Scenarios</h2>
-            <p>Based on your current inputs, here is how your practice could grow over time across three scenarios.</p>
+            <p>Based on your current inputs, here is how your first year could look across three scenarios. Hypothetical illustration based on your inputs. Not a prediction or guarantee of results.</p>
         </div>
         <div class="scenario-cards">
             <!-- Conservative -->
@@ -592,19 +593,11 @@
                 <div class="scenario-timeline">
                     <div class="timeline-row">
                         <div class="tl-label">Year 1 New Billings</div>
-                        <div class="tl-value green" id="conservative1yr">$201,600</div>
+                        <div class="tl-value green" id="conservative1yr">$38,400</div>
                     </div>
                     <div class="timeline-row">
-                        <div class="tl-label">Year 3 Cumulative</div>
-                        <div class="tl-value green" id="conservative3yr">$604,800</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Year 5 Cumulative</div>
-                        <div class="tl-value green" id="conservative5yr">$1,008,000</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Total New Clients (5yr)</div>
-                        <div class="tl-value" id="conservative5yrClients">252</div>
+                        <div class="tl-label">New Clients (Year 1)</div>
+                        <div class="tl-value" id="conservative5yrClients">12</div>
                     </div>
                 </div>
             </div>
@@ -617,19 +610,11 @@
                 <div class="scenario-timeline">
                     <div class="timeline-row">
                         <div class="tl-label">Year 1 New Billings</div>
-                        <div class="tl-value green" id="moderate1yr">$378,000</div>
+                        <div class="tl-value green" id="moderate1yr">$72,000</div>
                     </div>
                     <div class="timeline-row">
-                        <div class="tl-label">Year 3 Cumulative</div>
-                        <div class="tl-value green" id="moderate3yr">$1,134,000</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Year 5 Cumulative</div>
-                        <div class="tl-value green" id="moderate5yr">$1,890,000</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Total New Clients (5yr)</div>
-                        <div class="tl-value" id="moderate5yrClients">315</div>
+                        <div class="tl-label">New Clients (Year 1)</div>
+                        <div class="tl-value" id="moderate5yrClients">18</div>
                     </div>
                 </div>
             </div>
@@ -641,19 +626,11 @@
                 <div class="scenario-timeline">
                     <div class="timeline-row">
                         <div class="tl-label">Year 1 New Billings</div>
-                        <div class="tl-value green" id="aggressive1yr">$604,800</div>
+                        <div class="tl-value green" id="aggressive1yr">$115,200</div>
                     </div>
                     <div class="timeline-row">
-                        <div class="tl-label">Year 3 Cumulative</div>
-                        <div class="tl-value green" id="aggressive3yr">$1,814,400</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Year 5 Cumulative</div>
-                        <div class="tl-value green" id="aggressive5yr">$3,024,000</div>
-                    </div>
-                    <div class="timeline-row">
-                        <div class="tl-label">Total New Clients (5yr)</div>
-                        <div class="tl-value" id="aggressive5yrClients">420</div>
+                        <div class="tl-label">New Clients (Year 1)</div>
+                        <div class="tl-value" id="aggressive5yrClients">24</div>
                     </div>
                 </div>
             </div>
@@ -672,7 +649,7 @@
                 <h3 id="whatifHeadline">Upgrade from Professional to Enterprise</h3>
                 <p id="whatifDescription">Moving to Enterprise gives you premium search ranking and up to 15 client matches per month. Here is how the numbers change.</p>
                 <div class="whatif-delta">
-                    <div class="delta-value" id="whatifDelta">+$340,812 / year</div>
+                    <div class="delta-value" id="whatifDelta">&mdash;</div>
                     <div class="delta-label" id="whatifDeltaLabel">Additional net revenue by upgrading, after the higher subscription cost</div>
                 </div>
             </div>
@@ -680,14 +657,14 @@
                 <div class="whatif-tier-box">
                     <div class="wt-label">Current Tier</div>
                     <div class="wt-name" id="whatifCurrentName">Professional</div>
-                    <div class="wt-revenue green" id="whatifCurrentRevenue">$500,412</div>
+                    <div class="wt-revenue green" id="whatifCurrentRevenue">&mdash;</div>
                     <div class="wt-sub">Net annual revenue</div>
                 </div>
                 <div class="whatif-arrow"><i class="fas fa-arrow-right"></i></div>
                 <div class="whatif-tier-box upgraded">
                     <div class="wt-label">Upgraded Tier</div>
                     <div class="wt-name" id="whatifUpgradeName">Enterprise</div>
-                    <div class="wt-revenue green" id="whatifUpgradeRevenue">$841,224</div>
+                    <div class="wt-revenue green" id="whatifUpgradeRevenue">&mdash;</div>
                     <div class="wt-sub">Net annual revenue</div>
                 </div>
             </div>
@@ -697,7 +674,7 @@
     <!-- CTA -->
     <section class="cta-section">
         <h2>Ready to Grow Your CPA Practice?</h2>
-        <p>The numbers speak for themselves. Join Canada's first AI-powered CPA marketplace and start generating qualified client matches today.</p>
+        <p>Join an AI-powered CPA marketplace built for Canada and start generating qualified client matches today.</p>
         <div class="cta-buttons">
             <a href="join-as-cpa" class="btn-primary"><i class="fas fa-arrow-right"></i> Apply to Join as CPA</a>
             <a href="pricing" class="btn-secondary"><i class="fas fa-dollar-sign"></i> View Pricing</a>
@@ -708,8 +685,8 @@
     <div class="sticky-cta" id="stickyCta">
         <div class="sticky-cta-inner">
             <div class="sticky-cta-text">
-                <div class="sct-headline">Your projected ROI: <span id="stickyROI">13,948%</span></div>
-                <div class="sct-sub">Net annual gain: <span id="stickyNet">$500,412</span></div>
+                <div class="sct-headline">Your projected ROI: <span id="stickyROI">3,921%</span></div>
+                <div class="sct-sub">Net annual gain: <span id="stickyNet">$93,612</span></div>
             </div>
             <a href="join-as-cpa" class="btn-primary"><i class="fas fa-arrow-right"></i> Apply to Join</a>
         </div>
@@ -770,7 +747,7 @@
             enterprise:   { name: 'Enterprise',   price: 599, clients: 15 }
         };
         const tierOrder = ['associate', 'professional', 'enterprise'];
-        let selectedTier = 'professional';
+        let selectedTier = 'associate';
 
         // ===== DOM refs =====
         const subSlider        = document.getElementById('subSlider');
@@ -895,25 +872,19 @@
             const conClients = Math.round(newClientsMonth * 0.5 * 12);
             const conRev1    = conClients * clientValue * 0.8;
             document.getElementById('conservative1yr').textContent    = fmtFull(conRev1);
-            document.getElementById('conservative3yr').textContent    = fmtFull(conRev1 * 3);
-            document.getElementById('conservative5yr').textContent    = fmtFull(conRev1 * 5);
-            document.getElementById('conservative5yrClients').textContent = (conClients * 5).toLocaleString('en-CA');
+            document.getElementById('conservative5yrClients').textContent = conClients.toLocaleString('en-CA');
 
             // Moderate: 75% clients, 100% value
             const modClients = Math.round(newClientsMonth * 0.75 * 12);
             const modRev1    = modClients * clientValue;
             document.getElementById('moderate1yr').textContent    = fmtFull(modRev1);
-            document.getElementById('moderate3yr').textContent    = fmtFull(modRev1 * 3);
-            document.getElementById('moderate5yr').textContent    = fmtFull(modRev1 * 5);
-            document.getElementById('moderate5yrClients').textContent = (modClients * 5).toLocaleString('en-CA');
+            document.getElementById('moderate5yrClients').textContent = modClients.toLocaleString('en-CA');
 
             // Aggressive: 100% clients, 120% value
             const aggClients = newClientsMonth * 12;
             const aggRev1    = aggClients * clientValue * 1.2;
             document.getElementById('aggressive1yr').textContent    = fmtFull(aggRev1);
-            document.getElementById('aggressive3yr').textContent    = fmtFull(aggRev1 * 3);
-            document.getElementById('aggressive5yr').textContent    = fmtFull(aggRev1 * 5);
-            document.getElementById('aggressive5yrClients').textContent = (aggClients * 5).toLocaleString('en-CA');
+            document.getElementById('aggressive5yrClients').textContent = aggClients.toLocaleString('en-CA');
 
             // ===== What-If Upgrade =====
             updateWhatIf(newClientsMonth, clientValue, platformCost, netRevenue);
