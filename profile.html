@@ -632,6 +632,24 @@
                 </div>`;
         }
 
+        // 2026-09-07: HTTP 410 PROFILE_REMOVED (the person asked for a correction or
+        // removal, or the profile was removed at their request). No name, no claim
+        // path; the backend message says whether the hide is pending or permanent.
+        function renderRemoved(message) {
+            var seoPre = document.getElementById('seoPrerender'); if (seoPre) seoPre.style.display = 'none';
+            document.title = 'Profile not available | CanadaAccountants.app';
+            // noindex is already applied by the caller via window.__profileNoindex().
+            const safe = String(message || 'This profile was removed at the request of the person it describes.')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            document.getElementById('page-content').innerHTML = `
+                <div class="page-error">
+                    <i class="fas fa-user-slash"></i>
+                    <h2>This profile is not available</h2>
+                    <p>${safe}</p>
+                    <p style="margin-top: 16px;"><a href="find-cpa">Find a CPA instead</a></p>
+                </div>`;
+        }
+
         function renderProfile(data) {
             var seoPre = document.getElementById('seoPrerender'); if (seoPre) seoPre.style.display = 'none';
             const p = data.profile;
@@ -753,6 +771,8 @@
                         <p>Edit your bio, add specializations, and manage what clients see.</p>
                         <a href="${claimUrl}" class="btn-cta">Take Control <i class="fas fa-arrow-right"></i></a>
                         ${!p.claimed ? `<div style="margin-top:14px;"><button id="organicClaimBtn" data-pid="${p.id || getProfileId() || ''}" class="btn-cta" style="background:transparent;border:1px solid var(--primary-blue,var(--gold));color:var(--primary-blue,var(--gold));cursor:pointer;">Is this you? Claim this profile</button><div id="organicClaimMsg" style="display:none;margin-top:10px;font-size:14px;color:var(--success);"></div></div>` : ''}
+                        <!-- Correct-or-remove: public dispute form on the backend (2026-09-07) -->
+                        <p style="margin:14px 0 0;font-size:13px;color:var(--text-3);">Is this your profile and something is wrong? <a id="disputeLink" href="${API_BASE}/api/profiles/${encodeURIComponent(p.id || getProfileId() || '')}/dispute" rel="nofollow" style="color:var(--text-3);text-decoration:underline;">Correct or remove this profile</a></p>
                     </div>
                 </div>`;
 
@@ -800,6 +820,10 @@
                 if (!res.ok) {
                     if ((res.status === 404 || res.status === 410) && window.__profileNoindex) window.__profileNoindex();
                     const err = await res.json().catch(() => ({}));
+                    if (res.status === 410 && err.code === 'PROFILE_REMOVED') {
+                        renderRemoved(err.message);
+                        return;
+                    }
                     renderError(err.error || 'This profile could not be found.');
                     return;
                 }
