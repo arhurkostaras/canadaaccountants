@@ -461,16 +461,33 @@
         (function() {
             var id = new URLSearchParams(window.location.search).get('id');
             if (!id) return;
-            // Inject per-ID canonical so Google doesn't consolidate all
-            // /profile?id=X URLs onto a single canonical. Same architectural
-            // fix shipped for INV and LAW on 2026-04-27.
-            var canon = document.querySelector('link[rel="canonical"]');
-            if (!canon) {
-                canon = document.createElement('link');
-                canon.rel = 'canonical';
-                document.head.appendChild(canon);
+            // Index status propagation (GitHub Pages serves this SPA 200 for ANY id, so the
+            // status has to be expressed in the document): API 404/410, or a 200 whose row is
+            // below the content threshold (indexable:false), becomes a robots noindex and no
+            // canonical. Only indexable profiles get the per-ID canonical below.
+            function setNoindex() {
+                if (!document.querySelector('meta[name="robots"]')) {
+                    var m = document.createElement('meta');
+                    m.name = 'robots';
+                    m.content = 'noindex, follow';
+                    document.head.appendChild(m);
+                }
+                var c = document.querySelector('link[rel="canonical"]');
+                if (c) c.remove();
             }
-            canon.href = 'https://canadaaccountants.app/profile?id=' + id;
+            window.__profileNoindex = setNoindex;
+            function setCanonical() {
+                // Inject per-ID canonical so Google doesn't consolidate all
+                // /profile?id=X URLs onto a single canonical. Same architectural
+                // fix shipped for INV and LAW on 2026-04-27.
+                var canon = document.querySelector('link[rel="canonical"]');
+                if (!canon) {
+                    canon = document.createElement('link');
+                    canon.rel = 'canonical';
+                    document.head.appendChild(canon);
+                }
+                canon.href = 'https://canadaaccountants.app/profile?id=' + id;
+            }
             // Synchronous XHR — guarantees content in initial render for Googlebot
             var API = 'https://canadaaccountants-backend-production-1d8f.up.railway.app';
             try {
@@ -478,8 +495,10 @@
                 xhr.open('GET', API + '/api/profiles/' + encodeURIComponent(id), false);
                 xhr.timeout = 5000;
                 xhr.send();
+                if (xhr.status === 404 || xhr.status === 410) setNoindex();
                 if (xhr.status === 200) {
                     var data = JSON.parse(xhr.responseText);
+                    if (data.indexable === false) setNoindex(); else setCanonical();
                     var p = data.profile;
                     if (p && p.name) {
                         var desig = p.designation || 'CPA';
@@ -779,18 +798,21 @@
             try {
                 const res = await fetch(`${API_BASE}/api/profiles/${id}`);
                 if (!res.ok) {
+                    if ((res.status === 404 || res.status === 410) && window.__profileNoindex) window.__profileNoindex();
                     const err = await res.json().catch(() => ({}));
                     renderError(err.error || 'This profile could not be found.');
                     return;
                 }
                 const data = await res.json();
+                if (data.indexable === false && window.__profileNoindex) window.__profileNoindex();
                 renderProfile(data);
 
-                // Render related profiles for internal SEO linking
+                // Render related profiles for internal SEO linking (API returns indexable rows only,
+                // linked at their static /profile/{id}/ page)
                 if (data.related && data.related.length > 0) {
                     const province = data.profile.province || '';
                     const relatedHtml = data.related.map(r => `
-                        <a href="/profile?id=${r.id}" style="display:block;padding:16px;margin:8px 0;background:rgba(241,234,220,0.03);border:1px solid var(--border-strong);border-radius:8px;text-decoration:none;color:var(--text);transition:border-color 0.3s;">
+                        <a href="${r.url || '/profile/' + r.id + '/'}" style="display:block;padding:16px;margin:8px 0;background:rgba(241,234,220,0.03);border:1px solid var(--border-strong);border-radius:8px;text-decoration:none;color:var(--text);transition:border-color 0.3s;">
                             <strong style="color:var(--gold);">${r.name}</strong>
                             ${r.firm ? `<span style="color:var(--text-3);margin-left:8px;">${r.firm}</span>` : ''}
                             <br><span style="color:var(--text-3);font-size:13px;">${r.designation || ''} ${r.city ? '— ' + r.city + ', ' + r.province : r.province || ''}</span>

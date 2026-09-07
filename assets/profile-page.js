@@ -199,6 +199,16 @@ const API_BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG.BASE_URL)
             try {
                 const res = await fetch(`${API_BASE}/api/profiles/${id}`);
                 if (!res.ok) {
+                    // Backstop between regens: a static page whose profile was gated or removed
+                    // after generation tells the renderer to drop it until the next prune.
+                    if (res.status === 404 || res.status === 410) {
+                        if (!document.querySelector('meta[name="robots"]')) {
+                            const m = document.createElement('meta');
+                            m.name = 'robots';
+                            m.content = 'noindex, follow';
+                            document.head.appendChild(m);
+                        }
+                    }
                     const err = await res.json().catch(() => ({}));
                     renderError(err.error || 'This profile could not be found.');
                     return;
@@ -206,11 +216,12 @@ const API_BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG.BASE_URL)
                 const data = await res.json();
                 renderProfile(data);
 
-                // Render related profiles for internal SEO linking
+                // Render related profiles for internal SEO linking (API returns indexable rows only,
+                // linked at their static /profile/{id}/ page)
                 if (data.related && data.related.length > 0) {
                     const province = data.profile.province || '';
                     const relatedHtml = data.related.map(r => `
-                        <a href="/profile?id=${r.id}" style="display:block;padding:16px;margin:8px 0;background:rgba(255,255,255,0.03);border:1px solid #333;border-radius:8px;text-decoration:none;color:#fff;transition:border-color 0.3s;">
+                        <a href="${r.url || '/profile/' + r.id + '/'}" style="display:block;padding:16px;margin:8px 0;background:rgba(255,255,255,0.03);border:1px solid #333;border-radius:8px;text-decoration:none;color:#fff;transition:border-color 0.3s;">
                             <strong style="color:#2563eb;">${r.name}</strong>
                             ${r.firm ? `<span style="color:#999;margin-left:8px;">${r.firm}</span>` : ''}
                             <br><span style="color:#888;font-size:13px;">${r.designation || ''} ${r.city ? '— ' + r.city + ', ' + r.province : r.province || ''}</span>
