@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  sitemap-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Profile sitemap lists exactly the served /profile/{id}/ pages (BP-010)
+        run: node scripts/check-sitemap-profiles.mjs
+
   hex-ban:
     runs-on: ubuntu-latest
     steps:

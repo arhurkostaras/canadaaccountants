@@ -431,9 +431,11 @@
                 return;
             }
             professionals.forEach(function(p) {
-                var card = document.createElement('a');
+                // Link only profiles that have a public page (API profile_url = /profile/{id}/);
+                // below-threshold entries render as plain cards so no internal link points at a 404.
+                var card = document.createElement(p.profile_url ? 'a' : 'div');
                 card.className = 'professional-card';
-                card.href = '/profile?id=' + p.id;
+                if (p.profile_url) card.href = p.profile_url;
                 card.style.textDecoration = 'none';
                 card.style.color = 'inherit';
                 card.style.display = 'block';
