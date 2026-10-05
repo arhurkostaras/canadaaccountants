@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated 2026-09-07 by canadaaccountants-backend tools/tier1-pregen/gen-db.js: 7912 profiles passing the indexability threshold (utils/profile-indexability.js). Do not hand-edit; CI (scripts/check-sitemap-profiles.mjs) requires 1:1 parity with /profile/{id}/index.html. -->
+<!-- Generated 2026-10-05 by canadaaccountants-backend tools/tier1-pregen/gen-db.js: 7912 profiles passing the indexability threshold (utils/profile-indexability.js) that have a static /profile/{id}/ page. CI (scripts/check-sitemap-profiles.mjs) requires 1:1 parity with /profile/{id}/index.html. Do not hand-edit. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://canadaaccountants.app/profile/14723/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://canadaaccountants.app/profile/14728/</loc><changefreq>monthly</changefreq></url>

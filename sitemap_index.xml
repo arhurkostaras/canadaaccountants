@@ -10,6 +10,14 @@
   </sitemap>
   <sitemap>
     <loc>https://canadaaccountants.app/sitemap-profiles-1.xml</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-10-05</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://canadaaccountants.app/sitemap-spa-1.xml</loc>
+    <lastmod>2026-10-05</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://canadaaccountants.app/sitemap-spa-2.xml</loc>
+    <lastmod>2026-10-05</lastmod>
   </sitemap>
 </sitemapindex>
